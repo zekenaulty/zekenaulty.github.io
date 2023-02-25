@@ -1,0 +1,10 @@
+
+.z-overlay {
+  z-index: 5000;
+}
+
+.loading-screen-open {
+  overflow-x: clip;
+  overflow-y: clip;
+  overflow: clip;
+}
