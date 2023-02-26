@@ -7,6 +7,7 @@
   <title>ZN - 4D: Dream, Design, Develop, Distribute</title>
   <link rel="stylesheet" href="./res/animate.css" />
   <link rel="stylesheet" href="./res/fa/all.min.css" />
+  <link rel="stylesheet" href="./res/bootstrap.min.css" />
   <link rel="stylesheet" href="./res/darkly.css" id="theme" />
   <link rel="stylesheet" href="./styles.css" />
   <script src="./res/jquery.js"></script>
@@ -16,8 +17,13 @@
 </head>
 
 <body>
-  <i class="fal fa-paper-plane"></i>
-  <loading-screen />
+  <loading-screen></loading-screen>
+  <span onclick="$router.go('/about');">about</span>
+  <header-nav class="header"></header-nav>
+  <main class="container-md viewport">
+    <router-viewport></router-viewport>
+  </main>
+  <footer-nav class="footer"></footer-nav>
 </body>
 
 </html>

@@ -9,29 +9,27 @@ import { DOM } from './dom.js';
 
 */
 
-export class Component extends HTMLElement {
-  _shadow;
+export class Shadows {
   #theme;
 
-  constructor() {
-    super();
-
-    let vm = this;
+  constructor(vm) {
+    let r = this;
+    
     vm._shadow = vm.attachShadow({ mode: 'open' });
-    vm.#addStyles();
+    r.#addStyles(vm);
   }
 
-  #addStyles() {
-    let vm = this;
+  #addStyles(vm) {
+    let r = this;
     let shadow = vm._shadow;
     let styles;
 
-    vm.#theme = DOM.stylesheet('./res/darkly.css');
-    DOM.append(vm.#theme, shadow);
+    r.#theme = DOM.stylesheet('./res/darkly.css');
+    DOM.append(r.#theme, shadow);
 
     if ($theme) {
       $theme.addEventListener('retheme', (e) => {
-        vm.#changeTheme(e);
+        r.#changeTheme(e);
       });
     }
 

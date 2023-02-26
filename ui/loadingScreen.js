@@ -1,7 +1,9 @@
 import { DOM } from '../core/dom.js';
-import { Component } from '../core/component.js';
+import { Shadows } from '../core/shadows.js';
 
-class LoadingScreen extends Component {
+class LoadingScreen extends HTMLElement {
+  #shadows;
+  
   static #shadow;
   static #loaderBg;
   static #loaderText;
@@ -16,6 +18,9 @@ class LoadingScreen extends Component {
     }
 
     let vm = this;
+    
+    vm.#shadows = new Shadows(vm);
+
     LoadingScreen.#shadow = vm._shadow;
     LoadingScreen.#build();
   }
