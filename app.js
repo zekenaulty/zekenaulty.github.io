@@ -1,4 +1,4 @@
-import './ui/theme.js';
+import './core/theme.js';
 import './ui/loadingScreen.js';
 
 $(()=>{

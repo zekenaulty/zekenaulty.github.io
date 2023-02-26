@@ -1,4 +1,4 @@
-import { DOM } from '../core/dom.js';
+import { DOM } from './dom.js';
 
 class Theme extends EventTarget {
   #theme;
