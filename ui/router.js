@@ -103,10 +103,13 @@ class Router {
 
   #resolve(e, n) {
     let vm = this;
-    if(window.location.search != '') {
-      alert(window.location.search);
-    }
     let route = window.location.hash.slice(1) || '/';
+    if (window.location.search != '') {
+      let nRoute = window.location.search.substring(1);
+      if(vm.#routes[nRoute]) {
+        route = nRoute;
+      }
+    }
     if (vm.#routes[route]) {
       if (e && e.preventDefault) {
         e.preventDefault();
