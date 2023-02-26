@@ -14,7 +14,7 @@ class LoadingScreen extends HTMLElement {
     super();
 
     if (LoadingScreen.#shadow) {
-      throw new Error('The loading screen element may only he defined once.')
+      throw new Error('The loading screen element may only be defined once.')
     }
 
     let vm = this;

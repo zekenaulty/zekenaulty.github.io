@@ -16,7 +16,9 @@ class About extends HTMLElement {
 
 $router.add({
   route: '/about',
-  tag: 'about-view'
+  tag: 'about-view',
+  title: 'Zeke Naulty - About',
+  resolve: () => {}
 });
 
 customElements.define('about-view', About);

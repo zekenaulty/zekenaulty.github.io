@@ -8,16 +8,6 @@ import './ui/about.js';
 $(() => {
 
   $loadingScreen.open('under construction');
-
-  $theme.setTheme('flatly');
-  //$router.go('/');
-
-  setTimeout(() => {
-    $theme.setTheme('darkly');
-  }, 350);
-
   $loadingScreen.close(2500);
-
-  $router.update();
-
+  
 });

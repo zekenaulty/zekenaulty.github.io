@@ -5,28 +5,40 @@ import { Shadows } from '../core/shadows.js';
 class Router {
   #routes = {};
   #current = '';
+  #history = [];
+  #index = -1;
 
   constructer() {
     let vm = this;
 
-    let router = (e) => {
-      vm.resolve(e);
+  }
+
+  _initialize() {
+    let vm = this;
+
+    const hook = (n) => {
+      window.addEventListener(n, (e) => {
+        console.log('running router from event ' + n);
+        vm.#resolve(e, n);
+      });
     };
 
-    /* 
-      putting a pin in this, 
-      spck not helping me here 
-    */
-    //window.addEventListener('load', router);
-    //window.addEventListener('popstate', router);
-    //window.addEventListener('hashchange', router);
+    hook('load');
+    hook('popstate');
+    hook('hashchange');
+
   }
 
   add() {
     let vm = this;
     for (let i = 0; i < arguments.length; i++) {
       let r = arguments[i];
-      vm.#routes[r.route] = r.tag;
+      vm.#routes[r.route] = {
+        path: `${window.location.origin}${r.route}`,
+        tag: r.tag,
+        title: r.title,
+        resolve: r.resolve
+      };
     }
   }
 
@@ -35,27 +47,46 @@ class Router {
     delete vm.#routes[route];
   }
 
-  go(route) {
+  go(route, n) {
     let vm = this;
-    let tag = vm.#routes[route];
+    let info = vm.#routes[route];
     let view = vm.#findViewport(route);
-    if (tag && view) {
-      let component = document.createElement(tag);
+    if (info && info.tag && view) {
+      let component = document.createElement(info.tag);
       while (view._shadow.lastElementChild) {
         view._shadow.removeChild(view._shadow.lastElementChild);
       }
       view._shadow.appendChild(component);
-      console.log(`loaded route ${route}`);
+
+      if (vm.#current == '') {
+        vm.#history.push(route);
+        window.history.replaceState(
+          vm.#history.length - 1,
+          info.title,
+          info.path
+        );
+      } else {
+        let isCurrent = vm.#history[vm.#history.length - 1] == vm.#current;
+        let isHistory = n && n == 'popstate';
+        if (isCurrent && !isHistory) {
+          vm.#history.push(route);
+          window.history.pushState(
+            vm.#history.length - 1,
+            info.title,
+            info.path
+          );
+        }
+      }
+      vm.#current = route;
+      document.querySelector('title').innerText = info.title;
     }
   }
 
-  update() {
+  #update(n) {
     let vm = this;
     let route = window.location.hash.slice(1) || '/';
-    console.log(`router update found ${route} route, current routes is ${vm.#current}`);
     if (vm.#current !== route) {
-      vm.go(route);
-      vm.#current = route;
+      vm.go(route, n);
     }
   }
 
@@ -71,18 +102,15 @@ class Router {
     return root;
   }
 
-  #resolve(e) {
+  #resolve(e, n) {
     let vm = this;
     let route = window.location.hash.slice(1) || '/';
-    e = e || window.event;
-    console.log(e);
-    console.log(route);
-    if (vm.#routes[route] && e) {
-      e.preventDefault();
-      e.returnValue = '';
-      /* this needs to be moved to go to handle direct calls to go*/
-      window.history.pushState({}, '', event.target.href);
-      vm.update();
+    if (vm.#routes[route]) {
+      if (e && e.preventDefault) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+      vm.#update(n);
     }
   }
 }
@@ -109,4 +137,5 @@ class RouterViewport extends HTMLElement {
 }
 
 window.$router = new Router();
+$router._initialize();
 customElements.define('router-viewport', RouterViewport);

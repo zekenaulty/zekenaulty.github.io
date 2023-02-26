@@ -26,7 +26,9 @@ class Home extends HTMLElement {
 
 $router.add({
   route: '/',
-  tag: 'home-view'
+  tag: 'home-view',
+  title: 'Zeke Naulty - 4D: dream, design, develop, distribute',
+  resolve: () => {}
 });
 
 customElements.define('home-view', Home);
