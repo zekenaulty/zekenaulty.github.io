@@ -5,12 +5,9 @@ import { Shadows } from '../core/shadows.js';
 class Router {
   #routes = {};
   #current = '';
-  #history = [];
-  #index = -1;
 
   constructer() {
     let vm = this;
-
   }
 
   _initialize() {
@@ -18,7 +15,6 @@ class Router {
 
     const hook = (n) => {
       window.addEventListener(n, (e) => {
-        console.log('running router from event ' + n);
         vm.#resolve(e, n);
       });
     };
@@ -26,6 +22,7 @@ class Router {
     hook('load');
     hook('popstate');
     hook('hashchange');
+
 
   }
 
@@ -49,6 +46,7 @@ class Router {
 
   go(route, n) {
     let vm = this;
+    route = vm.parseRoute(route);
     let info = vm.#routes[route];
     let view = vm.#findViewport(route);
     if (info && info.tag && view) {
@@ -57,33 +55,28 @@ class Router {
         view._shadow.removeChild(view._shadow.lastElementChild);
       }
       view._shadow.appendChild(component);
-
+      let isHistory = window.history.state && window.history.state == info.path;
       if (vm.#current == '') {
-        vm.#history.push(route);
         window.history.replaceState(
-          vm.#history.length - 1,
+          info.path,
           info.title,
           info.path
         );
-      } else {
-        let isHistory = n && n == 'popstate';
-        if (!isHistory) {
-          vm.#history.push(route);
-          window.history.pushState(
-            vm.#history.length - 1,
-            info.title,
-            info.path
-          );
-        }
+      } else if(!isHistory &&  vm.#current != info.path){
+        window.history.pushState(
+          info.path,
+          info.title,
+          info.path
+        );
       }
-      vm.#current = route;
-      document.querySelector('title').innerText = info.title;
+      vm.#current = info.path;
+      document.querySelector('title').innerHTML = info.title;
     }
   }
 
   #update(n) {
     let vm = this;
-    let route = window.location.hash.slice(1) || '/';
+    let route = $router.parseRoute(window.location.href);
     if (vm.#current !== route) {
       vm.go(route, n);
     }
@@ -103,13 +96,7 @@ class Router {
 
   #resolve(e, n) {
     let vm = this;
-    let route = window.location.hash.slice(1) || '/';
-    if (window.location.search != '') {
-      let nRoute = window.location.search.substring(1);
-      if(vm.#routes[nRoute]) {
-        route = nRoute;
-      }
-    }
+    let route = vm.parseRoute(window.location.href);
     if (vm.#routes[route]) {
       if (e && e.preventDefault) {
         e.preventDefault();
@@ -118,6 +105,57 @@ class Router {
       vm.#update(n);
     }
   }
+
+  anchor(e) {
+    let vm = this;
+    let a = e.target;
+    let route = $router.parseRoute(a.href);
+    if (vm.#routes[route]) {
+      e.preventDefault();
+      vm.go(route);
+    }
+  }
+
+  isRoute(route) {
+    let vm = this;
+    return vm.#routes[route] ? true : false;
+  }
+
+  hookAnchors() {
+    $(document).on('click', 'a', function(e) {
+      let a = e.target;
+      let route = $router.parseRoute(a.href);
+      if ($router.isRoute(route)) {
+        e.preventDefault();
+        $router.go(route);
+      }
+    });
+  }
+
+  parseRoute(href) {
+    href = href.replace('index.html', '');
+    let vm = this;
+    if (!href) {
+      return;
+    }
+    let route = href;
+    let search = route.indexOf('?');
+    if (search > -1) {
+      route = route.substring(search + 1);
+      if (route[0] != '/') {
+        route = '/' + route;
+      }
+    } else {
+      try {
+        let url = new URL(href);
+        route = url.pathname;
+      } catch {
+        route = href;
+      }
+    }
+    return route;
+  }
+
 }
 
 class RouterViewport extends HTMLElement {
@@ -137,6 +175,8 @@ class RouterViewport extends HTMLElement {
     vm.style.display = 'block';
     vm.style.overflowX = 'auto';
     vm.style.overflowY = 'auto';
+
+    $router.hookAnchors();
   }
 
 }

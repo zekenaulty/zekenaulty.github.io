@@ -1,0 +1,26 @@
+[
+  {
+    "text": "home",
+    "href": "/"
+  },
+  {
+    "text": "about",
+    "href": "/?/about"
+  },
+  {
+    "text": "linkedIn",
+    "href": "https://www.linkedin.com/mwlite/in/zekenaulty"
+  },
+  {
+    "text": "github",
+    "href": "https://github.com/zekenaulty"
+  },
+  {
+    "text": "resume",
+    "href": "/resume"
+  },
+  {
+    "text": "projects",
+    "href": "/projects"
+  }
+]

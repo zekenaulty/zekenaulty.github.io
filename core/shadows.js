@@ -5,6 +5,8 @@ import { DOM } from './dom.js';
   this is needed primarily to support 
   shadow dom theme changes...
   
+  reuse ...
+  
   more helpers likely to follow
 
 */
@@ -14,9 +16,10 @@ export class Shadows {
 
   constructor(vm) {
     let r = this;
-    
+
     vm._shadow = vm.attachShadow({ mode: 'open' });
     r.#addStyles(vm);
+    r.#addJs(vm);
   }
 
   #addStyles(vm) {
@@ -43,9 +46,25 @@ export class Shadows {
     DOM.append(styles, shadow);
 
   }
+  
+  #addJs(vm) {
+    let r = this;
+    let shadow = vm._shadow;
+    let scripts;
+    
+    scripts = DOM.script('./res/jquery.js');
+    DOM.append(scripts, shadow);
+    
+    scripts = DOM.script('./res/fa/all.min.js');
+    DOM.append(scripts, shadow);
+
+    scripts = DOM.script('./res/bootstrap.bundle.min.js');
+    DOM.append(scripts, shadow);
+  }
 
   #changeTheme(e) {
     let vm = this;
     vm.#theme.href = e.detail;
   }
+  
 }

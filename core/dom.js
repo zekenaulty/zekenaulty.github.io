@@ -5,9 +5,27 @@ export class DOM {
     e = document.createElement('link');
     e.rel = 'stylesheet';
     e.href = path;
+
     if (appendToHead) {
       DOM.head.appendChild(e);
     }
+
+    return e;
+  }
+
+  static script(path, type = undefined, appendToHead = false) {
+    let e;
+    e = document.createElement('script');
+    e.src = path;
+
+    if (type) {
+      e.type = type;
+    }
+
+    if (appendToHead) {
+      DOM.head.appendChild(e);
+    }
+
     return e;
   }
 
