@@ -1,8 +1,6 @@
 import { DOM } from '../core/dom.js';
-import { Shadows } from '../core/shadows.js';
 
 class Header extends HTMLElement {
-  #shadows;
   #sequence;
 
   static #count = 0;
@@ -20,7 +18,6 @@ class Header extends HTMLElement {
     Header.#count++;
     vm.#sequence = Header.#count;
     vm.style.display = 'block';
-    vm.zIndex = 100;
 
     DOM.classes(vm, [
       'navbar',
