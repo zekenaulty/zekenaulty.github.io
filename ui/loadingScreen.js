@@ -32,7 +32,7 @@ class LoadingScreen extends Component {
 
     if (!bg) {
       bg = DOM.div(target, [
-        'bg-dark',
+        'bg-secondary',
         'position-fixed',
         'top-0',
         'left-0',
@@ -128,5 +128,5 @@ class LoadingScreen extends Component {
 
 }
 
-window.loadingScreen = LoadingScreen;
+window.$loadingScreen = LoadingScreen;
 customElements.define('loading-screen', LoadingScreen);
