@@ -1,8 +1,8 @@
 import { DOM } from '../core/dom.js';
+import { Component } from '../core/component.js';
 
-class LoadingScreen extends HTMLElement {
+class LoadingScreen extends Component {
   static #shadow;
-
   static #loaderBg;
   static #loaderText;
   static #text;
@@ -16,9 +16,8 @@ class LoadingScreen extends HTMLElement {
     }
 
     let vm = this;
-    LoadingScreen.#shadow = vm.attachShadow({ mode: 'open' });
+    LoadingScreen.#shadow = vm._shadow;
     LoadingScreen.#build();
-
   }
 
   static get isOpen() {
@@ -30,15 +29,6 @@ class LoadingScreen extends HTMLElement {
     let target = vm.#shadow;
     let bg = vm.#loaderBg;
     let text = vm.#loaderText;
-
-    let styles = DOM.stylesheet('./res/darkly.css');
-    DOM.append(styles, target);
-    
-    styles = DOM.stylesheet('./res/animate.css');
-    DOM.append(styles, target);
-    
-    styles = DOM.stylesheet('./styles.css');
-    DOM.append(styles, target);
 
     if (!bg) {
       bg = DOM.div(target, [
@@ -71,7 +61,6 @@ class LoadingScreen extends HTMLElement {
     }
 
     if (!text) {
-
       text = DOM.div(target, [
         'text-light',
         'position-fixed',
@@ -97,7 +86,6 @@ class LoadingScreen extends HTMLElement {
       vm.#text.innerText = 'loading';
       vm.#loaderText = text;
     }
-
   }
 
   static open(msg = 'loading') {
