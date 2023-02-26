@@ -66,9 +66,8 @@ class Router {
           info.path
         );
       } else {
-        let isCurrent = vm.#history[vm.#history.length - 1] == vm.#current;
         let isHistory = n && n == 'popstate';
-        if (isCurrent && !isHistory) {
+        if (!isHistory) {
           vm.#history.push(route);
           window.history.pushState(
             vm.#history.length - 1,
