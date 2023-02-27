@@ -10,7 +10,7 @@ class Home extends HTMLElement {
     
     vm.#shadows = new Shadows(vm);
     
-    DOM.p(`hi, I'm Zeke Naulty, welcome (helo world!)`, vm._shadow, 'h4');
+    DOM.p(`hi, I'm Zeke Naulty, welcome (hello world!)`, vm._shadow, 'h4');
     
     
     DOM.p(`
