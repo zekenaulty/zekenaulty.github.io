@@ -20,9 +20,12 @@ class Header extends HTMLElement {
     vm.style.display = 'block';
 
     DOM.classes(vm, [
-      'navbar',
-      'navbar-expand-md',
-      'navbar-dark'
+      'header',
+      'border',
+      'border-light',
+      'border-top-0',
+      'border-start-0',
+      'border-end-0'
       ]);
 
     vm.#build();
@@ -30,14 +33,20 @@ class Header extends HTMLElement {
 
   #build() {
     let vm = this;
-    let root = DOM.div(vm, [
+    let nav = DOM.nav(vm, [
+      'navbar',
+      'navbar-expand-md',
+      'navbar-dark'
+      ]);
+
+    let root = DOM.div(nav, [
       'container-fluid'
       ]);
 
     vm.#addBrand(root, 'ZN', '/');
     let toggle = vm.#addToggle(root);
 
-    let menuUrl = vm.getAttribute('data-menu-url');
+    let menuUrl = vm.getAttribute('data-menu');
 
     if (menuUrl) {
       fetch(menuUrl)
@@ -115,36 +124,43 @@ class Header extends HTMLElement {
 
   #addMenuItem(ul, item) {
     let vm = this;
-    let li = DOM.li(undefined, ul, [
-        'nav-item'
-        ]);
-    let a = DOM.a(
-      item.text,
-      li, [
-        'nav-link'
-        ]);
+    let li = DOM.li(undefined, ul, ['nav-item']);
+    let a = DOM.a(undefined, li, ['nav-link']);
+
+    if (item.icon) {
+      DOM.element('i', a, item.icon.split(' '));
+    }
+    
+    DOM.text(item.text, a);
+
+    if (item.target) {
+      a.setAttribute('target', item.target);
+    }
+
+    if (item.title) {
+      a.setAttribute('title', item.title);
+    }
 
     a.href = item.href;
-    
     a.setAttribute('data-bs-toggle', 'collapse');
     a.setAttribute('data-bs-target', '#' + vm.#getId());
 
-
     if (item.items) {
-      vm.#addDropdownMenu(li, item.items);
+      vm.#addDropdownMenu(li, a, item.items);
     }
   }
 
-  #addDropdownMenu(li, items) {
+  #addDropdownMenu(li, a, items) {
     let vm = this;
     li.classList.add('dropdown');
-    let a = li.firstChildElement;
+    a.setAttribute('target', undefined);
+    a.href = 'javascript:void(0);';
     a.classList.add('dropdown-toggle');
-    a.setAtteibute('role', 'button');
-    a.setAtteibute('data-bs-toggle', 'dropdown');
-    a.setAtteibute('aria-expanded', false);
+    a.setAttribute('role', 'button');
+    a.setAttribute('data-bs-toggle', 'dropdown');
+    a.setAttribute('aria-expanded', false);
 
-    let ul = DOM.ul(li, []);
+    let ul = DOM.ul(li, ['dropdown-menu']);
 
     for (let i = 0; i < items.length; i++) {
       vm.#addDropdownMenuItem(ul, items[i]);
@@ -153,7 +169,26 @@ class Header extends HTMLElement {
 
   #addDropdownMenuItem(ul, item) {
     let vm = this;
+    let li = DOM.li(undefined, ul, []);
+    let a = DOM.a(undefined, li, ['dropdown-item']);
 
+    if (item.icon) {
+      DOM.element('i', a, item.icon.split(' '));
+    }
+    
+    DOM.text(item.text, a);
+
+    if (item.target) {
+      a.setAttribute('target', item.target);
+    }
+
+    if (item.title) {
+      a.setAttribute('title', item.title);
+    }
+
+    a.href = item.href;
+    a.setAttribute('data-bs-toggle', 'collapse');
+    a.setAttribute('data-bs-target', '#' + vm.#getId());
   }
 
 }

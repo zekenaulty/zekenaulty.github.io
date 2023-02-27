@@ -62,7 +62,7 @@ class Router {
           info.title,
           info.path
         );
-      } else if(!isHistory &&  vm.#current != info.path){
+      } else if (!isHistory && vm.#current != info.path) {
         window.history.pushState(
           info.path,
           info.title,
@@ -109,11 +109,15 @@ class Router {
   anchor(e) {
     let vm = this;
     let a = e.target;
+    if (a.target) {
+      return true;
+    }
     let route = $router.parseRoute(a.href);
     if (vm.#routes[route]) {
       e.preventDefault();
       vm.go(route);
     }
+    return false;
   }
 
   isRoute(route) {
@@ -124,10 +128,15 @@ class Router {
   hookAnchors() {
     $(document).on('click', 'a', function(e) {
       let a = e.target;
-      let route = $router.parseRoute(a.href);
-      if ($router.isRoute(route)) {
-        e.preventDefault();
-        $router.go(route);
+      if (!a.target) {
+        let route = $router.parseRoute(a.href);
+        if ($router.isRoute(route)) {
+          e.preventDefault();
+          $router.go(route);
+          return;
+        }
+      } else {
+        window.open(a.href, a.target);
       }
     });
   }

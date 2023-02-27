@@ -116,6 +116,13 @@ export class DOM {
   static li(text, parent, classes) {
     return DOM.element('li', parent, classes, text);
   }
+  
+  static ulist(parent, items, ulClasses, liClasses) {
+    let ul = DOM.ul(parent, ulClasses);
+    for(let i = 0; i < items.length; i++) {
+      DOM.li(items[i], ul, liClasses);
+    }
+  }
 
   static div(parent, classes) {
     return DOM.element('div', parent, classes);

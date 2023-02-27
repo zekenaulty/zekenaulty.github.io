@@ -19,7 +19,7 @@ export class Shadows {
 
     vm._shadow = vm.attachShadow({ mode: 'open' });
     r.#addStyles(vm);
-    r.#addJs(vm);
+    //r.#addJs(vm);
   }
 
   #addStyles(vm) {

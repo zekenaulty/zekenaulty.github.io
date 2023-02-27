@@ -1,26 +1,50 @@
 [
   {
     "text": "home",
-    "href": "/"
-  },
-  {
-    "text": "about",
-    "href": "/?/about"
-  },
-  {
-    "text": "linkedIn",
-    "href": "https://www.linkedin.com/mwlite/in/zekenaulty"
-  },
-  {
-    "text": "github",
-    "href": "https://github.com/zekenaulty"
+    "href": "/",
+    "title": "site home",
+    "icon": "pe-1 fas fa-house-user"
   },
   {
     "text": "resume",
-    "href": "/resume"
+    "href": "/resume",
+    "title": "my resume, incase you don't like linkedIn",
+    "icon": "pe-1 fas fa-file-alt"
   },
   {
     "text": "projects",
-    "href": "/projects"
+    "href": "javascript:void(0);",
+    "title": "things I'm working on, may or may not be code related",
+    "icon": "pe-1 fas fa-code-branch",
+    "items": [
+      {
+        "text": "mazes",
+        "href": "https://zekenaulty.github.io/mazes/",
+        "title": "a simple maze game",
+        "icon": "pe-1 far fa-game-console-handheld",
+        "target": "_blank"
+      },
+      {
+        "text": "mazes (repo)",
+        "href": "https://github.com/zekenaulty/mazes/",
+        "title": "a simple maze game",
+        "icon": "pe-1 fab fa-github",
+        "target": "_blank"
+      },
+      {
+        "text": "dungeon crawler",
+        "href": "https://zekenaulty.github.io/Dungeon-Crawler/",
+        "title": "mazes big brother",
+        "icon": "pe-1 far fa-game-console-handheld",
+        "target": "_blank"
+      },
+      {
+        "text": "dungeon crawler (repo)",
+        "href": "https://github.com/zekenaulty/Dungeon-Crawler/",
+        "title": "mazes big brother",
+        "icon": "pe-1 fab fa-github",
+        "target": "_blank"
+      }
+    ]
   }
 ]

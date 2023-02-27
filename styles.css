@@ -26,11 +26,11 @@
   display: flex;
   flex-flow: row;
   flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  min-width: 200px;
-  max-width: 300px;
+  justify-content: stretch;
+  min-width: 240px;
+  max-width: 240px;
   border-radius: 13px 13px 13px 13px;
+  padding: 8px 8px 8px 8px;
 }
 
 .viewport {

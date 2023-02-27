@@ -10,14 +10,14 @@ class About extends HTMLElement {
     
     vm.#shadows = new Shadows(vm);
     
-    DOM.p('about (coming soon) 🤔', vm._shadow, 'h3');
+    DOM.p('about this site', vm._shadow, 'h3');
   }
 }
 
 $router.add({
   route: '/about',
   tag: 'about-view',
-  title: 'Zeke Naulty - About',
+  title: 'ZN - about',
   resolve: () => {}
 });
 
