@@ -46,5 +46,46 @@
         "target": "_blank"
       }
     ]
+  },
+  {
+    "text": "themes",
+    "href": "javascript:void(0);",
+    "title": "change the color schema",
+    "icon": "pe-1 fas fa-code-branch",
+    "items": [
+      {
+        "text": "darkly",
+        "href": "javascript:void(0);",
+        "title": "load darkly",
+        "icon": "pe-1 fas fa-palette",
+        "attributes":
+        {
+          "data-site-action": "set-theme",
+          "data-site-action-set-theme": "darkly"
+        }
+      },
+      {
+        "text": "flatly",
+        "href": "javascript:void(0);",
+        "title": "load flatly",
+        "icon": "pe-1 fas fa-palette",
+        "attributes": 
+        {
+          "data-site-action": "set-theme",
+          "data-site-action-set-theme": "flatly"
+        }
+      },
+      {
+        "text": "slate",
+        "href": "javascript:void(0);",
+        "title": "load slate",
+        "icon": "pe-1 fas fa-palette",
+        "attributes":
+        {
+          "data-site-action": "set-theme",
+          "data-site-action-set-theme": "slate"
+        }
+      }
+    ]
   }
 ]

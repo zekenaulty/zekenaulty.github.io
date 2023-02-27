@@ -1,7 +1,6 @@
 import { DOM } from '../core/dom.js';
 import { Shadows } from '../core/shadows.js';
 
-
 class Router {
   #routes = {};
   #current = '';
@@ -105,7 +104,7 @@ class Router {
       vm.#update(n);
     }
   }
-
+/*
   anchor(e) {
     let vm = this;
     let a = e.target;
@@ -119,7 +118,7 @@ class Router {
     }
     return false;
   }
-
+*/
   isRoute(route) {
     let vm = this;
     return vm.#routes[route] ? true : false;
@@ -128,6 +127,14 @@ class Router {
   hookAnchors() {
     $(document).on('click', 'a', function(e) {
       let a = e.target;
+      
+      let action = a.getAttribute('data-site-action');
+      if(action && $actions) {
+        let params = a.getAttribute('data-site-action-' + action);
+        $actions.run(action, params);
+        return;
+      }
+      
       if (!a.target) {
         let route = $router.parseRoute(a.href);
         if ($router.isRoute(route)) {
@@ -142,11 +149,12 @@ class Router {
   }
 
   parseRoute(href) {
-    href = href.replace('index.html', '');
-    let vm = this;
     if (!href) {
       return;
     }
+    let vm = this;
+    href = href.replace('index.html', '');
+    
     let route = href;
     let search = route.indexOf('?');
     if (search > -1) {
@@ -192,4 +200,5 @@ class RouterViewport extends HTMLElement {
 
 window.$router = new Router();
 $router._initialize();
+
 customElements.define('router-viewport', RouterViewport);

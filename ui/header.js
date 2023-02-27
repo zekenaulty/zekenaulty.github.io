@@ -36,7 +36,8 @@ class Header extends HTMLElement {
     let nav = DOM.nav(vm, [
       'navbar',
       'navbar-expand-md',
-      'navbar-dark'
+      'navbar-dark', 
+      'bg-dark'
       ]);
 
     let root = DOM.div(nav, [
@@ -140,6 +141,12 @@ class Header extends HTMLElement {
     if (item.title) {
       a.setAttribute('title', item.title);
     }
+    
+    if(item.attributes){
+      for(let k in item.attributes) {
+        a.setAttribute(k, item.attributes[k]);
+      }
+    }
 
     a.href = item.href;
     a.setAttribute('data-bs-toggle', 'collapse');
@@ -184,6 +191,12 @@ class Header extends HTMLElement {
 
     if (item.title) {
       a.setAttribute('title', item.title);
+    }
+    
+    if(item.attributes){
+      for(let k in item.attributes) {
+        a.setAttribute(k, item.attributes[k]);
+      }
     }
 
     a.href = item.href;

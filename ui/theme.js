@@ -1,4 +1,4 @@
-import { DOM } from './dom.js';
+import { DOM } from '../core/dom.js';
 
 class Theme extends EventTarget {
   #theme;
@@ -9,6 +9,13 @@ class Theme extends EventTarget {
     let vm = this;
 
     vm.#findTheme();
+    
+    if($actions){
+      $actions.add('set-theme', (t) => {
+        vm.setTheme(t);
+      });
+    }
+    
   }
 
   #findTheme() {
