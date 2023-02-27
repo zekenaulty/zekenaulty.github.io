@@ -25,6 +25,7 @@ class Theme extends EventTarget {
 
   setTheme(theme) {
     let vm = this;
+    $loadingScreen.open(`loading ${theme}`)
     vm.#theme.href = `./res/${theme}.css`;
     vm.dispatchEvent(
       new CustomEvent(
@@ -32,6 +33,7 @@ class Theme extends EventTarget {
         {
           detail: vm.#theme.href
         }));
+    $loadingScreen.close(450);
   }
 
 }

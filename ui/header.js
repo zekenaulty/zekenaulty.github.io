@@ -21,11 +21,6 @@ class Header extends HTMLElement {
 
     DOM.classes(vm, [
       'header',
-      'border',
-      'border-light',
-      'border-top-0',
-      'border-start-0',
-      'border-end-0'
       ]);
 
     vm.#build();
@@ -107,10 +102,6 @@ class Header extends HTMLElement {
     let root = DOM.div(to, [
       'collapse',
       'navbar-collapse',
-      'header-menu',
-      'bg-dark',
-      'border',
-      'border-light'
       ]);
 
     root.id = vm.#getId();
