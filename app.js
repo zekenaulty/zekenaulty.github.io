@@ -9,5 +9,6 @@ import './ui/header.js';
 import './ui/footer.js';
 
 $(() => {
-  //$theme.setTheme('flatly');
+
+  
 });

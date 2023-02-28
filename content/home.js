@@ -1,16 +1,16 @@
 import { DOM } from '../core/dom.js';
-import { Shadows } from '../core/shadows.js';
 
 class Home extends HTMLElement {
-  #shadows;
+
   constructor(){
     super();
     
+  }
+  
+  connectedCallback() {
     let vm = this;
     
-    vm.#shadows = new Shadows(vm);
-    
-    DOM.p(`hi, I'm Zeke Naulty, welcome (hello world!)`, vm._shadow, 'h4');
+    DOM.p(`hi, I'm Zeke Naulty, welcome (hello world!)`, vm, 'h2');
     
     
     DOM.p(`
@@ -18,9 +18,9 @@ class Home extends HTMLElement {
       writing code since ~1996 (${new Date().getFullYear() - 1996} years).
       In that time I've done a lot of things both professionally 
       and as a hobby 🤔 let's list a few ❔️
-    `, vm._shadow);
+    `, vm);
     
-    DOM.ulist(vm._shadow, [
+    DOM.ulist(vm, [
       `just wrote a DOM method to make a <ul />`,
       `wrote bots to play games for me`,
       `written software for law enforcement, military, farmers, scientest, restraunts, and stores of all kinds`,
@@ -36,7 +36,7 @@ class Home extends HTMLElement {
     
     DOM.p(`
       It seems like that list leaned more towards hobby... what can I say, I love this stuff
-    `, vm._shadow);
+    `, vm);
     
     
     DOM.p(`
@@ -49,31 +49,36 @@ class Home extends HTMLElement {
       now and then, I like to jump in the sandbox, but 
       I didn't feel like using any frameworks.
       Don't look directly at the bootstrap 🙉🙈🙊
-    `, vm._shadow);
+    `, vm);
     
     
     DOM.p(`
       Anyway, as you can tell, this isn't a super 
       serious project, but for me it has value.
-    `, vm._shadow);
+    `, vm);
     
     
     DOM.p(`
       If we deliver value, we've done our jobs. May the force be with you.
-    `, vm._shadow);
+    `, vm);
+    
+    DOM.p(`
+      This site is has security holes in the code! Not for reuse!
+    `, vm);
     
     /*
     DOM.p(`
       
-    `, vm._shadow);
+    `, vm);
     */
+    
     /*
-    DOM.p($li.sentence(1, 3),vm._shadow, 'h4');
+    DOM.p($li.sentence(1, 3),vm, 'h3');
     for(let i = 0; i < 199; i++) {
       if(i % 3 == 0) {
-        DOM.p($li.sentence(1, 3), vm._shadow, 'h4');
+        DOM.p($li.sentence(1, 3), vm, 'h3');
       }
-      DOM.p($li.paragraph(), vm._shadow);
+      DOM.p($li.paragraph(), vm);
     }
     */
   }

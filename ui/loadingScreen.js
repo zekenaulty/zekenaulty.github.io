@@ -24,6 +24,10 @@ class LoadingScreen extends HTMLElement {
     LoadingScreen.#shadow = vm._shadow;
     LoadingScreen.#build();
   }
+  
+  connectedCallback() {
+
+  }
 
   static get isOpen() {
     return LoadingScreen.#open;

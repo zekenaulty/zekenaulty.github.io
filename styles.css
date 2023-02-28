@@ -9,17 +9,16 @@
   overflow: clip;
 }
 
-.header {
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-}
-
 .viewport {
-  height: 80vh;
+  height: 84.5vh;
   overflow: auto;
   overflow-y: auto;
   overflow-x: auto;
   padding-top: 1.2rem;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
 }

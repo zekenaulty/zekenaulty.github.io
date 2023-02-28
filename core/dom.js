@@ -113,12 +113,23 @@ export class DOM {
     return DOM.element('ul', parent, classes);
   }
 
+  static ol(parent, classes) {
+    return DOM.element('ol', parent, classes);
+  }
+
   static li(text, parent, classes) {
     return DOM.element('li', parent, classes, text);
   }
   
   static ulist(parent, items, ulClasses, liClasses) {
     let ul = DOM.ul(parent, ulClasses);
+    for(let i = 0; i < items.length; i++) {
+      DOM.li(items[i], ul, liClasses);
+    }
+  }
+  
+  static olist(parent, items, olClasses, liClasses) {
+    let ol = DOM.ul(parent, olClasses);
     for(let i = 0; i < items.length; i++) {
       DOM.li(items[i], ul, liClasses);
     }

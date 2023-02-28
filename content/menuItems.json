@@ -18,6 +18,20 @@
     "icon": "pe-1 fas fa-code-branch",
     "items": [
       {
+        "text": "angularjs \"random dialog\"",
+        "href": "https://zekenaulty.github.io/random-dialog/",
+        "title": "a deprecated tinker toy",
+        "icon": "pe-1 far fa-scroll-old",
+        "target": "_blank"
+      },
+      {
+        "text": "angularjs \"random dialog\" (repo)",
+        "href": "https://github.com/zekenaulty/random-dialog/",
+        "title": "a simple maze game",
+        "icon": "pe-1 fab fa-github",
+        "target": "_blank"
+      },
+      {
         "text": "mazes",
         "href": "https://zekenaulty.github.io/mazes/",
         "title": "a simple maze game",
@@ -84,6 +98,28 @@
         {
           "data-site-action": "set-theme",
           "data-site-action-set-theme": "slate"
+        }
+      },
+      {
+        "text": "cyborg",
+        "href": "javascript:void(0);",
+        "title": "load cyborg",
+        "icon": "pe-1 fas fa-palette",
+        "attributes":
+        {
+          "data-site-action": "set-theme",
+          "data-site-action-set-theme": "cyborg"
+        }
+      },
+      {
+        "text": "spacelab",
+        "href": "javascript:void(0);",
+        "title": "load spacelab",
+        "icon": "pe-1 fas fa-palette",
+        "attributes":
+        {
+          "data-site-action": "set-theme",
+          "data-site-action-set-theme": "spacelab"
         }
       }
     ]
