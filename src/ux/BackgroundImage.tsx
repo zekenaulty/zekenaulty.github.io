@@ -1,4 +1,4 @@
-// BackgroundImage.tsx
+
 import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { BarLoader } from 'react-spinners';
