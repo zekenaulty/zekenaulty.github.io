@@ -1,0 +1,37 @@
+:root {
+    --viewport-width: 100vw;
+    --viewport-height: 100vh;
+    --viewport-width-max: 100vw;
+    --viewport-height-max: 100vh;
+}
+
+.fill-vp {
+    width: var(--viewport-width);
+    height: var(--viewport-height);
+    left: 0pc;
+}
+
+.overlay-root {
+    position: relative;
+}
+
+.overlay-content {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+}
+
+.overlay-fg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+}
+
+.overlay-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+}

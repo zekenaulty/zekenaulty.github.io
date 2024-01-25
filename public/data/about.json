@@ -1,0 +1,10 @@
+{
+    "header": "About, Zeke Naulty: Fullstack Developer",
+    "paragraphs": [
+      "I like to say: \"Dream, Design, Develop, Distribute\", that may sound a bit waterfall or rational rose, but it's actually quite agile; you just have to adjust the scale of your bounding concerns.",
+      "I started my career in the mid 90's, probably about 1997, I wrote vb apps and did web page layout, photoshop, and even scanning pictures and setting up storefronts for e-commerce. It was the 90's after all. I also did IT work, computer repair, and print and advertising work in the 90's.",
+      "In the early 2000's I spent time trying to sell co-workers on the idea of ORMs and ActiveRecord to speed up data access layer creation. I wrote and maintained ORMs for SqlServer and Oracle. We tried to achieve, one page to rule them all or SPA, in ASP.Net by binding to data models with metadata attributes, back before POCOs were really a thing. I have to admit my experiments with using XML to define model metadata were interesting, but they didn't do as well as I had hoped. MVC wrapped in WebForms was interesting. It used XML definitions to customize the content availbe in the application based, on security roles, user location, and other scopes; all using components loaded based on configuration data. Trying to get people to use url routers was always fun.",
+      "Generative algorithms have always been interesting to me. I find the current trend with generative AI quite fascinating."
+    ]
+  }
+  

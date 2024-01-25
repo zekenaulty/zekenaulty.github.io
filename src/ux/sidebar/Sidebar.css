@@ -1,0 +1,25 @@
+/* Sidebar.css */
+
+/* Add styles for the toggle button */
+.toggle-button {
+    position: fixed;
+    top: 0px;
+    right: 2px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    z-index: 99999; /* Ensure the button is at a higher layer */
+    font-size: 1.3em;
+  }
+  
+  /* Add styles for the open/close icon */
+  .toggle-icon {
+    transition: transform 0.3s ease;
+  }
+  
+  /* Rotate the icon when the sidebar is open */
+  .sidebar-open .toggle-icon {
+    transform: rotate(180deg);
+  }
+  
