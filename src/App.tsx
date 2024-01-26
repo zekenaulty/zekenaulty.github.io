@@ -26,21 +26,7 @@ function App() {
 
   return (
     <>
-      <motion.div
-        initial={{ 
-          opacity: 0, 
-          scale: 1 
-        }}
-        transition={{
-          duration: 1
-        }}
-        animate={{
-          opacity: 1, 
-          scale: 1
-        }}
-      >
-        <Home></Home>
-      </motion.div>
+      <Sidebar></Sidebar>
     </>
   );
 
