@@ -16,12 +16,13 @@ class Gear {
         Object.assign(this, config, { midRadius: config.outerRadius - 10 });
     }
 
-    outlineGear(ani: GearsWorking, width: number = 1.5, scale: number = 1, style: string = 'silver', join: CanvasLineJoin = "bevel"): void {
+    drawGear(ani: GearsWorking, scale: number = 1, style: string = 'silver', join: CanvasLineJoin = "bevel"): void {
 
         const context = ani.getContext();
+        context.save();
 
         context.lineJoin = join;
-        context.lineWidth = width;
+        context.fillStyle = style;
         context.strokeStyle = style;
         context.scale(scale, scale);
         context.beginPath();
@@ -32,18 +33,24 @@ class Gear {
             const [x, y] = [radius * Math.sin(theta), radius * Math.cos(theta)];
             n === 0 ? context.moveTo(x, y) : context.lineTo(x, y);
         }
-
-        context.closePath();
-        context.stroke();
+        context.fill();
+        context.globalCompositeOperation = 'destination-out';
 
         // Draw a circle in the center using holeRadius
         context.beginPath();
         context.arc(0, 0, this.holeRadius, 0, Math.PI * 2);
-        context.stroke();
+        context.fillStyle = 'black';
+        context.fill();
+
+        // Create a new path for the central circle and draw it again without affecting transparency
+        context.beginPath();
+        context.arc(0, 0, this.holeRadius, 0, Math.PI * 2);
+        context.closePath();
+        context.fill();
 
         // Draw small circles at the corners of the central circle
-        const outsideCC = this.holeRadius + (this.holeRadius * 0.3);
-        const cornerRadius = outsideCC * 0.17; // Adjust the size of the small circles
+        const outsideCC = this.holeRadius + (this.holeRadius * 0.35);
+        const cornerRadius = outsideCC * 0.15; // Adjust the size of the small circles
         const cornerPoints = [
             [0, -outsideCC], // Top
             [outsideCC, 0],  // Right
@@ -54,21 +61,18 @@ class Gear {
         cornerPoints.forEach(([cx, cy]) => {
             context.beginPath();
             context.arc(cx, cy, cornerRadius, 0, Math.PI * 2);
-            context.stroke();
+            context.fill();
         });
-        context.stroke();
-    }
 
+        context.restore();
+    }
 
     draw(ani: GearsWorking): void {
         const context = ani.getContext();
         context.save();
         context.translate(this.x, this.y);
         context.rotate(this.theta);
-
-        this.outlineGear(ani, 1.5);
-        //this.outlineGear(ani, 3, 0.5);
-
+        this.drawGear(ani);
         context.restore();
     }
 }
