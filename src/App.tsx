@@ -8,6 +8,7 @@ import About from './ux/about/About';
 import Resume from './ux/resume/Resume';
 import Projects from './ux/projects/Projects';
 import { motion } from 'framer-motion';
+import { Gears } from './ux/Gears/Gears';
 
 function App() {
 
@@ -26,6 +27,9 @@ function App() {
 
   return (
     <>
+      <motion.div className="pax0y0 fill-vp bg-layer-0">
+        <Gears></Gears>
+      </motion.div>
       <Sidebar></Sidebar>
     </>
   );
