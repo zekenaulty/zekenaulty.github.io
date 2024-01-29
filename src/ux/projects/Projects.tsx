@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
 import Project from './Project';
 
 interface ProjectsData {
@@ -34,11 +33,11 @@ const Projects: React.FC = () => {
   }
 
   return (
-    <Container fluid className="">
+    <>
       {projectsData.projects.map((project, index) => (
         <Project key={index} project={project} />
       ))}
-    </Container>
+    </>
   );
 };
 

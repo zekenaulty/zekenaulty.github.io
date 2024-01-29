@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { GearsWorking } from './GearsWorking';
 import { Gear } from './Gear';
+import { GearLinks } from './GearLinks';
 
 
 const Gears: React.FC = () => {
@@ -19,6 +20,17 @@ const Gears: React.FC = () => {
         }
 
         const ani = new GearsWorking(canvas);
+
+        const leftTopLinks: number[][] = [
+            [0, 1],
+            [1, 2],
+            [2, 3], 
+            [3, 4],      
+            [1, 5],
+            [5, 6],  
+            [6, 7],    
+        ];
+                 
         const leftTop = () => [
             new Gear({ x: 0, y: 0, outerRadius: 30, innerRadius: 45, holeRadius: 11, numTeeth: 12, theta: 0, thetaSpeed: 1 / 1000, clockwise: false }),
             //new Gear({ x: 0, y: 90, outerRadius: 30, innerRadius: 45, holeRadius: 11, numTeeth: 12, theta: 0, thetaSpeed: 1 / 1000, clockwise: false }),
@@ -38,6 +50,8 @@ const Gears: React.FC = () => {
 
         ];
 
+        const linkTopLeft = new GearLinks(leftTop(), leftTopLinks);
+
         const leftBottom = () => [
             new Gear({ x: 0, y: window.innerHeight, outerRadius: 30, innerRadius: 45, holeRadius: 11, numTeeth: 12, theta: 0, thetaSpeed: 1 / 1000, clockwise: true }),
             new Gear({ x: 0, y: window.innerHeight - 90, outerRadius: 30, innerRadius: 45, holeRadius: 11, numTeeth: 12, theta: 0, thetaSpeed: 1 / 1000, clockwise: true }),
@@ -54,18 +68,18 @@ const Gears: React.FC = () => {
             new Gear({ x: window.innerWidth, y: window.innerHeight, outerRadius: 30, innerRadius: 45, holeRadius: 11, numTeeth: 12, theta: 0, thetaSpeed: 1 / 1000, clockwise: true }),
             new Gear({ x: window.innerWidth, y: window.innerHeight - 90, outerRadius: 30, innerRadius: 45, holeRadius: 11, numTeeth: 12, theta: 0, thetaSpeed: 1 / 1000, clockwise: true }),
             new Gear({ x: window.innerWidth - 45, y: window.innerHeight - 45, outerRadius: 15, innerRadius: 23, holeRadius: 7, numTeeth: 12, theta: 0, thetaSpeed: 2 / 1000, clockwise: false }),
-        ];
-
+        ];   
+  
         const resizeHandler = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             canvas.style.width = `${window.innerWidth}px`;
             canvas.style.height = `${window.innerHeight}px`;
             gears = getGears() as Gear[];
-        };
-
+        };   
+  
         window.addEventListener('resize', resizeHandler);
-        resizeHandler();
+        resizeHandler(); 
 
         ani.setDrawStage(() => {
             gears.forEach((gear) => {
@@ -75,8 +89,10 @@ const Gears: React.FC = () => {
 
             ani.clear();
 
-
             gears.forEach((gear) => gear.draw(ani));
+
+            linkTopLeft.draw(ani);
+
         });
 
         ani.start();

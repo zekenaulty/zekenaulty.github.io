@@ -1,12 +1,5 @@
 
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootswatch/dist/darkly/bootstrap.min.css';
-import Sidebar from './ux/sidebar/Sidebar';
-import Home from './ux/home/Home';
-import About from './ux/about/About';
-import Resume from './ux/resume/Resume';
-import Projects from './ux/projects/Projects';
 import { motion } from 'framer-motion';
 import { Gears } from './ux/Gears/Gears';
 

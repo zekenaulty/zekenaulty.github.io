@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Col, Row } from 'react-bootstrap';
 import Experience from './Experience';
 import Skills from './Skills';
 import BackgroundImage from '../BackgroundImage';
@@ -34,6 +33,13 @@ const Resume: React.FC = () => {
       <div className="overlay-bg"><BackgroundImage imageUrl='/images/backgrounds/formula.jpg'></BackgroundImage></div>
       <div className="overlay-content">
 
+      </div>
+
+    </div>
+  );
+};
+/*
+
         <Container fluid className="">
           <Row>
             <Col md="4">
@@ -47,12 +53,7 @@ const Resume: React.FC = () => {
             </Col>
           </Row>
         </Container>
-      </div>
-
-    </div>
-  );
-};
-
+*/
 /*
       <BackgroundImage imageUrl='/images/backgrounds/formula.jpg'></BackgroundImage>
       <Container fluid className="">

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
 
 interface ProjectProps {
   project: {
@@ -12,7 +11,7 @@ interface ProjectProps {
 }
 
 const Project: React.FC<ProjectProps> = ({ project }) => {
-  return (
+    /*
     <Card style={{ marginBottom: '1em' }}>
       <Card.Body>
         <Card.Title>{project.title}</Card.Title>
@@ -32,6 +31,9 @@ const Project: React.FC<ProjectProps> = ({ project }) => {
         </div>
       </Card.Body>
     </Card>
+          */
+  return (
+    <></>
   );
 };
 

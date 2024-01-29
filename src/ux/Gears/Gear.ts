@@ -28,10 +28,13 @@ class Gear implements GearConfig {
     midRadius: number = 1;
     fillStyle: string = "silver";
     lineStyle: string = "black";
+    size: number;
+    radius: number;
+    offset: number;
 
-    private offscreenCanvas: HTMLCanvasElement | null = null;
+    private canvas: HTMLCanvasElement | null = null;
 
-    private static _default: GearConfig = {
+    private static DEFAULT: GearConfig = {
         x: 0,
         y: 0,
         outerRadius: 45,
@@ -46,25 +49,20 @@ class Gear implements GearConfig {
         midRadius: 35
     };
 
-    constructor(config: GearConfig = Gear._default) {
-        Object.assign(this, Gear._default);
-        Object.assign(this, config, { midRadius: config.outerRadius ? config.outerRadius - 10 : Gear._default.outerRadius! - 10 });
-        this.createOffscreenCanvas();
-    }
-
-    private createOffscreenCanvas() {
-        this.offscreenCanvas = document.createElement('canvas');
-        const size = Math.max(this.outerRadius, this.innerRadius) * 2;
-        this.offscreenCanvas.width = size;
-        this.offscreenCanvas.height = size;
+    constructor(config: GearConfig = Gear.DEFAULT) {
+        Object.assign(this, Gear.DEFAULT);
+        Object.assign(this, config, { midRadius: config.outerRadius ? config.outerRadius - 10 : Gear.DEFAULT.outerRadius! - 10 });
+        this.size = Math.max(this.outerRadius, this.innerRadius) * 2;
+        this.offset = this.size / 2;
+        this.radius = this.size / 2;
+        this.canvas = document.createElement('canvas');
+        this.canvas.width = this.size;
+        this.canvas.height = this.size;
     }
 
     private drawGearToContext(context: CanvasRenderingContext2D) {
-        const size = Math.max(this.outerRadius, this.innerRadius) * 2;
-        const offset = size / 2
-
         context.save();
-        context.clearRect(-1, -1, size + 1, size + 1);
+        context.clearRect(-1, -1, this.size + 1, this.size + 1);
 
         context.lineJoin = 'bevel';
         context.lineWidth = 1;
@@ -77,7 +75,7 @@ class Gear implements GearConfig {
             const radius = n % 3 === 0 ? this.outerRadius : this.innerRadius;
             const theta = ((Math.PI * 2) / numPoints) * (n + 1);
             const [x, y] = [radius * Math.sin(theta), radius * Math.cos(theta)];
-            const [nx, ny] = [x + offset, y + offset];
+            const [nx, ny] = [x + this.offset, y + this.offset];
 
             if (n === 0) {
                 context.moveTo(nx, ny);
@@ -88,21 +86,31 @@ class Gear implements GearConfig {
             }
         }
         context.lineTo(fx, fy);
+
+        var grad = context.createRadialGradient(this.size / 4, this.size / 4, Math.PI * 100, this.size * 2, this.size * 2, Math.PI * 2);
+        grad.addColorStop(0, 'rgba(0, 0, 0, 0.7)');
+        grad.addColorStop(0.5, 'rgba(147, 147, 147, 0.85)');
+        grad.addColorStop(1, 'rgba(0, 0, 0, 0.5)');
+
+        context.fillStyle = grad;
         context.fill();
+
+        context.fillStyle = this.fillStyle;
+
         context.stroke();
 
         const outsideCC = this.holeRadius + (this.holeRadius * 0.35);
         const cornerRadius = outsideCC * 0.15;
         const cornerPoints = [
-            [0 + offset, -outsideCC + offset],
-            [outsideCC + offset, 0 + offset],
-            [0 + offset, outsideCC + offset],
-            [-outsideCC + offset, 0 + offset],
+            [0 + this.offset, -outsideCC + this.offset],
+            [outsideCC + this.offset, 0 + this.offset],
+            [0 + this.offset, outsideCC + this.offset],
+            [-outsideCC + this.offset, 0 + this.offset],
         ];
 
         context.globalCompositeOperation = 'destination-out';
         context.beginPath();
-        context.arc(0 + offset, 0 + offset, this.holeRadius - 1, 0, Math.PI * 2);
+        context.arc(0 + this.offset, 0 + this.offset, this.holeRadius - 1, 0, Math.PI * 2);
         context.fill();
 
         cornerPoints.forEach(([cx, cy]) => {
@@ -110,9 +118,10 @@ class Gear implements GearConfig {
             context.arc(cx, cy, cornerRadius - 1, 0, Math.PI * 2);
             context.fill();
         });
+
         context.globalCompositeOperation = 'source-over';
         context.beginPath();
-        context.arc(0 + offset, 0 + offset, this.holeRadius, 0, Math.PI * 2);
+        context.arc(0 + this.offset, 0 + this.offset, this.holeRadius, 0, Math.PI * 2);
         context.stroke();
 
         cornerPoints.forEach(([cx, cy]) => {
@@ -127,27 +136,21 @@ class Gear implements GearConfig {
     draw(ani: GearsWorking): void {
         const context = ani.getContext();
         context.save();
-        //context.scale(2, 2);
         context.translate(this.x, this.y);
         context.rotate(this.theta);
 
         // Draw from the offscreen canvas
-        if (this.offscreenCanvas) {
-            const offscreenContext = this.offscreenCanvas.getContext('2d');
+        if (this.canvas) {
+            const offscreenContext = this.canvas.getContext('2d');
             if (offscreenContext) {
                 this.drawGearToContext(offscreenContext);
             }
 
-            //context.drawImage(this.offscreenCanvas, 0, 0);
-            context.drawImage(
-                this.offscreenCanvas,
-                -this.offscreenCanvas.width / 2,
-                -this.offscreenCanvas.height / 2);
+            context.drawImage(this.canvas, -this.canvas.width / 2, -this.canvas.height / 2);
 
         }
 
-        //context.scale(1, 1);
-        context.restore();
+        context.restore();;
     }
 }
 

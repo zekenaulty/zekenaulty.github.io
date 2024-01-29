@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container, Card } from 'react-bootstrap';
 
 interface ExperienceProps {
   experience: {
@@ -15,6 +14,14 @@ const Experience: React.FC<ExperienceProps> = ({ experience }) => {
   return (
     <div className="experience">
       <h2>Experience</h2>
+    </div>
+  );
+};
+
+export default Experience;
+
+/*
+
       <Container fluid>
         {experience.map((job, index) => (
           <Card key={index} style={{ marginBottom: '1em' }}>
@@ -32,8 +39,4 @@ const Experience: React.FC<ExperienceProps> = ({ experience }) => {
           </Card>
         ))}
       </Container>
-    </div>
-  );
-};
-
-export default Experience;
+*/
