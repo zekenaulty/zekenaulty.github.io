@@ -86,14 +86,14 @@ class Gear implements GearConfig {
             }
         }
         context.lineTo(fx, fy);
-
+  
         var grad = context.createRadialGradient(this.size / 4, this.size / 4, Math.PI * 100, this.size * 2, this.size * 2, Math.PI * 2);
-        grad.addColorStop(0, 'rgba(0, 0, 0, 0.7)');
-        grad.addColorStop(0.5, 'rgba(147, 147, 147, 0.85)');
-        grad.addColorStop(1, 'rgba(0, 0, 0, 0.5)');
+        grad.addColorStop(0, 'rgba(0, 0, 0, 1)');
+        grad.addColorStop(0.5, 'rgba(147, 147, 147, 1)');
+        grad.addColorStop(1, 'rgba(0, 0, 0, 1)');
 
         context.fillStyle = grad;
-        context.fill();
+        context.fill();   
 
         context.fillStyle = this.fillStyle;
 
@@ -106,8 +106,8 @@ class Gear implements GearConfig {
             [outsideCC + this.offset, 0 + this.offset],
             [0 + this.offset, outsideCC + this.offset],
             [-outsideCC + this.offset, 0 + this.offset],
-        ];
-
+        ]; 
+                    
         context.globalCompositeOperation = 'destination-out';
         context.beginPath();
         context.arc(0 + this.offset, 0 + this.offset, this.holeRadius - 1, 0, Math.PI * 2);
@@ -118,7 +118,7 @@ class Gear implements GearConfig {
             context.arc(cx, cy, cornerRadius - 1, 0, Math.PI * 2);
             context.fill();
         });
-
+     
         context.globalCompositeOperation = 'source-over';
         context.beginPath();
         context.arc(0 + this.offset, 0 + this.offset, this.holeRadius, 0, Math.PI * 2);
