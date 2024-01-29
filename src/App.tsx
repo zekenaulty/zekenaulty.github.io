@@ -21,6 +21,7 @@ function App() {
 
   // Update on window resize
   window.addEventListener('resize', updateViewportHeight);
+  document.body.style.setProperty('--overflow-type', 'hidden');
 
   // Initial update
   updateViewportHeight();
@@ -30,7 +31,6 @@ function App() {
       <motion.div className="pax0y0 fill-vp bg-layer-0">
         <Gears></Gears>
       </motion.div>
-      <Sidebar></Sidebar>
     </>
   );
 

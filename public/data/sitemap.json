@@ -2,7 +2,7 @@
     "keys": [ "home", "about", "resume", "projects" ],
     "sections": {
         "home": {
-            "id": 1,
+            "key": 1,
             "text": " Home ",
             "href": "#home",
             "component": "./ux/home/Home",
@@ -11,7 +11,7 @@
             "faIcon": "fas fa-house-return"
         },
         "about": {
-            "id": 2,
+            "key": 2,
             "text": " About ",
             "href": "#about",
             "component": "./ux/about/About",
@@ -20,7 +20,7 @@
             "faIcon": ""
         },
         "resume": {
-            "id": 3,
+            "key": 3,
             "text": " Resume ",
             "href": "#resume",
             "component": "./ux/resume/Resume",
@@ -29,7 +29,7 @@
             "faIcon": ""
         },
         "projects": {
-            "id": 4,
+            "key": 4,
             "text": " Projects ",
             "href": "#projects",
             "component": "./ux/projects/Projects",

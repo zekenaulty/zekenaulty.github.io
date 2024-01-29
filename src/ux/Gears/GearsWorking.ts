@@ -10,8 +10,8 @@ class GearsWorking {
     private animating: boolean;
     drawStage?: () => void;
 
-    constructor(canvasId: string) {
-        this.canvas = document.getElementById(canvasId) as HTMLCanvasElement;
+    constructor(canvas: HTMLCanvasElement) {
+        this.canvas = canvas;
         this.context = this.canvas.getContext('2d')!;
         this.t = this.timeInterval = this.startTime = this.lastTime = this.frame = 0;
         this.animating = false;

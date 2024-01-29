@@ -3,6 +3,11 @@
     --viewport-height: 100vh;
     --viewport-width-max: 100vw;
     --viewport-height-max: 100vh;
+    --overflow-type: auto;
+}
+
+body {
+    overflow: var(--overflow-type) !important;
 }
 
 .fill-vp {

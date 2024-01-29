@@ -1,10 +1,4 @@
-:root {
-  --overflow-type: auto;
-}
 
-body {
-  overflow: var(--overflow-type) !important;
-}
 
 .toggle-button {
     position: fixed;

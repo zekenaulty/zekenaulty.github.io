@@ -4,7 +4,7 @@ import { Toggle } from './Toggle';
 import { motion, useAnimate, stagger } from 'framer-motion';
 
 interface Link {
-  id: number;
+  key: number;
   text: string;
   href: string;
   component: string;
@@ -55,7 +55,7 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
       .then((response) => response.json())
       .then((data) => {
         const sortedLinks = data.keys.map((key: string) => data.sections[key]) as Link[];
-        sortedLinks.sort((a: Link, b: Link) => a.id - b.id);
+        sortedLinks.sort((a: Link, b: Link) => a.key - b.key);
         this.setState({
           links: sortedLinks
         });
