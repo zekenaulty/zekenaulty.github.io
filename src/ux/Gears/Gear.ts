@@ -1,4 +1,3 @@
-import _default from "react-bootstrap/esm/Accordion";
 import { GearsWorking } from "./GearsWorking";
 
 interface GearConfig {
