@@ -1,0 +1,19 @@
+{
+    "projects": [
+      {
+        "title": "Project 1",
+        "description": "Description for Project 1.",
+        "githubRepo": "https://github.com/yourusername/project1",
+        "liveUrl": "https://project1.live",
+        "technologies": ["React", "Node.js", "Express"]
+      },
+      {
+        "title": "Project 2",
+        "description": "Description for Project 2.",
+        "githubRepo": "https://github.com/yourusername/project2",
+        "liveUrl": "https://project2.live",
+        "technologies": ["Vue.js", "Django"]
+      }
+    ]
+  }
+  

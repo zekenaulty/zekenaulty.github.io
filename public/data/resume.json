@@ -1,0 +1,94 @@
+{
+  "name": "Zeke Naulty",
+  "title": ".NET Developer",
+  "phone": "251.327.1468",
+  "email": "zekenaulty@gmail.com",
+  "summary": "Passionate full stack developer with over two decades of experience in crafting innovative software solutions. A problem solver at heart, I thrive on challenges that require creative thinking and critical analysis. Experienced in a wide range of technologies, from frontend frameworks like Angular and React to backend systems using ASP.NET Core and SQL databases. My journey has been marked by continuous learning, embracing new languages and tools to stay at the forefront of technology. I'm driven by my enthusiasm for collaborating with talented teams to build impactful applications that make a difference.",
+  "skills": [
+    "JavaScript (ES6+)",
+    "TypeScript",
+    "React",
+    "Angular",
+    "ASP.NET Core",
+    "C#",
+    "SQL",
+    "HTML5",
+    "CSS3",
+    "Bootstrap",
+    "RESTful APIs",
+    "Git",
+    "Azure",
+    "Docker"
+  ],
+  "experience": [
+    {
+      "title": "Software Engineer II",
+      "company": "Storable",
+      "dates": "February 2021 - December 2022",
+      "location": "Cary, NC",
+      "responsibilities": [
+        "Develop and maintain .Net WinForms and web applications.",
+        "Built backend services to support insurance auto-protect feature using: .net core, hangfire, postgres, sql server, entity framework and other technologies.",
+        "Established and taught patterns for unit testing in WinForms.",
+        "Contributed ideas and design concepts to several initiatives implemented in the company's growing adoption of domain driven design."
+      ]
+    },
+    {
+      "title": "Lead Developer",
+      "company": "iAdvantage Software",
+      "dates": "March 2017 - January 2021",
+      "location": "Cary, NC",
+      "responsibilities": [
+        "Empowered users with dynamic user defined data models and custom reporting features.",
+        "Worked with Asp.Net WebForms, Asp.Net MVC, Asp.Net WebAPI, RESTful OData, SOAP API(s) powered by Oracle, nHibernate, Entity Framework, PL/SQL packages.",
+        "Developed responsive web interfaces using CSS3, Flex Box, Bootstrap 3, Bootstrap 4, and MvvM AngularJS.",
+        "Developed MS.Net Windows Forms app and Xamarin Forms iOS app for offline and remote work."
+      ]
+    },
+    {
+      "title": "Programmer Analyst",
+      "company": "Prestage Farms",
+      "dates": "February 2016 - September 2016",
+      "location": "Clinton, NC",
+      "responsibilities": [
+        "Led a team to convert and complete legacy VB6 application(s).",
+        "Modernized 8+ existing modules into a single .net application with role-based security.",
+        "Automated conversion of VB6 code to VB.Net.",
+        "Built new reporting frontend and managed project lifecycle using Agile methodologies."
+      ]
+    },
+    {
+      "title": "Sr. Software Developer",
+      "company": "Rural Sourcing Inc.",
+      "dates": "August 2013 - February 2016",
+      "location": "Augusta, GA",
+      "responsibilities": [
+        "Mentored, managed teams, and handled projects in Windows and Web Development.",
+        "Recruited and interviewed in relation to the Microsoft stack."
+      ]
+    },
+    {
+      "title": "Application Developer / Architect",
+      "company": "Solid Earth Inc.",
+      "dates": "January 2007 - January 2011",
+      "location": "Huntsville, AL",
+      "responsibilities": [
+        "Developed and maintained RETS client and server software powered by Oracle and C#.",
+        "Developed configurable Asp.net web applications for distinct MLS custom implementations.",
+        "Developed market analytics and reporting module using Asp.Net, Oracle, and C#."
+      ]
+    },
+    {
+      "title": "Programmer Analyst",
+      "company": "Not Rocket Science",
+      "dates": "February 2005 - October 2005",
+      "location": "Covington, LA",
+      "responsibilities": [
+        "Developed mobile application for Sheriff’s department using C#.",
+        "Full stack .net development for various projects using SQL Server & C#.",
+        "Developed flash application for tracking shipments using ActionScript and Asp.Net web backend."
+      ]
+    }
+  ],
+  "education": "I have been primarily self-taught. In the early years of my career I spent much of my time reading and working through development books and participating in software development forums."
+}
