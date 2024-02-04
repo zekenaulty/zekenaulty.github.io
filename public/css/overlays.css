@@ -3,7 +3,7 @@
     --viewport-height: 100vh;
     --viewport-width-max: 100vw;
     --viewport-height-max: 100vh;
-    --overflow-type: auto;
+    --overflow-type: hidden;
 }
 
 body {
@@ -13,7 +13,12 @@ body {
 .fill-vp {
     width: var(--viewport-width);
     height: var(--viewport-height);
-    left: 0pc;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
 }
 
 .overlay-root {
@@ -166,7 +171,7 @@ body {
     z-index: 9999999;
 }
 
-.pax0y0 {
+.abs-x0-y0 {
     position: absolute;
     top: 0px;
     left: 0px;
