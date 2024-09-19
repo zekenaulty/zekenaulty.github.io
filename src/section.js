@@ -12,7 +12,7 @@ export class Section extends BaseComponent {
 
   buildSection() {
     this.element = DOM.element('div', {
-      classes: ['scrollspy-section'],
+      classes: ['section'],
       attributes: { id: this.id },
       html: this.content,
       style: 'display: none;', // Initially hidden
@@ -21,12 +21,10 @@ export class Section extends BaseComponent {
     DOM.append(this.element, this.parent);
   }
 
-  // Show the section
   show() {
     this.element.style.display = 'block';
   }
 
-  // Hide the section
   hide() {
     this.element.style.display = 'none';
   }
