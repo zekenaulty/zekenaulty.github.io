@@ -1,50 +1,36 @@
-import { DOM } from './dom.js';
+import { DOM } from '../dom.js';
 
 export class Component extends EventTarget {
-    static MOUNTED = new CustomEvent('mounted');
-    static UNMOUNTED = new CustomEvent('unmounted');
-    static SHOWN = new CustomEvent('shown');
-    static HIDDEN = new CustomEvent('hidden');
-
     constructor(options = {}) {
-        const { tag = 'div', parent = DOM.body, classes, text, html, attributes, events, children } = options;
+        const { tag = 'div'} = options;
         super();
         this.tag = tag;
         this.parent = parent;
-        this.e = document.createElement(tag);
-
-        if (text) this.e.textContent = text;
-        if (html) this.e.innerHTML = html;
-        if (classes) DOM.addClasses(this.e, classes);
-        if (attributes) DOM.addAttributes(this.e, attributes);
-        if (events) DOM.addEvents(this.e, events);
-        if (children) {
-            children.forEach(child => {
-                DOM.append(child, this.e);
-            });
-        }
+        this.e = DOM.element(tag, options);
+        this.DOM = DOM;
+        this.mounted = false;
     }
 
-    mount() {
+    mount(parent) {
+        if(this.mounted) this.unmount();
+        if(parent) this.parent = parent;
         if (this.parent) DOM.append(this.e, this.parent);
-        this.dispatchEvent(this.constructor.MOUNTED);
+        this.mounted = true;
     }
 
     unmount() {
         DOM.remove(this.e);
-        this.dispatchEvent(this.constructor.UNMOUNTED);
+        this.mounted = false;
     }
 
     show(dStyle = 'd-block') {
         this.e.classList.remove('d-none', 'fade');
         this.e.classList.add(dStyle, 'show');
-        this.dispatchEvent(this.constructor.SHOWN);
     }
 
     hide(dStyle = 'd-block') {
         this.e.classList.remove(dStyle, 'show');
         this.e.classList.add('d-none');
-        this.dispatchEvent(this.constructor.HIDDEN);
     }
 
     toggle(dStyle = 'd-block') {
@@ -118,11 +104,14 @@ export class Component extends EventTarget {
         });
     }
 
-    /**
-     * Adds a child component or DOM element to this component.
-     * Handles both raw DOM nodes and other Component instances.
-     * @param {Component|HTMLElement} child - The child to be added
-     */
+    addChildren(children){
+        if (children) {
+            children.forEach(child => {
+                this.addChild(child);
+            });
+        }
+    }
+
     addChild(child) {
         if (child instanceof Component) {
             // If it's a Component, append its `e` DOM node
@@ -136,11 +125,6 @@ export class Component extends EventTarget {
         }
     }
 
-    /**
-     * Removes a child component or DOM element from this component.
-     * Automatically detects whether the child is a Component or a DOM node.
-     * @param {Component|HTMLElement} child - The child to be removed
-     */
     removeChild(child) {
         if (child instanceof Component) {
             // If it's a Component, remove its `e` DOM node
