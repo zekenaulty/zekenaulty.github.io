@@ -1,4 +1,3 @@
-import { DOM } from '../dom.js';
 import { Component } from './component.js';
 
 export class NavigationToggleButton extends Component {
@@ -20,13 +19,13 @@ export class NavigationToggleButton extends Component {
 
   build(options) {
     this.config = options;
-    this.menuIcon = DOM.element('i', {
+    this.menuIcon = this.DOM.element('i', {
       parent: this.e,
       classes: ['bi', 'bi-list'],
       id: 'menuIcon-internal-0000'
     });
 
-    this.closeIcon = DOM.element('i', {
+    this.closeIcon = this.DOM.element('i', {
       parent: this.e,
       classes: ['bi', 'bi-x-lg'],
       id: 'closeIcon-internal-0000'

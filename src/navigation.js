@@ -3,7 +3,7 @@ import { ThemeSwitcher } from './bootstrap/themeSwitcher.js';
 import { NavigationToggleButton } from './bootstrap/navigationToggleButton.js';
 import { Component } from './bootstrap/component.js';
 
-export class TopNav extends Component {
+export class Navigation extends Component {
     constructor(options = {}) {
         const n = ((options) => {
             const o = { ...options };
