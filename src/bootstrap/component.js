@@ -2,20 +2,33 @@ import { DOM } from '../dom.js';
 
 export class Component extends EventTarget {
     constructor(options = {}) {
-        const { tag = 'div'} = options;
+        const { tag = 'div', parent = undefined } = options;
         super();
         this.tag = tag;
-        this.parent = parent;
+
+        if(parent) 
+            this.parent = parent;
+
         this.e = DOM.element(tag, options);
         this.DOM = DOM;
         this.mounted = false;
+
+        if(this.parent)
+            this.mounted = true;
     }
 
     mount(parent) {
-        if(this.mounted) this.unmount();
-        if(parent) this.parent = parent;
-        if (this.parent) DOM.append(this.e, this.parent);
-        this.mounted = true;
+        if (this.mounted) this.unmount();
+        if (parent) this.parent = parent;
+        if (this.parent) {
+            DOM.append(this.e, this.e.parent);
+            this.mounted = true;
+        } else { 
+            console.error(`Component.mount: ${typeof this}, failed to mount => no parent.`);
+            this.mounted = false; 
+        }
+
+        return this.mounted;
     }
 
     unmount() {
@@ -104,7 +117,7 @@ export class Component extends EventTarget {
         });
     }
 
-    addChildren(children){
+    addChildren(children) {
         if (children) {
             children.forEach(child => {
                 this.addChild(child);

@@ -1,39 +1,39 @@
 import { DOM } from './dom.js';
 import { ThemeSwitcher } from './bootstrap/themeSwitcher.js';
-import { ToggleButton } from './bootstrap/toggleButton.js';
+import { NavigationToggleButton } from './bootstrap/navigationToggleButton.js';
 import { Component } from './bootstrap/component.js';
-import { OffCanvas } from './bootstrap/offCanvas/index.js';
 
 export class TopNav extends Component {
-    constructor(options = {}){
-        const o = { ...options };
-        const f = (() => {
+    constructor(options = {}) {
+        const n = ((options) => {
+            const o = { ...options };
             o.tag = 'nav';
             o.classes = [
                 'position-fixed',
-                 ...(o.classes || [])];
-            o.parent ? o.parent : DOM.body;
+                'd-flex',
+                'justify-content-end',
+                'align-items-start',
+                ...(o.classes || [])];
+            o.parent = o.parent ? o.parent : DOM.body;
             o.events = o.events ? o.events : {};
             o.styles = o.styles ? o.styles : {};
             o.styles.top = '8px';
             o.styles.right = '8px';
-        })();
-        super(o);
-        const topControls = DOM.element('div', {
+            return o;
+        })(options);
+        super(n);
+        this.build(n);
+    }
+
+    build(options) {
+        this.config = options;
+        this.themeSwitcher = this.buildThemeSwitcher(options);
+        this.toggleButton = this.buildToggleButton(options);
+    }
+
+    buildToggleButton(options){
+        return new NavigationToggleButton({
             parent: this.e,
-            classes: [
-                'd-flex',
-                'justify-content-end',
-                'align-items-start',
-            ]
-        });
-        const themes = new ThemeSwitcher({
-            parent: topControls,
-            classes: ['pe-1'],
-            styles: {}
-        });
-        const navCanvasToggle = new ToggleButton({
-            parent: topControls,
             classes: [
                 'border-light',
                 'btn-primary',
@@ -42,14 +42,20 @@ export class TopNav extends Component {
             styles: {},
             events: {
                 click: (e) => {
-                    
+                    console.debug('toggle top navigation; off canvas');
                     this.e.dispatchEvent(new CustomEvent('toggle'));
                 }
             }
         });
+    }
 
-        const off = new OffCanvas({});
-        off.initialize();
+    buildThemeSwitcher(options) {
+        return new ThemeSwitcher({
+            parent: this.e,
+            classes: ['me-1'],
+            styles: {},
+            events: {}
+        });
     }
 }
 

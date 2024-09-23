@@ -4,7 +4,7 @@ export class DOM {
 
   // Method to switch between Bootswatch themes at runtime
   static switchTheme(themeName = 'darkly') {
-    const themeUrl = `https://cdn.jsdelivr.net/npm/bootswatch@5/dist/${themeName}/bootstrap.min.css`;
+    const themeUrl = `https://cdn.jsdelivr.net/npm/bootswatch@v5.3.3/dist/${themeName}/bootstrap.min.css`;
 
     if (DOM.currentThemeLink) {
       DOM.currentThemeLink.href = themeUrl;
