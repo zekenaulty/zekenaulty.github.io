@@ -48,7 +48,7 @@ export class Rain extends Component {
         const x = Math.floor(Math.random() * (this.e.width + 300));
         const y = scatterY ? Math.floor(Math.random() * (this.e.height -40)) : -20; // Start from the top
         const enableSwirl = this.enableSwirlToggle && Math.random() > 0.5; // Randomly enable swirl effect
-        this.rainDrops.push(new RainDrop(x, y, '*'/* this.emojis.getRandomEmoji() */, enableSwirl));
+        this.rainDrops.push(new RainDrop(x, y,  this.emojis.getRandomEmoji() , true/* enableSwirl */));
     }
 
     updateRainDrops() {

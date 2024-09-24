@@ -6,6 +6,13 @@ export class Emoji {
         }
         Emoji.instance = this;
         this.emojis = [
+            '✧₊⁺',
+            '♡',
+            '❀',
+            '⟢',
+            '𖤓',
+            '๋࣭ ⭑⚝'
+            /*
             // Smileys & Emotion
             "😀", // Grinning Face
             "😁", // Beaming Face with Smiling Eyes
@@ -326,6 +333,7 @@ export class Emoji {
             "🇨🇳", // Flag: China
             "🇧🇷", // Flag: Brazil
             "🇦🇺", // Flag: Australia
+            */
         ];
         
     }
