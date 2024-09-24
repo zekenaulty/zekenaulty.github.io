@@ -2,6 +2,8 @@ import { DOM } from './dom.js';
 import { ThemeSwitcher } from './bootstrap/themeSwitcher.js';
 import { NavigationToggleButton } from './bootstrap/navigationToggleButton.js';
 import { Component } from './bootstrap/component.js';
+import { OffCanvas } from './bootstrap/offCanvas.js';
+import * as sitemap from './sitemap.json';
 
 export class Navigation extends Component {
     constructor(options = {}) {
@@ -16,7 +18,10 @@ export class Navigation extends Component {
                 ...(o.classes || [])];
             o.parent = o.parent ? o.parent : DOM.body;
             o.events = o.events ? o.events : {};
-            o.styles = o.styles ? o.styles : {};
+            o.styles = o.styles ? o.styles : {
+                'z-index': 1030
+            };
+            o.attributes = o.attributes ? o.attributes : {};
             o.styles.top = '8px';
             o.styles.right = '8px';
             return o;
@@ -29,11 +34,13 @@ export class Navigation extends Component {
         this.config = options;
         this.themeSwitcher = this.buildThemeSwitcher(options);
         this.toggleButton = this.buildToggleButton(options);
+        this.offCanvas = this.buildOffCanvas(options);
     }
 
     buildToggleButton(options){
         return new NavigationToggleButton({
             parent: this.e,
+            id: `sitenav`,
             classes: [
                 'border-light',
                 'btn-primary',
@@ -45,6 +52,12 @@ export class Navigation extends Component {
                     console.debug('toggle top navigation; off canvas');
                     this.e.dispatchEvent(new CustomEvent('toggle'));
                 }
+            },
+            attributes: {
+                id: `sitenavToggle`,
+                'data-bs-toggle': 'offcanvas',
+                'data-bs-target': '#sitenav',
+                'aria-controls': 'sitenav',
             }
         });
     }
@@ -56,6 +69,52 @@ export class Navigation extends Component {
             styles: {},
             events: {}
         });
+    }
+
+    buildOffCanvas(options) {
+        const c = new OffCanvas({
+            parent: this.DOM.body,
+            id: `sitenav`,
+            attributes: {
+                id: `sitenav`
+            },
+            close: false,
+            header: `Chose Your Path`
+        });
+
+        const ul = this.DOM.element('ul', {
+            parent: c.body,
+            classes: [
+                'nav',
+                'flex-column'
+            ],
+            attributes: {}
+        });
+        const sections = sitemap.default.sections;
+        sitemap.default.keys.map((e) => {
+            
+            const li = this.DOM.element('li', {
+                parent: ul,
+                classes: [
+                    'nav-item'
+                ],
+                attributes: {}
+            });
+            const item = this.DOM.element('a', {
+                parent: li,
+                classes: [
+                    'nav-link'
+                ],
+                attributes: {
+                    href: sections[e].href,
+                    id: sections[e].id,
+                    name: sections[e].name,
+                },
+                text: sections[e].text
+            });
+        });
+
+        return c;
     }
 }
 

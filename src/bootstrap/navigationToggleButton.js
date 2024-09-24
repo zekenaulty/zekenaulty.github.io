@@ -11,6 +11,7 @@ export class NavigationToggleButton extends Component {
         ...(o.classes || [])];
       o.events = o.events ? o.events : {};
       o.styles = o.styles ? o.styles : {};
+      o.attributes = o.attributes ? o.attributes : {};
       return o;
     })(options);
     super(n);

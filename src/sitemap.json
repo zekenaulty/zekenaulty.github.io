@@ -1,0 +1,42 @@
+{
+    "keys": [
+        "home",
+        "about",
+        "resume",
+        "projects"
+    ],
+    "sections": {
+        "home": {
+            "key": 1,
+            "text": " Home ",
+            "href": "#home",
+            "name": "home",
+            "description": "",
+            "faIcon": "fas fa-house-return"
+        },
+        "about": {
+            "key": 2,
+            "text": " About ",
+            "href": "#about",
+            "name": "about",
+            "description": "",
+            "faIcon": ""
+        },
+        "resume": {
+            "key": 3,
+            "text": " Resume ",
+            "href": "#resume",
+            "name": "resume",
+            "description": "",
+            "faIcon": ""
+        },
+        "projects": {
+            "key": 4,
+            "text": " Projects ",
+            "href": "#projects",
+            "name": "projects",
+            "description": "",
+            "faIcon": ""
+        }
+    }
+}
