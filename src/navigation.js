@@ -22,8 +22,11 @@ export class Navigation extends Component {
                 'z-index': 1030
             };
             o.attributes = o.attributes ? o.attributes : {};
-            o.styles.top = '8px';
-            o.styles.right = '8px';
+
+            o.styles.top = '1vh';
+            o.styles.right = '1vh';
+            o.styles.width = '98vw';
+
             return o;
         })(options);
         super(n);
@@ -32,9 +35,22 @@ export class Navigation extends Component {
 
     build(options) {
         this.config = options;
+        this.header = this.buildHeader(options);
         this.themeSwitcher = this.buildThemeSwitcher(options);
         this.toggleButton = this.buildToggleButton(options);
         this.offCanvas = this.buildOffCanvas(options);
+    }
+
+    buildHeader(options) {
+        return this.DOM.element('span', {
+            parent: this.e,
+            classes: [
+                'h6',
+                'me-auto',
+                'mt-auto'
+            ],
+            text: 'ZN: Code Monkey'
+        });
     }
 
     buildToggleButton(options){
@@ -42,17 +58,12 @@ export class Navigation extends Component {
             parent: this.e,
             id: `sitenav`,
             classes: [
-                'border-light',
                 'btn-primary',
-                'hover-secondary',
             ],
-            styles: {},
-            events: {
-                click: (e) => {
-                    console.debug('toggle top navigation; off canvas');
-                    this.e.dispatchEvent(new CustomEvent('toggle'));
-                }
+            styles: {
+                'border-radius': '1em'
             },
+            events: {},
             attributes: {
                 id: `sitenavToggle`,
                 'data-bs-toggle': 'offcanvas',
@@ -66,8 +77,11 @@ export class Navigation extends Component {
         return new ThemeSwitcher({
             parent: this.e,
             classes: ['me-1'],
-            styles: {},
-            events: {}
+            styles: {
+                display: 'none'
+            },
+            events: {},
+            default: options.theme ? options.theme : 'mint'
         });
     }
 
@@ -78,8 +92,11 @@ export class Navigation extends Component {
             attributes: {
                 id: `sitenav`
             },
+            styles: {
+                width: '111px'
+            },
             close: false,
-            header: `Chose Your Path`
+            header: `ZN`
         });
 
         const ul = this.DOM.element('ul', {

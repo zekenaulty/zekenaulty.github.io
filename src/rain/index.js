@@ -23,7 +23,7 @@ export class Rain extends Component {
         this.rainDrops = [];
         this.emoji = options.emoji ? options.emoji : this.emojis.getRandomEmoji(); //'☔️';
         this.enableSwirlToggle = options.swirl ? options.swirl : Math.random() > 0.5;
-
+        this.maxDrops = 375;
         const resizeHandler = () => {
             this.e.width = window.innerWidth;
             this.e.height = window.innerHeight;
@@ -32,7 +32,7 @@ export class Rain extends Component {
         resizeHandler();
         const self = this;
         Array.from({
-            length: 700
+            length: 155
         }, () => {
             setTimeout(() => {
                 self.createRainDrop(true);
@@ -45,10 +45,11 @@ export class Rain extends Component {
     }
 
     createRainDrop(scatterY = false) {
+        if(this.rainDrops.length >= this.maxDrops) return;
         const x = Math.floor(Math.random() * (this.e.width + 300));
-        const y = scatterY ? Math.floor(Math.random() * (this.e.height -40)) : -20; // Start from the top
+        const y = scatterY ? Math.floor(Math.random() * (this.e.height - 40)) : -20; // Start from the top
         const enableSwirl = this.enableSwirlToggle && Math.random() > 0.5; // Randomly enable swirl effect
-        this.rainDrops.push(new RainDrop(x, y,  this.emojis.getRandomEmoji() , true/* enableSwirl */));
+        this.rainDrops.push(new RainDrop(x, y, this.emojis.getRandomEmoji(), true/* enableSwirl */));
     }
 
     updateRainDrops() {
@@ -72,14 +73,16 @@ export class Rain extends Component {
 
     animate(self = undefined) {
         const r = self ? self : this;
-        ((x)=>{
-            x.updateRainDrops();
-            x.drawRainDrops();
-            if (Math.random() > 0.7) {
-                x.createRainDrop();
-            }
-            const ani = x.animate;
-            window.requestAnimationFrame(() => ani(x));
-        })(r);
+        setTimeout(() => {
+            ((x) => {
+                x.updateRainDrops();
+                x.drawRainDrops();
+                if (Math.random() > 0.7) {
+                    x.createRainDrop();
+                }
+                const ani = x.animate;
+                setTimeout(() => window.requestAnimationFrame(() => ani(x)), 1);
+            })(r);
+        }, 1);
     }
 }

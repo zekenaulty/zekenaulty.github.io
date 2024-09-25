@@ -38,7 +38,8 @@ export class ThemeSwitcher extends Component {
         })(options);
         super(n);
 
-        this.e.value = 'darkly';
+        this.default = n.default ? n.default : 'darkly';
+        this.e.value = this.default;
         DOM.switchTheme(this.e.value);
     }
 
