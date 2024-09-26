@@ -4,11 +4,14 @@ export class OffCanvas extends Component {
     constructor(options = {}) {
         const n = ((options) => {
             const o = { ...options };
+            const position = ((p) => {
+                return `offcanvas-${p}`;
+            })(options.position || 'start');
             o.id = o.id ? o.id : 'offcanvas-internal-' + (Math.floor(Math.random() * 999999) + 100);
             o.tag = 'nav';
             o.classes = [
                 'offcanvas',
-                'offcanvas-start',
+                position,
                 ...(o.classes || [])];
             o.events = o.events ? o.events : {};
             o.styles = o.styles ? o.styles : {};
@@ -29,8 +32,14 @@ export class OffCanvas extends Component {
         this.config = options;
         this.header = this.DOM.element('header', {
             parent: this.e,
-            classes: ['offcanvas-header']
+            classes: [
+                'offcanvas-header',
+                ...(this.config.headerClasses || [])
+            ]
         });
+        if(this.config.headerStyles){
+            Object.assign(this.header.style, this.config.headerStyles);
+        }
 
         this.DOM.element('span', {
             parent: this.header,
@@ -62,9 +71,15 @@ export class OffCanvas extends Component {
         
         this.body = this.DOM.element('section', {
             parent: this.e,
-            classes: ['offcanvas-body'],
+            classes: [
+                'offcanvas-body',
+                ...(this.config.bodyClasses || [])
+            ],
             text: this.config.bodyText || ''
         });
+        if(this.config.headerStyles){
+            Object.assign(this.body.style, this.config.headerStyles);
+        }
     }
 
     addChild(child) {

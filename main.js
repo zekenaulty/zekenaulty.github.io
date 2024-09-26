@@ -3,6 +3,8 @@ import { Navigation } from './src/navigation.js';
 import { Card } from './src/bootstrap/card.js';
 import { Rain } from './src/rain';
 import { Matrix } from './src/matrix';
+import { ImageCarousel } from './src/imageCarousel.js';
+import imageData from './src/imageData.json'; // Import imageData.json directly
 
 const rain = new Rain({
     parent: DOM.body,
@@ -40,6 +42,15 @@ const main = DOM.element('main', {
         opacity: '0.75',
         'overflow-y': 'auto'
 
+    }
+});
+
+const images = new ImageCarousel({
+    parent: main,
+    images: imageData['kismet'],
+    styles: {
+        width: '98vw',
+        height: '90vh',
     }
 });
 

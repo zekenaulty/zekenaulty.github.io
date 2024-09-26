@@ -19,7 +19,7 @@ export class Navigation extends Component {
             o.parent = o.parent ? o.parent : DOM.body;
             o.events = o.events ? o.events : {};
             o.styles = o.styles ? o.styles : {
-                'z-index': 1030
+                'z-index': 1046
             };
             o.attributes = o.attributes ? o.attributes : {};
 
@@ -88,25 +88,56 @@ export class Navigation extends Component {
     buildOffCanvas(options) {
         const c = new OffCanvas({
             parent: this.DOM.body,
+            position: 'end',
             id: `sitenav`,
+            classes: [/*
+                'bg-transparent',
+                'border-0',
+                'm-0',
+                'p-0'
+            */],
+            bodyClasses: [/*
+                'bg-transparent',
+                'border-0',
+                'm-0',
+                'p-0'
+            */],
+            headerClasses: [/*
+                'bg-transparent',
+                'border-0',
+                'm-0',
+                'p-0'
+            */],
             attributes: {
                 id: `sitenav`
             },
             styles: {
-                width: '111px'
+                width: '142px'
             },
             close: false,
-            header: `ZN`
+            header: ` `
+        });
+
+        const mainMenu = this.DOM.element('nav', {
+            parent: c.body,
+            classes: [
+            ],
+            attributes: {},
+            styles: {
+                'border-radius': '1em'
+            }
+
         });
 
         const ul = this.DOM.element('ul', {
-            parent: c.body,
+            parent: mainMenu,
             classes: [
                 'nav',
                 'flex-column'
             ],
             attributes: {}
         });
+
         const sections = sitemap.default.sections;
         sitemap.default.keys.map((e) => {
             
