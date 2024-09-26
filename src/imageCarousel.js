@@ -5,34 +5,38 @@ export class ImageCarousel extends Component {
     constructor(options = {}) {
         const n = ((options) => {
             const o = { ...options };
+            const id = o.id == undefined || o.id =='' ? 'image-carousel-internal-id-' + Math.random() + 9999 : o.id;
             o.tag = 'div';
             o.classes = [...(o.classes || [])];
             o.parent = o.parent ? o.parent : DOM.body;
             o.events = o.events ? o.events : {};
             o.styles = o.styles ? o.styles : {};
-            o.attributes = o.attributes ? o.attributes : {};
+            o.attributes = o.attributes ? o.attributes : {
 
+            };
+            o.attributes.id = id;
             return o;
         })(options);
         super(n);
         this.images = options.images || [];
-        this.buildCarousel();
-        this.id = this.id || 'image-carousel-internal-id-' + Math.random() + 9999;
+        this.id = n.attributes.id;
         this.innerId = this.id + '-inner-id-0000';
+        this.buildCarousel();
     }
 
     buildCarousel() {
         // Create carousel container
         const carousel = DOM.element('div', {
             parent: this.e,
-            id: this.innerId,
             classes: [
                 'carousel',
                 //'slide',
                 'h-100'
             ],
             attributes: {
-                'data-bs-ride': 'carousel'
+                id: this.innerId,
+                //'data-bs-ride': 'carousel',
+                //'data-bs-interval': 'false'
             }
         });
 
@@ -59,7 +63,7 @@ export class ImageCarousel extends Component {
                     parent: inner,
                     classes: [
                         ...itemClasses,
-                        ...(index === 0 ? ['active'] : [])
+                        ...(index === 0 ? ['active'] : ['fade'])
                     ]
                 });
                 DOM.element('img', {
@@ -89,6 +93,8 @@ export class ImageCarousel extends Component {
             attributes: { type: 'button', 'data-bs-target': '#' + this.innerId, 'data-bs-slide': 'next' },
             html: '<span class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span>'
         });
+
+        //this.bootstrap = new bootstrap.Carousel(carousel);
     }
 }
 
