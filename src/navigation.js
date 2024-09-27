@@ -45,7 +45,7 @@ export class Navigation extends Component {
         return this.DOM.element('span', {
             parent: this.e,
             classes: [
-                'h6',
+                'h4',
                 'me-auto',
                 'mt-auto'
             ],

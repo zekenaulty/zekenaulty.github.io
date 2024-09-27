@@ -1,0 +1,32 @@
+.scrollable-container {
+    overflow: hidden; /* Hide overflow */
+    position: relative; /* For positioning custom scrollbars */
+}
+
+.scrollable-container::-webkit-scrollbar {
+    display: none; /* Hide browser scrollbars */
+}
+
+.scrollable-container {
+    -ms-overflow-style: none; /* Hide IE/Edge scrollbars */
+    scrollbar-width: none; /* Hide Firefox scrollbars */
+}
+
+.custom-scrollbar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 10px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.custom-scrollbar::before {
+    content: '';
+    display: block;
+    height: 50px; /* Adjust thumb size as needed */
+    background-color: #ccc;
+    transform: translateY(0);
+    transition: transform 0.3s ease-in-out;
+}

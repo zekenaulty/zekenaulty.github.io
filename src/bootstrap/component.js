@@ -41,7 +41,7 @@ export class Component extends EventTarget {
         this.e.classList.add(dStyle, 'show');
     }
 
-    hide(dStyle = 'd-block') {
+    loading(dStyle = 'd-block') {
         this.e.classList.remove(dStyle, 'show');
         this.e.classList.add('d-none');
     }
@@ -50,7 +50,7 @@ export class Component extends EventTarget {
         if (this.e.classList.contains('d-none')) {
             this.show(dStyle);
         } else {
-            this.hide(dStyle);
+            this.loading(dStyle);
         }
     }
 

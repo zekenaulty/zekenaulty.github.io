@@ -3,8 +3,9 @@ import { Navigation } from './src/navigation.js';
 import { Card } from './src/bootstrap/card.js';
 import { Rain } from './src/rain';
 import { Matrix } from './src/matrix';
-import { ImageCarousel } from './src/imageCarousel.js';
-import imageData from './src/imageData.json'; // Import imageData.json directly
+import { SacredGeometry } from './src/sections/art-gallery/sacredGeometry.js';
+import './src/scroll/scroll.css';
+import './src/scroll/scroll.js';
 
 const rain = new Rain({
     parent: DOM.body,
@@ -30,7 +31,8 @@ const main = DOM.element('main', {
     classes: [
         'position-fixed',
         'border-light',
-        'bg-secondary'
+        'bg-secondary',
+        'scrollable-container'
     ],
     styles: {
         'border-radius': '1em',
@@ -45,14 +47,14 @@ const main = DOM.element('main', {
     }
 });
 
-const images = new ImageCarousel({
+const images = new SacredGeometry({
     parent: main,
-    images: imageData['kismet'],
     styles: {
         width: '98vw',
         height: '90vh',
     }
 });
+
 
 /*
 let last = DOM.body;
