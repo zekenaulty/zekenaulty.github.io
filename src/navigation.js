@@ -135,12 +135,14 @@ export class Navigation extends Component {
                 'nav',
                 'flex-column'
             ],
-            attributes: {}
+            attributes: {
+                id: 'nav-menu'
+            }
         });
-
-        const sections = sitemap.default.sections;
-        sitemap.default.keys.map((e) => {
-            
+        this.navMenu = ul;
+        this.sections = sitemap.default.sections;
+        this.keys = sitemap.default.keys;
+        this.keys.map((e) => {
             const li = this.DOM.element('li', {
                 parent: ul,
                 classes: [
@@ -148,17 +150,18 @@ export class Navigation extends Component {
                 ],
                 attributes: {}
             });
+
             const item = this.DOM.element('a', {
                 parent: li,
                 classes: [
                     'nav-link'
                 ],
                 attributes: {
-                    href: sections[e].href,
-                    id: sections[e].id,
-                    name: sections[e].name,
+                    href: this.sections[e].href,
+                    id: this.sections[e].id + '-link',
+                    name: this.sections[e].name,
                 },
-                text: sections[e].text
+                text: this.sections[e].text
             });
         });
 

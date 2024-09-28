@@ -7,16 +7,31 @@ import { SacredGeometry } from './src/sections/art-gallery/sacredGeometry.js';
 import './src/scroll/scroll.css';
 import './src/scroll/scroll.js';
 
+import { Home } from './src/sections/home/index.js';
+
+const components = {
+    home: Home
+};
+const componentProperties = {
+    home: {
+        classes: [
+            'w-100',
+            'h-100'
+        ],
+        styles: {}
+    }
+};
+
 const rain = new Rain({
     parent: DOM.body,
-    styles:{
+    styles: {
         opacity: '0.65'
     }
 });
 
 const matrix = new Matrix({
     parent: DOM.body,
-    styles:{
+    styles: {
         opacity: '0.60'
     }
 });
@@ -32,7 +47,6 @@ const main = DOM.element('main', {
         'position-fixed',
         'border-light',
         'bg-secondary',
-        'scrollable-container'
     ],
     styles: {
         'border-radius': '1em',
@@ -42,10 +56,29 @@ const main = DOM.element('main', {
         height: '90vh',
         'z-index': '0',
         opacity: '0.75',
-        'overflow-y': 'auto'
-
+        'position': 'relative',
+        'overflow-x': 'hidden',
+        'overflow-y': 'hidden',
+    },
+    attributes: {
+        'data-bs-spy': 'spy',
+        'data-bs-target': topNav.navMenu.id,
+        'data-bs-offset': '0'
     }
 });
+
+/* */
+main.sections = {};
+topNav.keys.map((key) => {
+    const section = components[key];
+    const ops = componentProperties[key] || {};
+    if (section) {
+        main.sections[key] = new section({
+            parent: main,
+            ...ops
+        });
+    }
+}); 
 
 const images = new SacredGeometry({
     parent: main,

@@ -1,13 +1,47 @@
+
+import { Component } from "../../bootstrap/component";
 import { ImageCarousel } from "../../bootstrap/imageCarousel"
 import imageData from './sacred-geometry.json';
 
-export class SacredGeometry extends ImageCarousel {
+export class SacredGeometry extends Component {
     constructor(options) {
-        super(options);
-        this.addDropdown();
+        const n =((options) => {
+            const o = {...options};
+            o.tag = 'section';
+            o.classes = [
+                'position-relative',
+                ...(o.classes || [])];
+            o.events = o.events ? o.events : {};
+            o.styles = o.styles ? o.styles : {};
+            o.attributes = o.attributes ? o.attributes : {};
+            return o;
+        })(options);
+        super(n);
+        this.buildCarousel(n);
+        this.buildDropdown(n);
     }
 
-    addDropdown() {
+    buildCarousel(options){
+        this.carousel = new ImageCarousel({
+            parent: this.e,
+            classes: [
+                'position-absolute',
+                'w-100',
+                'h-100'
+            ],
+            attributes: {
+            },
+            styles: {
+                top: '0px',
+                right: '0px',
+                'z-index': '0',
+                //width: this.e.parentNode.style.width,
+                //height: this.e.parentNode.style.height,
+            },
+        });
+    }
+
+    buildDropdown(options) {
         const div = this.DOM.element('div', {
             parent: this.e,
             classes: [
@@ -19,7 +53,7 @@ export class SacredGeometry extends ImageCarousel {
 
             ],
             attributes: {
-                'z-index': '1030'
+                'z-index': '1039'
             },
             styles: {
                 top: '6px',
@@ -31,6 +65,7 @@ export class SacredGeometry extends ImageCarousel {
         const header = this.DOM.element('span', {
             parent: div,
             classes: [
+                'position-relative',
                 'h5',
                 'me-2',
                 'mt-auto'
@@ -46,9 +81,9 @@ export class SacredGeometry extends ImageCarousel {
             ],
             events: {
                 change: () => {
-                    this.index = 0;
-                    this.images = imageData[this.keys[select.selectedIndex]];
-                    this.home();
+                    this.carousel.index = 0;
+                    this.carousel.images = imageData[this.keys[select.selectedIndex]];
+                    this.carousel.home();
                 }
             }
         });
@@ -62,7 +97,7 @@ export class SacredGeometry extends ImageCarousel {
             this.keys.push(key);
         }
         select.selectedIndex = 0;
-        this.images = imageData[this.keys[0]];
-        this.home();
+        this.carousel.images = imageData[this.keys[0]];
+        this.carousel.home();
     }
 }

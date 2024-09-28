@@ -27,7 +27,6 @@ export class Rain extends Component {
         const resizeHandler = () => {
             this.e.width = window.innerWidth;
             this.e.height = window.innerHeight;
-            console.log(`${this.e.width}px/${this.e.height}px`);
         };
         resizeHandler();
         const self = this;

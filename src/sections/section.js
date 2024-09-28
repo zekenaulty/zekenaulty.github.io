@@ -5,7 +5,7 @@ export class Section extends Component {
     constructor(options = {}) {
         const n = ((options) => {
             const o = { ...options };
-            o.tag = 'article';
+            o.tag = 'section';
             o.classes = [
                 ...(o.classes || [])];
             o.events = o.events ? o.events : {};
@@ -26,11 +26,18 @@ export class Section extends Component {
                 ...headerShow
             ],
             styles: {},
-            attributes: {},
+            attributes: {}
+        });
+
+        this.navLink = this.DOM.element('a', {
+            parent: this.header,
+            attributes: {
+                id: this.config.sectionId
+            },
             text: this.config.header ? this.config.header : ''
         });
 
-        this.body = this.DOM.element('section', {
+        this.body = this.DOM.element('article', {
             parent: this.e,
             classes: [
 
