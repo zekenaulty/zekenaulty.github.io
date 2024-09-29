@@ -71,6 +71,7 @@ const main = DOM.element('main', {
 main.sections = {};
 topNav.keys.map((key) => {
     const section = components[key];
+    /*
     const ops = componentProperties[key] || {};
     if (section) {
         main.sections[key] = new section({
@@ -78,6 +79,7 @@ topNav.keys.map((key) => {
             ...ops
         });
     }
+        */
 }); 
 
 const images = new SacredGeometry({

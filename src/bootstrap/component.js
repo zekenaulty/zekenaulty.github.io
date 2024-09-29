@@ -6,15 +6,33 @@ export class Component extends EventTarget {
         super();
         this.tag = tag;
 
-        if(parent) 
+        if (parent)
             this.parent = parent;
 
         this.e = DOM.element(tag, options);
         this.DOM = DOM;
         this.mounted = false;
 
-        if(this.parent)
+        if (this.parent)
             this.mounted = true;
+    }
+
+    static defaultOptions() {
+        return {
+            tag: 'div',
+            classes: [],
+            events: {},
+            styles: {},
+            attributes: {}
+        };
+    }
+
+    static initOptions(options = {}, overrides = {}) {
+        return Component.mergeOptions(Component.defaultOptions(), options, overrides);
+    }
+
+    static mergeOptions(defaults = {}, options = {}, overrides = {}) {
+        return { ...defaults, ...options, ...overrides };
     }
 
     mount(parent) {
@@ -23,9 +41,9 @@ export class Component extends EventTarget {
         if (this.parent) {
             DOM.append(this.e, this.e.parent);
             this.mounted = true;
-        } else { 
+        } else {
             console.error(`Component.mount: ${typeof this}, failed to mount => no parent.`);
-            this.mounted = false; 
+            this.mounted = false;
         }
 
         return this.mounted;
