@@ -2,20 +2,12 @@ import { Component } from './component.js';
 
 export class NavigationToggleButton extends Component {
   constructor(options = {}) {
-    const n = ((options) => {
-      const o = { ...options };
-      o.tag = 'button';
-      o.classes = [
-        'btn',
-        'text-center',
-        ...(o.classes || [])];
-      o.events = o.events ? o.events : {};
-      o.styles = o.styles ? o.styles : {};
-      o.attributes = o.attributes ? o.attributes : {};
-      return o;
-    })(options);
-    super(n);
-    this.build(n);
+    const o = Component.initOptions(options, {
+      tag: 'button',
+      classes: ['btn', 'btn-primary', 'text-center']
+    });
+    super(o);
+    this.build();
   }
 
   build(options) {

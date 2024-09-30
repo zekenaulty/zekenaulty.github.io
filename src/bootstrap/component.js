@@ -4,6 +4,7 @@ export class Component extends EventTarget {
     constructor(options = {}) {
         const { tag = 'div', parent = undefined } = options;
         super();
+        this.config = options;
         this.tag = tag;
 
         if (parent)

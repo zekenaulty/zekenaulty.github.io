@@ -2,34 +2,25 @@ import { Component } from './component.js';
 
 export class OffCanvas extends Component {
     constructor(options = {}) {
-        const n = ((options) => {
-            const o = { ...options };
-            const position = ((p) => {
-                return `offcanvas-${p}`;
-            })(options.position || 'start');
-            o.id = o.id ? o.id : 'offcanvas-internal-' + (Math.floor(Math.random() * 999999) + 100);
-            o.tag = 'nav';
-            o.classes = [
+        const id = options.id ? options.id : 'offcanvas-internal-' + (Math.floor(Math.random() * 999999) + 100);
+        const o = Component.initOptions(options, {
+            tag: 'nav',
+            classes: [
                 'offcanvas',
-                position,
-                ...(o.classes || [])];
-            o.events = o.events ? o.events : {};
-            o.styles = o.styles ? o.styles : {};
-            o.attributes = {
-                id: o.id,
-                tabindex: -1
-            };
-            o.attributes['data-bs-scroll'] = true;
-            o.attributes['data-bs-backdrop'] = false;
-            o.attributes['aria-labelledby'] = `${o.id}Label`;
-            return o;
-        })(options);
-        super(n);
-        this.build(n);
+                ((p) => `offcanvas-${p}`)(options.position || 'start'),
+            ],
+            attributes: {
+                id: id,
+                'data-bs-scroll': true,
+                'data-bs-backdrop': false,
+                'aria-labelledby': `${id}Label`
+            }
+        });
+        super(o);
+        this.build();
     }
 
-    build(options) {
-        this.config = options;
+    build() {
         this.header = this.DOM.element('header', {
             parent: this.e,
             classes: [
@@ -37,7 +28,7 @@ export class OffCanvas extends Component {
                 ...(this.config.headerClasses || [])
             ]
         });
-        if(this.config.headerStyles){
+        if (this.config.headerStyles) {
             Object.assign(this.header.style, this.config.headerStyles);
         }
 
@@ -64,11 +55,11 @@ export class OffCanvas extends Component {
                 type: 'button'
             }
         }) : {};
-        if(this.closeButton.attributes) {
+        if (this.closeButton.attributes) {
             this.closeButton.attributes['data-bs-dismiss'] = 'offcanvas';
             this.closeButton.attributes['aria-label'] = 'Close';
         }
-        
+
         this.body = this.DOM.element('section', {
             parent: this.e,
             classes: [
@@ -77,7 +68,7 @@ export class OffCanvas extends Component {
             ],
             text: this.config.bodyText || ''
         });
-        if(this.config.headerStyles){
+        if (this.config.headerStyles) {
             Object.assign(this.body.style, this.config.headerStyles);
         }
     }

@@ -71,7 +71,7 @@ const main = DOM.element('main', {
 main.sections = {};
 topNav.keys.map((key) => {
     const section = components[key];
-    /*
+/*     
     const ops = componentProperties[key] || {};
     if (section) {
         main.sections[key] = new section({
@@ -79,7 +79,7 @@ topNav.keys.map((key) => {
             ...ops
         });
     }
-        */
+         */
 }); 
 
 const images = new SacredGeometry({
@@ -92,6 +92,7 @@ const images = new SacredGeometry({
 
 
 /*
+
 let last = DOM.body;
 for(let i = 0; i < 19; i++){
     const c = new Card({
@@ -102,6 +103,8 @@ for(let i = 0; i < 19; i++){
             opacity: 0.9
         }
     });
+    //c.mount(last);
     last = c.body;
 }
+
 */

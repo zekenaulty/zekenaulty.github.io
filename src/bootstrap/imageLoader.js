@@ -2,29 +2,21 @@ import { Component } from './component.js';
 
 export class ImageLoader extends Component {
   constructor(options = {}) {
-    const n = ((options) => {
-      const o = { ...options };
-      const id = o.id == undefined || o.id == '' ? 'image-loader-id-' + Math.random() + 9999 : o.id;
-      o.tag = 'div';
-      o.classes = [...(o.classes || [])];
-      o.parent = o.parent ? o.parent : DOM.body;
-      o.events = o.events ? o.events : {};
-      o.styles = o.styles ? o.styles : {
+    const o = Component.initOptions(options,{
+      tag: 'div',
+      attributes: {
+          id: options.id == undefined || options.id == '' ? 'image-loader-id-' + Math.random() + 9999 : options.id
+      },
+      styles: {
         'min-width': '100vw',
         'min-height': '100vh'
-      };
-      o.attributes = o.attributes ? o.attributes : {
-
-      };
-      o.attributes.id = id;
-      return o;
-    })(options);
-    super(n);
-    this.build(n);
+      }
+  });
+  super(o);
+    this.build();
   }
 
-  build(options) {
-    this.config = options;
+  build() {
 
     this.spinnerId = this.id + '-spinner';
     this.spinner = DOM.element('div', {

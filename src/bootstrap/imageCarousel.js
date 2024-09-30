@@ -3,23 +3,15 @@ import { DOM } from '../dom.js';
 
 export class ImageCarousel extends Component {
     constructor(options = {}) {
-        const n = ((options) => {
-            const o = { ...options };
-            const id = o.id == undefined || o.id == '' ? 'image-carousel-internal-id-' + Math.random() + 9999 : o.id;
-            o.tag = 'div';
-            o.classes = [...(o.classes || [])];
-            o.parent = o.parent ? o.parent : DOM.body;
-            o.events = o.events ? o.events : {};
-            o.styles = o.styles ? o.styles : {};
-            o.attributes = o.attributes ? o.attributes : {
-
-            };
-            o.attributes.id = id;
-            return o;
-        })(options);
-        super(n);
+        const o = Component.initOptions(options,{
+            tag: 'div',
+            attributes: {
+                id: options.id == undefined || options.id == '' ? 'image-carousel-internal-id-' + Math.random() + 9999 : options.id
+            }
+        });
+        super(o);
         this.images = options.images || [];
-        this.id = n.attributes.id;
+        this.id = o.attributes.id;
         this.innerId = this.id + '-inner-id-0000';
         this.index = 0;
         this.buildCarousel();

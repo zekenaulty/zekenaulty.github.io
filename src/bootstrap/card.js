@@ -2,22 +2,15 @@ import { Component } from './component.js';
 
 export class Card extends Component {
     constructor(options = {}) {
-        const n = ((options) => {
-            const o = { ...options };
-            o.tag = 'article';
-            o.classes = [
-                'card',
-                ...(o.classes || [])];
-            o.events = o.events ? o.events : {};
-            o.styles = o.styles ? o.styles : {};
-            return o;
-        })(options);
-        super(n);
-        this.build(n);
+        const o = Component.initOptions(options,{
+            tag: 'article',
+            classes: ['card']
+        });
+        super(o); 
+        this.build();
     }
 
-    build(options) {
-        this.config = options;
+    build() {
         if (this.config.header) {
             this.header = this.DOM.element('header', {
                 parent: this.e,

@@ -23,24 +23,22 @@ export class ThemeSwitcher extends Component {
     ];
 
     constructor(options = {}) {
-        const n = ((options) => {
-            const o = { ...options };
-            o.tag = 'select';
-            o.id = 'theme-selector-internal-0000';
-            o.classes = ['form-select', 'w-auto', ...(o.classes || [])];
-            o.options = [...ThemeSwitcher.themes];
-            o.events = {
+        const o = Component.initOptions(options, {
+            tag: 'select',
+            classes: ['form-select', 'w-auto', ...(options.classes || [])],
+            options: [...ThemeSwitcher.themes],
+            events: {
                 change: (e) => {
                     DOM.switchTheme(e.target.value || 'darkly');
                 }
-            };
-            return o;
-        })(options);
-        super(n);
-
-        this.default = n.default ? n.default : 'darkly';
+            },
+            attributes: {
+                id: 'theme-selector-internal-0000',
+            }
+        });
+        super(o);
+        this.default = o.default ? o.default : 'darkly';
         this.e.value = this.default;
         DOM.switchTheme(this.e.value);
     }
-
 }
