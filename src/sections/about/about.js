@@ -25,7 +25,7 @@ export class About extends Component {
   build() {
     this.background = new ImageLoader({
       parent: this.e,
-      src: '/assets/backgrounds/new-bg-0012-wide.png',
+      src: '/assets/backgrounds/new-bg-0008.png',
       styles: {
         width: '98vw',
         height: '90vh',
