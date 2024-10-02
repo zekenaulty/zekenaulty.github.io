@@ -1,24 +1,36 @@
 import { DOM } from './src/dom.js';
 import { Navigation } from './src/navigation.js';
 import { Card } from './src/bootstrap/card.js';
-import { Rain } from './src/rain';
-import { Matrix } from './src/matrix';
+import { Rain } from './src/rain/rain.js';
+import { Matrix } from './src/matrix/matrix.js';
 import { SacredGeometry } from './src/sections/art-gallery/sacredGeometry.js';
-import './src/scroll/scroll.css';
-import './src/scroll/scroll.js';
-
-import { Home } from './src/sections/home/index.js';
+import { ImageLoader } from './src/bootstrap/imageLoader.js';
+import { Home } from './src/sections/home/home.js';
+import { About } from './src/sections/about/about.js';
 
 const components = {
-    home: Home
+    home: Home,
+    about: About
 };
+
 const componentProperties = {
     home: {
         classes: [
-            'w-100',
-            'h-100'
         ],
-        styles: {}
+        styles: {
+            width: '98vw',
+            height: '90vh',
+            position: 'relative'
+        }
+    },
+    about: {
+        classes: [
+        ],
+        styles: {
+            width: '98vw',
+            height: '90vh',
+            position: 'relative'
+        }
     }
 };
 
@@ -38,7 +50,8 @@ const matrix = new Matrix({
 
 const topNav = new Navigation({
     parent: DOM.body,
-    theme: 'darkly'
+    theme: 'darkly',
+    classes: ['fade', 'd-none']
 });
 
 const main = DOM.element('main', {
@@ -47,6 +60,7 @@ const main = DOM.element('main', {
         'position-fixed',
         'border-light',
         'bg-secondary',
+        'fade', 'd-none'
     ],
     styles: {
         'border-radius': '1em',
@@ -69,9 +83,9 @@ const main = DOM.element('main', {
 
 /* */
 main.sections = {};
+let top = 0;
 topNav.keys.map((key) => {
     const section = components[key];
-/*     
     const ops = componentProperties[key] || {};
     if (section) {
         main.sections[key] = new section({
@@ -79,9 +93,9 @@ topNav.keys.map((key) => {
             ...ops
         });
     }
-         */
-}); 
+});
 
+/*
 const images = new SacredGeometry({
     parent: main,
     styles: {
@@ -89,7 +103,7 @@ const images = new SacredGeometry({
         height: '90vh',
     }
 });
-
+*/
 
 /*
 
@@ -108,3 +122,12 @@ for(let i = 0; i < 19; i++){
 }
 
 */
+
+setTimeout(() => {
+    main.classList.add('show');
+    main.classList.remove('d-none');
+    setTimeout(() => {
+        topNav.e.classList.add('show');
+        topNav.e.classList.remove('d-none');
+    }, 100);
+}, 500);

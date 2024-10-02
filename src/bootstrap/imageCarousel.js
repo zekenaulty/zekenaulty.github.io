@@ -1,5 +1,6 @@
 import { Component } from './component.js';
 import { DOM } from '../dom.js';
+import { ImageLoader } from './imageLoader.js';
 
 export class ImageCarousel extends Component {
     constructor(options = {}) {
@@ -52,49 +53,9 @@ export class ImageCarousel extends Component {
             ]
         });
 
-        this.spinnerId = inner.id + '-spinner';
-        this.spinner = DOM.element('div', {
+        this.imageLoader = new ImageLoader({
             parent: inner,
-            classes: [
-                'position-fixed',
-                'spinner-border',
-                'fade',
-                'show',
-            ],
-            attributes: { role: 'status' },
-            html: `<span class="visually-hidden">Loading...</span>`,
-            styles: {
-                'z-index': '1',
-                top: '49.5vh',
-                left: '49.5vw'
-            }
-        });
-
-        this.slideId = inner.id + '-slide';
-        this.slide = DOM.element('img', {
-            parent: item,
-            classes: [
-                'd-block',
-                'h-100',
-                'fade'
-            ],
-            attributes: {
-                id: this.slideId,
-                src: this.images[0] ? this.images[0] : '',
-                alt: 'Image'
-            },
-            styles: {
-                'z-index': '0'
-            },
-            events: {
-                load: () => {
-                    this.spinner.classList.remove('show');
-                    this.slide.classList.add('show');
-                },
-                error: () => {
-                    console.error('Error loading image');
-                }
-            }
+            aspectMode: 'height'
         });
 
         DOM.element('button', {
@@ -129,7 +90,7 @@ export class ImageCarousel extends Component {
         } else {
             this.index = 0;
         }
-        this.slide.src = this.images[this.index];
+        this.imageLoader.image.src = this.images[this.index];
     }
 
     back(){
@@ -139,17 +100,16 @@ export class ImageCarousel extends Component {
         } else {
             this.index = this.images.length - 1;
         }
-        this.slide.src = this.images[this.index];
+        this.imageLoader.image.src = this.images[this.index];
     }
 
     home() {
         this.loading();
         this.index = 0;
-        this.slide.src = this.images[this.index];
+        this.imageLoader.image.src = this.images[this.index];
     }
 
     loading() {
-        this.spinner.classList.add('show');
-        this.slide.classList.remove('show');
+        this.imageLoader.loading();
     }
 }

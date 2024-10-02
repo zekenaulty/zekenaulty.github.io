@@ -5,23 +5,16 @@ import imageData from './sacred-geometry.json';
 
 export class SacredGeometry extends Component {
     constructor(options) {
-        const n =((options) => {
-            const o = {...options};
-            o.tag = 'section';
-            o.classes = [
-                'position-relative',
-                ...(o.classes || [])];
-            o.events = o.events ? o.events : {};
-            o.styles = o.styles ? o.styles : {};
-            o.attributes = o.attributes ? o.attributes : {};
-            return o;
-        })(options);
-        super(n);
-        this.buildCarousel(n);
-        this.buildDropdown(n);
+        const o = Component.initOptions(options,{
+            tag: 'section',
+            classes: ['position-relative']
+        });
+        super(o); 
+        this.buildCarousel();
+        this.buildDropdown();
     }
 
-    buildCarousel(options){
+    buildCarousel(){
         this.carousel = new ImageCarousel({
             parent: this.e,
             classes: [
@@ -41,7 +34,7 @@ export class SacredGeometry extends Component {
         });
     }
 
-    buildDropdown(options) {
+    buildDropdown() {
         const div = this.DOM.element('div', {
             parent: this.e,
             classes: [

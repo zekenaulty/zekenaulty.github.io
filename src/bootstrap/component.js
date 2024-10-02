@@ -33,7 +33,12 @@ export class Component extends EventTarget {
     }
 
     static mergeOptions(defaults = {}, options = {}, overrides = {}) {
-        return { ...defaults, ...options, ...overrides };
+        const r = { ...defaults, ...options, ...overrides };
+        r.styles = { ...defaults.styles || {}, ...options.styles || {}, ...overrides.styles || {}, };
+        r.attributes = { ...defaults.attributes || {}, ...options.attributes || {}, ...overrides.attributes || {}, };
+        r.events = { ...defaults.events || {}, ...options.events || {}, ...overrides.events || {}, };
+        r.classes = [...(defaults.classes || []), ...(options.classes || []), ...(overrides.classes || [])];
+        return r;
     }
 
     mount(parent) {

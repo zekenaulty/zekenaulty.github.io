@@ -1,4 +1,4 @@
-import { Component } from "../bootstrap/component";
+import { Component } from "../bootstrap/component.js";
 import { RainDrop } from './raindrop.js';
 import { Emoji } from './emoji.js';
 
