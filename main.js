@@ -7,6 +7,7 @@ import { SacredGeometry } from './src/sections/art-gallery/sacredGeometry.js';
 import { ImageLoader } from './src/bootstrap/imageLoader.js';
 import { Home } from './src/sections/home/home.js';
 import { About } from './src/sections/about/about.js';
+import PerfectScrollbar from 'perfect-scrollbar';
 
 const components = {
     home: Home,
@@ -71,13 +72,14 @@ const main = DOM.element('main', {
         'z-index': '0',
         opacity: '0.75',
         'position': 'relative',
-        'overflow-x': 'hidden',
-        'overflow-y': 'hidden',
+        //'overflow-x': 'hidden',
+        //'overflow-y': 'hidden',
     },
     attributes: {
         'data-bs-spy': 'spy',
         'data-bs-target': topNav.navMenu.id,
-        'data-bs-offset': '0'
+        'data-bs-offset': '0',
+        'data-simplebar': ''
     }
 });
 

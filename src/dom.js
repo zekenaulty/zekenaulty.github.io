@@ -96,4 +96,15 @@ export class DOM {
     }
   }
 
+  static changeBgColorOpacity(e, opacity) {
+    const currentBgColor = window.getComputedStyle(e).backgroundColor;
+    const match = currentBgColor.match(/^rgba?\((\d+), (\d+), (\d+),? (\d?\.\d+)?\)$/);
+    if (!match) {
+      console.error("Invalid background color format:", currentBgColor);
+      return;
+    }
+    const newBgColor = `rgba(${match[1]}, ${match[2]}, ${match[3]}, ${opacity})`;
+    e.style.backgroundColor = newBgColor;
+  }
+
 }

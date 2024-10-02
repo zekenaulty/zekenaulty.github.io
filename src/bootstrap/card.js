@@ -22,7 +22,8 @@ export class Card extends Component {
         this.body = this.DOM.element('section', {
             parent: this.e,
             classes: ['card-body'],
-            text: this.config.bodyText || ''
+            text: this.config.bodyText || '',
+            html: this.config.bodyHTML || ''
         });
     }
 
