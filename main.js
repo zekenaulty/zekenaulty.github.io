@@ -41,13 +41,13 @@ const rain = new Rain({
         opacity: '0.65'
     }
 });
-
+/* 
 const matrix = new Matrix({
     parent: DOM.body,
     styles: {
-        opacity: '0.60'
+        opacity: '0.30'
     }
-});
+}); */
 
 const topNav = new Navigation({
     parent: DOM.body,
