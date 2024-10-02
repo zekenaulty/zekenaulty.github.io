@@ -25,7 +25,7 @@ export class About extends Component {
   build() {
     this.background = new ImageLoader({
       parent: this.e,
-      src: '/assets/backgrounds/new-bg-0008.png',
+      src: '/assets/backgrounds/new-bg-0020.png',
       styles: {
         width: '98vw',
         height: '90vh',
@@ -96,10 +96,12 @@ export class About extends Component {
       <section class="about">My early development experience was marked by a series of challenging and rewarding projects. As an Engineering Application Developer at 
       Litton Avondale Inc., I wrote 3D to 2D code transformations, managed network application deployment, and developed error reporting/logging databases 
       and front-ends. One of my notable achievements was creating an Integrated Development Environment (IDE) for scripting 3D to 2D transformations. 
-      This experience not only deepened my understanding of software development but also instilled in me a passion for innovation and problem-solving.
+      This experience not only deepened my understanding of software development but also instilled in me a passion for innovation and problem-solving.</section>
+      
       <section class="about">At Hancock Whitney, I worked as a Programmer/Analyst I, where I was responsible for desktop development, accessing DB2 data sources, and 
       implementing data applications with Argo Data. I designed reporting and data access front-ends, created data-driven ASP pages, and developed a 
-      strong foundation in database management. These experiences taught me the importance of attention to detail, data integrity, and effective data visualization.
+      strong foundation in database management. These experiences taught me the importance of attention to detail, data integrity, and effective data visualization.</section>
+
       <section class="about">Throughout these early experiences, I was fortunate to work with talented teams and mentors who guided me in my growth as a developer. 
       I learned the value of collaboration, open communication, and continuous learning in delivering high-quality software solutions. These lessons have 
       stayed with me throughout my career and continue to shape my approach to software development.</section>

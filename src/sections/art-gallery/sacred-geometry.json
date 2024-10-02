@@ -1,40 +1,5 @@
 {
-  "aetheria-x": [
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/aetheria-x/0000.webp"
-  ],
-  "root": [
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/blocks.webp",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/eternity.webp",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/infinity.webp",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/rebirth-in-twighlight.webp"
-  ],
-  "dragons": [
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/0000.webp",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/0001.webp",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/0002.webp",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/0003.jpg",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/0004.webp",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/0005.webp"
-  ],
-  "dragons\\perspective": [
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/perspective/0000.webp",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/perspective/0001.webp",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/perspective/0002.webp",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/perspective/0003.webp",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/perspective/0004.webp",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/perspective/0005.webp",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/perspective/0006.webp",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/perspective/0007.webp",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/perspective/0008.webp"
-  ],
-  "druids": [
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/druids/0000.webp",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/druids/0001.webp",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/druids/0002.webp",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/druids/0004.webp",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/druids/0005.webp",
-    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/druids/0006.webp"
-  ],
+  
   "kismet": [
     "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/kismet/0000.jpg",
     "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/kismet/0001.jpg",
@@ -204,6 +169,41 @@
     "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/kismet/0167.webp",
     "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/kismet/0168.webp",
     "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/kismet/0169.webp"
+  ],"aetheria-x": [
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/aetheria-x/0000.webp"
+  ],
+  "root": [
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/blocks.webp",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/eternity.webp",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/infinity.webp",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/rebirth-in-twighlight.webp"
+  ],
+  "dragons": [
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/0000.webp",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/0001.webp",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/0002.webp",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/0003.jpg",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/0004.webp",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/0005.webp"
+  ],
+  "dragons\\perspective": [
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/perspective/0000.webp",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/perspective/0001.webp",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/perspective/0002.webp",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/perspective/0003.webp",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/perspective/0004.webp",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/perspective/0005.webp",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/perspective/0006.webp",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/perspective/0007.webp",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/dragons/perspective/0008.webp"
+  ],
+  "druids": [
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/druids/0000.webp",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/druids/0001.webp",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/druids/0002.webp",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/druids/0004.webp",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/druids/0005.webp",
+    "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/druids/0006.webp"
   ],
   "luna-x-sol": [
     "https://raw.githubusercontent.com/zekenaulty/sacred-geometry/refs/heads/main/luna-x-sol/0000.webp",

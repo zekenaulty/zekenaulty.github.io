@@ -98,6 +98,7 @@ topNav.keys.map((key) => {
 });
 
 /*
+*/
 const images = new SacredGeometry({
     parent: main,
     styles: {
@@ -105,7 +106,6 @@ const images = new SacredGeometry({
         height: '90vh',
     }
 });
-*/
 
 /*
 
