@@ -4,7 +4,7 @@ export class TextAnimatedSpinIn extends Component {
     constructor(options = {}) {
         const o = Component.initOptions(options, {
             tag: 'div',
-            classes: ['animated-text'],
+            classes: ['animated-text', 'text-nowrap'],
             text: options.text || '',
             font: options.font || '16pt monospace',
             duration: options.duration || 550,

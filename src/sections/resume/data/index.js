@@ -9,7 +9,7 @@ import * as $2022 from './2022.json';
 import * as $skills from './skills.json';
 import * as $about from './aboutMe.json';
 
-export const Resume = {
+export const ResumeData = {
     about: $about.default,
     skills: $skills.default,
     experience : [

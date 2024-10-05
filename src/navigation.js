@@ -25,7 +25,7 @@ export class Navigation extends Component {
 
             o.styles.top = '1vh';
             o.styles.right = '1vh';
-            o.styles.width = '98vw';
+            o.styles.width = '100vw';
 
             return o;
         })(options);
@@ -47,7 +47,8 @@ export class Navigation extends Component {
             classes: [
                 'h4',
                 'me-auto',
-                'mt-auto'
+                'mt-auto',
+                'ms-3'
             ],
             text: 'ZN: Code Monkey'
         });

@@ -1,51 +1,39 @@
 import { DOM } from './src/dom.js';
 import { Navigation } from './src/navigation.js';
-import { Card } from './src/bootstrap/card.js';
 import { Rain } from './src/rain/rain.js';
-import { Matrix } from './src/matrix/matrix.js';
-import { SacredGeometry } from './src/sections/art-gallery/sacredGeometry.js';
-import { ImageLoader } from './src/bootstrap/imageLoader.js';
 import { Home } from './src/sections/home/home.js';
 import { About } from './src/sections/about/about.js';
-import PerfectScrollbar from 'perfect-scrollbar';
+import { Resume } from './src/sections/resume/resume.js';
+import { ArtGallery } from './src/sections/art-gallery/artGallery.js';
 
 const components = {
     home: Home,
-    about: About
+    about: About,
+    resume: Resume,
+    gallery: ArtGallery
+};
+
+const defaultOps = {
+    classes: [
+    ],
+    styles: {
+        width: '100vw',
+        height: '100vh',
+        position: 'relative'
+    }
 };
 
 const componentProperties = {
-    home: {
-        classes: [
-        ],
-        styles: {
-            width: '98vw',
-            height: '90vh',
-            position: 'relative'
-        }
-    },
-    about: {
-        classes: [
-        ],
-        styles: {
-            width: '98vw',
-            height: '90vh',
-            position: 'relative'
-        }
-    }
+    home: {...defaultOps},
+    about: {...defaultOps},
+    resume: {...defaultOps},
+    gallery: {...defaultOps}
 };
 
-const rain = new Rain({
+/* const rain = new Rain({
     parent: DOM.body,
     styles: {
         opacity: '0.65'
-    }
-});
-/* 
-const matrix = new Matrix({
-    parent: DOM.body,
-    styles: {
-        opacity: '0.30'
     }
 }); */
 
@@ -57,23 +45,16 @@ const topNav = new Navigation({
 
 const main = DOM.element('main', {
     parent: DOM.body,
-    classes: [
-        'position-fixed',
-        'border-light',
-        'bg-secondary',
-        'fade', 'd-none'
-    ],
+    classes: [],
     styles: {
         'border-radius': '1em',
-        top: '6.6vh',
-        left: '1vw',
-        width: '98vw',
-        height: '90vh',
+        top: '0',
+        left: '0',
+        width: '100vw',
+        height: '100vh',
         'z-index': '0',
         opacity: '0.75',
         'position': 'relative',
-        //'overflow-x': 'hidden',
-        //'overflow-y': 'hidden',
     },
     attributes: {
         'data-bs-spy': 'spy',
@@ -83,7 +64,6 @@ const main = DOM.element('main', {
     }
 });
 
-/* */
 main.sections = {};
 let top = 0;
 topNav.keys.map((key) => {
@@ -97,39 +77,7 @@ topNav.keys.map((key) => {
     }
 });
 
-/*
-*/
-const images = new SacredGeometry({
-    parent: main,
-    styles: {
-        width: '98vw',
-        height: '90vh',
-    }
-});
-
-/*
-
-let last = DOM.body;
-for(let i = 0; i < 19; i++){
-    const c = new Card({
-        parent: last,
-        header: `Header: ${i}`,
-        bodyText: `Card body text: ${i}`,
-        styles: {
-            opacity: 0.9
-        }
-    });
-    //c.mount(last);
-    last = c.body;
-}
-
-*/
-
 setTimeout(() => {
-    main.classList.add('show');
-    main.classList.remove('d-none');
-    setTimeout(() => {
-        topNav.e.classList.add('show');
-        topNav.e.classList.remove('d-none');
-    }, 100);
-}, 500);
+    topNav.e.classList.add('show');
+    topNav.e.classList.remove('d-none');
+}, 100)
