@@ -30,13 +30,6 @@ const componentProperties = {
     gallery: {...defaultOps}
 };
 
-/* const rain = new Rain({
-    parent: DOM.body,
-    styles: {
-        opacity: '0.65'
-    }
-}); */
-
 const topNav = new Navigation({
     parent: DOM.body,
     theme: 'darkly',
