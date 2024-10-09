@@ -30,7 +30,7 @@ export class Experience extends Component {
 
         this.period = this.DOM.element('header',{
             parent: this.e,
-            text: `${e.location}: ${e.start} - ${e.end}`,
+            text: `${e.location}: ${e.dates.start} - ${e.dates.end}`,
             classes: ['h4']
         });
 

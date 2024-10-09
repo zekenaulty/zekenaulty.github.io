@@ -50,7 +50,7 @@ export class Navigation extends Component {
                 'mt-auto',
                 'ms-3'
             ],
-            text: 'ZN: Code Monkey'
+            text: 'ZN'
         });
     }
 
