@@ -1,11 +1,9 @@
 import { Section } from "../section.js";
-import { ImageLoader } from '../../bootstrap/imageLoader.js';
-import { Component } from "../../bootstrap/component.js";
-import { TextAnimatedSpinIn } from "../../bootstrap/textAnimatedSpinIn.js";
+import { SectionBaseComponent } from "../sectionBaseComponent.js";
 
-export class ArtGallery extends Component {
+export class ArtGallery extends SectionBaseComponent {
   constructor(options = {}) {
-    const o = Component.initOptions(options,{
+    const o = SectionBaseComponent.initOptions(options,{
         sectionId: 'gallery'
     });
     super(o); 
@@ -13,7 +11,7 @@ export class ArtGallery extends Component {
   }
 
   build() {
-    this.background = new ImageLoader({
+/*     this.background = new ImageLoader({
       parent: this.e,
       src: '/assets/backgrounds/new-bg-0019.png',
       styles: {
@@ -25,7 +23,7 @@ export class ArtGallery extends Component {
         'left': '0px',
         'opacity': '0.5'
       }
-    });
+    }); */
     this.section = new Section({
       parent: this.e,
       id: 'art-gallery-section',
@@ -33,7 +31,7 @@ export class ArtGallery extends Component {
       header: 'gallery',
       styles: {
         width: '100vw',
-        height: '100vh',
+        //height: '100vh',
         'position': 'absolute',
         'top': '0px',
         'left': '0px'

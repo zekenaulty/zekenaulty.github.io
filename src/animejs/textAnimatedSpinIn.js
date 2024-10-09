@@ -1,4 +1,4 @@
-import { Component } from './component.js';
+import { Component } from '../bootstrap/component.js';
 
 export class TextAnimatedSpinIn extends Component {
     constructor(options = {}) {

@@ -107,4 +107,27 @@ export class DOM {
     e.style.backgroundColor = newBgColor;
   }
 
+  static smoothScrollIntoView(element, container = window) {
+    const elementRect = element.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+
+    const finalScrollPosition = containerRect.top + elementRect.top - container.clientHeight / 2 + elementRect.height / 2;
+
+    const scroll = () => {
+        const currentScrollPosition = container.scrollTop;
+        const distanceToScroll = finalScrollPosition - currentScrollPosition;
+        const scrollSpeed = 1000;
+        const scrollIncrement = distanceToScroll / scrollSpeed;
+        const newScrollPosition = currentScrollPosition + scrollIncrement * (distanceToScroll > 0 ? 1 : -1);
+
+        container.scrollTop = newScrollPosition;
+
+        if (Math.abs(distanceToScroll) > 1) {
+            requestAnimationFrame(scroll);
+        }
+    };
+
+    requestAnimationFrame(scroll);
+}
+
 }

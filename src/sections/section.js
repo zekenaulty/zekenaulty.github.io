@@ -7,7 +7,7 @@ export class Section extends Component {
             const o = { ...options };
             o.tag = 'section';
             o.classes = [
-                'd-block',
+                //'',
                 ...(o.classes || [])];
             o.events = o.events ? o.events : {};
             o.styles = o.styles ? o.styles : {};

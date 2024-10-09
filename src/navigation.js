@@ -54,7 +54,7 @@ export class Navigation extends Component {
         });
     }
 
-    buildToggleButton(options){
+    buildToggleButton(options) {
         return new NavigationToggleButton({
             parent: this.e,
             id: `sitenav`,
@@ -158,11 +158,18 @@ export class Navigation extends Component {
                     'nav-link'
                 ],
                 attributes: {
-                    href: this.sections[e].href,
+                    href: `javascript:void(0);`,//this.sections[e].href,
                     id: this.sections[e].id + '-link',
                     name: this.sections[e].name,
                 },
-                text: this.sections[e].text
+                text: this.sections[e].text,
+                events: {
+                    click: () => {
+                        //const target = document.getElementById(this.sections[e].id + '-link');
+                        //const bar = SimpleBar.instances.get(document.querySelector('[data-simplebar]'));
+                        //bar.recalculate();
+                    }
+                }
             });
         });
 

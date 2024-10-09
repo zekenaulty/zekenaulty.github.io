@@ -7,10 +7,10 @@ import * as $2013 from './2013-2016.json';
 import * as $2017 from './2017-2021.json';
 import * as $2022 from './2022.json';
 import * as $skills from './skills.json';
-import * as $about from './aboutMe.json';
+//import * as $about from './aboutMe.json';
 
 export const ResumeData = {
-    about: $about.default,
+    //about: $about.default,
     skills: $skills.default,
     experience : [
         $1999.default,

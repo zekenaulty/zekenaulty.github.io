@@ -1,42 +1,37 @@
 import { Section } from "../section";
-import { ImageLoader } from '../../bootstrap/imageLoader.js';
-import { Component } from "../../bootstrap/component.js";
-import { TextAnimatedSpinIn } from "../../bootstrap/textAnimatedSpinIn.js";
+import { SectionBaseComponent } from "../sectionBaseComponent.js";
+import { HomeText } from "./homeText.js";
 
-export class Home extends Component {
+export class Home extends SectionBaseComponent {
   constructor(options = {}) {
-    const o = Component.initOptions(options,{
+    const o = SectionBaseComponent.initOptions(options,{
         sectionId: 'home'
     });
     super(o); 
     this.build();
   }
 
+  
+  defaultOptions = {
+    classes: [
+    ],
+    styles: {
+        width: '90vw',
+        height: '98vh',
+        position: 'relative'
+    }
+};
+
   build() {
-    this.background = new ImageLoader({
-      parent: this.e,
-      src: '/assets/backgrounds/new-bg-0028.png',
-      styles: {
-        width: '100vw',
-        height: '100vh',
-        'z-index': '-1',
-        'position': 'absolute',
-        'top': '0px',
-        'left': '0px',
-        'opacity': '0.5'
-      }
-    });
     this.section = new Section({
       parent: this.e,
       id: 'home-section',
       sectionId: 'home',
       header: 'home',
       styles: {
-        width: '100vw',
+        width: '90vw',
         height: '100vh',
-        'position': 'absolute',
-        'top': '0px',
-        'left': '0px'
+        position: 'relative'
       }
     });
 
@@ -51,22 +46,10 @@ export class Home extends Component {
         transform: 'translate(-50%, -50%)',
       }
     });
-
-    setTimeout(() => {
-      this.text = new TextAnimatedSpinIn({
-        parent: this.center,
-        text: 'Zeke Naulty',
-        font: '2.3em monospace'
-      });
-      setTimeout(() => {
-        this.text = new TextAnimatedSpinIn({
-          parent: this.center,
-          text: 'Developer, Designer, Artist, Programmer',
-          font: '0.65em monospace'
-        });
-      }, 100);
-    }, 500);
-
+    this.animeText = new HomeText({
+      parent: this.center
+    });
+    this.animeText.start();
 
   }
 }

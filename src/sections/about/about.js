@@ -1,10 +1,9 @@
 import { Section } from "../section";
-import { ImageLoader } from '../../bootstrap/imageLoader.js';
-import { Component } from "../../bootstrap/component.js";
+import { SectionBaseComponent } from "../sectionBaseComponent.js";
 
-export class About extends Component {
+export class About extends SectionBaseComponent {
   constructor(options = {}) {
-    const o = Component.initOptions(options,{
+    const o = SectionBaseComponent.initOptions(options,{
         sectionId: 'about'
     });
     super(o); 
@@ -12,7 +11,7 @@ export class About extends Component {
   }
 
   build() {
-    this.background = new ImageLoader({
+/*     this.background = new ImageLoader({
       parent: this.e,
       src: '/assets/backgrounds/new-bg-0023.png',
       styles: {
@@ -24,7 +23,7 @@ export class About extends Component {
         'left': '0px',
         'opacity': '0.45'
       }
-    });
+    }); */
 
     this.section = new Section({
       parent: this.e,
@@ -33,12 +32,7 @@ export class About extends Component {
       header: 'about',
       classes: ['text-centered'],
       styles: {
-        width: '100vw',
-        height: '100vh',
-        //'max-width': '970px',
-        'position': 'absolute',
-        'top': '0px',
-        'left': '2vw'
+        //width: '100vw',
       }
     });
 
@@ -46,8 +40,6 @@ export class About extends Component {
     this.section.body.classList.add('flex-wrap');
     this.section.body.classList.add('justify-content-center');
     this.section.body.style['position'] = 'relative';
-    this.section.body.style['max-height'] = '84vh';
-    this.section.body.setAttribute('data-simplebar', '');
     this.section.body.innerHTML = `
     <article class="container p-2">
       <style>
