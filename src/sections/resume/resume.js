@@ -20,13 +20,13 @@ export class Resume extends SectionBaseComponent {
       sectionId: 'resume',
       header: 'resume',
       styles: {
-        width: '90vw',
+        width: '86vw',
       }
     });
 
     this.experience = new Experiences({
       parent: this.section.body,
-      experiences: ResumeData.experience
+      experiences: ResumeData.experience.reverse()
     });
 
     this.skills = new Skills({

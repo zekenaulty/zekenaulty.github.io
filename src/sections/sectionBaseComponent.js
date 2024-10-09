@@ -9,7 +9,7 @@ export class SectionBaseComponent extends Component {
         classes: [
         ],
         styles: {
-            width: '90vw',
+            width: '86vw',
             //position: 'relative'
         }
     };

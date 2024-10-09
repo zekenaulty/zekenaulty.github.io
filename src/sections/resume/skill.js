@@ -11,7 +11,9 @@ export class Skill extends Component {
             classes: [
                 'card',
                 'm-2',
-                'p-2'
+                'p-2',
+                'border',
+                'border-light'
             ],
             text: options.skill.name,
             attributes: {

@@ -10,7 +10,8 @@ export class Skills extends Component{
             tag: 'section',
             classes: [
                 'd-flex',
-                'flex-wrap'
+                'flex-wrap',
+                'justify-content-center'
             ]
         }));
         this.build();

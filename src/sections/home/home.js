@@ -16,7 +16,7 @@ export class Home extends SectionBaseComponent {
     classes: [
     ],
     styles: {
-        width: '90vw',
+        width: '86vw',
         height: '98vh',
         position: 'relative'
     }
@@ -29,7 +29,7 @@ export class Home extends SectionBaseComponent {
       sectionId: 'home',
       header: 'home',
       styles: {
-        width: '90vw',
+        width: '86vw',
         height: '100vh',
         position: 'relative'
       }

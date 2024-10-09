@@ -11,7 +11,9 @@ export class Experience extends Component {
             classes: [
                 'card',
                 'm-2',
-                'p-2'
+                'p-2',
+                'border',
+                'border-light'
             ],
             styles: {
                 'max-width': '30vw'
@@ -31,7 +33,7 @@ export class Experience extends Component {
         this.period = this.DOM.element('header',{
             parent: this.e,
             text: `${e.location}: ${e.dates.start} - ${e.dates.end}`,
-            classes: ['h4']
+            classes: ['h5']
         });
 
         this.list = this.DOM.element('ul',{

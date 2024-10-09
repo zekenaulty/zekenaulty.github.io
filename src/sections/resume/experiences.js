@@ -10,7 +10,8 @@ export class Experiences extends Component{
             tag: 'section',
             classes: [
                 'd-flex',
-                'flex-wrap'
+                'flex-wrap',
+                'justify-content-center'
             ],
         }));
         this.build();
