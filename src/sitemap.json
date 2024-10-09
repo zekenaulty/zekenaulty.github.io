@@ -3,7 +3,7 @@
         "home",
         "about",
         "resume",
-        "projects"
+        "gallery"
     ],
     "sections": {
         "home": {
@@ -27,6 +27,14 @@
             "text": " Resume ",
             "href": "#resume",
             "name": "resume",
+            "description": "",
+            "faIcon": ""
+        },
+        "gallery": {
+            "key": 4,
+            "text": " Gallery ",
+            "href": "#gallery",
+            "name": "gallery",
             "description": "",
             "faIcon": ""
         },

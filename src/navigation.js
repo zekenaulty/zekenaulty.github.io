@@ -158,7 +158,7 @@ export class Navigation extends Component {
                     'nav-link'
                 ],
                 attributes: {
-                    href: `javascript:void(0);`,//this.sections[e].href,
+                    href: this.sections[e].href,
                     id: this.sections[e].id + '-link',
                     name: this.sections[e].name,
                 },

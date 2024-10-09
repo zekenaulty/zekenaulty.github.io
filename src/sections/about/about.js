@@ -11,19 +11,6 @@ export class About extends SectionBaseComponent {
   }
 
   build() {
-/*     this.background = new ImageLoader({
-      parent: this.e,
-      src: '/assets/backgrounds/new-bg-0023.png',
-      styles: {
-        width: '100vw',
-        height: '100vh',
-        'z-index': '-1',
-        'position': 'absolute',
-        'top': '0px',
-        'left': '0px',
-        'opacity': '0.45'
-      }
-    }); */
 
     this.section = new Section({
       parent: this.e,
@@ -32,7 +19,6 @@ export class About extends SectionBaseComponent {
       header: 'about',
       classes: ['text-centered'],
       styles: {
-        //width: '100vw',
       }
     });
 

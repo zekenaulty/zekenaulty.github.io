@@ -16,7 +16,8 @@ export class Experience extends Component {
                 'border-light'
             ],
             styles: {
-                'max-width': '30vw'
+                'max-width': '30vw',
+                'min-width': '300px'
             }
         }));
         this.build();
@@ -26,14 +27,14 @@ export class Experience extends Component {
         const e = this.config.experience;
         this.title = this.DOM.element('header',{
             parent: this.e,
-            text: `${e.company}: ${e.title}`,
-            classes: ['h4']
+            text: `${e.company} - ${e.title}`,
+            classes: ['h5']
         });
 
         this.period = this.DOM.element('header',{
             parent: this.e,
             text: `${e.location}: ${e.dates.start} - ${e.dates.end}`,
-            classes: ['h5']
+            classes: ['h6']
         });
 
         this.list = this.DOM.element('ul',{

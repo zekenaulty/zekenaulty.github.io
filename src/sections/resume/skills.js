@@ -11,7 +11,9 @@ export class Skills extends Component{
             classes: [
                 'd-flex',
                 'flex-wrap',
-                'justify-content-center'
+                'justify-content-center',
+                //'d-none',
+                //'d-sm-block'
             ]
         }));
         this.build();

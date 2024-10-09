@@ -49,17 +49,12 @@ export class Sections {
             id: 'section-boss-internal-0000',
             classes: [
                 'position-absolute',
-                //'border-light',
-                //'border-start',
-                //'border-end',
-                //'bg-dark'
             ],
             styles: {
                 top: 'vh',
                 left: '6vw',
                 width: '88vw',
                 'max-height': '100vh',
-                //opacity: 0.75,
                 'z-index': 1
             },
             attributes: {
@@ -79,6 +74,10 @@ export class Sections {
                         ...ops
                     });
                 }
+                DOM.element('div', {
+                    parent: this.container,
+                    html: '&nbsp'
+                });
             }
         });
     }
