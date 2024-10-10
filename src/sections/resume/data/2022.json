@@ -1,0 +1,16 @@
+{
+    "title": "Software Engineer II",
+    "company": "Storable",
+    "location": "Cary, North Carolina, United States",
+    "remote": true,
+    "dates": {
+      "start": "2021-02-01",
+      "end": "2022-12-31"
+    },
+    "description": [
+      "Developed and maintained .Net WinForms and web applications.",
+      "Built backend services supporting insurance auto-protect feature using .Net Core, Hangfire, Postgres, SQL Server, Entity Framework, and other technologies.",
+      "Established and taught patterns for unit testing in WinForms.",
+      "Contributed ideas and design concepts to several initiatives in the company's growing adoption of domain-driven design."
+    ]
+  }

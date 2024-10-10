@@ -1,0 +1,126 @@
+[
+    {
+        "name": "Agile Methodologies",
+        "description": "A set of iterative and incremental software development approaches that emphasize adaptability, flexibility, and continuous improvement. Agile methodologies break down large projects into smaller, manageable units called sprints. This allows for faster feedback loops, quicker delivery of features, and better adaptation to changing requirements."
+    },
+    {
+        "name": "AngularJS",
+        "description": "A popular JavaScript framework for building dynamic web applications. AngularJS uses a declarative programming style and offers features like two-way data binding and dependency injection."
+    },
+    {
+        "name": "Azure DevOps",
+        "description": "A cloud-based DevOps platform that provides tools for planning, building, testing, and deploying software applications. Azure DevOps integrates with Microsoft Azure and other cloud platforms."
+    },
+    {
+        "name": "Bootstrap",
+        "description": "A popular front-end framework that provides a collection of CSS styles and JavaScript components for building responsive and mobile-friendly websites. Bootstrap can help developers create consistent and visually appealing user interfaces."
+    },
+    {
+        "name": "C#",
+        "description": "A general-purpose, object-oriented programming language developed by Microsoft. Widely used for building various types of software applications, including web applications, desktop applications, mobile applications, and games. Known for its strong typing, garbage collection, and integration with the .NET Framework and .NET Core."
+    },
+    {
+        "name": "Cloud Platforms",
+        "description": "Platforms that provide on-demand access to computing resources over the internet. Cloud platforms offer various services like infrastructure as a service (IaaS), platform as a service (PaaS), and software as a service (SaaS). Popular cloud platforms include Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform."
+    },
+    {
+        "name": "Cloud computing (Azure)",
+        "description": "On-demand delivery of IT resources like servers, storage, databases, networking, software, analytics, and intelligence over the internet. Microsoft Azure is a leading cloud computing platform that offers a wide range of services for building, deploying, and managing applications on a global scale. Cloud computing provides scalability, elasticity, and cost-effectiveness for software development."
+    },
+    {
+        "name": "CSS",
+        "description": "Cascading Style Sheets used to style web pages."
+    },
+    {
+        "name": "Database Development",
+        "description": "The process of designing, creating, and managing databases to store and manage application data. SQL Server and Oracle are popular relational database management systems (RDBMS) used for various applications. Database development involves defining database schema, writing queries to retrieve and manipulate data, and ensuring data integrity and security."
+    },
+    {
+        "name": "Full-stack development",
+        "description": "The ability to develop both the front-end (user interface) and back-end (server-side) components of a web application. Full-stack developers possess skills in various areas like programming languages, frameworks, databases, and APIs. This allows them to work independently on all aspects of a web application."
+    },
+    {
+        "name": "Git",
+        "description": "A popular version control system used for tracking changes to source code and other files. Git allows developers to collaborate efficiently and manage different versions of their projects."
+    },
+    {
+        "name": "iOS",
+        "description": "The operating system used on Apple devices like iPhones, iPads, and iPods."
+    },
+    {
+        "name": "JavaScript",
+        "description": "Versatile, lightweight, interpreted, or just-in-time compiled programming language. It is primarily known as the scripting language for web pages, enabling dynamic and interactive content, but it is also used in various non-browser environments like Node.js for server-side development."
+    },
+    {
+        "name": "JIRA",
+        "description": "A popular project management and issue tracking tool used by software development teams. JIRA helps teams plan, track, and manage their work, and provides features like Kanban boards, Scrum boards, and agile reporting."
+    },
+    {
+        "name": "Kanban",
+        "description": "A visual method for managing work that focuses on visualizing the workflow, limiting work in progress, and continuously improving the process. Kanban boards are often used to represent the different stages of a project, with cards representing tasks or items. Kanban is often used in combination with Agile methodologies."
+    },
+    {
+        "name": "Leadership",
+        "description": "The ability to influence, motivate, and inspire others to achieve a common goal. Effective leadership is essential for managing software development teams and driving successful projects."
+    },
+    {
+        "name": "Mentoring",
+        "description": "The process of guiding and supporting others in their career development. Mentoring can help junior developers learn new skills, grow their careers, and become more successful."
+    },
+    {
+        "name": "Microsoft Azure",
+        "description": "A leading cloud computing platform from Microsoft that offers a wide range of services for building, deploying, and managing applications on a global scale. Cloud computing provides scalability, elasticity, and cost-effectiveness for software development."
+    },
+    {
+        "name": "Microsoft SQL Server",
+        "description": "A popular relational database management system (RDBMS) from Microsoft. SQL Server is widely used for enterprise applications and offers a comprehensive set of features for data management."
+    },
+    {
+        "name": "Mobile application development",
+        "description": "The process of creating software applications for mobile devices like smartphones and tablets. Mobile app development involves using specific programming languages, frameworks, and tools to build apps for platforms like iOS and Android."
+    },
+    {
+        "name": "Oracle",
+        "description": "A popular relational database management system (RDBMS) used for various applications. Oracle offers a comprehensive set of features for data management, including data warehousing, data mining, and business intelligence."
+    },
+    {
+        "name": "Problem-solving",
+        "description": "The ability to identify and resolve issues effectively. Problem-solving skills are essential for software development, as developers often encounter challenges and need to find creative solutions."
+    },
+    {
+        "name": "Project management",
+        "description": "The application of knowledge, skills, tools, and techniques to plan, organize, and implement a project effectively. In software development, project management involves tasks like defining project scope, creating a development plan, allocating resources, tracking progress, and managing risks. Effective project management ensures projects are completed on time, within budget, and meet the desired quality standards."
+    },
+    {
+        "name": "Regular Expressions",
+        "description": "Powerful text pattern matching tool used for searching, manipulating, and validating text data. Commonly used in software development for tasks like data extraction, validation forms, and parsing complex text formats. Regular expressions provide a concise and efficient way to match specific patterns within strings."
+    },
+    {
+        "name": "Software development",
+        "description": "The process of creating computer programs and applications. Software development involves various stages, including planning, designing, coding, testing, and deployment."
+    },
+    {
+        "name": "Team Building",
+        "description": "The process of creating a cohesive and productive team environment.  In software development, effective team building fosters collaboration, communication, and problem-solving among developers, designers, project managers, and other stakeholders. This leads to a more efficient development process and higher quality software."
+    },
+    {
+        "name": "Team management",
+        "description": "The ability to lead and motivate a team of individuals to achieve a common goal. Effective team management involves setting clear expectations, providing guidance and support, and fostering a positive team culture."
+    },
+    {
+        "name": "Time management",
+        "description": "The ability to effectively manage your time and prioritize tasks. Good time management skills are essential for software developers to meet deadlines and deliver high-quality work."
+    },
+    {
+        "name": "Unified Modeling Language (UML)",
+        "description": "A standard visual language for software development. UML diagrams provide a way to represent the blueprint of a software system, including its classes, objects, relationships, interactions, and processes. UML helps developers visualize, design, document, and understand complex software systems."
+    },
+    {
+        "name": "Visual Basic .NET",
+        "description": "Another object-oriented programming language developed by Microsoft specifically for the .NET platform. Offers a visually intuitive syntax similar to Visual Basic for Applications (VBA) used in Microsoft Office products. Popular for rapid application development (RAD) and building Windows applications."
+    },
+    {
+        "name": "Web development",
+        "description": "The process of creating websites and web applications. Web developers use various technologies like: HTML, CSS, JavaScript and TypeScript."
+    }
+]

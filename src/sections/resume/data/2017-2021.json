@@ -1,0 +1,15 @@
+{
+    "title": "Lead Developer / Azure DevOps",
+    "company": "iAdvantage Software, Inc.",
+    "location": "Cary, NC",
+    "dates": {
+      "start": "2017-03-01",
+      "end": "2021-01-31"
+    },
+    "description": [
+      "Empowered users with dynamic user-defined data models and custom reporting features compliant with 'Good Laboratory Practices'.",
+      "Developed web applications using ASP.Net WebForms, MVC, WebAPI, RESTful OData, and SOAP APIs powered by Oracle (nHibernate, Entity Framework, PL/SQL).",
+      "Built responsive web interfaces with CSS3, Flex Box, Bootstrap, and AngularJS.",
+      "Developed offline capabilities using WinForms and Xamarin Forms apps."
+    ]
+  }

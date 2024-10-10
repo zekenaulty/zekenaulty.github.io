@@ -1,0 +1,21 @@
+{
+    "title": "Programmer/Analyst",
+    "company": "Prestage Farms",
+    "location": "Clinton, NC",
+    "dates": {
+      "start": "2016-02-01",
+      "end": "2016-09-30"
+    },
+    "description": [
+      "Led a team to convert and modernize legacy VB6 accounting and inventory management software for Prestage Farms.",
+      "Developed a new reporting frontend to support legacy reports and modern PDF generation.",
+      "Implemented a custom bug reporting and ticketing system for improved issue tracking.",
+      "Utilized Agile methodologies for project management, delivering the project 3 months early."
+    ],
+    "skills": [
+      "C#",
+      "Visual Basic .NET (VB.NET)",
+      "Regular Expressions",
+      "Team Building"
+    ]
+  }

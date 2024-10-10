@@ -1,0 +1,15 @@
+{
+    "title": "Engineering Application Developer",
+    "company": "Litton Avondale Inc.",
+    "location": "New Orleans, LA",
+    "dates": {
+      "start": "1999-03-01",
+      "end": "2000-12-31"
+    },
+    "description": [
+      "Wrote 3D to 2D code transformations.",
+      "Managed network application deployment.",
+      "Developed error report/logging databases and front-ends.",
+      "Developed an IDE for scripting 3D to 2D transformations."
+    ]
+  }

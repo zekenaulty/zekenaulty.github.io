@@ -3,5 +3,13 @@
 		{
 			"path": "."
 		}
-	]
+	],
+	"settings": {
+		"cSpell.words": [
+			"animejs",
+			"labelledby",
+			"simplebar",
+			"sitenav"
+		]
+	}
 }
