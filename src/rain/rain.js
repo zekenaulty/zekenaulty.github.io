@@ -14,7 +14,7 @@ export class Rain extends Component {
             o.styles = o.styles ? o.styles : {};
             o.styles.top = '0px';
             o.styles.left = '0px';
-            o.styles.zIndex = '-1';
+            o.styles.zIndex = '-10';
             return o;
         })(options);
         super(n);

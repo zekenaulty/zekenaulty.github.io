@@ -13,7 +13,8 @@ export class Skill extends Component {
                 'm-1',
                 'p-1',
                 'border',
-                'border-light'
+                'border-light',
+                'text-center'
             ],
             text: options.skill.name,
             attributes: {
@@ -21,7 +22,8 @@ export class Skill extends Component {
             },
             styles: {
                 'max-width': '30vw',
-                'min-width': '100px'
+                'min-width': '100px',
+                'font-size': '0.65em'
             }
         }));
     }

@@ -12,6 +12,15 @@ export class About extends SectionBaseComponent {
 
   build() {
 
+    this.DOM.element('header', {
+      parent: this.e,
+      html: 'About',
+      classes: [
+        'h5',
+        'text-center'
+      ]
+    });
+    
     this.section = new Section({
       parent: this.e,
       id: 'about-section',

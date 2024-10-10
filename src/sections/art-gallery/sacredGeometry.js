@@ -54,7 +54,7 @@ export class SacredGeometry extends Component {
             },
 
         });
-
+/* 
         const header = this.DOM.element('span', {
             parent: div,
             classes: [
@@ -65,7 +65,7 @@ export class SacredGeometry extends Component {
             ],
             text: 'Sacred Geometry '
         });
-
+ */
         const select = this.DOM.element('select', {
             parent: div,
             classes: [

@@ -4,7 +4,7 @@ export class NavigationToggleButton extends Component {
   constructor(options = {}) {
     const o = Component.initOptions(options, {
       tag: 'button',
-      classes: ['btn', 'btn-primary', 'text-center']
+      classes: ['btn',  'text-center']
     });
     super(o);
     this.build();

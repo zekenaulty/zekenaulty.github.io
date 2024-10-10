@@ -24,9 +24,30 @@ export class Resume extends SectionBaseComponent {
       }
     });
 
+    this.DOM.element('header', {
+      parent: this.section.body,
+      html: 'Experience',
+      classes: [
+        'h5',
+        'text-center'
+      ]
+    });
+
     this.experience = new Experiences({
       parent: this.section.body,
       experiences: ResumeData.experience.reverse()
+    });
+
+    this.DOM.element('div', { parent: this.section.body, html: '&nbsp' });
+    this.DOM.element('div', { parent: this.section.body, html: '&nbsp' });
+
+    this.DOM.element('header', {
+      parent: this.section.body,
+      html: 'Skills',
+      classes: [
+        'h5',
+        'text-center'
+      ]
     });
 
     this.skills = new Skills({

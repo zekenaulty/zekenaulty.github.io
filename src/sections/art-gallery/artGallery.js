@@ -4,14 +4,24 @@ import { SacredGeometry } from "./sacredGeometry.js";
 
 export class ArtGallery extends SectionBaseComponent {
   constructor(options = {}) {
-    const o = SectionBaseComponent.initOptions(options,{
-        sectionId: 'gallery'
+    const o = SectionBaseComponent.initOptions(options, {
+      sectionId: 'gallery'
     });
-    super(o); 
+    super(o);
     this.build();
   }
 
   build() {
+
+    this.DOM.element('header', {
+      parent: this.e,
+      html: 'Gallery',
+      classes: [
+        'h5',
+        'text-center'
+      ]
+    });
+
     this.section = new Section({
       parent: this.e,
       id: 'art-gallery-section',
@@ -25,11 +35,10 @@ export class ArtGallery extends SectionBaseComponent {
     this.images = new SacredGeometry({
       parent: this.section.body,
       styles: {
-          width: '100%',
-          height: '90vh',
+        width: '100%',
+        height: '90vh',
       }
-  });
-
+    });
 
   }
 }

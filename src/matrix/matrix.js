@@ -13,7 +13,7 @@ export class Matrix extends Component {
             o.styles = o.styles ? o.styles : {};
             o.styles.top = '0px';
             o.styles.left = '0px';
-            o.styles.zIndex = '-2';
+            o.styles.zIndex = '-20';
             return o;
         })(options);
         super(n);

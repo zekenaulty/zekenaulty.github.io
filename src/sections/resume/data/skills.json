@@ -28,16 +28,12 @@
         "description": "On-demand delivery of IT resources like servers, storage, databases, networking, software, analytics, and intelligence over the internet. Microsoft Azure is a leading cloud computing platform that offers a wide range of services for building, deploying, and managing applications on a global scale. Cloud computing provides scalability, elasticity, and cost-effectiveness for software development."
     },
     {
-        "name": "Database development (SQL Server, Oracle)",
+        "name": "CSS",
+        "description": "Cascading Style Sheets used to style web pages."
+    },
+    {
+        "name": "Database Development",
         "description": "The process of designing, creating, and managing databases to store and manage application data. SQL Server and Oracle are popular relational database management systems (RDBMS) used for various applications. Database development involves defining database schema, writing queries to retrieve and manipulate data, and ensuring data integrity and security."
-    },
-    {
-        "name": "Databases",
-        "description": "A collection of structured data that is organized in a way that allows it to be easily accessed, managed, and updated. Databases are essential for storing and managing the data used by software applications."
-    },
-    {
-        "name": "DB2",
-        "description": "A relational database management system from IBM. DB2 is widely used for enterprise applications and offers a comprehensive set of features for data management."
     },
     {
         "name": "Full-stack development",
@@ -50,6 +46,10 @@
     {
         "name": "iOS",
         "description": "The operating system used on Apple devices like iPhones, iPads, and iPods."
+    },
+    {
+        "name": "JavaScript",
+        "description": "Versatile, lightweight, interpreted, or just-in-time compiled programming language. It is primarily known as the scripting language for web pages, enabling dynamic and interactive content, but it is also used in various non-browser environments like Node.js for server-side development."
     },
     {
         "name": "JIRA",
@@ -82,10 +82,6 @@
     {
         "name": "Oracle",
         "description": "A popular relational database management system (RDBMS) used for various applications. Oracle offers a comprehensive set of features for data management, including data warehousing, data mining, and business intelligence."
-    },
-    {
-        "name": "PL/SQL",
-        "description": "A procedural language used to extend the capabilities of the Oracle database. PL/SQL allows developers to create stored procedures, functions, triggers, and packages to perform complex database operations."
     },
     {
         "name": "Problem-solving",

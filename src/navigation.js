@@ -3,6 +3,9 @@ import { ThemeSwitcher } from './bootstrap/themeSwitcher.js';
 import { NavigationToggleButton } from './bootstrap/navigationToggleButton.js';
 import { Component } from './bootstrap/component.js';
 import { OffCanvas } from './bootstrap/offCanvas.js';
+import { RainSwitch } from './rain/rainSwitch.js';
+import { MatrixSwitch } from './matrix/matrixSwitch.js';
+
 import * as sitemap from './sitemap.json';
 
 export class Navigation extends Component {
@@ -59,7 +62,10 @@ export class Navigation extends Component {
             parent: this.e,
             id: `sitenav`,
             classes: [
-                'btn-primary',
+                'btn-outline-secondary',
+                'btn-dark',
+                'bg-gradient',
+                'text-light'
             ],
             styles: {
                 'border-radius': '1em'
@@ -91,24 +97,9 @@ export class Navigation extends Component {
             parent: this.DOM.body,
             position: 'end',
             id: `sitenav`,
-            classes: [/*
-                'bg-transparent',
-                'border-0',
-                'm-0',
-                'p-0'
-            */],
-            bodyClasses: [/*
-                'bg-transparent',
-                'border-0',
-                'm-0',
-                'p-0'
-            */],
-            headerClasses: [/*
-                'bg-transparent',
-                'border-0',
-                'm-0',
-                'p-0'
-            */],
+            classes: [],
+            bodyClasses: [],
+            headerClasses: [],
             attributes: {
                 id: `sitenav`
             },
@@ -155,7 +146,9 @@ export class Navigation extends Component {
             const item = this.DOM.element('a', {
                 parent: li,
                 classes: [
-                    'nav-link'
+                    'nav-link',
+                    'text-light',
+                    'text-body'
                 ],
                 attributes: {
                     href: this.sections[e].href,
@@ -171,6 +164,24 @@ export class Navigation extends Component {
                     }
                 }
             });
+        });
+
+        this.rainSwitch = new RainSwitch({
+            parent: c.body,
+            classes: ['position-fixed'],
+            styles: {
+                bottom: '30px',
+                right: '3px'
+            }
+        });
+
+        this.matrixSwitch = new MatrixSwitch({
+            parent: c.body,
+            classes: ['position-fixed'],
+            styles: {
+                bottom: '2px',
+                right: '3px'
+            }
         });
 
         return c;

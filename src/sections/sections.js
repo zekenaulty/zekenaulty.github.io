@@ -74,10 +74,8 @@ export class Sections {
                         ...ops
                     });
                 }
-                DOM.element('div', {
-                    parent: this.container,
-                    html: '&nbsp'
-                });
+                DOM.element('div', { parent: this.container, html: '&nbsp' });
+                DOM.element('div', { parent: this.container, html: '&nbsp' });
             }
         });
     }
