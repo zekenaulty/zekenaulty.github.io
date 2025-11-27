@@ -26,3 +26,7 @@ dist-ssr
 
 references
 plans
+arc.py
+.env
+.env.local
+.env.*.local
