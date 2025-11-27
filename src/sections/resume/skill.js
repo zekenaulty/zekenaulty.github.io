@@ -10,7 +10,6 @@ export class Skill extends Component {
             tag: 'span',
             classes: [
                 'card',
-                'm-1',
                 'p-1',
                 'border',
                 'border-light',
@@ -21,9 +20,11 @@ export class Skill extends Component {
                 title: options.skill.description
             },
             styles: {
-                'max-width': '30vw',
-                'min-width': '100px',
-                'font-size': '0.65em'
+                'flex': '0 0 auto',
+                'min-width': '120px',
+                'max-width': '220px',
+                'font-size': '0.75em',
+                'white-space': 'normal'
             }
         }));
     }

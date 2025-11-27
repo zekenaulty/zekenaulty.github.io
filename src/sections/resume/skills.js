@@ -12,9 +12,15 @@ export class Skills extends Component{
                 'd-flex',
                 'flex-wrap',
                 'justify-content-center',
-                //'d-none',
-                //'d-sm-block'
-            ]
+                'gap-2',
+                'w-100'
+            ],
+            styles: {
+                width: '86vw',
+                'max-width': '900px',
+                'min-width': '320px',
+                margin: '0 auto'
+            }
         }));
         this.build();
     }

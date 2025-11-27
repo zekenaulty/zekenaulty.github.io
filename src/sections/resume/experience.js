@@ -16,8 +16,9 @@ export class Experience extends Component {
                 'border-light'
             ],
             styles: {
-                'max-width': '30vw',
-                'min-width': '300px'
+                'width': '86vw',
+                'max-width': '900px',
+                'min-width': '320px'
             }
         }));
         this.build();

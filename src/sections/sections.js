@@ -2,15 +2,13 @@ import { DOM } from '../dom.js';
 import { Home } from './home/home.js';
 import { About } from './about/about.js';
 import { Resume } from './resume/resume.js';
-import { ArtGallery } from './art-gallery/artGallery.js';
 
 import * as sitemap from '../sitemap.json';
 
 const components = {
     home: Home,
     about: About,
-    resume: Resume,
-    gallery: ArtGallery
+    resume: Resume
 };
 
 export class Sections {
