@@ -1,0 +1,52 @@
+{
+  "master": {
+    "id": "about-master",
+    "label": "Master About (Neutral)",
+    "paragraphs": [
+      "Systems-first developer with a long arc in .NET and JavaScript, comfortable moving between desktop, web, and backend work to make long-lived products easier to change.",
+      "Focus areas include refactoring legacy code, tightening data flows, and shipping dependable features with clear UX and sensible engineering practices."
+    ]
+  },
+  "about-code-monkey": {
+    "id": "about-code-monkey",
+    "label": "Code Monkey About",
+    "paragraphs": [
+      "Most of my life has been spent inside complex systems: legacy codebases, awkward architectures, and business processes that grew faster than anyone designed them. The more tangled the problem, the clearer the map becomes.",
+      "I take responsibility for hard systems other people depend on, learn how they really work, and make them easier to change. That has meant living deep in .NET across desktop, web, and backend, untangling long-lived applications, and nudging teams toward designs that are testable, maintainable, and humane to work with.",
+      "Systems are not neutral; they decide who carries risk and who fights fires. I prefer building things that reduce hidden load and failure modes instead of chasing whatever is trending.",
+      "Outside of work it is quieter - cooking, biking, games, and reading - but the same habit shows up: notice patterns, refine systems, and leave them better than I found them."
+    ]
+  },
+  "about-backend-modernization": {
+    "id": "about-backend-modernization",
+    "label": "Backend / Modernization About",
+    "paragraphs": [
+      "Senior .NET engineer focused on backend services, data flows, and modernization. Comfortable moving legacy workloads toward testable .NET Core services, tightening telemetry, and improving reliability around schedulers, queues, and APIs.",
+      "Works close to the database layer (SQL Server, PostgreSQL, Oracle) and cares about shipping incremental improvements without breaking the business."
+    ]
+  },
+  "about-desktop-winforms": {
+    "id": "about-desktop-winforms",
+    "label": "Desktop / WinForms About",
+    "paragraphs": [
+      "Thick-client specialist with deep experience in WinForms and desktop line-of-business apps. Modernizes legacy UI flows, introduces sustainable testing patterns, and connects desktop clients to dependable services.",
+      "Comfortable straddling older tech (VB6/WinForms/Web Forms) and newer patterns to keep critical desktop products alive while improving maintainability."
+    ]
+  },
+  "about-fullstack-dotnet": {
+    "id": "about-fullstack-dotnet",
+    "label": "Fullstack .NET About",
+    "paragraphs": [
+      "Fullstack .NET developer who owns the path from UI through APIs to data. Builds and maintains Web Forms/MVC/WebAPI services, styles responsive interfaces, and keeps data models coherent.",
+      "Habitually improves developer experience and testability so fullstack changes can ship without fear."
+    ]
+  },
+  "about-solution-architect": {
+    "id": "about-solution-architect",
+    "label": "Solution Architect About",
+    "paragraphs": [
+      "Solution-focused architect who designs pragmatic modernization paths for long-lived .NET systems. Balances legacy constraints with improved patterns, data contracts, and team practices.",
+      "Mentors teams on testing, service boundaries, and delivery so products become easier to evolve instead of harder to maintain."
+    ]
+  }
+}

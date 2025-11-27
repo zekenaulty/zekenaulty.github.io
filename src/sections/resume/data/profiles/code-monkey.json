@@ -1,0 +1,108 @@
+{
+  "id": "code-monkey",
+  "label": "Code Monkey (Default)",
+  "kind": "character",
+  "headline": "High-End Code Monkey Who Fixes Messy Systems",
+  "aboutKey": "about-code-monkey",
+  "experienceOrder": [
+    "storable",
+    "iadvantage",
+    "solid-earth",
+    "prestage-farms",
+    "rural-sourcing",
+    "not-rocket-science",
+    "pk-promotions",
+    "rainmaker",
+    "hancock-whitney",
+    "litton-avondale",
+    "computer-specialist"
+  ],
+  "experienceOverrides": {
+    "storable": {
+      "title": "Software Engineer II",
+      "description": [
+        "Dropped into WinForms plus .NET Core services, kept the insurance backend running with Hangfire, PostgreSQL, SQL Server, and Entity Framework.",
+        "Showed the team how to unit test WinForms and nudged early domain-driven design so changes stop breaking everything."
+      ]
+    },
+    "iadvantage": {
+      "description": [
+        "Ran user-defined data models and reporting for GLP products across WebForms/MVC/WebAPI with REST OData and SOAP APIs on Oracle.",
+        "Kept UIs and DevOps sane with CSS/Bootstrap/AngularJS plus offline WinForms and Xamarin apps."
+      ]
+    },
+    "solid-earth": {
+      "description": [
+        "Maintained RETS client/server software and configurable ASP.NET MLS sites on Oracle and C#.",
+        "Built the market analytics module so people could stop guessing about the data."
+      ]
+    },
+    "prestage-farms": {
+      "description": [
+        "Modernized VB6 accounting/inventory systems, rebuilt reporting, and added bug tracking so issues stopped disappearing.",
+        "Delivered early with lightweight Agile habits."
+      ]
+    },
+    "rural-sourcing": {
+      "description": [
+        "Mentored teams and juggled projects across the Microsoft stack while recruiting and interviewing.",
+        "Kept delivery moving on Windows, web, and database work."
+      ]
+    },
+    "not-rocket-science": {
+      "description": [
+        "Built a C# mobile app for a Sheriff's department and shipped full-stack .NET + SQL Server work for Zen-Noh Grain.",
+        "Stitched together an ActionScript + ASP.NET tracking app for shipments and tug boats."
+      ]
+    },
+    "pk-promotions": {
+      "description": [
+        "Delivered production management, product tracking, and sales/marketing systems for a small shop."
+      ]
+    },
+    "rainmaker": {
+        "description": [
+            "Built front-ends in VB6/VB.NET/ASP with Access, InterDev, Flash, and SQL Server; helped design IT systems for clients."
+        ]
+    },
+    "hancock-whitney": {
+      "description": [
+        "Built desktop apps on DB2/Argo Data with reporting UIs, data-driven ASP pages, and validation JavaScript.",
+        "Designed SQL Server applications to support the workflows."
+      ]
+    },
+    "litton-avondale": {
+      "description": [
+        "Wrote 3D-to-2D transforms, deployed network applications, and built error logging/reporting on the LPD-17 project.",
+        "Built an IDE so those transforms could be scripted instead of rewritten."
+      ]
+    },
+    "computer-specialist": {
+      "description": [
+        "Fixed and built PCs, troubleshot software, and wrote custom tools for small businesses."
+      ]
+    }
+  },
+  "skillsPrimary": [
+    "C#",
+    ".NET Core",
+    "WinForms",
+    "ASP.NET",
+    "SQL Server",
+    "PostgreSQL",
+    "Legacy modernization"
+  ],
+  "skillsSecondary": [
+    "AngularJS",
+    "Azure DevOps",
+    "Hangfire",
+    "JavaScript",
+    "Problem-solving"
+  ],
+  "tags": [
+    "character",
+    "authentic",
+    "legacy",
+    "refactoring"
+  ]
+}

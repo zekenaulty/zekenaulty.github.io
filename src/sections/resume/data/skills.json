@@ -122,5 +122,41 @@
     {
         "name": "Web development",
         "description": "The process of creating websites and web applications. Web developers use various technologies like: HTML, CSS, JavaScript and TypeScript."
+    },
+    {
+        "name": ".NET Core",
+        "description": "Building backend services and libraries on the modern .NET runtime with C#."
+    },
+    {
+        "name": "Entity Framework",
+        "description": "Object-relational mapper for .NET used to model data, manage migrations, and query SQL databases."
+    },
+    {
+        "name": "ASP.NET",
+        "description": "Web application framework covering Web Forms, MVC, and WebAPI for building APIs and web apps on .NET."
+    },
+    {
+        "name": "WinForms",
+        "description": "Windows desktop application framework used for line-of-business client development."
+    },
+    {
+        "name": "PostgreSQL",
+        "description": "Open-source relational database used for transactional workloads and services."
+    },
+    {
+        "name": "Hangfire",
+        "description": ".NET background job scheduler for queues, delayed tasks, and recurring workloads."
+    },
+    {
+        "name": "Xamarin Forms",
+        "description": "Cross-platform .NET UI framework for building mobile apps sharing a single codebase."
+    },
+    {
+        "name": "OData/SOAP APIs",
+        "description": "Designing and consuming service endpoints using OData and SOAP protocols for enterprise integrations."
+    },
+    {
+        "name": "Legacy modernization",
+        "description": "Refactoring and incrementally improving long-lived systems to be testable, maintainable, and easier to ship."
     }
 ]

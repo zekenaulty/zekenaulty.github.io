@@ -157,6 +157,7 @@
     ],
     "experience": [
         {
+            "id": "computer-specialist",
             "title": "Technician/Programmer",
             "company": "Computer Specialist",
             "location": "Bay St. Louis, MS",
@@ -171,6 +172,7 @@
             ]
         },
         {
+            "id": "litton-avondale",
             "title": "Engineering Application Developer",
             "company": "Litton Avondale Inc.",
             "location": "New Orleans, LA",
@@ -186,6 +188,7 @@
             ]
         },
         {
+            "id": "rainmaker",
             "title": "Design Consultant",
             "company": "Rainmaker Advertising & Design",
             "location": "Biloxi, MS",
@@ -199,6 +202,7 @@
             ]
         },
         {
+            "id": "pk-promotions",
             "title": "Web Developer/Consultant (PK Promotions)",
             "company": "PK Promotions",
             "location": "Biloxi, MS",
@@ -213,6 +217,7 @@
             ]
         },
         {
+            "id": "solid-earth",
             "title": "Application Developer/Architect",
             "company": "Solid Earth Inc.",
             "location": "Huntsville, AL",
@@ -227,6 +232,7 @@
             ]
         },
         {
+            "id": "rural-sourcing",
             "title": "Senior Software Developer",
             "company": "Rural Sourcing, Inc.",
             "location": "Augusta, Georgia Area",
@@ -240,6 +246,7 @@
             ]
         },
         {
+            "id": "iadvantage",
             "title": "Lead Developer / Azure DevOps",
             "company": "iAdvantage Software, Inc.",
             "location": "Cary, NC",
@@ -255,6 +262,7 @@
             ]
         },
         {
+            "id": "storable",
             "title": "Software Engineer II",
             "company": "Storable",
             "location": "Cary, North Carolina, United States",
