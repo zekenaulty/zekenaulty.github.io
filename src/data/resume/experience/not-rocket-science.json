@@ -8,6 +8,15 @@
       "end": "2005-10-31"
     },
     "summary": "Consulting across law enforcement, logistics, and agribusiness, building C#/ASP.NET/ActionScript solutions with SQL Server backends.",
+    "skillsUsed": [
+      "C#",
+      "ASP.NET",
+      "ActionScript",
+      "SQL Server",
+      "Mobile development",
+      "Inventory/operations workflows",
+      "Client consulting"
+    ],
     "description": [
       "Built a C# mobile application for a Sheriff's department to capture and sync field data.",
       "Delivered full-stack .NET and SQL Server development for Zen-Noh Grain, supporting inventory and operations workflows.",

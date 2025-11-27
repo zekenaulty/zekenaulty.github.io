@@ -9,6 +9,18 @@
       "end": "2022-12-31"
     },
     "summary": "Maintained WinForms and web apps for insurance products while standing up .NET Core services with Hangfire/EF over PostgreSQL and SQL Server to support auto-protect features.",
+    "skillsUsed": [
+      "C#",
+      ".NET Core",
+      "WinForms",
+      "ASP.NET",
+      "Entity Framework",
+      "Hangfire",
+      "PostgreSQL",
+      "SQL Server",
+      "Unit testing",
+      "Domain-driven design"
+    ],
     "description": [
       "Developed and maintained .Net WinForms and web applications supporting insurance and tenant operations.",
       "Built .NET Core services with Hangfire and Entity Framework over PostgreSQL and SQL Server to drive insurance auto-protect workflows.",

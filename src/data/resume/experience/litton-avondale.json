@@ -8,6 +8,13 @@
       "end": "2000-12-31"
     },
     "summary": "Early career building 3D-to-2D transformation tooling for shipbuilding drawings, deployments, logging, and a scripting IDE for engineers.",
+    "skillsUsed": [
+      "3D to 2D transformations",
+      "Scripting IDE",
+      "Error logging",
+      "Deployment",
+      "Engineering tooling"
+    ],
     "description": [
       "Wrote 3D-to-2D code transformations for shipbuilding engineering drawings on the LPD-17 project.",
       "Managed deployment of networked applications used by engineering teams.",

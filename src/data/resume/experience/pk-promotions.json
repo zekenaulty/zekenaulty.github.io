@@ -8,6 +8,13 @@
       "end": "2005-01-31"
     },
     "summary": "Delivered small-business web apps for commodity production, product evolution tracking, and sales/marketing flows.",
+    "skillsUsed": [
+      "ASP",
+      "SQL Server",
+      "Web development",
+      "Requirements gathering",
+      "Reporting"
+    ],
     "description": [
       "Built a web-based commodity production management system so the business could track orders and production status in one place.",
       "Implemented product evolution tracking to capture change history and releases for SKUs.",

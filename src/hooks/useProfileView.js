@@ -16,6 +16,7 @@ const mapExperience = (profile, experienceById, defaultOrder) =>
       ...override,
       description: override.description ?? base.description,
       summary: override.summary ?? base.summary,
+      skillsUsed: override.skillsUsed ?? base.skillsUsed,
     };
 
     return [...list, merged];

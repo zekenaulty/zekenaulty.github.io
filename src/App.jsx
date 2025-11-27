@@ -205,6 +205,26 @@ function App() {
                         </Typography>
                       ))}
                     </Stack>
+                    {item.skillsUsed?.length ? (
+                      <Stack
+                        direction="row"
+                        spacing={0.75}
+                        flexWrap="wrap"
+                        useFlexGap
+                        sx={{ mt: 1.5 }}
+                      >
+                        {item.skillsUsed.map((skill) => (
+                          <Chip
+                            key={skill}
+                            label={skill}
+                            size="small"
+                            color="default"
+                            variant="outlined"
+                            sx={{ opacity: 0.9 }}
+                          />
+                        ))}
+                      </Stack>
+                    ) : null}
                   </CardContent>
                 </Card>
               ))}
