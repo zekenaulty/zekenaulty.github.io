@@ -193,6 +193,11 @@ function App() {
                         {formatDateRange(item.dates)}
                       </Typography>
                     </Stack>
+                    {item.summary ? (
+                      <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+                        {item.summary}
+                      </Typography>
+                    ) : null}
                     <Stack component="ul" spacing={0.75} sx={{ pl: 2, mt: 1.5, mb: 0 }}>
                       {item.description?.map((line, idx) => (
                         <Typography key={idx} component="li" variant="body2" color="text.primary">

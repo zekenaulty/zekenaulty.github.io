@@ -7,6 +7,7 @@
       "start": "2017-03-01",
       "end": "2021-01-31"
     },
+    "summary": "Led GLP-compliant lab platform across WebForms/MVC/WebAPI, WinForms, and Xamarin with Oracle-backed services, configurable reporting, and Azure DevOps delivery.",
     "description": [
       "Led delivery of GLP-compliant lab software with dynamic user-defined data models and custom reporting that preserved traceability and audit trails.",
       "Designed and built ASP.NET WebForms/MVC/WebAPI services with RESTful OData and SOAP endpoints backed by Oracle using nHibernate, Entity Framework, and PL/SQL.",

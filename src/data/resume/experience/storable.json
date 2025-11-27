@@ -8,6 +8,7 @@
       "start": "2021-02-01",
       "end": "2022-12-31"
     },
+    "summary": "Maintained WinForms and web apps for insurance products while standing up .NET Core services with Hangfire/EF over PostgreSQL and SQL Server to support auto-protect features.",
     "description": [
       "Developed and maintained .Net WinForms and web applications supporting insurance and tenant operations.",
       "Built .NET Core services with Hangfire and Entity Framework over PostgreSQL and SQL Server to drive insurance auto-protect workflows.",

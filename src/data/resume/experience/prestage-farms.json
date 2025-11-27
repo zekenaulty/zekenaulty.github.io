@@ -7,6 +7,7 @@
       "start": "2016-02-01",
       "end": "2016-09-30"
     },
+    "summary": "Led a VB6 to WinForms modernization of 8+ accounting and inventory modules, automating conversions, unifying security, and delivering early with Agile milestones.",
     "description": [
       "Led a team of 6 developers and 3 QA to modernize VB6 accounting and inventory systems into a single WinForms .NET application with role-based security.",
       "Analyzed legacy VB6 patterns and built transformation modules to automate conversion to VB.NET while preserving business logic.",

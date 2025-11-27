@@ -7,6 +7,7 @@
       "start": "2001-01-01",
       "end": "2001-08-31"
     },
+    "summary": "Built desktop and web tools in a banking environment using Access/DB2/Argo Data, ASP, validation JavaScript, and SQL Server.",
     "description": [
       "Developed desktop applications that pulled from Access and DB2/Argo Data sources for banking teams.",
       "Implemented reporting and data-access front-ends to surface financial data accurately.",
