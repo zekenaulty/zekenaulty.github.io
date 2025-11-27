@@ -1,0 +1,15 @@
+{
+    "id": "pk-promotions",
+    "title": "Web Developer/Consultant (PK Promotions)",
+    "company": "PK Promotions",
+    "location": "Biloxi, MS",
+    "dates": {
+      "start": "2004-06-01",
+      "end": "2005-01-31"
+    },
+    "description": [
+      "Developed web-based commodity production management systems.",
+      "Developed product evolution tracking systems.",
+      "Developed sales/marketing systems."
+    ]
+  }

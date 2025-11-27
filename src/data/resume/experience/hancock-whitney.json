@@ -1,0 +1,18 @@
+{
+    "id": "hancock-whitney",
+    "title": "Programmer/Analyst I",
+    "company": "Hancock Bank",
+    "location": "Gulfport, MS",
+    "dates": {
+      "start": "2001-01-01",
+      "end": "2001-08-31"
+    },
+    "description": [
+      "Developed desktop applications using Access DB2 data sources.",
+      "Implemented data applications with Argo Data.",
+      "Designed reporting and data access front-ends.",
+      "Developed data-driven ASP pages.",
+      "Wrote complex validation JavaScripts.",
+      "Implemented and designed SQL Server applications."
+    ]
+  }

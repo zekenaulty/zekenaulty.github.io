@@ -1,0 +1,14 @@
+{
+    "id": "rainmaker",
+    "title": "Design Consultant",
+    "company": "Rainmaker Advertising & Design",
+    "location": "Biloxi, MS",
+    "dates": {
+      "start": "2001-04-01",
+      "end": "2002-10-31"
+    },
+    "description": [
+      "Assisted in the design and implementation of IT systems.",
+      "Developed components and frontends using VB6, VB.NET, ASP Classic, ASP.NET Web Forms, Microsoft Access, Microsoft InterDev, and Microsoft SQL Server."
+    ]
+  }

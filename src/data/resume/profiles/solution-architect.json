@@ -1,0 +1,88 @@
+{
+  "id": "solution-architect",
+  "label": ".NET Solution Architect / Technical Architect",
+  "kind": "employer-facing",
+  "headline": "Solution Architect - Modernizing Long-Lived .NET Systems",
+  "aboutKey": "about-solution-architect",
+  "experienceOrder": [
+    "storable",
+    "iadvantage",
+    "solid-earth",
+    "rural-sourcing",
+    "prestage-farms",
+    "pk-promotions",
+    "litton-avondale"
+  ],
+  "experienceOverrides": {
+    "storable": {
+      "title": "Software Engineer II (Architecture & Services)",
+      "description": [
+        "Architected and delivered .NET Core services with Hangfire, PostgreSQL, and SQL Server for insurance auto-protect features alongside WinForms and web apps.",
+        "Introduced unit testing patterns and contributed to domain-driven design to make shipping safer on a legacy-heavy product."
+      ]
+    },
+    "iadvantage": {
+      "title": "Lead Developer / Azure DevOps",
+      "description": [
+        "Led delivery of user-defined data models and reporting for GLP-compliant products across WebForms/MVC/WebAPI with REST OData and SOAP APIs on Oracle.",
+        "Guided DevOps practices and UI strategy with CSS, Bootstrap, AngularJS, and offline WinForms/Xamarin support."
+      ]
+    },
+    "solid-earth": {
+      "title": "Application Developer / Architect",
+      "description": [
+        "Maintained RETS client/server software and configurable ASP.NET MLS implementations powered by Oracle and C#.",
+        "Built a market analytics and statistics module to surface actionable metrics."
+      ]
+    },
+    "rural-sourcing": {
+      "description": [
+        "Mentored teams, managed projects, and recruited across Microsoft stack engagements.",
+        "Provided leadership on Windows, web, and database development initiatives."
+      ]
+    },
+    "prestage-farms": {
+      "description": [
+        "Directed modernization of VB6 accounting and inventory systems, replacing reporting and adding custom bug tracking.",
+        "Used Agile practices to deliver early and leave a maintainable path forward."
+      ]
+    },
+    "pk-promotions": {
+      "description": [
+        "Implemented production management, product tracking, and sales/marketing systems with web technology tailored to business constraints."
+      ]
+    },
+    "litton-avondale": {
+      "description": [
+        "Created 3D-to-2D code transformations and deployment tooling with error logging/reporting on the LPD-17 project.",
+        "Built an IDE for scripting the transforms to make future changes safer."
+      ]
+    }
+  },
+  "skillsPrimary": [
+    "C#",
+    ".NET Core",
+    "ASP.NET",
+    "Entity Framework",
+    "Azure DevOps",
+    "SQL Server",
+    "Oracle",
+    "Legacy modernization",
+    "Leadership",
+    "Project management"
+  ],
+  "skillsSecondary": [
+    "PostgreSQL",
+    "WinForms",
+    "AngularJS",
+    "OData/SOAP APIs",
+    "Mentoring",
+    "Unified Modeling Language (UML)"
+  ],
+  "tags": [
+    "architecture",
+    "modernization",
+    "mentoring",
+    "roadmaps"
+  ]
+}
