@@ -63,6 +63,30 @@ def build_allowed_dirs_from_files(files):
             allowed.add("/".join(cur))
     return allowed
 
+
+def resolve_workspace_root(start: Path) -> Path:
+    """Best-effort detection of the workspace root (Git toplevel if available)."""
+    try:
+        completed = subprocess.run(
+            ["git", "rev-parse", "--show-toplevel"],
+            cwd=str(start),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+            text=True,
+            check=False,
+        )
+        if completed.returncode == 0:
+            root = completed.stdout.strip()
+            if root:
+                return Path(root).resolve()
+    except Exception:
+        pass
+
+    try:
+        return Path(__file__).resolve().parent
+    except Exception:
+        return start
+
 # ------------------------------------------------------------------------------
 # 2) Additional excluded extensions (non-text formats)
 # ------------------------------------------------------------------------------
@@ -175,7 +199,7 @@ def get_directory_structure(directory: str) -> str:
 
 def create_markdown_snapshot(directory: str):
     """
-    Create a Markdown file containing:
+    Create a Markdown file (written to the workspace `references/` folder by default) containing:
       - The .gitignore-style list of default exclusions
       - The directory structure (excluding matches)
       - The contents of included text files
@@ -184,7 +208,10 @@ def create_markdown_snapshot(directory: str):
     timestamp = time.strftime("%Y%m%d_%H%M%S")
     dir_path = Path(directory).resolve()
     markdown_filename = f"{dir_path.name}.{timestamp}.md"
-    markdown_filepath = dir_path.parent / markdown_filename
+    workspace_root = resolve_workspace_root(dir_path)
+    snapshot_dir = workspace_root / "references"
+    snapshot_dir.mkdir(parents=True, exist_ok=True)
+    markdown_filepath = snapshot_dir / markdown_filename
 
     with open(markdown_filepath, "w", encoding="utf-8") as md_file:
         # ----------------------------------------------------------------------
