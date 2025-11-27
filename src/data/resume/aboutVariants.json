@@ -11,8 +11,8 @@
     "id": "about-code-monkey",
     "label": "Code Monkey About",
     "paragraphs": [
-      "Most of my life has been spent inside complex systems: legacy codebases, awkward architectures, and business processes that grew faster than anyone designed them. The more tangled the problem, the clearer the map becomes.",
-      "I take responsibility for hard systems other people depend on, learn how they really work, and make them easier to change. That has meant living deep in .NET across desktop, web, and backend, untangling long-lived applications, and nudging teams toward designs that are testable, maintainable, and humane to work with.",
+      "Most of my career has been spent inside complex systems: long-lived .NET codebases, awkward architectures, and business processes that grew faster than anyone designed them. The more tangled the problem, the clearer the map becomes.",
+      "I take responsibility for hard systems other people depend on, learn how they really work, and make them easier to change. That has meant living deep in C#, .NET Core, WinForms, ASP.NET, SQL Server, and PostgreSQL—untangling apps and nudging teams toward testable, maintainable designs.",
       "Systems are not neutral; they decide who carries risk and who fights fires. I prefer building things that reduce hidden load and failure modes instead of chasing whatever is trending.",
       "Outside of work it is quieter - cooking, biking, games, and reading - but the same habit shows up: notice patterns, refine systems, and leave them better than I found them."
     ]
@@ -21,7 +21,7 @@
     "id": "about-backend-modernization",
     "label": "Backend / Modernization About",
     "paragraphs": [
-      "Senior .NET engineer focused on backend services, data flows, and modernization. Comfortable moving legacy workloads toward testable .NET Core services, tightening telemetry, and improving reliability around schedulers, queues, and APIs.",
+      "Senior .NET engineer focused on backend services, data flows, and modernization. Comfortable moving legacy workloads toward testable .NET Core/C# services, tightening telemetry, and improving reliability around schedulers, queues, and APIs.",
       "Works close to the database layer (SQL Server, PostgreSQL, Oracle) and cares about shipping incremental improvements without breaking the business."
     ]
   },
@@ -37,8 +37,8 @@
     "id": "about-fullstack-dotnet",
     "label": "Fullstack .NET About",
     "paragraphs": [
-      "Fullstack .NET developer who owns the path from UI through APIs to data. Builds and maintains Web Forms/MVC/WebAPI services, styles responsive interfaces, and keeps data models coherent.",
-      "Habitually improves developer experience and testability so fullstack changes can ship without fear."
+      "Fullstack .NET developer who owns the path from UI through APIs to data. Builds and maintains ASP.NET Web Forms/MVC/WebAPI services, styles responsive interfaces, and keeps data models coherent.",
+      "Habitually improves developer experience and testability so fullstack changes can ship without fear. Comfortable across C#, JavaScript/TypeScript, AngularJS, Bootstrap, SQL Server, and PostgreSQL."
     ]
   },
   "about-solution-architect": {

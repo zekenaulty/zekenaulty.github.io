@@ -8,11 +8,10 @@
       "end": "2001-08-31"
     },
     "description": [
-      "Developed desktop applications using Access DB2 data sources.",
-      "Implemented data applications with Argo Data.",
-      "Designed reporting and data access front-ends.",
-      "Developed data-driven ASP pages.",
-      "Wrote complex validation JavaScripts.",
-      "Implemented and designed SQL Server applications."
+      "Developed desktop applications that pulled from Access and DB2/Argo Data sources for banking teams.",
+      "Implemented reporting and data-access front-ends to surface financial data accurately.",
+      "Built data-driven ASP pages with validation JavaScript for internal web workflows.",
+      "Designed and implemented SQL Server applications to support the web and desktop tools.",
+      "Worked within regulated banking processes to keep data handling reliable and auditable."
     ]
   }

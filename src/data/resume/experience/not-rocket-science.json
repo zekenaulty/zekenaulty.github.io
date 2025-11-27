@@ -8,8 +8,10 @@
       "end": "2005-10-31"
     },
     "description": [
-      "Developed a mobile application for the Sheriff's department using C#.",
-      "Performed full-stack .NET development using SQL Server and C# for Zen-Noh Grain.",
-      "Built a flash application for tracking shipments and tug boats using ActionScript and ASP.NET web backend."
+      "Built a C# mobile application for a Sheriff's department to capture and sync field data.",
+      "Delivered full-stack .NET and SQL Server development for Zen-Noh Grain, supporting inventory and operations workflows.",
+      "Created an ActionScript + ASP.NET tracking application for shipments and tug boats with a custom web backend.",
+      "Designed database schemas and service endpoints to keep data consistent across the web and mobile surfaces.",
+      "Worked directly with clients to prioritize features and ship iterations quickly as a consultant."
     ]
   }

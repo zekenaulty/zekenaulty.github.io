@@ -8,8 +8,11 @@
       "end": "2011-01-31"
     },
     "description": [
-      "Developed and maintained RETS client and server software powered by Oracle and C#.",
-      "Developed configurable ASP.NET web applications for distinct MLS custom implementations.",
-      "Built a full statistics module with deep market analytics and reporting."
+      "Developed and maintained RETS client and server software on Oracle and C#, praised as one of the fastest servers in the continental US and first to achieve compliance multiple times.",
+      "Tuned RETS performance, protocol compliance, and data handling to keep broker and MLS integrations reliable.",
+      "Built configurable ASP.NET MLS frontends where branding and business rules were driven by XML so each board could ship its own experience without code changes.",
+      "Created a market analytics and statistics module surfacing deep MLS metrics for brokers and administrators.",
+      "Coordinated deployments and maintenance windows with MLS stakeholders to keep uptime and data freshness high.",
+      "Provided ongoing support and troubleshooting for MLS customers while evolving the platform’s architecture."
     ]
   }

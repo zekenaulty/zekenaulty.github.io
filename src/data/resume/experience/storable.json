@@ -9,9 +9,12 @@
       "end": "2022-12-31"
     },
     "description": [
-      "Developed and maintained .Net WinForms and web applications.",
-      "Built backend services supporting insurance auto-protect feature using .Net Core, Hangfire, Postgres, SQL Server, Entity Framework, and other technologies.",
-      "Established and taught patterns for unit testing in WinForms.",
-      "Contributed ideas and design concepts to several initiatives in the company's growing adoption of domain-driven design."
+      "Developed and maintained .Net WinForms and web applications supporting insurance and tenant operations.",
+      "Built .NET Core services with Hangfire and Entity Framework over PostgreSQL and SQL Server to drive insurance auto-protect workflows.",
+      "Added background jobs and APIs to keep coverage, eligibility, and billing data in sync across desktop and web products.",
+      "Clarified service boundaries and domain concepts, feeding the team’s early domain-driven design adoption.",
+      "Established unit-testing patterns for WinForms and service code and paired with engineers to spread the practice.",
+      "Collaborated with product and support to triage production issues in legacy code and refactor risky areas for stability.",
+      "Documented patterns and deployment steps so newer engineers could safely contribute to the legacy-heavy stack."
     ]
   }

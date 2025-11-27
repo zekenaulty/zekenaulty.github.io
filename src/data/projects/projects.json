@@ -1,0 +1,16 @@
+[
+  {
+    "id": "cognition",
+    "name": "Cognition",
+    "description": "Agentic LLM orchestration with tools, conversations, planning, background jobs, and a small web console in a .NET 9 solution (API, workers, clients, data, and React console).",
+    "repoUrl": "https://github.com/zekenaulty/cognition",
+    "techTags": ["C#", ".NET 9", "ASP.NET Core", "EF Core", "Hangfire", "Rebus", "SignalR", "PostgreSQL", "React", "Vite"]
+  },
+  {
+    "id": "resume-site",
+    "name": "Resume Site (this app)",
+    "description": "Single-page React/Vite + MUI resume with profile variants, background effects, and GitHub Pages deployment.",
+    "repoUrl": "https://github.com/zekenaulty/zekenaulty.github.io",
+    "techTags": ["React", "Vite", "MUI", "GitHub Pages"]
+  }
+]
