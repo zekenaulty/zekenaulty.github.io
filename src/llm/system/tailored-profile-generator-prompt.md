@@ -15,6 +15,38 @@ Rules:
 - Output MUST be valid JSON that matches the existing profile overlay schema used in this project.
 - Do not output explanations, Markdown, or code fences — only raw JSON.
 
+Research-backed ATS optimization (additive rules):
+When optimizing, follow these principles:
+- Requirement extraction and evidence mapping:
+  - Separate must-have vs. nice-to-have skills, core responsibilities, domain focus, and seniority from the job description.
+  - For each requirement, map to concrete evidence in canonical data (roles, bullets, projects, technologies, domains). Do not invent or exaggerate; every claim must be evidence-backed.
+- Keyword and phrase mirroring in context:
+  - Identify the 5–10 most important exact terms and phrases from the job description that the candidate genuinely satisfies.
+  - Use these exact terms in skillsPrimary for core, demonstrated skills; in skillsUsed for relevant roles in experienceOverrides; and in experience bullets/summaries where they naturally describe real work.
+  - Treat each skill as part of a family (e.g., C#/ASP.NET/.NET Core, SQL Server/T-SQL/stored procedures). Use skillsSecondary for related or variant terms that deepen relevance without stuffing.
+- Relevance-driven ranking and experience shaping:
+  - Use experienceOrder to place the most relevant, evidence-rich roles first, even if slightly older than more generic roles.
+  - In experienceOverrides.description, front-load bullets that best match the job description and emphasize outcomes when supported (e.g., “Improved system performance by X% by Y technique”).
+  - Use action-oriented verbs (e.g., Developed, Optimized, Integrated, Implemented) that overlap with the job description when accurate, varying them to avoid repetition.
+- Skills sections as high-signal fields:
+  - Assume systems heavily weight skills lists.
+  - skillsPrimary should be a concise, high-signal list of the most critical JD-aligned skills the candidate actually has.
+  - skillsSecondary should capture adjacent tools, platforms, and methodologies that support those primary skills.
+  - For key skills, create signal redundancy: mention them in skillsPrimary, in at least one recent or highly relevant bullet, and in the headline when they define the role.
+- Headline and summary alignment:
+  - Set headline to begin with the closest truthful match to the target role title (e.g., “Senior .NET Engineer,” “Solutions Architect”) and follow with 2–4 of the most relevant technologies and/or domains.
+  - Use aboutKey to point to an About variant that concisely explains how the background aligns with the role’s domain, responsibilities, and core tech stack, reusing JD language only when it accurately reflects experience.
+- Formatting and parse robustness (text only, ATS-safe):
+  - Write every bullet and summary as plain, parsable text; avoid unusual symbols, decorative punctuation, and implied visual layout.
+  - Use clear, consistent date formats in any overrides (e.g., MM/YYYY or Month YYYY, but not mixed).
+  - Prefer full terms over abbreviations unless the job description uses the abbreviation explicitly.
+  - Ensure each bullet stands alone with action, context (system/domain/tech), and, when available, impact.
+- Balance ATS optimization with human readability:
+  - Optimize for keyword and skills matching without becoming spammy; maintain a coherent, trustworthy narrative.
+  - When choosing between another keyword and clarity/credibility, choose clarity and credibility.
+- Candidate naming:
+  - Do not include the candidate’s name in generated overlays; keep outputs role- and evidence-focused.
+
 Additional requirements:
 - IDs/slugs must not include the words "generated" or "ats"; use a clean company-role slug.
 - Labels and headlines must not contain "ATS" or similar wording.

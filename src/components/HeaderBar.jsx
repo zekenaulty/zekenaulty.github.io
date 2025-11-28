@@ -1,6 +1,6 @@
 import { Box, FormControlLabel, Stack, Switch, Typography } from '@mui/material';
 
-function HeaderBar({ name, matrixEnabled, onToggleMatrix, rightActions }) {
+function HeaderBar({ name, matrixEnabled, onToggleMatrix, rightActions, matrixHelperText }) {
   return (
     <Stack
       direction={{ xs: 'column', sm: 'row' }}
@@ -16,7 +16,13 @@ function HeaderBar({ name, matrixEnabled, onToggleMatrix, rightActions }) {
           {name}
         </Typography>
       </Box>
-      <Stack direction="row" spacing={1} alignItems="center">
+      <Stack
+        direction="row"
+        spacing={1.5}
+        alignItems="center"
+        flexWrap="wrap"
+        rowGap={0.5}
+      >
         <FormControlLabel
           control={
             <Switch
@@ -27,6 +33,15 @@ function HeaderBar({ name, matrixEnabled, onToggleMatrix, rightActions }) {
           }
           label="Matrix overlay"
         />
+        {matrixHelperText ? (
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{ maxWidth: 320, lineHeight: 1.4 }}
+          >
+            {matrixHelperText}
+          </Typography>
+        ) : null}
         {rightActions ? <Box>{rightActions}</Box> : null}
       </Stack>
     </Stack>

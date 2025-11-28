@@ -1,4 +1,5 @@
-import { Box } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { Box, CircularProgress, Typography } from '@mui/material';
 import { keyframes, styled } from '@mui/material/styles';
 import MatrixCanvas from './MatrixCanvas.jsx';
 
@@ -43,6 +44,24 @@ function BackgroundLayer({
   image = defaultBackground,
   matrixEnabled = false,
 }) {
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+  useEffect(() => {
+    let isMounted = true;
+    setIsImageLoaded(false);
+    const loader = new Image();
+    loader.onload = () => {
+      if (isMounted) setIsImageLoaded(true);
+    };
+    loader.onerror = () => {
+      if (isMounted) setIsImageLoaded(true);
+    };
+    loader.src = image;
+    return () => {
+      isMounted = false;
+    };
+  }, [image]);
+
   return (
     <Box
       sx={{
@@ -64,7 +83,8 @@ function BackgroundLayer({
           backgroundPosition: '50% 50%',
           backgroundSize: 'cover',
           filter: 'brightness(0.5) contrast(1.05)',
-          opacity: 0.6,
+          opacity: isImageLoaded ? 0.6 : 0,
+          transition: 'opacity 420ms ease',
           mixBlendMode: 'soft-light',
         }}
       />
@@ -81,6 +101,28 @@ function BackgroundLayer({
           <MatrixCanvas />
           <MatrixOverlay />
         </>
+      ) : null}
+      {!isImageLoaded ? (
+        <Box
+          sx={{
+            position: 'absolute',
+            inset: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 1,
+            background: 'linear-gradient(180deg, rgba(5,10,20,0.7), rgba(5,10,20,0.86))',
+            backdropFilter: 'blur(2px)',
+            color: 'primary.light',
+            zIndex: 3,
+            pointerEvents: 'none',
+          }}
+        >
+          <CircularProgress size={22} color="primary" thickness={5} />
+          <Typography variant="caption" color="primary.light" sx={{ letterSpacing: 0.6 }}>
+            Loading backdrop...
+          </Typography>
+        </Box>
       ) : null}
     </Box>
   );

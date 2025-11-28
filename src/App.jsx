@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   Box,
   Container,
@@ -61,12 +61,28 @@ const deriveOtherSkills = (allSkills, primary, secondary) => {
     .slice(0, 30);
 };
 
+const getInitialMatrixState = () => {
+  if (typeof window === 'undefined') return true;
+  const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+  const isMobileUA =
+    typeof navigator !== 'undefined' &&
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi/i.test(
+      navigator.userAgent,
+    );
+  const isNarrow = typeof window !== 'undefined' && window.innerWidth < 900;
+
+  if (prefersReducedMotion) return false;
+  if (isMobileUA || isNarrow) return false;
+  return true;
+};
+
 function App() {
   const [selectedProfileId, setSelectedProfileId] = useState(
     resumeData.profiles.defaultProfileId,
   );
-  const [matrixEnabled, setMatrixEnabled] = useState(true);
+  const [matrixEnabled, setMatrixEnabled] = useState(getInitialMatrixState);
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [matrixHelperText, setMatrixHelperText] = useState('');
 
   const { headline, about, experiences, skillsPrimary, skillsSecondary, profile, skills } =
     useProfileView(selectedProfileId);
@@ -76,11 +92,48 @@ function App() {
     [skills, skillsPrimary, skillsSecondary],
   );
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const hasOpened = window.localStorage?.getItem('chat-opened-once');
+    if (!hasOpened) {
+      setIsChatOpen(true);
+      window.localStorage.setItem('chat-opened-once', '1');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+    const isMobileUA =
+      typeof navigator !== 'undefined' &&
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi/i.test(
+        navigator.userAgent,
+      );
+    const isNarrow = typeof window !== 'undefined' && window.innerWidth < 900;
+
+    if (prefersReducedMotion || isMobileUA || isNarrow) {
+      setMatrixHelperText('Matrix overlay auto-trimmed on mobile for smoother performance. Toggle it back on anytime.');
+    }
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <BackgroundLayer matrixEnabled={matrixEnabled} />
       <ChatDrawer isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
+      <Box
+        sx={{
+          position: 'fixed',
+          top: { xs: 14, sm: 18 },
+          right: { xs: 12, sm: 24 },
+          zIndex: (theme) => theme.zIndex.modal + 4,
+          pointerEvents: 'none',
+        }}
+      >
+        <Box sx={{ pointerEvents: 'auto' }}>
+          <ChatToggleButton isOpen={isChatOpen} onClick={() => setIsChatOpen((open) => !open)} />
+        </Box>
+      </Box>
       <HomeIntroSection />
       <Container maxWidth="lg" sx={{ py: 6, position: 'relative', zIndex: 1, background: 'transparent' }}>
         <Stack spacing={4}>
@@ -88,12 +141,7 @@ function App() {
             name="Zeke Naulty"
             matrixEnabled={matrixEnabled}
             onToggleMatrix={setMatrixEnabled}
-            rightActions={
-              <ChatToggleButton
-                isOpen={isChatOpen}
-                onClick={() => setIsChatOpen((open) => !open)}
-              />
-            }
+            matrixHelperText={matrixHelperText}
           />
 
           <ProfileDropdown
