@@ -19,32 +19,27 @@ async function main() {
   buildResumeChatData();
 
   const distRoot = path.resolve(__dirname, '..', 'dist');
-  const prefixedRoot = path.join(distRoot, 'zekenaulty.github.io');
 
   if (!fs.existsSync(distRoot)) {
     throw new Error('dist/ does not exist. Run `npm run build` first.');
   }
 
-  const writeTargets = [distRoot, prefixedRoot];
-
   for (const slug of PROFILE_SLUGS) {
     const view = getProfileView(slug);
-    for (const root of writeTargets) {
-      const profileDir = path.join(root, 'resume', slug);
-      fs.mkdirSync(profileDir, { recursive: true });
+    const profileDir = path.join(distRoot, 'resume', slug);
+    fs.mkdirSync(profileDir, { recursive: true });
 
-      const html = renderHtmlResume(view);
-      fs.writeFileSync(path.join(profileDir, 'index.html'), html, 'utf8');
+    const html = renderHtmlResume(view);
+    fs.writeFileSync(path.join(profileDir, 'index.html'), html, 'utf8');
 
-      const txt = renderTextResume(view);
-      fs.writeFileSync(path.join(profileDir, `resume-${slug}.txt`), txt, 'utf8');
+    const txt = renderTextResume(view);
+    fs.writeFileSync(path.join(profileDir, `resume-${slug}.txt`), txt, 'utf8');
 
-      const docxBuffer = await renderDocxResume(view);
-      fs.writeFileSync(path.join(profileDir, `resume-${slug}.docx`), docxBuffer);
+    const docxBuffer = await renderDocxResume(view);
+    fs.writeFileSync(path.join(profileDir, `resume-${slug}.docx`), docxBuffer);
 
-      const pdfBuffer = await renderPdfResume(view);
-      fs.writeFileSync(path.join(profileDir, `resume-${slug}.pdf`), pdfBuffer);
-    }
+    const pdfBuffer = await renderPdfResume(view);
+    fs.writeFileSync(path.join(profileDir, `resume-${slug}.pdf`), pdfBuffer);
   }
 }
 
