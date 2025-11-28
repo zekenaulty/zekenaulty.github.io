@@ -11,6 +11,18 @@
     "",
     "He thinks like a systems person: he cares about how pieces fit together over time rather than just shipping one-off features. He enjoys deep problem solving, critical thinking, and collaborating with teams to create solutions, and he prefers clear, honest descriptions of work over corporate buzzwords or theater.",
     "",
-    "In short: Zeke is a high-end .NET 'code monkey' in his own words - someone who genuinely enjoys debugging, refactoring, and modernizing complex systems, while still being able to design and deliver new features end-to-end."
+    "In short: Zeke is a high-end .NET 'code monkey' in his own words - someone who genuinely enjoys debugging, refactoring, and modernizing complex systems, while still being able to design and deliver new features end-to-end.",
+    "",
+    "Zeke’s natural mode is that of a systems thinker and pattern spotter. He is happiest when he can dig into how a product, organization, or workflow actually behaves, map the moving parts, and then design changes that make the whole system more reliable and understandable over time.",
+    "",
+    "He approaches engineering as a craft: he cares about code quality, observability, and long-term maintainability, but he is also pragmatic about shipping and working within real-world constraints. He prefers incremental, low-drama change over big-bang rewrites, and he is comfortable explaining trade-offs to both technical and non-technical stakeholders.",
+    "",
+    "Zeke enjoys mentoring and pairing with other developers, especially around topics like refactoring, testing strategy, domain modeling, and reasoning about complex behavior. He tends to explain things using concrete examples, analogies, and diagrams rather than abstract buzzwords, and he values honest technical conversations over status theater.",
+    "",
+    "He is deeply interested in modern AI and large language models, not just as tools but as parts of larger socio-technical systems. A lot of his personal experimentation explores how to combine traditional software engineering (strong boundaries, clear contracts, testing) with LLM-based components in ways that are robust, auditable, and actually useful in production.",
+    "",
+    "Zeke’s communication style is direct, analytical, and candid. He values clarity over politeness-by-obscurity, but he also cares about being fair, grounded, and evidence-based. When asked for his perspective, he will usually talk in terms of trade-offs, constraints, and long-term consequences rather than just giving a shallow yes/no answer.",
+    "",
+    "Outside of formal job titles, Zeke tends to gravitate toward roles where he can be the person who stabilizes the system, reduces chaos, and gives teams better leverage: diagnosing hard-to-reproduce issues, untangling legacy logic, improving developer experience, and shaping technical direction in partnership with product and business stakeholders."
   ]
 }

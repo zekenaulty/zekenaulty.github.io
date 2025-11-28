@@ -44,16 +44,18 @@ const toRawReadmeUrl = (repoUrl) => {
   }
 };
 
-const fetchProjectReadme = async (repoUrl) => {
-  if (!repoUrl) return null;
+const fetchProjectReadme = async (repoUrl, explicitUrl) => {
+  if (!repoUrl && !explicitUrl) return null;
 
-  if (projectReadmeCache.has(repoUrl)) {
-    return projectReadmeCache.get(repoUrl);
+  const cacheKey = explicitUrl || repoUrl;
+
+  if (projectReadmeCache.has(cacheKey)) {
+    return projectReadmeCache.get(cacheKey);
   }
 
-  const rawUrl = toRawReadmeUrl(repoUrl);
+  const rawUrl = explicitUrl || toRawReadmeUrl(repoUrl);
   if (!rawUrl) {
-    projectReadmeCache.set(repoUrl, null);
+    projectReadmeCache.set(cacheKey, null);
     return null;
   }
 
@@ -65,15 +67,15 @@ const fetchProjectReadme = async (repoUrl) => {
     });
 
     if (!response.ok) {
-      projectReadmeCache.set(repoUrl, null);
+      projectReadmeCache.set(cacheKey, null);
       return null;
     }
 
     const text = await response.text();
-    projectReadmeCache.set(repoUrl, text);
+    projectReadmeCache.set(cacheKey, text);
     return text;
   } catch (_err) {
-    projectReadmeCache.set(repoUrl, null);
+    projectReadmeCache.set(cacheKey, null);
     return null;
   }
 };
@@ -83,7 +85,11 @@ const buildProjectReadmeParts = async () => {
   const parts = [];
 
   for (const item of items) {
-    const readmeText = await fetchProjectReadme(item.repoUrl);
+    if (item?.readme === false) {
+      continue; // explicit opt-out
+    }
+
+    const readmeText = await fetchProjectReadme(item.repoUrl, item.readmeUrl);
     if (!readmeText) continue;
 
     const nameLabel = item.name || item.id || item.repoUrl;

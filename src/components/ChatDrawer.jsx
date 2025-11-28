@@ -19,7 +19,7 @@ import remarkGfm from 'remark-gfm';
 import { GeminiHttpClient } from '../llm/geminiHttpClient';
 import { callResumeChat } from '../llm/chatService';
 
-const GEMINI_API_KEY = 'AIzaSyBM6LHTnKOLO1QvaUp1Gg9ShMFZcwitwTQ';
+const GEMINI_API_KEY = 'AIzaSyBM6LHTnKOLO1QvaUp1Gg9ShMFZcwitwTQ'; //this is an accepted an known security risk key for demo purposes only
 const GEMINI_MODEL = 'gemini-2.5-flash';
 
 const INITIAL_ASSISTANT_MESSAGE = {
