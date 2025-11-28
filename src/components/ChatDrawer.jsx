@@ -125,7 +125,7 @@ function ChatDrawer({ isOpen, onClose }) {
     if (!trimmed || isLoading) return;
 
     if (!client) {
-      setError('Chat client not configured. Please set your Gemini API key.');
+      setError('Chat client not configured. Please set your Gemini API key or proxy URL.');
       return;
     }
 
