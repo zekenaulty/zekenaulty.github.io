@@ -1,32 +1,23 @@
+import { createRequire } from 'module';
 import projects from '../projects/index.js';
 import { ProfileRegistry } from './profiles/index.js';
 
-const isNode = typeof process !== 'undefined' && !!process.versions?.node;
+const require = createRequire(import.meta.url);
 
-async function loadJson(modulePath) {
-  if (isNode) {
-    const { createRequire } = await import('module');
-    const require = createRequire(import.meta.url);
-    return require(modulePath);
-  }
-  const mod = await import(modulePath);
-  return mod.default ?? mod;
-}
+const aboutVariants = require('./aboutVariants.json');
+const skillsCatalog = require('./skills.json');
 
-const aboutVariants = await loadJson('./aboutVariants.json');
-const skillsCatalog = await loadJson('./skills.json');
-
-const computerSpecialist = await loadJson('./experience/computer-specialist.json');
-const littonAvondale = await loadJson('./experience/litton-avondale.json');
-const hancockWhitney = await loadJson('./experience/hancock-whitney.json');
-const rainmaker = await loadJson('./experience/rainmaker.json');
-const pkPromotions = await loadJson('./experience/pk-promotions.json');
-const notRocketScience = await loadJson('./experience/not-rocket-science.json');
-const solidEarth = await loadJson('./experience/solid-earth.json');
-const ruralSourcing = await loadJson('./experience/rural-sourcing.json');
-const prestageFarms = await loadJson('./experience/prestage-farms.json');
-const iadvantage = await loadJson('./experience/iadvantage.json');
-const storable = await loadJson('./experience/storable.json');
+const computerSpecialist = require('./experience/computer-specialist.json');
+const littonAvondale = require('./experience/litton-avondale.json');
+const hancockWhitney = require('./experience/hancock-whitney.json');
+const rainmaker = require('./experience/rainmaker.json');
+const pkPromotions = require('./experience/pk-promotions.json');
+const notRocketScience = require('./experience/not-rocket-science.json');
+const solidEarth = require('./experience/solid-earth.json');
+const ruralSourcing = require('./experience/rural-sourcing.json');
+const prestageFarms = require('./experience/prestage-farms.json');
+const iadvantage = require('./experience/iadvantage.json');
+const storable = require('./experience/storable.json');
 
 const experience = [
   storable,
