@@ -22,7 +22,8 @@ const Bubble = styled(Box)(({ theme }) => ({
   padding: theme.spacing(1, 1.5),
   boxShadow: theme.shadows[4],
   fontSize: '0.85rem',
-  whiteSpace: 'nowrap',
+  whiteSpace: 'normal',
+  maxWidth: 220,
   zIndex: 10,
 }));
 
@@ -43,7 +44,11 @@ function ChatToggleButton({ isOpen, onClick }) {
   return (
     <Tooltip title={label}>
       <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-        {showBubble && <Bubble>Chat with Gemini about Zeke!</Bubble>}
+        {showBubble && (
+          <Bubble sx={{ display: { xs: 'none', sm: 'block' } }}>
+            Chat with Gemini about Zeke!
+          </Bubble>
+        )}
         <IconButton
           aria-label={label}
           color="primary"

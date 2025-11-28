@@ -52,6 +52,7 @@ function ChatDrawer({ isOpen, onClose }) {
   const [clientError, setClientError] = useState('');
 
   const messagesEndRef = useRef(null);
+  const inputRef = useRef(null);
 
   const client = useMemo(() => {
     const proxyUrl = isProd ? GEMINI_PROXY_URL : ENV_PROXY_URL;
@@ -136,6 +137,7 @@ function ChatDrawer({ isOpen, onClose }) {
     setInputValue('');
     setError('');
     setIsLoading(true);
+    inputRef.current?.blur();
 
     try {
       const { text } = await callResumeChat({
@@ -223,7 +225,7 @@ function ChatDrawer({ isOpen, onClose }) {
           position: 'fixed',
           top: 0,
           left: 0,
-          height: '100vh',
+          height: { xs: '100dvh', md: '100vh' },
           width: { xs: '100%', sm: 340, md: 380 },
           zIndex: (theme) => theme.zIndex.drawer + 2,
           pointerEvents: isOpen ? 'auto' : 'none',
@@ -237,6 +239,7 @@ function ChatDrawer({ isOpen, onClose }) {
             flexDirection: 'column',
             borderRight: (theme) => `1px solid ${theme.palette.divider}`,
             backgroundColor: (theme) => theme.palette.background.paper,
+            pb: { xs: 'env(safe-area-inset-bottom, 8px)', md: 0 },
           }}
         >
           <Stack
@@ -277,6 +280,7 @@ function ChatDrawer({ isOpen, onClose }) {
           <Box
             sx={{
               flex: 1,
+              minHeight: 0,
               overflowY: 'auto',
               px: 2,
               pb: 2,
@@ -299,7 +303,10 @@ function ChatDrawer({ isOpen, onClose }) {
 
           <Divider />
 
-          <Box component="form" onSubmit={handleSubmit} sx={{ p: 2, pt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} sx={{ p: 2, pt: 1, pb: 'calc(env(safe-area-inset-bottom, 12px) + 12px)' }}>
+            <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 1 }}>
+              AI can make mistakes. Verify important details.
+            </Typography>
             <Stack direction="row" spacing={1} alignItems="center">
               <TextField
                 fullWidth
@@ -308,6 +315,7 @@ function ChatDrawer({ isOpen, onClose }) {
                 value={inputValue}
                 onChange={(event) => setInputValue(event.target.value)}
                 disabled={Boolean(clientError)}
+                inputRef={inputRef}
               />
               <Button
                 type="submit"
