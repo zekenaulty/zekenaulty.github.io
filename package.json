@@ -8,9 +8,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:exports": "node ./scripts/build-resume-exports.js",
+    "build:all": "npm run build && npm run build:exports",
     "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "predeploy": "npm run build:all",
+    "deploy": "npm run build:all && gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -29,6 +31,8 @@
     "@mui/icons-material": "^5.15.20",
     "@mui/material": "^5.15.20",
     "animejs": "^3.2.1",
+    "docx": "^9.1.0",
+    "pdfkit": "^0.15.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
