@@ -2,15 +2,57 @@
   {
     "id": "cognition",
     "name": "Cognition",
-    "description": "Agentic LLM orchestration with tools, conversations, planning, background jobs, and a small web console in a .NET 9 solution (API, workers, clients, data, and React console).",
+    "description": "A .NET-based agentic orchestration system that wraps LLMs with tools, background workers, and structured pipelines for planning and execution. Focuses on durable workflows, message/state tracking, and clear separation between model calls and application logic.",
     "repoUrl": "https://github.com/zekenaulty/cognition",
-    "techTags": ["C#", ".NET 9", "ASP.NET Core", "EF Core", "Hangfire", "Rebus", "SignalR", "PostgreSQL", "React", "Vite"]
+    "techTags": ["C#", ".NET", "ASP.NET Core", "Background Workers", "PostgreSQL", "Tooling", "Orchestration"]
   },
   {
     "id": "resume-site",
-    "name": "Resume Site (this app)",
-    "description": "Single-page React/Vite + MUI resume with profile variants, background effects, and GitHub Pages deployment.",
+    "name": "Resume & Profile Site",
+    "description": "A GitHub Pages site that renders multi-profile resume views from structured JSON data, including a default 'Code Monkey' profile and employer-focused variants for backend, desktop, fullstack, and architect roles.",
     "repoUrl": "https://github.com/zekenaulty/zekenaulty.github.io",
-    "techTags": ["React", "Vite", "MUI", "GitHub Pages"]
+    "techTags": ["React", "Vite", "Material UI", "GitHub Pages", "JSON Data Model"]
+  },
+  {
+    "id": "dominus",
+    "name": "Dominus",
+    "description": "A DOM utility library that builds Bootstrap 5 and Bootswatch interfaces from code, aiming to reduce raw HTML boilerplate and make UI construction more declarative and composable.",
+    "repoUrl": "https://github.com/zekenaulty/dominus",
+    "techTags": ["JavaScript", "DOM", "Bootstrap 5", "Bootswatch", "UI Library"]
+  },
+  {
+    "id": "random-dialog",
+    "name": "Random Dialog Engine",
+    "description": "A lightweight dialog engine for games and narrative systems that models conversations and internal monologue using reusable dialog primitives and simple stateful flows.",
+    "repoUrl": "https://github.com/zekenaulty/random-dialog",
+    "techTags": ["JavaScript", "Stateful Logic", "Game Systems", "Dialog Engine"]
+  },
+  {
+    "id": "maze-battle",
+    "name": "Maze-Battle & Maze-Quest",
+    "description": "A pair of JavaScript experiments combining maze traversal with RPG-style encounters: Maze-Quest focuses on Minecraft-inspired maze exploration, while Maze-Battle extends the idea with combat and encounter logic.",
+    "repoUrl": "https://github.com/zekenaulty/maze-battle",
+    "techTags": ["JavaScript", "Game Development", "Maze Generation", "Combat Systems"]
+  },
+  {
+    "id": "fractal-geometry",
+    "name": "Fractal & Geometry Experiments",
+    "description": "A series of visual experiments centered on cube-based generative structures (cubix-gen) alongside Cantor sets and binary tree fractals, exploring recursion, geometry, and visual pattern generation in HTML/JavaScript.",
+    "repoUrl": "https://github.com/zekenaulty/cubix-gen",
+    "techTags": ["HTML", "JavaScript", "Fractals", "Geometry", "Visualization"]
+  },
+  {
+    "id": "sqlserver-information-schema",
+    "name": "SQL Server Information Schema Tools",
+    "description": "A C# utility library for querying and shaping SQL Server information schema metadata, designed to support reporting, refactors, and schema-aware tooling.",
+    "repoUrl": "https://github.com/zekenaulty/SqlServer.InformationSchema-Discontinued",
+    "techTags": ["C#", "SQL Server", "Metadata", "Tooling", "Information Schema"]
+  },
+  {
+    "id": "nlp-lexicon-experiments",
+    "name": "English Lexicon & NLP Data Experiments",
+    "description": "Fork-based experiments around large English word datasets and CEFR-level annotations, exploring ways to combine frequency, part-of-speech, and difficulty metadata for NLP and language-learning tools.",
+    "repoUrl": "https://github.com/zekenaulty/Words-CEFR-Dataset",
+    "techTags": ["NLP", "Datasets", "Python", "Jupyter", "CEFR"]
   }
 ]
