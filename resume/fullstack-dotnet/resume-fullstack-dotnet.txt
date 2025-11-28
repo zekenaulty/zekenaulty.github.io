@@ -1,0 +1,126 @@
+ZEKE NAULTY
+SENIOR FULLSTACK .NET DEVELOPER
+Senior Fullstack .NET – UI to APIs to Data (C#, ASP.NET MVC/WebAPI, JavaScript, SQL Server/PostgreSQL)
+
+SUMMARY
+-------
+Fullstack .NET developer who owns the path from UI through APIs to data. Builds and maintains ASP.NET Web Forms/MVC/WebAPI services, styles responsive interfaces, and keeps data models coherent.
+
+Habitually improves developer experience and testability so fullstack changes can ship without fear. Comfortable across C#, JavaScript/TypeScript, AngularJS, Bootstrap, SQL Server, and PostgreSQL.
+
+EXPERIENCE
+----------
+Lead Developer / Azure DevOps - iAdvantage Software, Inc.
+Feb 2017 - Jan 2021 | Cary, NC
+  - Delivered user-defined data models and custom reporting with WebForms/MVC/WebAPI backed by REST OData and SOAP APIs on Oracle.
+  - Built responsive UIs with CSS, Bootstrap, and AngularJS and supported offline WinForms and Xamarin apps.
+
+Software Engineer II - Storable
+Jan 2021 - Dec 2022 | Cary, North Carolina, United States
+  - Developed .NET WinForms and web applications for insurance products while building backend services in .NET Core with Hangfire, PostgreSQL, SQL Server, and Entity Framework.
+  - Established unit testing patterns in WinForms and contributed to domain-driven design efforts.
+
+Web Developer/Consultant (PK Promotions) - PK Promotions
+May 2004 - Jan 2005 | Biloxi, MS
+  - Built web-based commodity production management, product tracking, and sales/marketing systems.
+  - Worked across UI and data layers to support business workflows.
+
+Programmer/Analyst - Not Rocket Science
+Jan 2005 - Oct 2005 | Covington, LA
+  - Delivered full-stack .NET solutions on SQL Server for Zen-Noh Grain and built an ActionScript + ASP.NET tracking application for shipments and tug boats.
+  - Created a C# mobile app for a Sheriff's department.
+
+Programmer/Analyst - Prestage Farms
+Jan 2016 - Sep 2016 | Clinton, NC
+  - Led a team of 6 developers and 3 QA to modernize VB6 accounting and inventory systems into a single WinForms .NET application with role-based security.
+  - Analyzed legacy VB6 patterns and built transformation modules to automate conversion to VB.NET while preserving business logic.
+  - Consolidated 8+ standalone modules (receivables, payables, inventory, equipment, etc.) into one cohesive desktop experience.
+  - Built a new reporting frontend that supported legacy dot-matrix outputs while adding PDF generation and viewing.
+  - Implemented a custom bug reporting and ticketing system so end users could file issues across DEV/UAT/PROD and auto-promote tickets into JIRA via APIs.
+  - Ran Agile roadmaps and milestones, coordinating stakeholders and demos to deliver the modernization roughly three months early.
+  - Drove quality practices and regression coverage so the VB6-to-.NET cutover could ship without breaking daily operations.
+
+Design Consultant - Rainmaker Advertising & Design
+Mar 2001 - Oct 2002 | Biloxi, MS
+  - Developed components and front-ends in VB6, VB.NET, and ASP (Classic/Web Forms) with Access, InterDev, Flash, and SQL Server.
+  - Assisted in IT system design for agency clients.
+
+Programmer/Analyst I - Hancock Bank
+Dec 2000 - Aug 2001 | Gulfport, MS
+  - Built desktop apps against DB2/Argo Data with reporting and data access front-ends, plus data-driven ASP pages and validation JavaScript.
+  - Designed and implemented SQL Server applications.
+
+SKILLS
+------
+Core:
+  - C#
+  - ASP.NET
+  - .NET Core
+  - JavaScript
+  - AngularJS
+  - Bootstrap
+  - SQL Server
+  - PostgreSQL
+  - Full-stack development
+
+Supporting:
+  - Entity Framework
+  - Azure DevOps
+  - WinForms
+  - Web development
+  - Project management
+
+Other:
+  - Agile Methodologies
+  - Cloud Platforms
+  - Cloud computing (Azure)
+  - CSS
+  - Database Development
+  - Git
+  - iOS
+  - JIRA
+  - Kanban
+  - Leadership
+  - Mentoring
+  - Microsoft Azure
+  - Microsoft SQL Server
+  - Mobile application development
+  - Oracle
+  - Problem-solving
+  - Regular Expressions
+  - Software development
+  - Team Building
+  - Team management
+  - Time management
+  - Unified Modeling Language (UML)
+  - Visual Basic .NET
+  - Hangfire
+  - Xamarin Forms
+  - OData/SOAP APIs
+  - Legacy modernization
+
+PROJECTS
+--------
+Cognition - A .NET-based agentic orchestration system that wraps LLMs with tools, background workers, and structured pipelines for planning and execution. Focuses on durable workflows, message/state tracking, and clear separation between model calls and application logic.
+URL: https://github.com/zekenaulty/cognition
+
+Resume & Profile Site - A GitHub Pages site that renders multi-profile resume views from structured JSON data, including a default 'Code Monkey' profile and employer-focused variants for backend, desktop, fullstack, and architect roles.
+URL: https://github.com/zekenaulty/zekenaulty.github.io
+
+Dominus - A DOM utility library that builds Bootstrap 5 and Bootswatch interfaces from code, aiming to reduce raw HTML boilerplate and make UI construction more declarative and composable.
+URL: https://github.com/zekenaulty/dominus
+
+Random Dialog Engine - A lightweight dialog engine for games and narrative systems that models conversations and internal monologue using reusable dialog primitives and simple stateful flows.
+URL: https://github.com/zekenaulty/random-dialog
+
+Maze-Battle & Maze-Quest - A pair of JavaScript experiments combining maze traversal with RPG-style encounters: Maze-Quest focuses on Minecraft-inspired maze exploration, while Maze-Battle extends the idea with combat and encounter logic.
+URL: https://github.com/zekenaulty/maze-battle
+
+Fractal & Geometry Experiments - A series of visual experiments centered on cube-based generative structures (cubix-gen) alongside Cantor sets and binary tree fractals, exploring recursion, geometry, and visual pattern generation in HTML/JavaScript.
+URL: https://github.com/zekenaulty/cubix-gen
+
+SQL Server Information Schema Tools - A C# utility library for querying and shaping SQL Server information schema metadata, designed to support reporting, refactors, and schema-aware tooling.
+URL: https://github.com/zekenaulty/SqlServer.InformationSchema-Discontinued
+
+English Lexicon & NLP Data Experiments - Fork-based experiments around large English word datasets and CEFR-level annotations, exploring ways to combine frequency, part-of-speech, and difficulty metadata for NLP and language-learning tools.
+URL: https://github.com/zekenaulty/Words-CEFR-Dataset

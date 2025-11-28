@@ -1,0 +1,142 @@
+ZEKE NAULTY
+CODE MONKEY (DEFAULT)
+Senior .NET Engineer / Code Monkey for Messy Systems (C#, .NET Core, WinForms, ASP.NET)
+
+SUMMARY
+-------
+Most of my career has been spent inside complex systems: long-lived .NET codebases, awkward architectures, and business processes that grew faster than anyone designed them. The more tangled the problem, the clearer the map becomes.
+
+I take responsibility for hard systems other people depend on, learn how they really work, and make them easier to change. That has meant living deep in C#, .NET Core, WinForms, ASP.NET, SQL Server, and PostgreSQL—untangling apps and nudging teams toward testable, maintainable designs.
+
+Systems are not neutral; they decide who carries risk and who fights fires. I prefer building things that reduce hidden load and failure modes instead of chasing whatever is trending.
+
+Outside of work it is quieter - cooking, biking, games, and reading - but the same habit shows up: notice patterns, refine systems, and leave them better than I found them.
+
+EXPERIENCE
+----------
+Software Engineer II - Storable
+Jan 2021 - Dec 2022 | Cary, North Carolina, United States
+  - Dropped into WinForms plus .NET Core services, kept the insurance backend running with Hangfire, PostgreSQL, SQL Server, and Entity Framework.
+  - Showed the team how to unit test WinForms and nudged early domain-driven design so changes stop breaking everything.
+
+Lead Developer / Azure DevOps - iAdvantage Software, Inc.
+Feb 2017 - Jan 2021 | Cary, NC
+  - Ran user-defined data models and reporting for GLP products across WebForms/MVC/WebAPI with REST OData and SOAP APIs on Oracle.
+  - Kept UIs and DevOps sane with CSS/Bootstrap/AngularJS plus offline WinForms and Xamarin apps.
+
+Application Developer/Architect - Solid Earth Inc.
+Dec 2006 - Jan 2011 | Huntsville, AL
+  - Maintained RETS client/server software and configurable ASP.NET MLS sites on Oracle and C#.
+  - Built the market analytics module so people could stop guessing about the data.
+
+Programmer/Analyst - Prestage Farms
+Jan 2016 - Sep 2016 | Clinton, NC
+  - Modernized VB6 accounting/inventory systems, rebuilt reporting, and added bug tracking so issues stopped disappearing.
+  - Delivered early with lightweight Agile habits.
+
+Senior Software Developer - Rural Sourcing, Inc.
+Jul 2013 - Feb 2016 | Augusta, Georgia Area
+  - Mentored teams and juggled projects across the Microsoft stack while recruiting and interviewing.
+  - Kept delivery moving on Windows, web, and database work.
+
+Programmer/Analyst - Not Rocket Science
+Jan 2005 - Oct 2005 | Covington, LA
+  - Built a C# mobile app for a Sheriff's department and shipped full-stack .NET + SQL Server work for Zen-Noh Grain.
+  - Stitched together an ActionScript + ASP.NET tracking app for shipments and tug boats.
+
+Web Developer/Consultant (PK Promotions) - PK Promotions
+May 2004 - Jan 2005 | Biloxi, MS
+  - Delivered production management, product tracking, and sales/marketing systems for a small shop.
+
+Design Consultant - Rainmaker Advertising & Design
+Mar 2001 - Oct 2002 | Biloxi, MS
+  - Built front-ends in VB6/VB.NET/ASP with Access, InterDev, Flash, and SQL Server; helped design IT systems for clients.
+
+Programmer/Analyst I - Hancock Bank
+Dec 2000 - Aug 2001 | Gulfport, MS
+  - Built desktop apps on DB2/Argo Data with reporting UIs, data-driven ASP pages, and validation JavaScript.
+  - Designed SQL Server applications to support the workflows.
+
+Engineering Application Developer - Litton Avondale Inc.
+Feb 1999 - Dec 2000 | New Orleans, LA
+  - Wrote 3D-to-2D transforms, deployed network applications, and built error logging/reporting on the LPD-17 project.
+  - Built an IDE so those transforms could be scripted instead of rewritten.
+
+Technician/Programmer - Computer Specialist
+Feb 1999 - Mar 2000 | Bay St. Louis, MS
+  - Fixed and built PCs, troubleshot software, and wrote custom tools for small businesses.
+
+SKILLS
+------
+Core:
+  - C#
+  - .NET Core
+  - WinForms
+  - ASP.NET
+  - SQL Server
+  - PostgreSQL
+  - Legacy modernization
+
+Supporting:
+  - AngularJS
+  - Azure DevOps
+  - Hangfire
+  - JavaScript
+  - Problem-solving
+
+Other:
+  - Agile Methodologies
+  - Bootstrap
+  - Cloud Platforms
+  - Cloud computing (Azure)
+  - CSS
+  - Database Development
+  - Full-stack development
+  - Git
+  - iOS
+  - JIRA
+  - Kanban
+  - Leadership
+  - Mentoring
+  - Microsoft Azure
+  - Microsoft SQL Server
+  - Mobile application development
+  - Oracle
+  - Project management
+  - Regular Expressions
+  - Software development
+  - Team Building
+  - Team management
+  - Time management
+  - Unified Modeling Language (UML)
+  - Visual Basic .NET
+  - Web development
+  - Entity Framework
+  - Xamarin Forms
+  - OData/SOAP APIs
+
+PROJECTS
+--------
+Cognition - A .NET-based agentic orchestration system that wraps LLMs with tools, background workers, and structured pipelines for planning and execution. Focuses on durable workflows, message/state tracking, and clear separation between model calls and application logic.
+URL: https://github.com/zekenaulty/cognition
+
+Resume & Profile Site - A GitHub Pages site that renders multi-profile resume views from structured JSON data, including a default 'Code Monkey' profile and employer-focused variants for backend, desktop, fullstack, and architect roles.
+URL: https://github.com/zekenaulty/zekenaulty.github.io
+
+Dominus - A DOM utility library that builds Bootstrap 5 and Bootswatch interfaces from code, aiming to reduce raw HTML boilerplate and make UI construction more declarative and composable.
+URL: https://github.com/zekenaulty/dominus
+
+Random Dialog Engine - A lightweight dialog engine for games and narrative systems that models conversations and internal monologue using reusable dialog primitives and simple stateful flows.
+URL: https://github.com/zekenaulty/random-dialog
+
+Maze-Battle & Maze-Quest - A pair of JavaScript experiments combining maze traversal with RPG-style encounters: Maze-Quest focuses on Minecraft-inspired maze exploration, while Maze-Battle extends the idea with combat and encounter logic.
+URL: https://github.com/zekenaulty/maze-battle
+
+Fractal & Geometry Experiments - A series of visual experiments centered on cube-based generative structures (cubix-gen) alongside Cantor sets and binary tree fractals, exploring recursion, geometry, and visual pattern generation in HTML/JavaScript.
+URL: https://github.com/zekenaulty/cubix-gen
+
+SQL Server Information Schema Tools - A C# utility library for querying and shaping SQL Server information schema metadata, designed to support reporting, refactors, and schema-aware tooling.
+URL: https://github.com/zekenaulty/SqlServer.InformationSchema-Discontinued
+
+English Lexicon & NLP Data Experiments - Fork-based experiments around large English word datasets and CEFR-level annotations, exploring ways to combine frequency, part-of-speech, and difficulty metadata for NLP and language-learning tools.
+URL: https://github.com/zekenaulty/Words-CEFR-Dataset

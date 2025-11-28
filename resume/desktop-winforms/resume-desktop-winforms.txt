@@ -1,0 +1,132 @@
+ZEKE NAULTY
+SENIOR WINFORMS / DESKTOP .NET DEVELOPER
+Senior WinForms / Desktop .NET Developer – Modernizing LOB Apps (C#, WinForms, VB6/VB.NET, SQL Server)
+
+SUMMARY
+-------
+Thick-client specialist with deep experience in WinForms and desktop line-of-business apps. Modernizes legacy UI flows, introduces sustainable testing patterns, and connects desktop clients to dependable services.
+
+Comfortable straddling older tech (VB6/WinForms/Web Forms) and newer patterns to keep critical desktop products alive while improving maintainability.
+
+EXPERIENCE
+----------
+Software Engineer II (WinForms/Desktop) - Storable
+Jan 2021 - Dec 2022 | Cary, North Carolina, United States
+  - Maintained and extended .NET WinForms applications alongside web properties for insurance products.
+  - Introduced unit testing patterns to WinForms and kept desktop and service layers in sync during domain-driven design adoption.
+
+Programmer/Analyst (Desktop Modernization) - Prestage Farms
+Jan 2016 - Sep 2016 | Clinton, NC
+  - Led a team modernizing VB6 accounting and inventory software, replacing legacy reporting and PDF generation.
+  - Added custom bug reporting and ticketing to keep desktop work visible and delivered the project early using Agile practices.
+
+Lead Developer / Azure DevOps - iAdvantage Software, Inc.
+Feb 2017 - Jan 2021 | Cary, NC
+  - Supported offline WinForms and Xamarin apps while delivering user-defined data models and reporting in WebForms/MVC/WebAPI on Oracle.
+  - Crafted responsive UIs with CSS, Bootstrap, and AngularJS.
+
+Senior Software Developer - Rural Sourcing, Inc.
+Jul 2013 - Feb 2016 | Augusta, Georgia Area
+  - Delivered Microsoft-stack projects for multiple clients, moving between WinForms, ASP.NET, and SQL Server work as engagements required.
+  - Mentored junior and mid-level developers on coding standards, testing habits, and practical estimation.
+  - Planned and tracked sprints, risks, and milestones while keeping stakeholders aligned across simultaneous projects.
+  - Conducted code reviews and production readiness checks to keep releases predictable for consulting clients.
+  - Interviewed and recruited engineers, helping shape hiring rubrics and onboarding practices.
+  - Acted as a hands-on contributor when teams needed extra capacity on backend or desktop features.
+
+Web Developer/Consultant (PK Promotions) - PK Promotions
+May 2004 - Jan 2005 | Biloxi, MS
+  - Built web-based commodity production management and product tracking systems that paired with desktop workflows.
+  - Supported sales and marketing systems for the business.
+
+Design Consultant - Rainmaker Advertising & Design
+Mar 2001 - Oct 2002 | Biloxi, MS
+  - Developed front-ends and components in VB6, VB.NET, and ASP (Classic/Web Forms) with Access, InterDev, Flash, and SQL Server.
+  - Assisted in IT system design for agency clients.
+
+Programmer/Analyst I - Hancock Bank
+Dec 2000 - Aug 2001 | Gulfport, MS
+  - Built desktop applications against DB2/Argo Data, adding reporting and data-access front-ends.
+  - Created data-driven ASP pages and validation JavaScript to support desktop workflows.
+
+Technician/Programmer - Computer Specialist
+Feb 1999 - Mar 2000 | Bay St. Louis, MS
+  - Troubleshot and resolved software issues for local customers on Windows 3.1 through Windows 2000.
+  - Repaired and built IBM-compatible PCs, installing and configuring operating systems and peripherals.
+  - Created small custom applications for small businesses to automate routine tasks.
+  - Handled on-site support, translating user needs into practical fixes and documenting steps for non-technical staff.
+
+SKILLS
+------
+Core:
+  - WinForms
+  - C#
+  - ASP.NET
+  - .NET Core
+  - SQL Server
+  - Legacy modernization
+  - Visual Basic .NET
+
+Supporting:
+  - Bootstrap
+  - AngularJS
+  - Azure DevOps
+  - Hangfire
+  - Project management
+
+Other:
+  - Agile Methodologies
+  - Cloud Platforms
+  - Cloud computing (Azure)
+  - CSS
+  - Database Development
+  - Full-stack development
+  - Git
+  - iOS
+  - JavaScript
+  - JIRA
+  - Kanban
+  - Leadership
+  - Mentoring
+  - Microsoft Azure
+  - Microsoft SQL Server
+  - Mobile application development
+  - Oracle
+  - Problem-solving
+  - Regular Expressions
+  - Software development
+  - Team Building
+  - Team management
+  - Time management
+  - Unified Modeling Language (UML)
+  - Web development
+  - Entity Framework
+  - PostgreSQL
+  - Xamarin Forms
+  - OData/SOAP APIs
+
+PROJECTS
+--------
+Cognition - A .NET-based agentic orchestration system that wraps LLMs with tools, background workers, and structured pipelines for planning and execution. Focuses on durable workflows, message/state tracking, and clear separation between model calls and application logic.
+URL: https://github.com/zekenaulty/cognition
+
+Resume & Profile Site - A GitHub Pages site that renders multi-profile resume views from structured JSON data, including a default 'Code Monkey' profile and employer-focused variants for backend, desktop, fullstack, and architect roles.
+URL: https://github.com/zekenaulty/zekenaulty.github.io
+
+Dominus - A DOM utility library that builds Bootstrap 5 and Bootswatch interfaces from code, aiming to reduce raw HTML boilerplate and make UI construction more declarative and composable.
+URL: https://github.com/zekenaulty/dominus
+
+Random Dialog Engine - A lightweight dialog engine for games and narrative systems that models conversations and internal monologue using reusable dialog primitives and simple stateful flows.
+URL: https://github.com/zekenaulty/random-dialog
+
+Maze-Battle & Maze-Quest - A pair of JavaScript experiments combining maze traversal with RPG-style encounters: Maze-Quest focuses on Minecraft-inspired maze exploration, while Maze-Battle extends the idea with combat and encounter logic.
+URL: https://github.com/zekenaulty/maze-battle
+
+Fractal & Geometry Experiments - A series of visual experiments centered on cube-based generative structures (cubix-gen) alongside Cantor sets and binary tree fractals, exploring recursion, geometry, and visual pattern generation in HTML/JavaScript.
+URL: https://github.com/zekenaulty/cubix-gen
+
+SQL Server Information Schema Tools - A C# utility library for querying and shaping SQL Server information schema metadata, designed to support reporting, refactors, and schema-aware tooling.
+URL: https://github.com/zekenaulty/SqlServer.InformationSchema-Discontinued
+
+English Lexicon & NLP Data Experiments - Fork-based experiments around large English word datasets and CEFR-level annotations, exploring ways to combine frequency, part-of-speech, and difficulty metadata for NLP and language-learning tools.
+URL: https://github.com/zekenaulty/Words-CEFR-Dataset
