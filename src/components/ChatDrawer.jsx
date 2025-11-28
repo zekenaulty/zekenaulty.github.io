@@ -20,13 +20,15 @@ import { GeminiHttpClient } from '../llm/geminiHttpClient';
 import { callResumeChat } from '../llm/chatService';
 
 // Do not embed secrets in production builds; only honor a local dev key in non-prod.
-const ENV_API_KEY = import.meta.env.PROD ? '' : import.meta.env.VITE_GEMINI_API_KEY?.trim?.() || '';
+const isProd = import.meta.env.PROD;
+const ENV_API_KEY = isProd ? '' : import.meta.env.VITE_GEMINI_API_KEY?.trim?.() || '';
 const ENV_PROXY_URL = import.meta.env.VITE_GEMINI_PROXY_URL?.trim?.() || '';
 const ENV_MODEL = import.meta.env.VITE_GEMINI_MODEL?.trim?.() || '';
 
 const GEMINI_API_KEY = ENV_API_KEY; // local dev only; do not ship secrets in production builds
 const GEMINI_MODEL = ENV_MODEL || 'gemini-2.5-flash';
-const GEMINI_PROXY_URL = ENV_PROXY_URL || 'https://gemini-proxy.zekenaulty.workers.dev'; // e.g., https://gemini-proxy.yourdomain.workers.dev
+const DEFAULT_PROXY_URL = 'https://gemini-proxy.zekenaulty.workers.dev'; // e.g., https://gemini-proxy.yourdomain.workers.dev
+const GEMINI_PROXY_URL = ENV_PROXY_URL || DEFAULT_PROXY_URL;
 
 const INITIAL_ASSISTANT_MESSAGE = {
   id: 'welcome',
@@ -52,10 +54,19 @@ function ChatDrawer({ isOpen, onClose }) {
   const messagesEndRef = useRef(null);
 
   const client = useMemo(() => {
-    const useProxy =
-      GEMINI_PROXY_URL &&
-      !GEMINI_PROXY_URL.includes('REPLACE') &&
-      GEMINI_PROXY_URL.startsWith('http');
+    const proxyUrl = isProd ? GEMINI_PROXY_URL : ENV_PROXY_URL;
+    const proxyLooksLikeGoogle = proxyUrl?.includes('generativelanguage.googleapis.com');
+
+    // Prod: always use the proxy. Dev: use proxy only if it is a non-Google endpoint.
+    const useProxy = isProd
+      ? true
+      : proxyUrl &&
+        !proxyUrl.includes('REPLACE') &&
+        !proxyLooksLikeGoogle &&
+        proxyUrl.startsWith('http');
+
+    const baseUrlOverride =
+      !useProxy && proxyLooksLikeGoogle && proxyUrl ? proxyUrl.replace(/\/+$/, '') : undefined;
 
     if (!useProxy && (!GEMINI_API_KEY || GEMINI_API_KEY.includes('REPLACE'))) {
       return null;
@@ -69,7 +80,9 @@ function ChatDrawer({ isOpen, onClose }) {
       };
 
       if (useProxy) {
-        options.baseUrl = GEMINI_PROXY_URL.replace(/\/+$/, '');
+        options.baseUrl = proxyUrl.replace(/\/+$/, '');
+      } else if (baseUrlOverride) {
+        options.baseUrl = baseUrlOverride;
       }
 
       return new GeminiHttpClient(options);
@@ -83,6 +96,7 @@ function ChatDrawer({ isOpen, onClose }) {
     const useProxy =
       GEMINI_PROXY_URL &&
       !GEMINI_PROXY_URL.includes('REPLACE') &&
+      !GEMINI_PROXY_URL.includes('generativelanguage.googleapis.com') &&
       GEMINI_PROXY_URL.startsWith('http');
 
     if (useProxy && client) {
