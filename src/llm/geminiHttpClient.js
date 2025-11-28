@@ -42,25 +42,33 @@ export class GeminiHttpClient {
   #apiKey;
   #model;
   #baseUrl;
+  #useProxy;
 
   /**
    * @param {Object} params
-   * @param {string} params.apiKey  - Gemini API key (required).
+   * @param {string} [params.apiKey]  - Gemini API key. Required unless useProxy is true.
    * @param {string} [params.model='gemini-2.5-flash'] - Default model name.
    * @param {string} [params.baseUrl='https://generativelanguage.googleapis.com/v1beta']
    *        Base URL without trailing slash.
+   * @param {boolean} [params.useProxy=false] - When true, baseUrl is treated as a full proxy endpoint and the API key header is omitted.
    */
   constructor({
     apiKey,
     model = 'gemini-2.5-flash',
     baseUrl = 'https://generativelanguage.googleapis.com/v1beta',
+    useProxy = false,
   }) {
-    if (!apiKey || typeof apiKey !== 'string' || !apiKey.trim()) {
-      throw new Error('GeminiHttpClient requires a non-empty apiKey.');
+    if (!useProxy) {
+      if (!apiKey || typeof apiKey !== 'string' || !apiKey.trim()) {
+        throw new Error('GeminiHttpClient requires a non-empty apiKey.');
+      }
+      this.#apiKey = apiKey.trim();
+    } else {
+      this.#apiKey = apiKey?.trim() || '';
     }
-    this.#apiKey = apiKey.trim();
     this.#model = model;
     this.#baseUrl = baseUrl.replace(/\/+$/, ''); // strip trailing slash if present
+    this.#useProxy = useProxy;
   }
 
   /**
@@ -71,6 +79,10 @@ export class GeminiHttpClient {
    * @private
    */
   #buildGenerateUrl(modelName = this.#model) {
+    if (this.#useProxy) {
+      return this.#baseUrl;
+    }
+
     const targetModel = modelName || this.#model;
     const base = this.#baseUrl.replace(/\/+$/, '');
     const modelSegment = targetModel.startsWith('models/')
@@ -98,7 +110,7 @@ export class GeminiHttpClient {
       response = await fetch(url, {
         method: 'POST',
         headers: {
-          'x-goog-api-key': this.#apiKey,
+          ...(this.#useProxy ? {} : { 'x-goog-api-key': this.#apiKey }),
           'Content-Type': 'application/json',
         },
         mode: 'cors',

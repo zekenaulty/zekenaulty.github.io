@@ -29,7 +29,7 @@ React/Vite single-page resume site (MUI) with multi-profile views, animated intr
 
 ## Chat (optional)
 - Gemini client: `src/llm/geminiHttpClient.js`; UI: `src/components/ChatDrawer.jsx`, `ChatToggleButton.jsx`.
-- Set `GEMINI_API_KEY` (and model if desired) in `ChatDrawer.jsx` to enable replies. Without a key, chat stays disabled.
+- Preferred: use a Cloudflare Worker proxy to hide the Gemini key. Set `VITE_GEMINI_PROXY_URL` in `.env.local`. If you must call Gemini directly in local dev, set `VITE_GEMINI_API_KEY` in `.env.local`. Do not ship builds with a real key—omit `.env.local` for production; the app will default to the proxy URL.
 - Resume chat payload is generated at build (`scripts/build-resume-chat-data.js`).
 
 ## Exports (stubbed)

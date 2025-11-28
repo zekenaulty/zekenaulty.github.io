@@ -1,23 +1,26 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { createRequire } from 'module';
 
 const require = createRequire(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-const backendModernization = require('./backend-modernization.json');
-const desktopWinforms = require('./desktop-winforms.json');
-const fullstackDotnet = require('./fullstack-dotnet.json');
-const solutionArchitect = require('./solution-architect.json');
-const codeMonkey = require('./code-monkey.json');
+const profiles = fs
+  .readdirSync(__dirname)
+  .filter((file) => file.endsWith('.json'))
+  .map((file) => require(`./${file}`))
+  .filter((profile) => profile && profile.id)
+  .sort((a, b) => (a.label || a.id).localeCompare(b.label || b.id));
+
+const byId = Object.fromEntries(profiles.map((profile) => [profile.id, profile]));
+const defaultProfileId = byId['code-monkey'] ? 'code-monkey' : profiles[0]?.id;
 
 export const ProfileRegistry = {
-  all: [backendModernization, desktopWinforms, fullstackDotnet, solutionArchitect, codeMonkey],
-  byId: {
-    [backendModernization.id]: backendModernization,
-    [desktopWinforms.id]: desktopWinforms,
-    [fullstackDotnet.id]: fullstackDotnet,
-    [solutionArchitect.id]: solutionArchitect,
-    [codeMonkey.id]: codeMonkey,
-  },
-  defaultProfileId: codeMonkey.id,
+  all: profiles,
+  byId,
+  defaultProfileId,
 };
 
 export default ProfileRegistry;

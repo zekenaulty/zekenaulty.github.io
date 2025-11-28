@@ -19,8 +19,14 @@ import remarkGfm from 'remark-gfm';
 import { GeminiHttpClient } from '../llm/geminiHttpClient';
 import { callResumeChat } from '../llm/chatService';
 
-const GEMINI_API_KEY = 'AIzaSyBM6LHTnKOLO1QvaUp1Gg9ShMFZcwitwTQ'; //this is an accepted an known security risk key for demo purposes only
-const GEMINI_MODEL = 'gemini-2.5-flash'; //'gemini-3-pro-preview'; // :( not yet available for free use
+// Do not embed secrets in production builds; only honor a local dev key in non-prod.
+const ENV_API_KEY = import.meta.env.PROD ? '' : import.meta.env.VITE_GEMINI_API_KEY?.trim?.() || '';
+const ENV_PROXY_URL = import.meta.env.VITE_GEMINI_PROXY_URL?.trim?.() || '';
+const ENV_MODEL = import.meta.env.VITE_GEMINI_MODEL?.trim?.() || '';
+
+const GEMINI_API_KEY = ENV_API_KEY; // local dev only; do not ship secrets in production builds
+const GEMINI_MODEL = ENV_MODEL || 'gemini-2.5-flash';
+const GEMINI_PROXY_URL = ENV_PROXY_URL || 'https://gemini-proxy.zekenaulty.workers.dev'; // e.g., https://gemini-proxy.yourdomain.workers.dev
 
 const INITIAL_ASSISTANT_MESSAGE = {
   id: 'welcome',
@@ -46,11 +52,27 @@ function ChatDrawer({ isOpen, onClose }) {
   const messagesEndRef = useRef(null);
 
   const client = useMemo(() => {
-    if (!GEMINI_API_KEY || GEMINI_API_KEY.includes('REPLACE')) {
+    const useProxy =
+      GEMINI_PROXY_URL &&
+      !GEMINI_PROXY_URL.includes('REPLACE') &&
+      GEMINI_PROXY_URL.startsWith('http');
+
+    if (!useProxy && (!GEMINI_API_KEY || GEMINI_API_KEY.includes('REPLACE'))) {
       return null;
     }
+
     try {
-      return new GeminiHttpClient({ apiKey: GEMINI_API_KEY, model: GEMINI_MODEL });
+      const options = {
+        apiKey: GEMINI_API_KEY,
+        model: GEMINI_MODEL,
+        useProxy,
+      };
+
+      if (useProxy) {
+        options.baseUrl = GEMINI_PROXY_URL.replace(/\/+$/, '');
+      }
+
+      return new GeminiHttpClient(options);
     } catch (err) {
       console.error('Failed to initialize Gemini client', err);
       return null;
@@ -58,10 +80,20 @@ function ChatDrawer({ isOpen, onClose }) {
   }, []);
 
   useEffect(() => {
-    if (!GEMINI_API_KEY || GEMINI_API_KEY.includes('REPLACE')) {
-      setClientError('Set GEMINI_API_KEY in ChatDrawer.jsx to enable chat replies.');
+    const useProxy =
+      GEMINI_PROXY_URL &&
+      !GEMINI_PROXY_URL.includes('REPLACE') &&
+      GEMINI_PROXY_URL.startsWith('http');
+
+    if (useProxy && client) {
+      setClientError('');
+      return;
+    }
+
+    if (!useProxy && (!GEMINI_API_KEY || GEMINI_API_KEY.includes('REPLACE'))) {
+      setClientError('Set VITE_GEMINI_API_KEY in .env.local (dev only) or configure VITE_GEMINI_PROXY_URL to enable chat replies.');
     } else if (!client) {
-      setClientError('Gemini client failed to initialize. Check your API key.');
+      setClientError('Gemini client failed to initialize. Check your API key or proxy URL.');
     } else {
       setClientError('');
     }

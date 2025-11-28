@@ -497,246 +497,6 @@
     "profiles": {
       "all": [
         {
-          "id": "backend-modernization",
-          "label": "Senior .NET Backend / Modernization",
-          "kind": "employer-facing",
-          "headline": "Senior .NET Backend Engineer – Legacy to Modern Backends (C#, .NET Core, SQL Server/PostgreSQL, Azure)",
-          "aboutKey": "about-backend-modernization",
-          "experienceOrder": [
-            "storable",
-            "iadvantage",
-            "rural-sourcing",
-            "solid-earth",
-            "prestage-farms",
-            "not-rocket-science",
-            "litton-avondale"
-          ],
-          "experienceOverrides": {
-            "storable": {
-              "title": "Software Engineer II (Backend/Modernization)",
-              "description": [
-                "Built and maintained .NET Core services with Hangfire, PostgreSQL, and SQL Server to support insurance auto-protect features.",
-                "Kept WinForms and web applications moving by tightening unit test coverage and contributing to early domain-driven design efforts."
-              ]
-            },
-            "iadvantage": {
-              "title": "Lead Developer / Azure DevOps",
-              "description": [
-                "Delivered user-defined data models and custom reporting for GLP-compliant products using WebForms/MVC/WebAPI with REST OData and SOAP APIs on Oracle.",
-                "Led service delivery and DevOps practices across .NET, nHibernate, Entity Framework, and PL/SQL."
-              ]
-            },
-            "solid-earth": {
-              "title": "Application Developer / Architect",
-              "description": [
-                "Maintained RETS client/server software on Oracle and C# and modernized configurable ASP.NET MLS implementations.",
-                "Built a statistics module with deep market analytics and reporting."
-              ]
-            },
-            "prestage-farms": {
-              "title": "Programmer/Analyst (Modernization)",
-              "description": [
-                "Led modernization of legacy VB6 accounting and inventory software, replacing reports and delivering a new reporting frontend.",
-                "Added bug reporting and ticketing to tighten feedback loops; delivered the project ahead of schedule with Agile practices."
-              ]
-            },
-            "not-rocket-science": {
-              "description": [
-                "Delivered full-stack .NET work on SQL Server for Zen-Noh Grain and built ActionScript + ASP.NET tracking for shipments and tug boats.",
-                "Built a C# mobile app for a Sheriff's department."
-              ]
-            },
-            "litton-avondale": {
-              "description": [
-                "Wrote 3D-to-2D code transformations and deployed network applications on the LPD-17 project.",
-                "Built error logging/reporting and an IDE for scripting the transforms."
-              ]
-            }
-          },
-          "skillsPrimary": [
-            "C#",
-            ".NET Core",
-            "ASP.NET",
-            "Entity Framework",
-            "SQL Server",
-            "PostgreSQL",
-            "Azure DevOps",
-            "Hangfire",
-            "Legacy modernization"
-          ],
-          "skillsSecondary": [
-            "WinForms",
-            "AngularJS",
-            "Oracle",
-            "OData/SOAP APIs",
-            "Project management"
-          ],
-          "tags": [
-            "backend",
-            "modernization",
-            "services",
-            "data"
-          ]
-        },
-        {
-          "id": "desktop-winforms",
-          "label": "Senior WinForms / Desktop .NET Developer",
-          "kind": "employer-facing",
-          "headline": "Senior WinForms / Desktop .NET Developer – Modernizing LOB Apps (C#, WinForms, VB6/VB.NET, SQL Server)",
-          "aboutKey": "about-desktop-winforms",
-          "experienceOrder": [
-            "storable",
-            "prestage-farms",
-            "iadvantage",
-            "rural-sourcing",
-            "pk-promotions",
-            "rainmaker",
-            "hancock-whitney",
-            "computer-specialist"
-          ],
-          "experienceOverrides": {
-            "storable": {
-              "title": "Software Engineer II (WinForms/Desktop)",
-              "description": [
-                "Maintained and extended .NET WinForms applications alongside web properties for insurance products.",
-                "Introduced unit testing patterns to WinForms and kept desktop and service layers in sync during domain-driven design adoption."
-              ]
-            },
-            "prestage-farms": {
-              "title": "Programmer/Analyst (Desktop Modernization)",
-              "description": [
-                "Led a team modernizing VB6 accounting and inventory software, replacing legacy reporting and PDF generation.",
-                "Added custom bug reporting and ticketing to keep desktop work visible and delivered the project early using Agile practices."
-              ]
-            },
-            "iadvantage": {
-              "description": [
-                "Supported offline WinForms and Xamarin apps while delivering user-defined data models and reporting in WebForms/MVC/WebAPI on Oracle.",
-                "Crafted responsive UIs with CSS, Bootstrap, and AngularJS."
-              ]
-            },
-            "pk-promotions": {
-              "description": [
-                "Built web-based commodity production management and product tracking systems that paired with desktop workflows.",
-                "Supported sales and marketing systems for the business."
-              ]
-            },
-            "hancock-whitney": {
-              "description": [
-                "Built desktop applications against DB2/Argo Data, adding reporting and data-access front-ends.",
-                "Created data-driven ASP pages and validation JavaScript to support desktop workflows."
-              ]
-            },
-            "rainmaker": {
-              "description": [
-                "Developed front-ends and components in VB6, VB.NET, and ASP (Classic/Web Forms) with Access, InterDev, Flash, and SQL Server.",
-                "Assisted in IT system design for agency clients."
-              ]
-            }
-          },
-          "skillsPrimary": [
-            "WinForms",
-            "C#",
-            "ASP.NET",
-            ".NET Core",
-            "SQL Server",
-            "Legacy modernization",
-            "Visual Basic .NET"
-          ],
-          "skillsSecondary": [
-            "Bootstrap",
-            "AngularJS",
-            "Azure DevOps",
-            "Hangfire",
-            "Project management"
-          ],
-          "tags": [
-            "desktop",
-            "winforms",
-            "modernization",
-            "lob"
-          ]
-        },
-        {
-          "id": "fullstack-dotnet",
-          "label": "Senior Fullstack .NET Developer",
-          "kind": "employer-facing",
-          "headline": "Senior Fullstack .NET – UI to APIs to Data (C#, ASP.NET MVC/WebAPI, JavaScript, SQL Server/PostgreSQL)",
-          "aboutKey": "about-fullstack-dotnet",
-          "experienceOrder": [
-            "iadvantage",
-            "storable",
-            "pk-promotions",
-            "not-rocket-science",
-            "prestage-farms",
-            "rainmaker",
-            "hancock-whitney"
-          ],
-          "experienceOverrides": {
-            "iadvantage": {
-              "title": "Lead Developer / Azure DevOps",
-              "description": [
-                "Delivered user-defined data models and custom reporting with WebForms/MVC/WebAPI backed by REST OData and SOAP APIs on Oracle.",
-                "Built responsive UIs with CSS, Bootstrap, and AngularJS and supported offline WinForms and Xamarin apps."
-              ]
-            },
-            "storable": {
-              "description": [
-                "Developed .NET WinForms and web applications for insurance products while building backend services in .NET Core with Hangfire, PostgreSQL, SQL Server, and Entity Framework.",
-                "Established unit testing patterns in WinForms and contributed to domain-driven design efforts."
-              ]
-            },
-            "pk-promotions": {
-              "description": [
-                "Built web-based commodity production management, product tracking, and sales/marketing systems.",
-                "Worked across UI and data layers to support business workflows."
-              ]
-            },
-            "not-rocket-science": {
-              "description": [
-                "Delivered full-stack .NET solutions on SQL Server for Zen-Noh Grain and built an ActionScript + ASP.NET tracking application for shipments and tug boats.",
-                "Created a C# mobile app for a Sheriff's department."
-              ]
-            },
-            "rainmaker": {
-              "description": [
-                "Developed components and front-ends in VB6, VB.NET, and ASP (Classic/Web Forms) with Access, InterDev, Flash, and SQL Server.",
-                "Assisted in IT system design for agency clients."
-              ]
-            },
-            "hancock-whitney": {
-              "description": [
-                "Built desktop apps against DB2/Argo Data with reporting and data access front-ends, plus data-driven ASP pages and validation JavaScript.",
-                "Designed and implemented SQL Server applications."
-              ]
-            }
-          },
-          "skillsPrimary": [
-            "C#",
-            "ASP.NET",
-            ".NET Core",
-            "JavaScript",
-            "AngularJS",
-            "Bootstrap",
-            "SQL Server",
-            "PostgreSQL",
-            "Full-stack development"
-          ],
-          "skillsSecondary": [
-            "Entity Framework",
-            "Azure DevOps",
-            "WinForms",
-            "Web development",
-            "Project management"
-          ],
-          "tags": [
-            "fullstack",
-            "ui",
-            "api",
-            "data"
-          ]
-        },
-        {
           "id": "solution-architect",
           "label": ".NET Solution Architect / Technical Architect",
           "kind": "employer-facing",
@@ -931,10 +691,8 @@
             "legacy",
             "refactoring"
           ]
-        }
-      ],
-      "byId": {
-        "backend-modernization": {
+        },
+        {
           "id": "backend-modernization",
           "label": "Senior .NET Backend / Modernization",
           "kind": "employer-facing",
@@ -1016,86 +774,7 @@
             "data"
           ]
         },
-        "desktop-winforms": {
-          "id": "desktop-winforms",
-          "label": "Senior WinForms / Desktop .NET Developer",
-          "kind": "employer-facing",
-          "headline": "Senior WinForms / Desktop .NET Developer – Modernizing LOB Apps (C#, WinForms, VB6/VB.NET, SQL Server)",
-          "aboutKey": "about-desktop-winforms",
-          "experienceOrder": [
-            "storable",
-            "prestage-farms",
-            "iadvantage",
-            "rural-sourcing",
-            "pk-promotions",
-            "rainmaker",
-            "hancock-whitney",
-            "computer-specialist"
-          ],
-          "experienceOverrides": {
-            "storable": {
-              "title": "Software Engineer II (WinForms/Desktop)",
-              "description": [
-                "Maintained and extended .NET WinForms applications alongside web properties for insurance products.",
-                "Introduced unit testing patterns to WinForms and kept desktop and service layers in sync during domain-driven design adoption."
-              ]
-            },
-            "prestage-farms": {
-              "title": "Programmer/Analyst (Desktop Modernization)",
-              "description": [
-                "Led a team modernizing VB6 accounting and inventory software, replacing legacy reporting and PDF generation.",
-                "Added custom bug reporting and ticketing to keep desktop work visible and delivered the project early using Agile practices."
-              ]
-            },
-            "iadvantage": {
-              "description": [
-                "Supported offline WinForms and Xamarin apps while delivering user-defined data models and reporting in WebForms/MVC/WebAPI on Oracle.",
-                "Crafted responsive UIs with CSS, Bootstrap, and AngularJS."
-              ]
-            },
-            "pk-promotions": {
-              "description": [
-                "Built web-based commodity production management and product tracking systems that paired with desktop workflows.",
-                "Supported sales and marketing systems for the business."
-              ]
-            },
-            "hancock-whitney": {
-              "description": [
-                "Built desktop applications against DB2/Argo Data, adding reporting and data-access front-ends.",
-                "Created data-driven ASP pages and validation JavaScript to support desktop workflows."
-              ]
-            },
-            "rainmaker": {
-              "description": [
-                "Developed front-ends and components in VB6, VB.NET, and ASP (Classic/Web Forms) with Access, InterDev, Flash, and SQL Server.",
-                "Assisted in IT system design for agency clients."
-              ]
-            }
-          },
-          "skillsPrimary": [
-            "WinForms",
-            "C#",
-            "ASP.NET",
-            ".NET Core",
-            "SQL Server",
-            "Legacy modernization",
-            "Visual Basic .NET"
-          ],
-          "skillsSecondary": [
-            "Bootstrap",
-            "AngularJS",
-            "Azure DevOps",
-            "Hangfire",
-            "Project management"
-          ],
-          "tags": [
-            "desktop",
-            "winforms",
-            "modernization",
-            "lob"
-          ]
-        },
-        "fullstack-dotnet": {
+        {
           "id": "fullstack-dotnet",
           "label": "Senior Fullstack .NET Developer",
           "kind": "employer-facing",
@@ -1174,6 +853,87 @@
             "data"
           ]
         },
+        {
+          "id": "desktop-winforms",
+          "label": "Senior WinForms / Desktop .NET Developer",
+          "kind": "employer-facing",
+          "headline": "Senior WinForms / Desktop .NET Developer – Modernizing LOB Apps (C#, WinForms, VB6/VB.NET, SQL Server)",
+          "aboutKey": "about-desktop-winforms",
+          "experienceOrder": [
+            "storable",
+            "prestage-farms",
+            "iadvantage",
+            "rural-sourcing",
+            "pk-promotions",
+            "rainmaker",
+            "hancock-whitney",
+            "computer-specialist"
+          ],
+          "experienceOverrides": {
+            "storable": {
+              "title": "Software Engineer II (WinForms/Desktop)",
+              "description": [
+                "Maintained and extended .NET WinForms applications alongside web properties for insurance products.",
+                "Introduced unit testing patterns to WinForms and kept desktop and service layers in sync during domain-driven design adoption."
+              ]
+            },
+            "prestage-farms": {
+              "title": "Programmer/Analyst (Desktop Modernization)",
+              "description": [
+                "Led a team modernizing VB6 accounting and inventory software, replacing legacy reporting and PDF generation.",
+                "Added custom bug reporting and ticketing to keep desktop work visible and delivered the project early using Agile practices."
+              ]
+            },
+            "iadvantage": {
+              "description": [
+                "Supported offline WinForms and Xamarin apps while delivering user-defined data models and reporting in WebForms/MVC/WebAPI on Oracle.",
+                "Crafted responsive UIs with CSS, Bootstrap, and AngularJS."
+              ]
+            },
+            "pk-promotions": {
+              "description": [
+                "Built web-based commodity production management and product tracking systems that paired with desktop workflows.",
+                "Supported sales and marketing systems for the business."
+              ]
+            },
+            "hancock-whitney": {
+              "description": [
+                "Built desktop applications against DB2/Argo Data, adding reporting and data-access front-ends.",
+                "Created data-driven ASP pages and validation JavaScript to support desktop workflows."
+              ]
+            },
+            "rainmaker": {
+              "description": [
+                "Developed front-ends and components in VB6, VB.NET, and ASP (Classic/Web Forms) with Access, InterDev, Flash, and SQL Server.",
+                "Assisted in IT system design for agency clients."
+              ]
+            }
+          },
+          "skillsPrimary": [
+            "WinForms",
+            "C#",
+            "ASP.NET",
+            ".NET Core",
+            "SQL Server",
+            "Legacy modernization",
+            "Visual Basic .NET"
+          ],
+          "skillsSecondary": [
+            "Bootstrap",
+            "AngularJS",
+            "Azure DevOps",
+            "Hangfire",
+            "Project management"
+          ],
+          "tags": [
+            "desktop",
+            "winforms",
+            "modernization",
+            "lob"
+          ]
+        }
+      ],
+      "byId": {
         "solution-architect": {
           "id": "solution-architect",
           "label": ".NET Solution Architect / Technical Architect",
@@ -1369,6 +1129,246 @@
             "legacy",
             "refactoring"
           ]
+        },
+        "backend-modernization": {
+          "id": "backend-modernization",
+          "label": "Senior .NET Backend / Modernization",
+          "kind": "employer-facing",
+          "headline": "Senior .NET Backend Engineer – Legacy to Modern Backends (C#, .NET Core, SQL Server/PostgreSQL, Azure)",
+          "aboutKey": "about-backend-modernization",
+          "experienceOrder": [
+            "storable",
+            "iadvantage",
+            "rural-sourcing",
+            "solid-earth",
+            "prestage-farms",
+            "not-rocket-science",
+            "litton-avondale"
+          ],
+          "experienceOverrides": {
+            "storable": {
+              "title": "Software Engineer II (Backend/Modernization)",
+              "description": [
+                "Built and maintained .NET Core services with Hangfire, PostgreSQL, and SQL Server to support insurance auto-protect features.",
+                "Kept WinForms and web applications moving by tightening unit test coverage and contributing to early domain-driven design efforts."
+              ]
+            },
+            "iadvantage": {
+              "title": "Lead Developer / Azure DevOps",
+              "description": [
+                "Delivered user-defined data models and custom reporting for GLP-compliant products using WebForms/MVC/WebAPI with REST OData and SOAP APIs on Oracle.",
+                "Led service delivery and DevOps practices across .NET, nHibernate, Entity Framework, and PL/SQL."
+              ]
+            },
+            "solid-earth": {
+              "title": "Application Developer / Architect",
+              "description": [
+                "Maintained RETS client/server software on Oracle and C# and modernized configurable ASP.NET MLS implementations.",
+                "Built a statistics module with deep market analytics and reporting."
+              ]
+            },
+            "prestage-farms": {
+              "title": "Programmer/Analyst (Modernization)",
+              "description": [
+                "Led modernization of legacy VB6 accounting and inventory software, replacing reports and delivering a new reporting frontend.",
+                "Added bug reporting and ticketing to tighten feedback loops; delivered the project ahead of schedule with Agile practices."
+              ]
+            },
+            "not-rocket-science": {
+              "description": [
+                "Delivered full-stack .NET work on SQL Server for Zen-Noh Grain and built ActionScript + ASP.NET tracking for shipments and tug boats.",
+                "Built a C# mobile app for a Sheriff's department."
+              ]
+            },
+            "litton-avondale": {
+              "description": [
+                "Wrote 3D-to-2D code transformations and deployed network applications on the LPD-17 project.",
+                "Built error logging/reporting and an IDE for scripting the transforms."
+              ]
+            }
+          },
+          "skillsPrimary": [
+            "C#",
+            ".NET Core",
+            "ASP.NET",
+            "Entity Framework",
+            "SQL Server",
+            "PostgreSQL",
+            "Azure DevOps",
+            "Hangfire",
+            "Legacy modernization"
+          ],
+          "skillsSecondary": [
+            "WinForms",
+            "AngularJS",
+            "Oracle",
+            "OData/SOAP APIs",
+            "Project management"
+          ],
+          "tags": [
+            "backend",
+            "modernization",
+            "services",
+            "data"
+          ]
+        },
+        "fullstack-dotnet": {
+          "id": "fullstack-dotnet",
+          "label": "Senior Fullstack .NET Developer",
+          "kind": "employer-facing",
+          "headline": "Senior Fullstack .NET – UI to APIs to Data (C#, ASP.NET MVC/WebAPI, JavaScript, SQL Server/PostgreSQL)",
+          "aboutKey": "about-fullstack-dotnet",
+          "experienceOrder": [
+            "iadvantage",
+            "storable",
+            "pk-promotions",
+            "not-rocket-science",
+            "prestage-farms",
+            "rainmaker",
+            "hancock-whitney"
+          ],
+          "experienceOverrides": {
+            "iadvantage": {
+              "title": "Lead Developer / Azure DevOps",
+              "description": [
+                "Delivered user-defined data models and custom reporting with WebForms/MVC/WebAPI backed by REST OData and SOAP APIs on Oracle.",
+                "Built responsive UIs with CSS, Bootstrap, and AngularJS and supported offline WinForms and Xamarin apps."
+              ]
+            },
+            "storable": {
+              "description": [
+                "Developed .NET WinForms and web applications for insurance products while building backend services in .NET Core with Hangfire, PostgreSQL, SQL Server, and Entity Framework.",
+                "Established unit testing patterns in WinForms and contributed to domain-driven design efforts."
+              ]
+            },
+            "pk-promotions": {
+              "description": [
+                "Built web-based commodity production management, product tracking, and sales/marketing systems.",
+                "Worked across UI and data layers to support business workflows."
+              ]
+            },
+            "not-rocket-science": {
+              "description": [
+                "Delivered full-stack .NET solutions on SQL Server for Zen-Noh Grain and built an ActionScript + ASP.NET tracking application for shipments and tug boats.",
+                "Created a C# mobile app for a Sheriff's department."
+              ]
+            },
+            "rainmaker": {
+              "description": [
+                "Developed components and front-ends in VB6, VB.NET, and ASP (Classic/Web Forms) with Access, InterDev, Flash, and SQL Server.",
+                "Assisted in IT system design for agency clients."
+              ]
+            },
+            "hancock-whitney": {
+              "description": [
+                "Built desktop apps against DB2/Argo Data with reporting and data access front-ends, plus data-driven ASP pages and validation JavaScript.",
+                "Designed and implemented SQL Server applications."
+              ]
+            }
+          },
+          "skillsPrimary": [
+            "C#",
+            "ASP.NET",
+            ".NET Core",
+            "JavaScript",
+            "AngularJS",
+            "Bootstrap",
+            "SQL Server",
+            "PostgreSQL",
+            "Full-stack development"
+          ],
+          "skillsSecondary": [
+            "Entity Framework",
+            "Azure DevOps",
+            "WinForms",
+            "Web development",
+            "Project management"
+          ],
+          "tags": [
+            "fullstack",
+            "ui",
+            "api",
+            "data"
+          ]
+        },
+        "desktop-winforms": {
+          "id": "desktop-winforms",
+          "label": "Senior WinForms / Desktop .NET Developer",
+          "kind": "employer-facing",
+          "headline": "Senior WinForms / Desktop .NET Developer – Modernizing LOB Apps (C#, WinForms, VB6/VB.NET, SQL Server)",
+          "aboutKey": "about-desktop-winforms",
+          "experienceOrder": [
+            "storable",
+            "prestage-farms",
+            "iadvantage",
+            "rural-sourcing",
+            "pk-promotions",
+            "rainmaker",
+            "hancock-whitney",
+            "computer-specialist"
+          ],
+          "experienceOverrides": {
+            "storable": {
+              "title": "Software Engineer II (WinForms/Desktop)",
+              "description": [
+                "Maintained and extended .NET WinForms applications alongside web properties for insurance products.",
+                "Introduced unit testing patterns to WinForms and kept desktop and service layers in sync during domain-driven design adoption."
+              ]
+            },
+            "prestage-farms": {
+              "title": "Programmer/Analyst (Desktop Modernization)",
+              "description": [
+                "Led a team modernizing VB6 accounting and inventory software, replacing legacy reporting and PDF generation.",
+                "Added custom bug reporting and ticketing to keep desktop work visible and delivered the project early using Agile practices."
+              ]
+            },
+            "iadvantage": {
+              "description": [
+                "Supported offline WinForms and Xamarin apps while delivering user-defined data models and reporting in WebForms/MVC/WebAPI on Oracle.",
+                "Crafted responsive UIs with CSS, Bootstrap, and AngularJS."
+              ]
+            },
+            "pk-promotions": {
+              "description": [
+                "Built web-based commodity production management and product tracking systems that paired with desktop workflows.",
+                "Supported sales and marketing systems for the business."
+              ]
+            },
+            "hancock-whitney": {
+              "description": [
+                "Built desktop applications against DB2/Argo Data, adding reporting and data-access front-ends.",
+                "Created data-driven ASP pages and validation JavaScript to support desktop workflows."
+              ]
+            },
+            "rainmaker": {
+              "description": [
+                "Developed front-ends and components in VB6, VB.NET, and ASP (Classic/Web Forms) with Access, InterDev, Flash, and SQL Server.",
+                "Assisted in IT system design for agency clients."
+              ]
+            }
+          },
+          "skillsPrimary": [
+            "WinForms",
+            "C#",
+            "ASP.NET",
+            ".NET Core",
+            "SQL Server",
+            "Legacy modernization",
+            "Visual Basic .NET"
+          ],
+          "skillsSecondary": [
+            "Bootstrap",
+            "AngularJS",
+            "Azure DevOps",
+            "Hangfire",
+            "Project management"
+          ],
+          "tags": [
+            "desktop",
+            "winforms",
+            "modernization",
+            "lob"
+          ]
         }
       },
       "defaultProfileId": "code-monkey"
@@ -1542,6 +1542,6 @@
       "src/data/resume/profiles/*.json",
       "src/data/projects/projects.json"
     ],
-    "lastBuild": "2025-11-28T06:29:21.203Z"
+    "lastBuild": "2025-11-28T07:33:21.840Z"
   }
 }
