@@ -22,6 +22,21 @@ const SOURCE_FILES = [
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
 
+function filterPublishedProfiles(registry) {
+  const visible = registry.visible ?? [];
+  return {
+    all: clone(visible),
+    visible: clone(visible),
+    byId: clone(
+      visible.reduce((acc, profile) => {
+        acc[profile.id] = profile;
+        return acc;
+      }, {}),
+    ),
+    defaultProfileId: registry.defaultProfileId,
+  };
+}
+
 function flattenExperience(list) {
   return (list || []).map((item) => ({
     ...item,
@@ -36,7 +51,7 @@ export function buildResumeChatData() {
     resume: {
       experience: flattenExperience(resumeData.experience),
       skills: clone(resumeData.skills),
-      profiles: clone(resumeData.profiles),
+      profiles: filterPublishedProfiles(resumeData.profiles),
       aboutVariants: clone(resumeData.aboutVariants),
     },
     projects: {

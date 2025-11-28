@@ -35,6 +35,9 @@ const GEMINI_API_KEY = (process.env.GEMINI_API_KEY || '').trim();
 const GEMINI_MODEL = (process.env.GEMINI_MODEL || 'models/gemini-2.5-flash').trim();
 const MAX_ATTEMPTS = 5;
 const RETRY_DELAY_MS = 1000;
+const argv = process.argv.slice(2);
+const runMode = argv.includes('--all') ? 'all' : 'missing'; // default missing
+const explicitFiles = argv.filter((arg) => !arg.startsWith('-'));
 
 if (!GEMINI_API_KEY) {
   throw new Error('GEMINI_API_KEY environment variable is required.');
@@ -294,10 +297,18 @@ async function main() {
     return;
   }
 
-  const jdFiles = fs
+  const resolvedExplicit = explicitFiles.map((f) =>
+    path.isAbsolute(f) ? f : path.join(PRIVATE_JD_PATH, f),
+  );
+
+  const discovered = fs
     .readdirSync(PRIVATE_JD_PATH)
     .filter((f) => f.endsWith('.md') || f.endsWith('.txt'))
     .map((f) => path.join(PRIVATE_JD_PATH, f));
+
+  const jdFiles = resolvedExplicit.length
+    ? resolvedExplicit.filter((p) => fs.existsSync(p))
+    : discovered;
 
   if (jdFiles.length === 0) {
     console.log('No job description files found. Nothing to do.');
@@ -311,6 +322,14 @@ async function main() {
   const canonicalData = JSON.parse(fs.readFileSync(canonicalPath, 'utf-8'));
 
   for (const jdPath of jdFiles) {
+    const expectedSlug = sanitizeSlug(slugFromFileName(jdPath));
+    const expectedOutput = path.join(OUTPUT_DIR, `${expectedSlug}.json`);
+
+    if (runMode === 'missing' && fs.existsSync(expectedOutput)) {
+      console.log(`Skipping ${path.basename(jdPath)} (missing-only mode; output exists).`);
+      continue;
+    }
+
     try {
       const { profile, outputPath } = await generateWithRetries({
         jdPath,
