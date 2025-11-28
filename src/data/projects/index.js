@@ -1,6 +1,3 @@
-import { createRequire } from 'module';
-
-const require = createRequire(import.meta.url);
-const projects = require('./projects.json');
+import projects from './projects.json' assert { type: 'json' };
 
 export default projects;

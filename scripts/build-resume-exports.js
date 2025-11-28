@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { getProfileView, resumeData } from '../src/data/resume/index.js';
+import { getProfileView, resumeData } from '../src/data/resume/resumeData.node.js';
 import {
   renderDocxResume,
   renderHtmlResume,
@@ -16,27 +16,32 @@ const PROFILE_SLUGS = resumeData.profiles.all.map((profile) => profile.id);
 
 async function main() {
   const distRoot = path.resolve(__dirname, '..', 'dist');
+  const prefixedRoot = path.join(distRoot, 'zekenaulty.github.io');
 
   if (!fs.existsSync(distRoot)) {
     throw new Error('dist/ does not exist. Run `npm run build` first.');
   }
 
+  const writeTargets = [distRoot, prefixedRoot];
+
   for (const slug of PROFILE_SLUGS) {
     const view = getProfileView(slug);
-    const profileDir = path.join(distRoot, 'resume', slug);
-    fs.mkdirSync(profileDir, { recursive: true });
+    for (const root of writeTargets) {
+      const profileDir = path.join(root, 'resume', slug);
+      fs.mkdirSync(profileDir, { recursive: true });
 
-    const html = renderHtmlResume(view);
-    fs.writeFileSync(path.join(profileDir, 'index.html'), html, 'utf8');
+      const html = renderHtmlResume(view);
+      fs.writeFileSync(path.join(profileDir, 'index.html'), html, 'utf8');
 
-    const txt = renderTextResume(view);
-    fs.writeFileSync(path.join(profileDir, `resume-${slug}.txt`), txt, 'utf8');
+      const txt = renderTextResume(view);
+      fs.writeFileSync(path.join(profileDir, `resume-${slug}.txt`), txt, 'utf8');
 
-    const docxBuffer = await renderDocxResume(view);
-    fs.writeFileSync(path.join(profileDir, `resume-${slug}.docx`), docxBuffer);
+      const docxBuffer = await renderDocxResume(view);
+      fs.writeFileSync(path.join(profileDir, `resume-${slug}.docx`), docxBuffer);
 
-    const pdfBuffer = await renderPdfResume(view);
-    fs.writeFileSync(path.join(profileDir, `resume-${slug}.pdf`), pdfBuffer);
+      const pdfBuffer = await renderPdfResume(view);
+      fs.writeFileSync(path.join(profileDir, `resume-${slug}.pdf`), pdfBuffer);
+    }
   }
 }
 
