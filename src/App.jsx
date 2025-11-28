@@ -15,6 +15,7 @@ import SummarySection from './components/SummarySection.jsx';
 import ExperienceSection from './components/ExperienceSection.jsx';
 import SkillsSection from './components/SkillsSection.jsx';
 import ProjectsSection from './components/ProjectsSection.jsx';
+import HomeIntroSection from './components/HomeIntroSection.jsx';
 import { useProfileView } from './hooks/useProfileView.js';
 import { resumeData } from './data/resume/index.js';
 import projects from './data/projects/index.js';
@@ -75,13 +76,10 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <BackgroundLayer matrixEnabled={matrixEnabled} />
-      <Container maxWidth="lg" sx={{ py: 6, position: 'relative', zIndex: 0 }}>
+      <HomeIntroSection />
+      <Container maxWidth="lg" sx={{ py: 6, position: 'relative', zIndex: 1, background: 'transparent' }}>
         <Stack spacing={4}>
-          <HeaderBar
-            name="Zeke Nauty"
-            matrixEnabled={matrixEnabled}
-            onToggleMatrix={setMatrixEnabled}
-          />
+          <HeaderBar name="Zeke Naulty" matrixEnabled={matrixEnabled} onToggleMatrix={setMatrixEnabled} />
 
           <ProfileDropdown
             profiles={resumeData.profiles.all}

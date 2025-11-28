@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import { keyframes, styled } from '@mui/material/styles';
+import MatrixCanvas from './MatrixCanvas.jsx';
 
 const matrixShift = keyframes`
   0% { background-position: 0 0, 0 0; }
@@ -14,7 +15,7 @@ const MatrixOverlay = styled(Box)(({ theme }) => ({
     'repeating-linear-gradient(90deg, rgba(110,180,255,0.16) 0, rgba(110,180,255,0.16) 1px, transparent 1px, transparent 80px), linear-gradient(180deg, rgba(120,170,255,0.14), rgba(8,12,26,0.45))',
   backgroundSize: '120px 100%, 100% 100%',
   mixBlendMode: 'screen',
-  opacity: 0.32,
+  opacity: 0.25,
   animation: `${matrixShift} 18s linear infinite`,
   filter: `drop-shadow(0 0 8px ${theme.palette.primary.main})`,
 }));
@@ -23,10 +24,10 @@ const ColorWash = styled(Box)({
   position: 'absolute',
   inset: 0,
   background:
-    'radial-gradient(circle at 15% 20%, rgba(110,170,255,0.18), transparent 32%), radial-gradient(circle at 80% 10%, rgba(120,180,255,0.2), transparent 36%), radial-gradient(circle at 65% 75%, rgba(80,130,200,0.18), transparent 38%), linear-gradient(145deg, rgba(8,12,24,0.9) 0%, rgba(6,10,20,0.92) 35%, rgba(4,8,16,0.96) 100%)',
+    'radial-gradient(circle at 15% 20%, rgba(110,170,255,0.18), transparent 32%), radial-gradient(circle at 80% 10%, rgba(120,180,255,0.2), transparent 36%), radial-gradient(circle at 65% 75%, rgba(80,130,200,0.18), transparent 38%), linear-gradient(145deg, rgba(8,12,24,0.8) 0%, rgba(6,10,20,0.88) 35%, rgba(4,8,16,0.92) 100%)',
   mixBlendMode: 'screen',
-  opacity: 0.85,
-  filter: 'saturate(1.05)',
+  opacity: 0.35,
+  filter: 'saturate(1.02)',
 });
 
 const buildAssetUrl = (path) => {
@@ -43,20 +44,27 @@ function BackgroundLayer({
   matrixEnabled = false,
 }) {
   return (
-    <Box sx={{ position: 'fixed', inset: 0, zIndex: -2, overflow: 'hidden' }}>
+    <Box
+      sx={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 0,
+        overflow: 'hidden',
+        pointerEvents: 'none',
+      }}
+    >
       <ColorWash />
       <Box
-        component="img"
-        src={image}
-        alt=""
         aria-hidden
         sx={{
           position: 'absolute',
           inset: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          filter: 'brightness(0.35) contrast(1.05)',
+          backgroundImage: `url(${image})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: '50% 50%',
+          backgroundSize: 'cover',
+          filter: 'brightness(0.5) contrast(1.05)',
+          opacity: 0.6,
           mixBlendMode: 'soft-light',
         }}
       />
@@ -64,11 +72,16 @@ function BackgroundLayer({
         sx={{
           position: 'absolute',
           inset: 0,
-          backdropFilter: 'blur(2px) saturate(1.08)',
-          background: 'linear-gradient(180deg, rgba(5,10,20,0.35), rgba(5,10,20,0.65))',
+          backdropFilter: 'blur(1px) saturate(1.04)',
+          background: 'linear-gradient(180deg, rgba(5,10,20,0.2), rgba(5,10,20,0.4))',
         }}
       />
-      {matrixEnabled ? <MatrixOverlay /> : null}
+      {matrixEnabled ? (
+        <>
+          <MatrixCanvas />
+          <MatrixOverlay />
+        </>
+      ) : null}
     </Box>
   );
 }
