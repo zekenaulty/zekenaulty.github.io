@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import BackgroundLayer from './components/BackgroundLayer.jsx';
 import ProfileDropdown from './components/ProfileDropdown.jsx';
+import ResumeDownloadLinks from './components/ResumeDownloadLinks.jsx';
 import HeaderBar from './components/HeaderBar.jsx';
 import SummarySection from './components/SummarySection.jsx';
 import ExperienceSection from './components/ExperienceSection.jsx';
@@ -100,6 +101,8 @@ function App() {
             value={selectedProfileId}
             onChange={setSelectedProfileId}
           />
+
+          <ResumeDownloadLinks profileId={profile.id} profileLabel={profile.label} />
 
           <SummarySection headline={headline} profileLabel={profile.label} paragraphs={about?.paragraphs} />
 
