@@ -1,16 +1,39 @@
-const profileModules = import.meta.glob('./*.json', { eager: true, import: 'default' });
+const baseProfiles = import.meta.glob('./*.json', {
+  eager: true,
+  import: 'default',
+});
 
-const profiles = Object.values(profileModules)
+const generatedProfiles = import.meta.glob('./generated/*.json', {
+  eager: true,
+  import: 'default',
+});
+
+const allModules = {
+  ...baseProfiles,
+  ...generatedProfiles,
+};
+
+const allProfiles = Object.values(allModules)
   .map((mod) => mod?.default ?? mod)
-  .filter((profile) => profile && profile.id)
-  .sort((a, b) => (a.label || a.id).localeCompare(b.label || b.id));
+  .filter((profile) => profile && profile.id);
 
-const byId = Object.fromEntries(profiles.map((profile) => [profile.id, profile]));
-const defaultProfileId = byId['code-monkey'] ? 'code-monkey' : profiles[0]?.id;
+allProfiles.sort((a, b) => a.id.localeCompare(b.id));
+
+const byId = Object.fromEntries(allProfiles.map((profile) => [profile.id, profile]));
+const visible = allProfiles.filter((profile) => profile.published !== false);
+const defaultProfileId =
+  visible.find((profile) => profile.id === 'code-monkey')?.id ??
+  visible[0]?.id ??
+  allProfiles[0]?.id;
+
+export function getAllProfiles() {
+  return allProfiles;
+}
 
 export const ProfileRegistry = {
-  all: profiles,
   byId,
+  all: allProfiles,
+  visible,
   defaultProfileId,
 };
 

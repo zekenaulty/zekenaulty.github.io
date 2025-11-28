@@ -2,6 +2,7 @@
   "id": "code-monkey",
   "label": "Code Monkey (Default)",
   "kind": "character",
+  "published": true,
   "headline": "Senior .NET Engineer / Code Monkey for Messy Systems (C#, .NET Core, WinForms, ASP.NET)",
   "aboutKey": "about-code-monkey",
   "experienceOrder": [

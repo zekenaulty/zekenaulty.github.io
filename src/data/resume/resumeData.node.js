@@ -1,11 +1,10 @@
 import { createRequire } from 'module';
 import { buildProfileView } from './viewBuilder.js';
+import ProfileRegistry from './profiles/profileData.node.js';
 
 const require = createRequire(import.meta.url);
 
 const projects = require('../projects/projects.json');
-
-const ProfileRegistry = require('./profiles/profileData.node.js').ProfileRegistry;
 const aboutVariants = require('./aboutVariants.json');
 const skillsCatalog = require('./skills.json');
 

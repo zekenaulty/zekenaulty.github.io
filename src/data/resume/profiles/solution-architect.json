@@ -2,6 +2,7 @@
   "id": "solution-architect",
   "label": ".NET Solution Architect / Technical Architect",
   "kind": "employer-facing",
+  "published": true,
   "headline": ".NET Solution Architect – Modernizing Long-Lived Systems (C#, ASP.NET, SQL Server/PostgreSQL, Azure DevOps)",
   "aboutKey": "about-solution-architect",
   "experienceOrder": [

@@ -2,6 +2,7 @@
   "id": "backend-modernization",
   "label": "Senior .NET Backend / Modernization",
   "kind": "employer-facing",
+  "published": true,
   "headline": "Senior .NET Backend Engineer – Legacy to Modern Backends (C#, .NET Core, SQL Server/PostgreSQL, Azure)",
   "aboutKey": "about-backend-modernization",
   "experienceOrder": [

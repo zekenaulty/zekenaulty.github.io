@@ -1,0 +1,108 @@
+{
+  "id": "proactive-global-software-developer-ii",
+  "label": "Software Developer II at Proactive Global (ATS)",
+  "kind": "employer-facing",
+  "published": false,
+  "headline": "Software Developer II – Warehouse Automation, .NET Core, React, T-SQL, APIs",
+  "aboutKey": "about-proactive-global-warehouse",
+  "experienceOrder": [
+    "storable",
+    "not-rocket-science",
+    "prestage-farms",
+    "iadvantage",
+    "rural-sourcing",
+    "solid-earth",
+    "litton-avondale"
+  ],
+  "experienceOverrides": {
+    "storable": {
+      "title": "Software Engineer II",
+      "description": [
+        "As a remote Software Engineer II, I built and enhanced backend features using C# / .NET Core with PostgreSQL and SQL Server, creating and optimizing database components for insurance auto-protect workflows.",
+        "Participated in the full development lifecycle, adding background jobs and APIs for real-time data synchronization.",
+        "Troubleshot production issues and contributed to documentation and code reviews, improving stability in complex systems."
+      ]
+    },
+    "iadvantage": {
+      "title": "Lead Developer / Azure DevOps",
+      "description": [
+        "Led delivery of GLP-compliant industrial software with C# ASP.NET WebAPI services, including RESTful OData and SOAP APIs backed by Oracle and PL/SQL database components.",
+        "Participated in the entire development lifecycle, creating configurable reporting pipelines and building responsive user interfaces with AngularJS.",
+        "Guided Azure DevOps practices for deployment, mentored developers, and contributed to documentation and code reviews."
+      ]
+    },
+    "prestage-farms": {
+      "title": "Programmer/Analyst",
+      "description": [
+        "Led modernization of legacy VB6 accounting and inventory systems into a C# WinForms .NET application, directly addressing warehouse automation and material-handling environments.",
+        "Consolidated 8+ operational modules, contributing to technical improvements and ensuring seamless daily operations by driving quality practices and Agile development.",
+        "Troubleshot and resolved application and database issues in a production environment."
+      ]
+    },
+    "rural-sourcing": {
+      "title": "Senior Software Developer",
+      "description": [
+        "Delivered Microsoft-stack projects for multiple clients, with expertise in C#, ASP.NET, and SQL Server development.",
+        "Participated in the entire development lifecycle, mentoring junior developers on coding standards and Agile development practices, conducting code reviews, and planning sprints.",
+        "Collaborated with cross-functional teams to convert operational requirements into technical solutions and contribute to technical improvements."
+      ]
+    },
+    "solid-earth": {
+      "title": "Application Developer/Architect",
+      "description": [
+        "Developed and maintained RETS client/server software on Oracle and C#, tuning performance and data handling for reliable real-time real estate MLS integrations.",
+        "Built configurable ASP.NET frontends and a market analytics module, providing ongoing support and troubleshooting for application and database issues.",
+        "Created, optimized, and maintained database components and participated in the entire development lifecycle, from planning to deployment."
+      ]
+    },
+    "not-rocket-science": {
+      "title": "Programmer/Analyst",
+      "description": [
+        "Supported inventory and operations workflows for Zen-Noh Grain, delivering full-stack .NET and SQL Server development in a material-handling context.",
+        "Developed a tracking application for shipments and tug boats, involving real-time data processing and robust database components.",
+        "This experience aligns with warehouse automation and automation systems, including designing database schemas and service endpoints for consistent data across web and mobile surfaces."
+      ]
+    },
+    "litton-avondale": {
+      "title": "Engineering Application Developer",
+      "description": [
+        "In an industrial software environment, I developed 3D-to-2D code transformations for shipbuilding engineering drawings.",
+        "Managed deployment of networked applications and built an IDE to script and automate transformations, improving operational efficiency and contributing to technical improvements.",
+        "Developed error reporting/logging databases and front-ends to monitor transformation runs, troubleshooting and resolving application and database issues."
+      ]
+    }
+  },
+  "skillsPrimary": [
+    "C#",
+    ".NET Core",
+    "React",
+    "T-SQL",
+    "APIs",
+    "Real-time processing",
+    "Automation systems",
+    "Agile Methodologies",
+    "Azure DevOps"
+  ],
+  "skillsSecondary": [
+    "SQL Server",
+    "PostgreSQL",
+    "Oracle",
+    "Git",
+    "JavaScript",
+    "Full-stack development",
+    "Legacy modernization",
+    "Problem-solving",
+    "Mentoring",
+    "Project management",
+    "Web development"
+  ],
+  "tags": [
+    "backend",
+    "frontend",
+    "database",
+    "automation",
+    "industrial",
+    "fullstack",
+    "remote"
+  ]
+}

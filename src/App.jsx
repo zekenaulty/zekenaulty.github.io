@@ -97,7 +97,7 @@ function App() {
           />
 
           <ProfileDropdown
-            profiles={resumeData.profiles.all}
+            profiles={resumeData.profiles.visible ?? resumeData.profiles.all}
             value={selectedProfileId}
             onChange={setSelectedProfileId}
           />

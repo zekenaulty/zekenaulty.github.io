@@ -30,3 +30,5 @@ arc.py
 .env
 .env.local
 .env.*.local
+.private
+private/
