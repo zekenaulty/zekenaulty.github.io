@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zekenaulty.github.io/zekenaulty.github.io/sitemap.xml
+Sitemap: https://zekenaulty.github.io/sitemap.xml

@@ -20,7 +20,7 @@ import { GeminiHttpClient } from '../llm/geminiHttpClient';
 import { callResumeChat } from '../llm/chatService';
 
 const GEMINI_API_KEY = 'AIzaSyBM6LHTnKOLO1QvaUp1Gg9ShMFZcwitwTQ'; //this is an accepted an known security risk key for demo purposes only
-const GEMINI_MODEL = 'gemini-2.5-flash';
+const GEMINI_MODEL = 'gemini-2.5-flash'; //'gemini-3-pro-preview'; // :( not yet available for free use
 
 const INITIAL_ASSISTANT_MESSAGE = {
   id: 'welcome',
