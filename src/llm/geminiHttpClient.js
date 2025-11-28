@@ -47,13 +47,13 @@ export class GeminiHttpClient {
    * @param {Object} params
    * @param {string} params.apiKey  - Gemini API key (required).
    * @param {string} [params.model='gemini-2.5-flash'] - Default model name.
-   * @param {string} [params.baseUrl='https://generativelanguage.googleapis.com/v1beta/models']
+   * @param {string} [params.baseUrl='https://generativelanguage.googleapis.com/v1beta']
    *        Base URL without trailing slash.
    */
   constructor({
     apiKey,
     model = 'gemini-2.5-flash',
-    baseUrl = 'https://generativelanguage.googleapis.com/v1beta/models',
+    baseUrl = 'https://generativelanguage.googleapis.com/v1beta',
   }) {
     if (!apiKey || typeof apiKey !== 'string' || !apiKey.trim()) {
       throw new Error('GeminiHttpClient requires a non-empty apiKey.');
@@ -70,11 +70,14 @@ export class GeminiHttpClient {
    * @returns {string}
    * @private
    */
-  #buildGenerateUrl() {
-    const modelPath = this.#model.startsWith('models/')
-      ? this.#model
-      : `models/${this.#model}`;
-    return `${this.#baseUrl}/${modelPath}:generateContent`;
+  #buildGenerateUrl(modelName = this.#model) {
+    const targetModel = modelName || this.#model;
+    const base = this.#baseUrl.replace(/\/+$/, '');
+    const modelSegment = targetModel.startsWith('models/')
+      ? targetModel.replace(/^models\//, '')
+      : targetModel;
+    const baseWithModels = base.endsWith('/models') ? base : `${base}/models`;
+    return `${baseWithModels}/${modelSegment}:generateContent`;
   }
 
   /**
@@ -87,8 +90,8 @@ export class GeminiHttpClient {
    * @returns {Promise<any>}
    * @private
    */
-  async #postGenerate(body) {
-    const url = this.#buildGenerateUrl();
+  async #postGenerate(body, modelName) {
+    const url = this.#buildGenerateUrl(modelName);
 
     let response;
     try {
@@ -98,6 +101,7 @@ export class GeminiHttpClient {
           'x-goog-api-key': this.#apiKey,
           'Content-Type': 'application/json',
         },
+        mode: 'cors',
         body: JSON.stringify(body),
       });
     } catch (err) {
@@ -126,6 +130,23 @@ export class GeminiHttpClient {
     }
 
     return json;
+  }
+
+  /**
+   * Exposes raw generateContent for callers that want to build
+   * the request body themselves (system_instruction, contents, etc).
+   *
+   * @param {object} body
+   * @param {{ model?: string }} [options]
+   * @returns {Promise<any>}
+   */
+  async generateContent(body, options = {}) {
+    if (!body || typeof body !== 'object') {
+      throw new Error('generateContent requires a request body object.');
+    }
+
+    const response = await this.#postGenerate(body, options.model);
+    return response;
   }
 
   /**
@@ -180,6 +201,17 @@ export class GeminiHttpClient {
 
     if (!texts.length) return null;
     return texts.join('');
+  }
+
+  /**
+   * Public extractor so callers using generateContent can reuse
+   * the text parsing logic.
+   *
+   * @param {any} response
+   * @returns {string|null}
+   */
+  extractTextFromResponse(response) {
+    return this.#extractText(response);
   }
 
   /**

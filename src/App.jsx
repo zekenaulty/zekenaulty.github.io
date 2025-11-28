@@ -16,6 +16,8 @@ import ExperienceSection from './components/ExperienceSection.jsx';
 import SkillsSection from './components/SkillsSection.jsx';
 import ProjectsSection from './components/ProjectsSection.jsx';
 import HomeIntroSection from './components/HomeIntroSection.jsx';
+import ChatDrawer from './components/ChatDrawer.jsx';
+import ChatToggleButton from './components/ChatToggleButton.jsx';
 import { useProfileView } from './hooks/useProfileView.js';
 import { resumeData } from './data/resume/index.js';
 import projects from './data/projects/index.js';
@@ -63,6 +65,7 @@ function App() {
     resumeData.profiles.defaultProfileId,
   );
   const [matrixEnabled, setMatrixEnabled] = useState(true);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   const { headline, about, experiences, skillsPrimary, skillsSecondary, profile, skills } =
     useProfileView(selectedProfileId);
@@ -76,10 +79,21 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <BackgroundLayer matrixEnabled={matrixEnabled} />
+      <ChatDrawer isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
       <HomeIntroSection />
       <Container maxWidth="lg" sx={{ py: 6, position: 'relative', zIndex: 1, background: 'transparent' }}>
         <Stack spacing={4}>
-          <HeaderBar name="Zeke Naulty" matrixEnabled={matrixEnabled} onToggleMatrix={setMatrixEnabled} />
+          <HeaderBar
+            name="Zeke Naulty"
+            matrixEnabled={matrixEnabled}
+            onToggleMatrix={setMatrixEnabled}
+            rightActions={
+              <ChatToggleButton
+                isOpen={isChatOpen}
+                onClick={() => setIsChatOpen((open) => !open)}
+              />
+            }
+          />
 
           <ProfileDropdown
             profiles={resumeData.profiles.all}

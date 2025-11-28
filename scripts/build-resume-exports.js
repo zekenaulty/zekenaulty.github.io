@@ -8,6 +8,7 @@ import {
   renderPdfResume,
   renderTextResume,
 } from './resumeTemplates.js';
+import { buildResumeChatData } from './build-resume-chat-data.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,6 +16,8 @@ const __dirname = path.dirname(__filename);
 const PROFILE_SLUGS = resumeData.profiles.all.map((profile) => profile.id);
 
 async function main() {
+  buildResumeChatData();
+
   const distRoot = path.resolve(__dirname, '..', 'dist');
   const prefixedRoot = path.join(distRoot, 'zekenaulty.github.io');
 

@@ -1,0 +1,16 @@
+{
+  "id": "about-zeke-naulty",
+  "text": [
+    "Zeke Naulty is a senior .NET engineer and solution architect with more than two decades of experience designing, developing, and modernizing line-of-business software.",
+    "",
+    "Zeke started building software in the late 1990s, beginning with VB3/4/5 and classic web tooling like InterDev and FrontPage, and evolved into ASP.NET WebForms, ASP.NET MVC, WebAPI, and modern .NET Core and WinForms applications. Over his career he has worked across desktop, web, services, and fullstack systems using technologies such as C#, .NET Core, WinForms, ASP.NET, AngularJS, Oracle, SQL Server, PostgreSQL, NHibernate, Entity Framework, REST APIs, and Azure DevOps.",
+    "",
+    "He has held roles ranging from individual contributor developer to lead and architect-style positions at organizations including Not Rocket Science, Solid Earth, Rural Sourcing, Prestage Farms, iAdvantage Software, and Storable, typically focusing on legacy-to-modernization work, complex business domains, and long-lived applications.",
+    "",
+    "Zeke's core strengths include: refactoring and stabilizing legacy codebases, designing pragmatic modernization paths, building and maintaining fullstack .NET systems, mentoring developers on testing and maintainability, and translating messy real-world constraints into coherent technical designs. He is comfortable being dropped into an existing codebase, discovering its real behavior, and incrementally making it saner and more predictable.",
+    "",
+    "He thinks like a systems person: he cares about how pieces fit together over time rather than just shipping one-off features. He enjoys deep problem solving, critical thinking, and collaborating with teams to create solutions, and he prefers clear, honest descriptions of work over corporate buzzwords or theater.",
+    "",
+    "In short: Zeke is a high-end .NET 'code monkey' in his own words - someone who genuinely enjoys debugging, refactoring, and modernizing complex systems, while still being able to design and deliver new features end-to-end."
+  ]
+}
