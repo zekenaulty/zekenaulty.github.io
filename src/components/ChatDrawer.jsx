@@ -30,6 +30,11 @@ const GEMINI_MODEL = ENV_MODEL || 'gemini-2.5-flash';
 const DEFAULT_PROXY_URL = 'https://gemini-proxy.zekenaulty.workers.dev'; // e.g., https://gemini-proxy.yourdomain.workers.dev
 const GEMINI_PROXY_URL = ENV_PROXY_URL || DEFAULT_PROXY_URL;
 
+const STORAGE_KEY = 'chat-history-v1';
+const INITIAL_LOAD_COUNT = 100;
+const LOAD_BATCH_SIZE = 50;
+const MAX_SEND_TURNS = 100;
+
 const INITIAL_ASSISTANT_MESSAGE = {
   id: 'welcome',
   role: 'model',
@@ -50,9 +55,14 @@ function ChatDrawer({ isOpen, onClose }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [clientError, setClientError] = useState('');
+  const [hydrated, setHydrated] = useState(false);
 
+  const fullHistoryRef = useRef([INITIAL_ASSISTANT_MESSAGE]);
+  const visibleStartRef = useRef(0);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
+  const listRef = useRef(null);
+  const prependRestoreRef = useRef(null);
 
   const client = useMemo(() => {
     const proxyUrl = isProd ? GEMINI_PROXY_URL : ENV_PROXY_URL;
@@ -115,10 +125,86 @@ function ChatDrawer({ isOpen, onClose }) {
   }, [client]);
 
   useEffect(() => {
-    if (messagesEndRef.current) {
+    if (prependRestoreRef.current) {
+      const el = listRef.current;
+      if (el) {
+        const { prevHeight, prevTop } = prependRestoreRef.current;
+        const nextHeight = el.scrollHeight;
+        el.scrollTop = (nextHeight - prevHeight) + prevTop;
+      }
+      prependRestoreRef.current = null;
+      return;
+    }
+
+    if (isOpen && messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [messages, isLoading]);
+  }, [messages, isLoading, isOpen]);
+
+  useEffect(() => {
+    if (isOpen && messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    let stored = [];
+    try {
+      const raw = window.localStorage.getItem(STORAGE_KEY);
+      const parsed = raw ? JSON.parse(raw) : null;
+      stored = Array.isArray(parsed) ? parsed : [];
+    } catch (err) {
+      console.warn('Failed to parse stored chat history', err);
+    }
+
+    if (!stored.length) {
+      stored = [INITIAL_ASSISTANT_MESSAGE];
+      try {
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
+      } catch (err) {
+        console.warn('Failed to initialize chat history', err);
+      }
+    }
+
+    fullHistoryRef.current = stored;
+    const start = Math.max(0, stored.length - INITIAL_LOAD_COUNT);
+    visibleStartRef.current = start;
+    setMessages(stored.slice(start));
+    setHydrated(true);
+  }, []);
+
+  const persistHistory = (history) => {
+    fullHistoryRef.current = history;
+    try {
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+      }
+    } catch (err) {
+      console.warn('Failed to persist chat history', err);
+    }
+  };
+
+  const loadOlderMessages = () => {
+    if (!hydrated) return;
+    const start = visibleStartRef.current;
+    if (start <= 0) return;
+
+    const newStart = Math.max(0, start - LOAD_BATCH_SIZE);
+    const olderSlice = fullHistoryRef.current.slice(newStart, start);
+    if (!olderSlice.length) return;
+
+    const el = listRef.current;
+    if (el) {
+      prependRestoreRef.current = {
+        prevHeight: el.scrollHeight,
+        prevTop: el.scrollTop,
+      };
+    }
+
+    visibleStartRef.current = newStart;
+    setMessages((prev) => [...olderSlice, ...prev]);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -131,9 +217,10 @@ function ChatDrawer({ isOpen, onClose }) {
     }
 
     const userMessage = makeMessage('user', trimmed);
-    const nextMessages = [...messages, userMessage];
+    const historyWithUser = [...fullHistoryRef.current, userMessage];
 
-    setMessages(nextMessages);
+    persistHistory(historyWithUser);
+    setMessages((prev) => [...prev, userMessage]);
     setInputValue('');
     setError('');
     setIsLoading(true);
@@ -142,7 +229,7 @@ function ChatDrawer({ isOpen, onClose }) {
     try {
       const { text } = await callResumeChat({
         client,
-        messages: nextMessages,
+        messages: historyWithUser.slice(-MAX_SEND_TURNS),
       });
 
       const reply = text?.trim()
@@ -150,6 +237,8 @@ function ChatDrawer({ isOpen, onClose }) {
         : 'I was unable to generate a reply. Please try again.';
 
       const replyMessage = makeMessage('model', reply);
+      const historyWithReply = [...historyWithUser, replyMessage];
+      persistHistory(historyWithReply);
       setMessages((prev) => [...prev, replyMessage]);
     } catch (err) {
       console.error('Gemini chat error', err);
@@ -287,6 +376,13 @@ function ChatDrawer({ isOpen, onClose }) {
               display: 'flex',
               flexDirection: 'column',
               gap: 1.5,
+              scrollBehavior: 'smooth',
+            }}
+            ref={listRef}
+            onScroll={(event) => {
+              if (event.currentTarget.scrollTop < 120) {
+                loadOlderMessages();
+              }
             }}
           >
             {messages.map((message) => renderMessage(message))}
