@@ -13,7 +13,9 @@ import { buildResumeChatData } from './build-resume-chat-data.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PROFILE_SLUGS = resumeData.profiles.all.map((profile) => profile.id);
+const PUBLIC_PROFILE_SLUGS = (resumeData.profiles.visible ?? [])
+  .filter((profile) => profile?.id && profile.published !== false)
+  .map((profile) => profile.id);
 
 async function main() {
   buildResumeChatData();
@@ -24,9 +26,12 @@ async function main() {
     throw new Error('dist/ does not exist. Run `npm run build` first.');
   }
 
-  for (const slug of PROFILE_SLUGS) {
+  const resumeRoot = path.join(distRoot, 'resume');
+  fs.rmSync(resumeRoot, { recursive: true, force: true });
+
+  for (const slug of PUBLIC_PROFILE_SLUGS) {
     const view = getProfileView(slug);
-    const profileDir = path.join(distRoot, 'resume', slug);
+    const profileDir = path.join(resumeRoot, slug);
     fs.mkdirSync(profileDir, { recursive: true });
 
     const html = renderHtmlResume(view);

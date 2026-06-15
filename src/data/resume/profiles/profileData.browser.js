@@ -3,14 +3,9 @@ const baseProfiles = import.meta.glob('./*.json', {
   import: 'default',
 });
 
-const generatedProfiles = import.meta.glob('./generated/*.json', {
-  eager: true,
-  import: 'default',
-});
-
+// Generated job-tailored profiles stay node-only unless explicitly promoted.
 const allModules = {
   ...baseProfiles,
-  ...generatedProfiles,
 };
 
 const allProfiles = Object.values(allModules)

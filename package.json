@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "prebuild": "npm run build:resume-chat-data",
+    "prebuild": "npm run build:sitemap && npm run build:resume-chat-data",
+    "build:sitemap": "node ./scripts/build-sitemap.js",
     "build:resume-chat-data": "node ./scripts/build-resume-chat-data.js",
     "build:exports": "node ./scripts/build-resume-exports.js",
     "generate:tailored-profiles": "node ./scripts/generate-tailored-profiles.js",
