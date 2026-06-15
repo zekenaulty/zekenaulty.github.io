@@ -1,0 +1,288 @@
+{
+  "version": 1,
+  "dailyDefaults": {
+    "count": 1,
+    "maxCount": 5,
+    "signalLimit": 30
+  },
+  "styleRules": [
+    "Write from inside real systems, not as a hype commentator.",
+    "Prefer concrete boundaries, failure modes, contracts, state, queues, tests, and human responsibility.",
+    "Do not sound like AI content. Keep the thesis human, specific, and accountable.",
+    "Avoid generic beginner explanations unless they are used to expose a real systems problem.",
+    "Use plain engineering language. Be direct, but do not posture.",
+    "Every draft should have a clear claim, a practical example, and a testable consequence."
+  ],
+  "styleExamples": [
+    {
+      "id": "systems-risk",
+      "title": "Systems decide where risk lands",
+      "whyItWorks": "It makes an abstract engineering claim concrete and moral without becoming theatrical.",
+      "text": "Systems are not neutral; they decide who carries risk and who fights fires."
+    },
+    {
+      "id": "harness-over-prompt",
+      "title": "Harness over prompt",
+      "whyItWorks": "It reframes AI quality as architecture, not prompt cleverness.",
+      "text": "A useful AI workflow is less about the perfect prompt and more about the harness around it: inputs, contracts, review points, state, retries, and evidence."
+    },
+    {
+      "id": "coherence-over-code",
+      "title": "Coherence over code volume",
+      "whyItWorks": "It ties AI coding tools back to senior engineering judgment.",
+      "text": "AI made the typing cheaper. It did not make coherence cheap."
+    }
+  ],
+  "lanes": [
+    {
+      "id": "agent-architecture",
+      "label": "Practical Agent Architecture",
+      "thesis": "LLM systems become useful when they are treated as bounded software systems with contracts, state, evaluation, and recovery paths.",
+      "queries": [
+        "LLM agent architecture",
+        "AI coding agent evaluation",
+        "agent harness prompt engineering",
+        "LLM workflow orchestration"
+      ],
+      "recurringAngles": [
+        "prompting vs engineering",
+        "planner/generator/evaluator separation",
+        "contracts and state boundaries",
+        "why senior judgment matters more after AI"
+      ]
+    },
+    {
+      "id": "procedural-fiction",
+      "label": "Procedural Fiction Systems",
+      "thesis": "Procedural fiction needs state, consequence, memory, and authorial control before it becomes story instead of shuffled events.",
+      "queries": [
+        "AI storytelling memory",
+        "procedural narrative generation",
+        "interactive fiction AI agents",
+        "worldbuilding data architecture"
+      ],
+      "recurringAngles": [
+        "world fabric vs authoring layer",
+        "reset loops",
+        "irreversible consequence",
+        "memory drift"
+      ]
+    },
+    {
+      "id": "ai-claims",
+      "label": "AI Claims and Missing Receipts",
+      "thesis": "AI product claims should be measured against harnesses, baselines, failure modes, and the actual work being replaced.",
+      "queries": [
+        "AI coding accuracy benchmark",
+        "AI agent benchmark",
+        "AI replaces developers claim",
+        "AI employee startup"
+      ],
+      "recurringAngles": [
+        "what is being measured",
+        "accuracy compared to what",
+        "demo vs workflow",
+        "missing baselines"
+      ]
+    },
+    {
+      "id": "rural-tech",
+      "label": "Rural Tech Reality",
+      "thesis": "Technology that looks clean from the outside often has to survive messy local constraints, thin staffing, old systems, and real operational risk.",
+      "queries": [
+        "rural broadband software systems",
+        "legacy software modernization small business",
+        "agriculture software modernization",
+        "line of business software modernization"
+      ],
+      "recurringAngles": [
+        "hidden labor",
+        "software in low-glamor domains",
+        "operational risk",
+        "systems that have to keep running"
+      ]
+    },
+    {
+      "id": "self-taught-engineering",
+      "label": "Self-Taught Engineering and Judgment",
+      "thesis": "Credentials and competence overlap, but they are not the same thing; durable engineering judgment comes from responsibility, feedback, and hard systems.",
+      "queries": [
+        "self taught software engineer AI",
+        "senior engineer judgment AI coding",
+        "software engineering credentials competence",
+        "AI coding tools senior engineers"
+      ],
+      "recurringAngles": [
+        "judgment over typing",
+        "apprenticeship outside school",
+        "debugging as education",
+        "taste and responsibility"
+      ]
+    }
+  ],
+  "pinnedTopics": [
+    {
+      "id": "ai-harness-not-prompt",
+      "lane": "agent-architecture",
+      "title": "An AI harness is not a prompt",
+      "thesis": "A prompt can ask for behavior, but a harness decides what inputs are trusted, what outputs are valid, and what happens when the model is wrong.",
+      "openQuestions": [
+        "What belongs in the harness instead of the prompt?",
+        "Where should verification happen?",
+        "How much state should the model see?"
+      ],
+      "recurringAngles": [
+        "contracts",
+        "retry loops",
+        "review gates",
+        "state snapshots"
+      ],
+      "priority": 90,
+      "status": "active"
+    },
+    {
+      "id": "worldbuilding-data-architecture",
+      "lane": "procedural-fiction",
+      "title": "Worldbuilding is a data architecture problem",
+      "thesis": "A living fictional world needs relationships, pressure, memory, and constraints before a model can generate scenes that feel consequential.",
+      "openQuestions": [
+        "What should be durable state?",
+        "What should be projection only?",
+        "How does author control stay separate from world simulation?"
+      ],
+      "recurringAngles": [
+        "fabric vs projection",
+        "social physics",
+        "state and consequence"
+      ],
+      "priority": 80,
+      "status": "active"
+    },
+    {
+      "id": "where-are-the-receipts",
+      "lane": "ai-claims",
+      "title": "Where are the receipts?",
+      "thesis": "When an AI company claims huge productivity or accuracy, the useful question is not whether AI can help. It is what baseline, workflow, and failure mode they measured against.",
+      "openQuestions": [
+        "What would count as a fair baseline?",
+        "What work is being hidden in setup, review, and cleanup?",
+        "What happens when the model is confidently wrong?"
+      ],
+      "recurringAngles": [
+        "benchmarks",
+        "demo debt",
+        "human review",
+        "measurement theater"
+      ],
+      "priority": 75,
+      "status": "active"
+    }
+  ],
+  "signalSources": [
+    {
+      "id": "hn-agent-architecture",
+      "name": "Hacker News - agent architecture",
+      "type": "hn-search",
+      "lane": "agent-architecture",
+      "query": "LLM agent architecture",
+      "limit": 8,
+      "enabled": true
+    },
+    {
+      "id": "hn-ai-coding",
+      "name": "Hacker News - AI coding",
+      "type": "hn-search",
+      "lane": "agent-architecture",
+      "query": "AI coding agent",
+      "limit": 8,
+      "enabled": true
+    },
+    {
+      "id": "stack-llm-workflows",
+      "name": "Stack Overflow - LLM workflows",
+      "type": "stackexchange-search",
+      "lane": "agent-architecture",
+      "site": "stackoverflow",
+      "query": "LLM workflow architecture",
+      "limit": 6,
+      "enabled": true
+    },
+    {
+      "id": "arxiv-agent-systems",
+      "name": "arXiv - agent systems",
+      "type": "atom",
+      "lane": "agent-architecture",
+      "url": "https://export.arxiv.org/api/query?search_query=all:%22LLM%20agent%22&start=0&max_results=6&sortBy=submittedDate&sortOrder=descending",
+      "limit": 6,
+      "enabled": true
+    },
+    {
+      "id": "hn-procedural-fiction",
+      "name": "Hacker News - procedural fiction",
+      "type": "hn-search",
+      "lane": "procedural-fiction",
+      "query": "procedural narrative AI",
+      "limit": 8,
+      "enabled": true
+    },
+    {
+      "id": "arxiv-story-generation",
+      "name": "arXiv - story generation",
+      "type": "atom",
+      "lane": "procedural-fiction",
+      "url": "https://export.arxiv.org/api/query?search_query=all:%22story%20generation%22%20AND%20all:%22language%20model%22&start=0&max_results=6&sortBy=submittedDate&sortOrder=descending",
+      "limit": 6,
+      "enabled": true
+    },
+    {
+      "id": "hn-ai-claims",
+      "name": "Hacker News - AI claims",
+      "type": "hn-search",
+      "lane": "ai-claims",
+      "query": "AI benchmark coding accuracy",
+      "limit": 8,
+      "enabled": true
+    },
+    {
+      "id": "google-news-ai-claims",
+      "name": "Google News - AI claims",
+      "type": "rss",
+      "lane": "ai-claims",
+      "url": "https://news.google.com/rss/search?q=%22AI%20agent%22%20benchmark%20OR%20accuracy&hl=en-US&gl=US&ceid=US:en",
+      "limit": 8,
+      "enabled": true
+    }
+  ],
+  "sampleSignals": [
+    {
+      "sourceId": "sample",
+      "sourceName": "Sample signal",
+      "lane": "agent-architecture",
+      "title": "A coding agent benchmark shows strong demos but weak recovery behavior",
+      "url": "https://example.com/sample/agent-benchmark",
+      "summary": "Use this as a placeholder for testing the writing loop without network access.",
+      "publishedAt": "2026-06-15T00:00:00.000Z",
+      "score": 68
+    },
+    {
+      "sourceId": "sample",
+      "sourceName": "Sample signal",
+      "lane": "procedural-fiction",
+      "title": "A story-generation paper discusses memory but avoids consequence",
+      "url": "https://example.com/sample/story-memory",
+      "summary": "Use this as a placeholder for testing the writing loop without network access.",
+      "publishedAt": "2026-06-15T00:00:00.000Z",
+      "score": 62
+    },
+    {
+      "sourceId": "sample",
+      "sourceName": "Sample signal",
+      "lane": "ai-claims",
+      "title": "A startup claims an AI employee can replace an analyst workflow",
+      "url": "https://example.com/sample/ai-employee",
+      "summary": "Use this as a placeholder for testing the writing loop without network access.",
+      "publishedAt": "2026-06-15T00:00:00.000Z",
+      "score": 59
+    }
+  ]
+}

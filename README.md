@@ -29,6 +29,17 @@ React/Vite single-page resume site (MUI) with multi-profile views, animated intr
 - Requires `GEMINI_API_KEY` (env) and uses `src/llm/system/tailored-profile-generator-prompt.md` plus canonical resume data built by `build-resume-chat-data.js`.
 - Use `--all` to regenerate everything, or pass specific filenames in `private/job-descriptions/`.
 
+## Writing loop (private drafts)
+- Seed data lives in `src/data/writing/writingSeed.json`; daily run outputs live under ignored `private/writing/`.
+- Initialize local writing state: `npm run writing:init`
+- Fetch public signals and write a daily brief: `npm run writing:signals`
+- Test without network calls: `npm run writing:test`
+- Run with custom flags: `npm run writing:run -- -- --offline --count 2`
+- Create draft prompts/scaffolds from the latest signals: `node ./scripts/writing-loop.js draft --count 1`
+- Generate prose with Gemini: `node ./scripts/writing-loop.js draft --generate --count 1` (requires `GEMINI_API_KEY`)
+- Pin a long-running topic: `node ./scripts/writing-loop.js pin --title "An AI harness is not a prompt" --lane agent-architecture --thesis "A prompt asks for behavior; a harness owns trust, validation, and recovery."`
+- Nothing in this loop publishes to the public site yet; drafts require an explicit future publish step.
+
 ## Data layout
 - Resume: `src/data/resume/`
   - `experience/*.json` (canonical roles with `summary`, `description`, `skillsUsed`)
