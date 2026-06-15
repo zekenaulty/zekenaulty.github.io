@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import { getProfileView, resumeData } from './src/data/resume/resumeData.node.js';
 
@@ -29,6 +29,9 @@ const escapeJsonForHtml = (value) =>
     .replace(/</g, '\\u003c')
     .replace(/>/g, '\\u003e')
     .replace(/&/g, '\\u0026');
+
+const getGoogleSiteVerification = (env = {}) =>
+  (env.GOOGLE_SITE_VERIFICATION || env.VITE_GOOGLE_SITE_VERIFICATION || '').trim();
 
 const buildMetaDescription = (view) => {
   const firstAbout = view.about?.paragraphs?.[0] ?? view.summary?.[0] ?? '';
@@ -190,19 +193,23 @@ const staticFallbackCss = `
   }
 `;
 
-function injectStaticHomepageFallback() {
+function injectStaticHomepageFallback(env = {}) {
   return {
     name: 'inject-static-homepage-fallback',
     transformIndexHtml(html) {
       const view = getProfileView(resumeData.profiles.defaultProfileId);
       const description = buildMetaDescription(view);
       const structuredData = buildStructuredData(view);
+      const googleSiteVerification = getGoogleSiteVerification(env);
       const headTags = [
         `<meta name="description" content="${escapeHtml(description)}" />`,
         `<link rel="canonical" href="${siteUrl}" />`,
+        googleSiteVerification
+          ? `<meta name="google-site-verification" content="${escapeHtml(googleSiteVerification)}" />`
+          : '',
         `<script type="application/ld+json">${escapeJsonForHtml(structuredData)}</script>`,
         `<style>${staticFallbackCss}</style>`,
-      ].join('\n    ');
+      ].filter(Boolean).join('\n    ');
 
       return html
         .replace('</head>', `    ${headTags}\n  </head>`)
@@ -255,7 +262,11 @@ function serveResumeExports() {
   };
 }
 
-export default defineConfig({
-  base: '/',
-  plugins: [react(), injectStaticHomepageFallback(), serveResumeExports()],
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, __dirname, '');
+
+  return {
+    base: '/',
+    plugins: [react(), injectStaticHomepageFallback(env), serveResumeExports()],
+  };
 });

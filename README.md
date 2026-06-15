@@ -17,6 +17,12 @@ React/Vite single-page resume site (MUI) with multi-profile views, animated intr
 - Full build + exports: `npm run build:all`
 - Deploy to GitHub Pages: `npm run deploy` (runs build:all, publishes `dist/` to `gh-pages`)
 
+## Search indexing
+- `public/robots.txt` allows all crawlers and points to `https://zekenaulty.github.io/sitemap.xml`.
+- `public/sitemap.xml` lists the homepage and generated resume profile pages.
+- `vite.config.js` injects crawlable resume content, canonical metadata, JSON-LD, and optional Google Search Console verification into the built homepage.
+- To verify a Search Console URL-prefix property, set `GOOGLE_SITE_VERIFICATION` or `VITE_GOOGLE_SITE_VERIFICATION` in `.env.local` before building. Do not commit the token.
+
 ## Tailored profiles (LLM-assisted)
 - Generate job-specific overlays from private JDs: `npm run generate:tailored-profiles` (reads `private/job-descriptions/*.md|txt`, writes to `src/data/resume/profiles/generated/`).
 - Requires `GEMINI_API_KEY` (env) and uses `src/llm/system/tailored-profile-generator-prompt.md` plus canonical resume data built by `build-resume-chat-data.js`.
