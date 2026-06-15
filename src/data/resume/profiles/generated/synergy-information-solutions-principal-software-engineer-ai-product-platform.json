@@ -1,0 +1,96 @@
+{
+  "id": "synergy-information-solutions-principal-software-engineer-ai-product-platform",
+  "label": "Principal Software Engineer at Synergy Information Solutions",
+  "kind": "employer-facing",
+  "published": false,
+  "headline": "Principal Software Engineer — AI Product Architecture, RAG Workflows & Full-Stack Development",
+  "aboutKey": "about-principal-ai-platform",
+  "experienceOrder": [
+    "ai-research",
+    "iadvantage",
+    "storable",
+    "prestage-farms"
+  ],
+  "experienceOverrides": {
+    "ai-research": {
+      "title": "Principal AI Researcher & Engineer",
+      "summary": "Engineering production-ready AI capabilities and platform architectures. Developed structured RAG workflows and agentic frameworks (Cognition/BookForge) with a focus on governance, state integrity, and reliability in multi-agent environments.",
+      "description": [
+        "Architected and implemented the Pillars of the Domain of Domains (DoD), a formal runtime governance architecture for RAG systems addressing context drift and unverifiable memory.",
+        "Built BookForge, a Python-based AI workflow engine featuring multi-provider LLM orchestration (OpenAI, Gemini) and a layered prompt governance pipeline for long-horizon content generation.",
+        "Developed Cognition, a 19-project C# agent framework designed for deterministic execution, tool dispatching, and durable state management.",
+        "Applied RAG architecture principles to production-style workflows, focusing on citation integrity and scope control for AI-enabled features."
+      ],
+      "skillsUsed": [
+        "Python",
+        "C#",
+        "RAG Workflows",
+        "AI Agent Frameworks",
+        "API Design",
+        "Vector Databases",
+        "Technical Architecture"
+      ]
+    },
+    "iadvantage": {
+      "title": "Lead Developer & Systems Architect",
+      "summary": "Led the technical direction of a GLP-compliant lab platform in a highly regulated environment where reliability and data integrity were critical.",
+      "description": [
+        "Owned the delivery of high-value product features across a complex stack of WebForms, MVC, WebAPI, and mobile surfaces.",
+        "Designed and implemented user-defined data models and configurable reporting pipelines that allowed for customer-specific extensibility without code changes.",
+        "Guided release engineering and technical standards for the development team, ensuring high-quality deployments in uptime-sensitive environments.",
+        "Built responsive front-end interfaces using TypeScript patterns and modern CSS, ensuring performant user experiences across desktop and mobile."
+      ],
+      "skillsUsed": [
+        "AngularJS",
+        "TypeScript",
+        "C#",
+        "Oracle",
+        "API Design",
+        "Technical Leadership",
+        "GLP Compliance"
+      ]
+    },
+    "storable": {
+      "description": [
+        "Developed and maintained .NET Core services with Hangfire and Entity Framework over PostgreSQL to drive automated insurance workflows.",
+        "Identified and removed delivery bottlenecks by clarifying service boundaries and introducing domain-driven design patterns.",
+        "Collaborated closely with product leadership to balance speed and quality while triaging production issues in complex systems."
+      ],
+      "skillsUsed": [
+        "C#",
+        "PostgreSQL",
+        ".NET Core",
+        "Workflow Automation",
+        "Entity Framework"
+      ]
+    },
+    "prestage-farms": {
+      "title": "Principal Developer (Modernization)",
+      "description": [
+        "Led a team of 9 in the end-to-end modernization of critical business systems, delivering the project three months ahead of schedule through pragmatic Agile roadmaps.",
+        "Architected a unified desktop platform that consolidated 8+ modules into a single, high-performance C#/.NET application.",
+        "Established technical decision records and documentation patterns to ensure long-term platform sustainability and knowledge sharing."
+      ]
+    }
+  },
+  "skillsPrimary": [
+    "C#",
+    "Python",
+    "PostgreSQL",
+    "RAG Workflows",
+    "API Design",
+    "Technical Leadership",
+    "AI Product Development",
+    "Full-Stack Architecture"
+  ],
+  "skillsSecondary": [
+    "TypeScript",
+    "Angular",
+    "Go",
+    "Vector Databases",
+    "Docker",
+    "Linux",
+    "CI/CD",
+    "Regulated Environments"
+  ]
+}

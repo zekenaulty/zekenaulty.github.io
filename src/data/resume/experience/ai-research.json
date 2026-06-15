@@ -1,0 +1,35 @@
+{
+    "id": "ai-research",
+    "title": "Independent AI Researcher",
+    "company": "EvoDev",
+    "location": "Fairhope, AL",
+    "dates": {
+      "start": "2024-01-01",
+      "end": "2026-03-31"
+    },
+    "summary": "Independent R&D focused on production AI system architecture, prompt governance, and agent framework design. Built two substantial original systems: Cognition, a structured C# agent framework, and BookForge, a Python AI workflow engine with a layered prompt governance pipeline. Developed the Domain of Domains (DoD), a formal runtime governance architecture for agentic and RAG systems addressing context drift, scope contamination, and unverifiable memory in multi-agent environments.",
+    "skillsUsed": [
+    "C#/.NET",
+    "Python",
+    "multi-agent system design",
+    "prompt governance architecture",
+    "RAG / context engineering",
+    "LLM abstraction and provider orchestration",
+    "schema-validated durable state management",
+    "agentic workflow design",
+    "AI safety and alignment research",
+    "system architecture and technical documentation"
+    ],
+    "description": [
+    "Cognition - 19-project C# solution implementing a structured agent framework with layered architecture. Core components include ToolDispatcher, ToolRegistry, AgentRememberTool, KnowledgeQueryTool, and MemoryWriteTool, with integrated telemetry and scoped planning abstractions. Designed to enforce deterministic scope boundaries and traceable execution in autonomous agent workflows.",
+    "BookForge - Production Python AI workflow engine for stateful, schema-validated long-form content generation. Features a multi-provider LLM abstraction layer (Gemini, OpenAI, Ollama), a full prompt governance pipeline (injection policy, excerpt policy, prompt budgeter, prompt registry, prompt renderer), and durable state management with schema validation. Backed by 40+ structured sprint planning documents. Architectural principle: the LLM is the author; the system enforces state integrity and governance boundaries.",
+    "Domain of Domains (DoD) - Formal whitepaper and reference architecture for runtime AI governance in agentic and RAG systems. Addresses context drift, scope contamination, anti-receipt-laundering, and uncontrolled coupling between agents. Key constructs include deterministic scope compilation, citation-first retrieval, RLRAG (Recursive Layered RAG as governed continuous learning), and a human-gated AI.Forge Foundry plane separating governance from execution.",
+    "Designed and implemented Cognition, a 19-project C# agent framework with a formal tool dispatch layer (ToolDispatcher, ToolRegistry), persistent memory tooling (AgentRememberTool, KnowledgeQueryTool, MemoryWriteTool), integrated telemetry, and scoped planning abstractions for reduced execution drift and improved traceability.",
+    "Designed and implemented BookForge, a Python AI workflow engine featuring a multi-provider LLM abstraction layer across Gemini, OpenAI, and Ollama, with a layered prompt governance pipeline including injection policy, excerpt policy, budget management, a prompt registry, and a prompt renderer — all backed by schema-validated durable state management.",
+    "Developed the Domain of Domains (DoD), a formal runtime governance architecture for agentic and RAG systems, addressing context drift, scope contamination, unverifiable memory, and uncontrolled inter-agent coupling through deterministic scope compilation and citation-first retrieval.",
+    "Architected a persona-driven character evolution system within BookForge enabling dynamic, stateful character development across long-horizon narrative generation workflows.",
+    "Designed and operated agentic coding workflows with structured sprint planning, anchoring agent execution to a formal decision framework to reduce drift and improve traceability across 40+ documented development cycles.",
+    "Conducted applied research into AI safety and alignment, including adversarial model concepts, governance plane separation, and the boundary conditions of scalable oversight in multi-agent systems.",
+    "Applied context engineering and RAG architecture principles to production workflows, with specific focus on citation integrity, retrieval scope control, and preventing scope contamination across agent boundaries."
+    ]
+  }

@@ -1,13 +1,10 @@
 import fs from 'fs';
 import path from 'path';
-import { createRequire } from 'module';
 import { fileURLToPath } from 'url';
 import { resumeData } from '../src/data/resume/resumeData.node.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const require = createRequire(import.meta.url);
-const projects = require('../src/data/projects/projects.json');
 
 const OUTPUT_PATH = path.resolve(__dirname, '..', 'src', 'llm', 'resumeChatData.json');
 
@@ -17,7 +14,6 @@ const SOURCE_FILES = [
   'src/data/resume/aboutVariants.json',
   'src/data/resume/profiles/*.json',
   'src/data/resume/profiles/generated/*.json',
-  'src/data/projects/projects.json',
 ];
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -53,9 +49,6 @@ export function buildResumeChatData() {
       skills: clone(resumeData.skills),
       profiles: filterPublishedProfiles(resumeData.profiles),
       aboutVariants: clone(resumeData.aboutVariants),
-    },
-    projects: {
-      items: clone(projects),
     },
     meta: {
       sourceFiles: SOURCE_FILES,

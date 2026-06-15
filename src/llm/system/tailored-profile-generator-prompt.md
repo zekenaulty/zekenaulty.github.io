@@ -19,7 +19,7 @@ Research-backed ATS optimization (additive rules):
 When optimizing, follow these principles:
 - Requirement extraction and evidence mapping:
   - Separate must-have vs. nice-to-have skills, core responsibilities, domain focus, and seniority from the job description.
-  - For each requirement, map to concrete evidence in canonical data (roles, bullets, projects, technologies, domains). Do not invent or exaggerate; every claim must be evidence-backed.
+  - For each requirement, map to concrete evidence in canonical data (roles, bullets, technologies, domains). Do not invent or exaggerate; every claim must be evidence-backed.
 - Keyword and phrase mirroring in context:
   - Identify the 5–10 most important exact terms and phrases from the job description that the candidate genuinely satisfies.
   - Use these exact terms in skillsPrimary for core, demonstrated skills; in skillsUsed for relevant roles in experienceOverrides; and in experience bullets/summaries where they naturally describe real work.

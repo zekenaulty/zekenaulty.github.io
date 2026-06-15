@@ -32,7 +32,7 @@ const SYSTEM_PROMPT_PATH = path.join(
 
 // Environment / model configuration
 const GEMINI_API_KEY = (process.env.GEMINI_API_KEY || '').trim();
-const GEMINI_MODEL = (process.env.GEMINI_MODEL || 'models/gemini-2.5-flash').trim();
+const GEMINI_MODEL = (process.env.GEMINI_MODEL || 'models/gemini-3-flash-preview').trim();
 const MAX_ATTEMPTS = 5;
 const RETRY_DELAY_MS = 1000;
 const argv = process.argv.slice(2);

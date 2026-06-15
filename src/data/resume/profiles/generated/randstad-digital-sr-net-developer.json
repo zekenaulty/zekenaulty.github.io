@@ -1,0 +1,206 @@
+{
+  "id": "randstad-digital-sr-net-developer",
+  "label": "Sr. .NET Developer at Randstad Digital",
+  "kind": "employer-facing",
+  "published": false,
+  "headline": "Senior .NET Developer — C#, ASP.NET, SQL, Web Applications, Full Life Cycle Development",
+  "aboutKey": "about-fullstack-dotnet",
+  "experienceOrder": [
+    "iadvantage",
+    "storable",
+    "rural-sourcing",
+    "prestage-farms",
+    "solid-earth",
+    "not-rocket-science",
+    "pk-promotions"
+  ],
+  "experienceOverrides": {
+    "iadvantage": {
+      "title": "Lead Developer",
+      "description": [
+        "Designed, coded, analyzed, tested, and documented ASP.NET WebForms/MVC/WebAPI services with RESTful OData and SOAP endpoints backed by Oracle using nHibernate, Entity Framework, and PL/SQL, adhering to full life cycle development techniques.",
+        "Implemented configurable reporting pipelines to ensure data traceability and audit trails, reflecting strong SQL skills and best practices.",
+        "Created responsive web interfaces with CSS3, Flexbox, Bootstrap, and AngularJS, and maintained WinForms clients and Xamarin Forms mobile applications.",
+        "Led delivery of GLP-compliant lab software, guided release engineering and Azure DevOps practices, and mentored developers through code reviews and pairing.",
+        "Interfaced with users and QA on GLP expectations, ensuring enhancements, maintenance, and problem resolution for existing applications met specifications."
+      ],
+      "skillsUsed": [
+        "C#",
+        "ASP.NET WebForms",
+        "ASP.NET MVC",
+        "ASP.NET WebAPI",
+        "REST",
+        "OData",
+        "SOAP",
+        "Oracle",
+        "PL/SQL",
+        "Entity Framework",
+        "nHibernate",
+        "AngularJS",
+        "Bootstrap",
+        "CSS",
+        "WinForms",
+        "Xamarin Forms",
+        "Azure DevOps",
+        "GLP compliance",
+        "Reporting",
+        "Full life cycle development",
+        "Unit testing",
+        "Technical documentation"
+      ]
+    },
+    "storable": {
+      "title": "Software Engineer II",
+      "description": [
+        "Designed, developed, and maintained .NET Core services with Hangfire and Entity Framework over PostgreSQL and SQL Server to drive insurance auto-protect workflows, demonstrating strong SQL skills.",
+        "Developed and maintained .NET WinForms and web applications, designing and preparing web program coding for business applications.",
+        "Established unit-testing patterns for WinForms and service code, conducting unit testing to ensure compliance to specifications.",
+        "Clarified service boundaries and domain concepts, contributing to early domain-driven design adoption.",
+        "Documented patterns and deployment steps, creating essential technical documents for team enablement.",
+        "Collaborated with product and support to triage production issues and refactor risky areas for stability, addressing problem resolution for existing applications."
+      ],
+      "skillsUsed": [
+        "C#",
+        ".NET Core",
+        "WinForms",
+        "ASP.NET",
+        "Entity Framework",
+        "Hangfire",
+        "PostgreSQL",
+        "SQL Server",
+        "Unit testing",
+        "Domain-driven design",
+        "Web program coding"
+      ]
+    },
+    "rural-sourcing": {
+      "title": "Senior Software Developer",
+      "description": [
+        "Delivered Microsoft-stack projects for multiple clients, focusing on WinForms, ASP.NET, and SQL Server work, applying full life cycle development techniques.",
+        "Planned and tracked sprints, risks, and milestones, preparing routine periodic project status reports and communicating with customers and stakeholders.",
+        "Mentored junior and mid-level developers on coding standards, testing habits, and practical estimation.",
+        "Conducted code reviews and production readiness checks to ensure predictable releases, contributing to robust software development.",
+        "Acted as a hands-on contributor, designing, coding, and debugging features for backend and desktop applications."
+      ],
+      "skillsUsed": [
+        "C#",
+        "ASP.NET",
+        "WinForms",
+        "SQL Server",
+        "Project management",
+        "Mentoring",
+        "Code review",
+        "Estimation",
+        "Full life cycle development"
+      ]
+    },
+    "prestage-farms": {
+      "title": "Programmer/Analyst",
+      "description": [
+        "Led a team of 6 developers and 3 QA to modernize VB6 accounting and inventory systems into a single WinForms .NET application, redesigning and preparing program coding for business applications.",
+        "Analyzed legacy VB6 patterns and built transformation modules to automate conversion to VB.NET, preserving business logic and analyzing automation requests.",
+        "Consolidated 8+ standalone modules into one cohesive desktop experience with role-based security.",
+        "Built a new reporting frontend that supported legacy dot-matrix outputs and added PDF generation and viewing, reflecting strong SQL skills for reporting.",
+        "Ran Agile roadmaps and milestones, creating work plans and schedules, and coordinating stakeholders and demos to deliver the modernization ahead of schedule.",
+        "Drove quality practices and regression coverage, preparing test data and conducting unit testing to ensure compliance for the VB6-to-.NET cutover."
+      ],
+      "skillsUsed": [
+        "C#",
+        "VB6",
+        "VB.NET",
+        "WinForms",
+        "Reporting",
+        "PDF generation",
+        "JIRA",
+        "Agile",
+        "Team leadership",
+        "Role-based security",
+        "Automation",
+        "Unit testing"
+      ]
+    },
+    "solid-earth": {
+      "title": "Application Developer/Architect",
+      "description": [
+        "Developed and maintained RETS client and server software on Oracle and C#, tuning RETS performance, protocol compliance, and data handling, demonstrating strong SQL skills and best practices.",
+        "Built configurable ASP.NET MLS frontends where branding and business rules were driven by XML, designing and preparing web program coding for specialized business applications.",
+        "Created a market analytics and statistics module, developing and documenting computer software programs and systems.",
+        "Coordinated deployments and maintenance windows with MLS stakeholders, interfacing with users and customers and preparing routine project status reports.",
+        "Provided ongoing support and troubleshooting for MLS customers, addressing maintenance and problem resolution for existing applications."
+      ],
+      "skillsUsed": [
+        "C#",
+        "ASP.NET",
+        "Oracle",
+        "RETS",
+        "XML configuration",
+        "Performance tuning",
+        "Analytics",
+        "Reporting",
+        "Web program coding",
+        "Technical documentation"
+      ]
+    },
+    "not-rocket-science": {
+      "title": "Programmer/Analyst",
+      "description": [
+        "Built a C# mobile application for a Sheriff's department to capture and sync field data, demonstrating full life cycle development techniques.",
+        "Delivered full-stack .NET and SQL Server development for Zen-Noh Grain, supporting inventory and operations workflows with strong SQL skills.",
+        "Created an ActionScript + ASP.NET tracking application for shipments and tug boats with a custom web backend, preparing web program coding for business applications.",
+        "Designed database schemas and service endpoints, analyzing, testing, and documenting computer software programs and systems.",
+        "Worked directly with clients to prioritize features and ship iterations quickly as a consultant, interfacing with users to gain understanding for enhancements and problem resolution."
+      ],
+      "skillsUsed": [
+        "C#",
+        "ASP.NET",
+        "ActionScript",
+        "SQL Server",
+        "Mobile development",
+        "Inventory/operations workflows",
+        "Client consulting",
+        "Full life cycle development"
+      ]
+    },
+    "pk-promotions": {
+      "title": "Web Developer/Consultant",
+      "description": [
+        "Built a web-based commodity production management system using ASP and SQL Server, demonstrating strong SQL skills for business applications.",
+        "Implemented product evolution tracking and created sales and marketing tools to support campaigns, preparing web program coding.",
+        "Delivered applications with database-backed forms while tailoring flows to a small team’s processes, conducting full life cycle development.",
+        "Worked closely with the owner to refine requirements and roll out incremental improvements, interfacing with users to ensure understanding for enhancements and problem resolution."
+      ],
+      "skillsUsed": [
+        "ASP",
+        "SQL Server",
+        "Web development",
+        "Requirements gathering",
+        "Reporting",
+        "Full life cycle development"
+      ]
+    }
+  },
+  "skillsPrimary": [
+    "C#",
+    ".NET",
+    "ASP.NET",
+    "SQL Server",
+    "Web Development",
+    "Unit testing",
+    "Full-stack development",
+    "Project management",
+    "Software Development Life Cycle"
+  ],
+  "skillsSecondary": [
+    ".NET Core",
+    "T-SQL",
+    "Oracle",
+    "Entity Framework",
+    "Azure DevOps",
+    "JavaScript",
+    "AngularJS",
+    "APIs",
+    "Design Documentation",
+    "Requirements Analysis",
+    "Problem-solving"
+  ]
+}

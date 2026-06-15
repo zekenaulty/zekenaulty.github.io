@@ -60,50 +60,7 @@ function buildSkillsBuckets(skillsCatalog, profile) {
   };
 }
 
-function normalizeProject(project) {
-  const tags = project.techTags ?? project.tags ?? [];
-  const description = project.description ?? project.shortDescription ?? '';
-
-  return {
-    id: project.id ?? project.name,
-    name: project.name ?? project.id,
-    url: project.url ?? project.repoUrl ?? '',
-    repoUrl: project.repoUrl ?? project.url ?? '',
-    shortDescription: project.shortDescription ?? description,
-    description,
-    tags,
-    techTags: tags,
-  };
-}
-
-function deriveProjects(profile, projects) {
-  const projectsById = projects.reduce((map, project) => {
-    map.set(project.id ?? project.name, project);
-    return map;
-  }, new Map());
-
-  if (Array.isArray(profile.projectIds) && profile.projectIds.length > 0) {
-    return profile.projectIds
-      .map((id) => projectsById.get(id))
-      .filter(Boolean)
-      .map(normalizeProject);
-  }
-
-  const tagSet = new Set(profile.tags ?? []);
-  if (tagSet.size) {
-    const tagged = projects
-      .filter((project) => (project.tags ?? project.techTags ?? []).some((tag) => tagSet.has(tag)))
-      .map(normalizeProject);
-
-    if (tagged.length) {
-      return tagged;
-    }
-  }
-
-  return projects.map(normalizeProject);
-}
-
-export function buildProfileView(resumeData, projects, profileSlug) {
+export function buildProfileView(resumeData, profileSlug) {
   const profile =
     resumeData.profiles.byId[profileSlug] ?? resumeData.profiles.byId[resumeData.profiles.defaultProfileId];
 
@@ -122,7 +79,6 @@ export function buildProfileView(resumeData, projects, profileSlug) {
     resumeData.aboutVariants.master;
 
   const skillsInfo = buildSkillsBuckets(resumeData.skills, profile);
-  const projectsView = deriveProjects(profile, projects);
 
   return {
     profileSlug: profile.id,
@@ -139,7 +95,6 @@ export function buildProfileView(resumeData, projects, profileSlug) {
     skillsPrimary: skillsInfo.primary,
     skillsSecondary: skillsInfo.secondary,
     skillsCatalog: resumeData.skills,
-    projects: projectsView,
     profile,
   };
 }

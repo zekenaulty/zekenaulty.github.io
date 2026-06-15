@@ -1,0 +1,139 @@
+{
+  "id": "software-engineer-ai-replika",
+  "label": "Software Engineer (AI Platform) at Replika",
+  "kind": "employer-facing",
+  "published": false,
+  "headline": "Software Engineer (AI Platform) – Backend Systems, Scalability, LLM Integration (.NET, C#, SQL/PostgreSQL, Azure DevOps)",
+  "aboutKey": "about-ai-backend-platform",
+  "experienceOrder": [
+    "storable",
+    "iadvantage",
+    "solid-earth",
+    "not-rocket-science",
+    "rural-sourcing",
+    "prestage-farms",
+    "litton-avondale"
+  ],
+  "experienceOverrides": {
+    "storable": {
+      "title": "Software Engineer II",
+      "description": [
+        "Built and maintained scalable .NET Core services with Hangfire, PostgreSQL, and SQL Server to drive real-time insurance auto-protect workflows.",
+        "Developed and maintained web applications and APIs, ensuring data synchronization and high availability across desktop and web products.",
+        "Clarified service boundaries and contributed to domain-driven design adoption, improving system stability and maintainability for future growth."
+      ],
+      "skillsUsed": [
+        "C#",
+        ".NET Core",
+        "ASP.NET",
+        "Entity Framework",
+        "Hangfire",
+        "PostgreSQL",
+        "SQL Server",
+        "APIs",
+        "Backend Development",
+        "Scalability"
+      ]
+    },
+    "iadvantage": {
+      "title": "Lead Developer / Azure DevOps",
+      "description": [
+        "Led delivery of GLP-compliant lab software, designing and building ASP.NET WebAPI services with RESTful OData and SOAP endpoints backed by Oracle for high-availability systems.",
+        "Implemented configurable reporting pipelines and user-defined data models that ensured traceability and audit trails, supporting complex data operations at scale.",
+        "Guided release engineering and Azure DevOps practices for builds and deployments, ensuring scalability and reliability of applied services."
+      ],
+      "skillsUsed": [
+        "C#",
+        "ASP.NET WebAPI",
+        "REST",
+        "OData",
+        "SOAP",
+        "Oracle",
+        "PL/SQL",
+        "Entity Framework",
+        "nHibernate",
+        "Azure DevOps",
+        "Backend Development",
+        "Scalability",
+        "System Design Patterns"
+      ]
+    },
+    "solid-earth": {
+      "title": "Application Developer / Architect",
+      "description": [
+        "Developed and maintained RETS client and server software on Oracle and C#, achieving high performance and protocol compliance for real-time data handling.",
+        "Tuned RETS performance, protocol compliance, and data handling to keep broker and MLS integrations reliable and support scalable data flows.",
+        "Built configurable ASP.NET MLS frontends with XML-driven branding and business rules, enabling diverse experiences without code changes and contributing to system design."
+      ],
+      "skillsUsed": [
+        "C#",
+        "ASP.NET",
+        "Oracle",
+        "RETS",
+        "XML configuration",
+        "Performance tuning",
+        "Backend Development",
+        "System Design Patterns"
+      ]
+    },
+    "not-rocket-science": {
+      "description": [
+        "Delivered full-stack .NET and SQL Server development for inventory and operations workflows, focusing on backend data management and reliable service endpoints.",
+        "Designed database schemas and service endpoints to maintain data consistency and support applications across web and mobile surfaces.",
+        "Built a C# mobile application for a Sheriff's department to capture and sync field data, demonstrating experience with integrated systems."
+      ],
+      "skillsUsed": [
+        "C#",
+        "ASP.NET",
+        "SQL Server",
+        "Mobile development",
+        "Backend Development",
+        "Database Development",
+        "APIs"
+      ]
+    }
+  },
+  "skillsPrimary": [
+    "C#",
+    ".NET Core",
+    "ASP.NET",
+    "SQL Server",
+    "PostgreSQL",
+    "Oracle",
+    "Azure DevOps",
+    "Cloud Platforms",
+    "Backend Development",
+    "Microservices",
+    "APIs",
+    "System Design Patterns",
+    "Problem-solving",
+    "LLM Integration"
+  ],
+  "skillsSecondary": [
+    "Python",
+    "JavaScript",
+    "Entity Framework",
+    "Hangfire",
+    "Web development",
+    "Full-stack development",
+    "Git",
+    "Agile Methodologies",
+    "Project management",
+    "Mentoring",
+    "Leadership",
+    "Scalability"
+  ],
+  "tags": [
+    "ai",
+    "backend",
+    "platform",
+    "scalability",
+    "cloud",
+    "databases",
+    "microservices"
+  ],
+  "projectIds": [
+    "cognition",
+    "nlp-lexicon-experiments"
+  ]
+}

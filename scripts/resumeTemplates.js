@@ -51,7 +51,6 @@ export function renderHtmlResume(view) {
     headline,
     summary = [],
     experience = [],
-    projects = [],
   } = view;
 
   const skills = normalizeSkills(view);
@@ -96,20 +95,6 @@ export function renderHtmlResume(view) {
     </div>
   `;
 
-  const projectsHtml = (projects ?? [])
-    .map((project) => {
-      const url = project.url ?? project.repoUrl;
-      return `
-        <li>
-          <strong>${escapeHtml(project.name ?? '')}</strong> - ${escapeHtml(
-        project.shortDescription ?? project.description ?? '',
-      )}
-          ${url ? `<br/><a href="${escapeHtml(url)}">${escapeHtml(url)}</a>` : ''}
-        </li>
-      `;
-    })
-    .join('\n');
-
   const slug = profileSlug;
   const canonicalUrl = `https://zekenaulty.github.io/resume/${slug}/`;
 
@@ -146,8 +131,8 @@ export function renderHtmlResume(view) {
     ul { padding-left: 1.25rem; margin: 0; }
     .skills-columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
     .skills-columns ul { list-style: disc; }
-    #projects ul, #downloads ul { list-style: none; padding-left: 0; }
-    #projects li, #downloads li { margin-bottom: 0.5rem; }
+    #downloads ul { list-style: none; padding-left: 0; }
+    #downloads li { margin-bottom: 0.5rem; }
     footer { margin-top: 2rem; color: #9ca3af; font-size: 0.9rem; }
   `;
 
@@ -184,17 +169,13 @@ export function renderHtmlResume(view) {
         ${skillsHtml}
       </section>
 
-      <section id="projects">
-        <h3>Projects</h3>
-        <ul>${projectsHtml}</ul>
-      </section>
 
       <section id="downloads">
         <h3>Downloads</h3>
         <ul>
-          <li><a href="/resume/${slug}/resume-${slug}.txt">Plain text</a></li>
-          <li><a href="/resume/${slug}/resume-${slug}.pdf">PDF</a></li>
-          <li><a href="/resume/${slug}/resume-${slug}.docx">Word (.docx)</a></li>
+          <li><a href="/resume/${slug}/resume.txt">Plain text</a></li>
+          <li><a href="/resume/${slug}/resume.pdf">PDF</a></li>
+          <li><a href="/resume/${slug}/resume.docx">Word (.docx)</a></li>
         </ul>
       </section>
 
@@ -205,7 +186,7 @@ export function renderHtmlResume(view) {
 }
 
 export function renderTextResume(view) {
-  const { profileLabel, headline, summary = [], experience = [], projects = [] } = view;
+  const { profileLabel, headline, summary = [], experience = [] } = view;
   const skills = normalizeSkills(view);
 
   const lines = [];
@@ -252,15 +233,6 @@ export function renderTextResume(view) {
     lines.push('');
   }
 
-  lines.push('PROJECTS');
-  lines.push('--------');
-  projects.forEach((project) => {
-    lines.push(`${project.name ?? ''} - ${project.shortDescription ?? project.description ?? ''}`);
-    const url = project.url ?? project.repoUrl;
-    if (url) lines.push(`URL: ${url}`);
-    lines.push('');
-  });
-
   return lines.join('\n');
 }
 
@@ -268,7 +240,6 @@ export async function renderDocxResume(view) {
   const skills = normalizeSkills(view);
   const experience = view.experience ?? [];
   const summary = view.summary ?? [];
-  const projects = view.projects ?? [];
 
   const children = [
     new Paragraph({
@@ -344,34 +315,6 @@ export async function renderDocxResume(view) {
     ...(skills.other ?? []).map(
       (s) => new Paragraph({ text: s, bullet: { level: 0 }, spacing: { after: 20 } }),
     ),
-    new Paragraph({ text: 'Projects', heading: HeadingLevel.HEADING_1, spacing: { before: 120 } }),
-    ...projects.flatMap((project) => {
-      const nodes = [
-        new Paragraph({
-          text: project.name ?? '',
-          heading: HeadingLevel.HEADING_2,
-          spacing: { after: 30 },
-        }),
-      ];
-      if (project.shortDescription || project.description) {
-        nodes.push(
-          new Paragraph({
-            text: project.shortDescription ?? project.description ?? '',
-            spacing: { after: 60 },
-          }),
-        );
-      }
-      if (project.url ?? project.repoUrl) {
-        nodes.push(
-          new Paragraph({
-            text: project.url ?? project.repoUrl,
-            style: 'Hyperlink',
-            spacing: { after: 80 },
-          }),
-        );
-      }
-      return nodes;
-    }),
   ].filter(Boolean);
 
   const doc = new Document({
@@ -462,23 +405,6 @@ export async function renderPdfResume(view) {
   }
 
   doc.moveDown();
-  doc.font('Helvetica-Bold').fontSize(13).text('Projects');
-  doc.moveDown(0.2);
-  (view.projects ?? []).forEach((project) => {
-    doc.font('Helvetica-Bold').fontSize(11).text(project.name ?? '');
-    if (project.shortDescription || project.description) {
-      doc.font('Helvetica').fontSize(10).text(project.shortDescription ?? project.description ?? '', {
-        indent: 12,
-      });
-    }
-    const url = project.url ?? project.repoUrl;
-    if (url) {
-      doc.font('Helvetica').fontSize(10).fillColor('#1d4ed8').text(url, { indent: 12, link: url });
-      doc.fillColor('#000000');
-    }
-    doc.moveDown();
-  });
-
   doc.end();
   return bufferPromise;
 }

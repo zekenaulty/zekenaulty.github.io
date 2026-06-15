@@ -15,13 +15,11 @@ import HeaderBar from './components/HeaderBar.jsx';
 import SummarySection from './components/SummarySection.jsx';
 import ExperienceSection from './components/ExperienceSection.jsx';
 import SkillsSection from './components/SkillsSection.jsx';
-import ProjectsSection from './components/ProjectsSection.jsx';
 import HomeIntroSection from './components/HomeIntroSection.jsx';
 import ChatDrawer from './components/ChatDrawer.jsx';
 import ChatToggleButton from './components/ChatToggleButton.jsx';
 import { useProfileView } from './hooks/useProfileView.js';
 import { resumeData } from './data/resume/index.js';
-import projects from './data/projects/index.js';
 
 const theme = createTheme({
   palette: {
@@ -165,8 +163,6 @@ function App() {
             skillsSecondary={skillsSecondary}
             otherSkills={otherSkills}
           />
-
-          <ProjectsSection projects={projects} />
         </Stack>
       </Container>
     </ThemeProvider>

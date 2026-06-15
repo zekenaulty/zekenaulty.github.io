@@ -26,7 +26,7 @@ const ENV_PROXY_URL = import.meta.env.VITE_GEMINI_PROXY_URL?.trim?.() || '';
 const ENV_MODEL = import.meta.env.VITE_GEMINI_MODEL?.trim?.() || '';
 
 const GEMINI_API_KEY = ENV_API_KEY; // local dev only; do not ship secrets in production builds
-const GEMINI_MODEL = ENV_MODEL || 'gemini-2.5-flash';
+const GEMINI_MODEL = ENV_MODEL || 'gemini-3-flash-preview';
 const DEFAULT_PROXY_URL = 'https://gemini-proxy.zekenaulty.workers.dev'; // e.g., https://gemini-proxy.yourdomain.workers.dev
 const GEMINI_PROXY_URL = ENV_PROXY_URL || DEFAULT_PROXY_URL;
 
@@ -38,7 +38,7 @@ const MAX_SEND_TURNS = 100;
 const INITIAL_ASSISTANT_MESSAGE = {
   id: 'welcome',
   role: 'model',
-  text: "You can ask about Zeke's roles, skills, experience, or projects, and I'll answer from his resume data.",
+  text: "You can ask about Zeke's roles, skills, or experience, and I'll answer from his resume data.",
   timestamp: Date.now(),
 };
 

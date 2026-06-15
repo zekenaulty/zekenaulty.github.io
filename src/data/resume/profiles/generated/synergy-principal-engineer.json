@@ -1,0 +1,126 @@
+{
+  "id": "synergy-principal-engineer",
+  "label": "Principal Software Engineer - AI Product & Platform (Synergy)",
+  "kind": "employer-facing",
+  "published": false,
+  "headline": "Principal Software Engineer — AI Systems, Full-Stack Architecture, & High-Reliability Platforms",
+  "aboutKey": "about-principal-ai-synergy",
+  "experienceOrder": [
+    "ai-research",
+    "iadvantage",
+    "storable",
+    "prestage-farms",
+    "solid-earth"
+  ],
+  "experienceOverrides": {
+    "ai-research": {
+      "title": "Principal AI Researcher & Engineer",
+      "description": [
+        "Architected and implemented production-ready AI agent frameworks and RAG workflows using Python and C#/.NET, focusing on deterministic scope boundaries and traceable execution.",
+        "Developed the Domain of Domains (DoD), a formal runtime governance architecture for agentic systems addressing context drift and unverifiable memory in complex LLM environments.",
+        "Built BookForge, a Python-based AI workflow engine with a layered prompt governance pipeline, multi-provider LLM abstraction (OpenAI, Gemini, Ollama), and schema-validated state management.",
+        "Authored comprehensive technical decision records and architecture whitepapers for agentic coding and governance planes, ensuring knowledge sharing and system sustainability."
+      ],
+      "skillsUsed": [
+        "Python",
+        "AI Agents",
+        "RAG (Retrieval-Augmented Generation)",
+        "Vector Databases",
+        "System Architecture",
+        "Prompt Governance",
+        "C#/.NET",
+        "LLM Orchestration"
+      ]
+    },
+    "iadvantage": {
+      "title": "Lead Developer / Technical Architect",
+      "description": [
+        "Led the technical direction and delivery of a GLP-compliant lab platform in a highly regulated environment where data integrity and audit trails were critical requirements.",
+        "Shaped architecture and implementation across front-end (AngularJS/Bootstrap), APIs (REST/OData), and data (Oracle/PL-SQL) to support high-value product features.",
+        "Managed release engineering and Azure DevOps practices, ensuring reliability across both internet-connected and complex environment-specific deployments.",
+        "Mentored the development team through code reviews and technical guidance, maintaining high standards for production quality and maintainability."
+      ],
+      "skillsUsed": [
+        "Full-stack Architecture",
+        "API Design",
+        "Relational Databases",
+        "Technical Leadership",
+        "Azure DevOps",
+        "Regulated Environments",
+        "TypeScript/JavaScript"
+      ]
+    },
+    "storable": {
+      "title": "Senior Software Engineer (Backend & Services)",
+      "description": [
+        "Architected .NET Core services using Entity Framework over PostgreSQL and SQL Server to drive high-availability insurance workflows.",
+        "Built background processing systems with Hangfire to synchronize eligibility and billing data across distributed web and desktop products.",
+        "Collaborated closely with product leadership to triage production issues and refactor high-risk architectural areas for long-term sustainability."
+      ],
+      "skillsUsed": [
+        "C#",
+        ".NET Core",
+        "PostgreSQL",
+        "PostgreSQL Performance Tuning",
+        "Background Processing",
+        "Service Architecture"
+      ]
+    },
+    "prestage-farms": {
+      "title": "Principal Programmer / Analyst",
+      "description": [
+        "Led a team of engineers to modernize critical inventory and accounting systems, delivering high-value product features three months ahead of schedule.",
+        "Designed and implemented role-based security and reporting engines for on-premise environments, ensuring operational stability during system cutovers.",
+        "Balanced speed and quality by implementing pragmatic automation and bug-tracking pipelines that reduced delivery bottlenecks."
+      ],
+      "skillsUsed": [
+        "Agile Leadership",
+        "System Modernization",
+        "Team Leadership",
+        "Security-Sensitive Environments",
+        "Requirement Shaping"
+      ]
+    },
+    "solid-earth": {
+      "title": "Technical Architect",
+      "description": [
+        "Developed and optimized high-performance RETS client/server software on Oracle and C#, achieving industry-leading compliance and responsiveness.",
+        "Architected configurable ASP.NET platforms where business rules and UI branding were driven by extensible data schemas, reducing individual code changes per customer."
+      ],
+      "skillsUsed": [
+        "Performance Tuning",
+        "High-Speed Data Processing",
+        "Oracle",
+        "Scalable Architecture"
+      ]
+    }
+  },
+  "skillsPrimary": [
+    "AI Agent Frameworks",
+    "RAG (Retrieval-Augmented Generation)",
+    "Python (AI/LLM)",
+    "C# / .NET Core",
+    "PostgreSQL",
+    "System Architecture",
+    "Full-Stack Engineering",
+    "API Design",
+    "Technical Leadership"
+  ],
+  "skillsSecondary": [
+    "Vector Databases",
+    "TypeScript",
+    "Docker & Linux",
+    "On-Premise / Hybrid Deployment",
+    "Azure DevOps",
+    "Release Reliability",
+    "Technical Documentation",
+    "Regulated/Compliance Environments"
+  ],
+  "tags": [
+    "ai-platform",
+    "principal-engineer",
+    "fullstack",
+    "architecture",
+    "rag"
+  ]
+}

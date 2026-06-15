@@ -1,8 +1,8 @@
-import projects from '../projects/index.js';
 import ProfileRegistry from './profiles/profileData.browser.js';
 import aboutVariants from './aboutVariants.json' assert { type: 'json' };
 import skillsCatalog from './skills.json' assert { type: 'json' };
 
+import aiResearch from './experience/ai-research.json' assert { type: 'json' };
 import computerSpecialist from './experience/computer-specialist.json' assert { type: 'json' };
 import littonAvondale from './experience/litton-avondale.json' assert { type: 'json' };
 import hancockWhitney from './experience/hancock-whitney.json' assert { type: 'json' };
@@ -18,6 +18,7 @@ import storable from './experience/storable.json' assert { type: 'json' };
 import { buildProfileView } from './viewBuilder.js';
 
 const experience = [
+  aiResearch,
   storable,
   iadvantage,
   prestageFarms,
@@ -47,7 +48,7 @@ export const resumeData = {
 export const DEFAULT_PROFILE_ID = ProfileRegistry.defaultProfileId;
 
 export function getProfileView(profileSlug = DEFAULT_PROFILE_ID) {
-  return buildProfileView(resumeData, projects, profileSlug);
+  return buildProfileView(resumeData, profileSlug);
 }
 
 export default resumeData;

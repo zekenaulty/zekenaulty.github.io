@@ -4,10 +4,10 @@ import ProfileRegistry from './profiles/profileData.node.js';
 
 const require = createRequire(import.meta.url);
 
-const projects = require('../projects/projects.json');
 const aboutVariants = require('./aboutVariants.json');
 const skillsCatalog = require('./skills.json');
 
+const aiResearch = require('./experience/ai-research.json');
 const computerSpecialist = require('./experience/computer-specialist.json');
 const littonAvondale = require('./experience/litton-avondale.json');
 const hancockWhitney = require('./experience/hancock-whitney.json');
@@ -21,6 +21,7 @@ const iadvantage = require('./experience/iadvantage.json');
 const storable = require('./experience/storable.json');
 
 const experience = [
+  aiResearch,
   storable,
   iadvantage,
   prestageFarms,
@@ -50,7 +51,7 @@ export const resumeData = {
 export const DEFAULT_PROFILE_ID = ProfileRegistry.defaultProfileId;
 
 export function getProfileView(profileSlug = DEFAULT_PROFILE_ID) {
-  return buildProfileView(resumeData, projects, profileSlug);
+  return buildProfileView(resumeData, profileSlug);
 }
 
 export default resumeData;

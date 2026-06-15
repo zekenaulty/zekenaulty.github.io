@@ -1,0 +1,84 @@
+{
+  "id": "software-developer-at-replkia",
+  "label": "Software Engineer (AI Platform) at Replika",
+  "kind": "employer-facing",
+  "published": false,
+  "headline": "Software Engineer (AI Platform) — LLM Orchestration, Python, & Scalable Backend Architectures",
+  "aboutKey": "about-ai-platform-systems",
+  "experienceOrder": [
+    "storable",
+    "iadvantage",
+    "solid-earth",
+    "rural-sourcing",
+    "litton-avondale"
+  ],
+  "experienceOverrides": {
+    "storable": {
+      "title": "Software Engineer II (Backend & Services)",
+      "description": [
+        "Architected and maintained .NET Core services using Hangfire and PostgreSQL to manage high-frequency background jobs and real-time data synchronization.",
+        "Engineered background processing pipelines and APIs to maintain sub-second data consistency across global web and desktop products.",
+        "Collaborated with product teams to triage high-traffic production issues and refactor bottlenecked legacy code for increased reliability.",
+        "Established performance-driven unit testing patterns to ensure stability during the rapid expansion of service boundaries."
+      ]
+    },
+    "iadvantage": {
+      "title": "Lead Developer (Architecture & Scalability)",
+      "description": [
+        "Led the delivery of high-availability lab software platforms supporting complex, user-defined data models and high-throughput audit trails.",
+        "Designed and implemented microservice-style WebAPI endpoints with RESTful OData, optimizing for data lineage and traceability in regulated environments.",
+        "Directed release engineering and DevOps practices using Azure, ensuring reliable CI/CD and database migration across multiple environments.",
+        "Mentored engineering teams through code reviews and collaborative architectural design to raise the bar for system performance."
+      ]
+    },
+    "solid-earth": {
+      "title": "Software Architect (High-Performance Systems)",
+      "description": [
+        "Developed and tuned RETS client/server software, achieving recognition as one of the fastest and most compliant servers in the US real estate industry.",
+        "Optimized protocol compliance and data handling to ensure reliable real-time broker and MLS integrations.",
+        "Built a market analytics module to surface deep statistical metrics from high-volume datasets for brokers and administrators."
+      ]
+    },
+    "litton-avondale": {
+      "title": "Engineering Systems Developer",
+      "description": [
+        "Wrote low-level 3D-to-2D code transformations for complex engineering drawing data, focusing on transformation efficiency and accuracy.",
+        "Built a custom IDE for scripting and automating transformations, allowing engineers to iterate on geometry requirements without manual code rewrites.",
+        "Managed the deployment of networked applications and created robust error logging/reporting databases to monitor transformation runs."
+      ]
+    }
+  },
+  "skillsPrimary": [
+    "Python",
+    "LLM Integration",
+    "Backend Engineering",
+    "Microservices",
+    "Event-Driven Architecture",
+    "SQL & NoSQL",
+    "Docker & Kubernetes",
+    "Scalability & Reliability"
+  ],
+  "skillsSecondary": [
+    "C#",
+    ".NET Core",
+    "Agentic Orchestration",
+    "NLP",
+    "Real-time Processing",
+    "API Design",
+    "Azure DevOps",
+    "PostgreSQL",
+    "System Design Patterns"
+  ],
+  "projectIds": [
+    "cognition",
+    "nlp-lexicon-experiments",
+    "random-dialog",
+    "maze-battle"
+  ],
+  "tags": [
+    "backend",
+    "ai-platform",
+    "scalability",
+    "llm"
+  ]
+}

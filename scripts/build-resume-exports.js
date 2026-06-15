@@ -33,13 +33,13 @@ async function main() {
     fs.writeFileSync(path.join(profileDir, 'index.html'), html, 'utf8');
 
     const txt = renderTextResume(view);
-    fs.writeFileSync(path.join(profileDir, `resume-${slug}.txt`), txt, 'utf8');
+    fs.writeFileSync(path.join(profileDir, 'resume.txt'), txt, 'utf8');
 
     const docxBuffer = await renderDocxResume(view);
-    fs.writeFileSync(path.join(profileDir, `resume-${slug}.docx`), docxBuffer);
+    fs.writeFileSync(path.join(profileDir, 'resume.docx'), docxBuffer);
 
     const pdfBuffer = await renderPdfResume(view);
-    fs.writeFileSync(path.join(profileDir, `resume-${slug}.pdf`), pdfBuffer);
+    fs.writeFileSync(path.join(profileDir, 'resume.pdf'), pdfBuffer);
   }
 }
 

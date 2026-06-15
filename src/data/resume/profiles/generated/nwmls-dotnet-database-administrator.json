@@ -1,0 +1,110 @@
+{
+  "id": "nwmls-dotnet-database-administrator",
+  "label": ".NET Developer / Database Administrator at NWMLS",
+  "kind": "employer-facing",
+  "published": false,
+  "headline": ".NET Developer & Database Administrator — C#, SQL Server, T-SQL, ASP.NET, MLS Systems",
+  "aboutKey": "about-nwmls-fullstack-dba",
+  "experienceOrder": [
+    "solid-earth",
+    "iadvantage",
+    "storable",
+    "rural-sourcing",
+    "not-rocket-science",
+    "prestage-farms"
+  ],
+  "experienceOverrides": {
+    "solid-earth": {
+      "title": ".NET Developer / Architect (MLS & RETS)",
+      "description": [
+        "Architected and maintained RETS client/server software on Oracle and C#, achieving high-speed protocol compliance for real estate integrations.",
+        "Performed intensive performance tuning of databases, stored procedures, and data handling to ensure sub-second response times for broker integrations.",
+        "Built configurable ASP.NET MLS frontends and statistics modules, surfacing deep market analytics and metrics for real estate administrators.",
+        "Coordinated with MLS stakeholders to manage deployment windows and maintain high data freshness and system uptime."
+      ],
+      "skillsUsed": [
+        "C#",
+        "ASP.NET",
+        "SQL Server",
+        "Oracle",
+        "T-SQL",
+        "RETS",
+        "Performance tuning",
+        "Database Architecture"
+      ]
+    },
+    "iadvantage": {
+      "title": "Lead Developer / Database Administrator (Azure DevOps)",
+      "description": [
+        "Led full-stack delivery of lab systems using ASP.NET WebForms/MVC/WebAPI and complex relational database designs in SQL Server and Oracle.",
+        "Guided database migration strategies and Azure DevOps release engineering for production deployments across multiple environments.",
+        "Developed and optimized stored procedures, views, and complex T-SQL/PL-SQL queries to handle user-defined data models and custom reporting.",
+        "Implemented rigorous audit logging and data lineage features to maintain system integrity and security compliance."
+      ],
+      "skillsUsed": [
+        "C#",
+        "ASP.NET MVC",
+        "SQL Server",
+        "T-SQL",
+        "Azure DevOps",
+        "Database Migrations",
+        "Stored Procedures",
+        "Oracle"
+      ]
+    },
+    "storable": {
+      "title": "Software Engineer II",
+      "description": [
+        "Engineered .NET Core services and background jobs using Hangfire and Entity Framework over SQL Server and PostgreSQL.",
+        "Automated data synchronization across desktop WinForms and web applications to maintain eligibility and billing integrity.",
+        "Collaborated with cross-functional teams to triage production database issues and refactor high-risk areas for improved stability.",
+        "Established unit-testing patterns for database-interacting code and documented deployment procedures for the engineering team."
+      ],
+      "skillsUsed": [
+        "C#",
+        ".NET Core",
+        "SQL Server",
+        "T-SQL",
+        "PostgreSQL",
+        "Entity Framework",
+        "Hangfire",
+        "Unit testing"
+      ]
+    },
+    "not-rocket-science": {
+      "description": [
+        "Delivered full-stack .NET and SQL Server applications for inventory and operations workflows, including custom database schema design.",
+        "Created service endpoints and mobile C# applications to capture and sync field data with backend SQL Server systems.",
+        "Optimized web backend tracking applications for logistics shipments using ASP.NET and SQL Server."
+      ]
+    }
+  },
+  "skillsPrimary": [
+    "C#",
+    ".NET Core",
+    "SQL Server",
+    "T-SQL",
+    "ASP.NET",
+    "Database Administration",
+    "Stored Procedures",
+    "Performance Tuning",
+    "Full-stack development"
+  ],
+  "skillsSecondary": [
+    "RETS",
+    "MLS",
+    "Azure DevOps",
+    "Entity Framework",
+    "HTML/CSS",
+    "JavaScript",
+    "JSON",
+    "Database Migrations",
+    "Agile Methodologies"
+  ],
+  "tags": [
+    "fullstack",
+    "dba",
+    "sql-server",
+    "real-estate"
+  ]
+}

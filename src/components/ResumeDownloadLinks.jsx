@@ -8,9 +8,9 @@ function ResumeDownloadLinks({ profileId, profileLabel }) {
   const normalizedBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
   const basePath = `${normalizedBase}/resume/${slug}`;
   const htmlUrl = `${basePath}/index.html`;
-  const pdfUrl = `${basePath}/resume-${slug}.pdf`;
-  const docxUrl = `${basePath}/resume-${slug}.docx`;
-  const txtUrl = `${basePath}/resume-${slug}.txt`;
+  const pdfUrl = `${basePath}/resume.pdf`;
+  const docxUrl = `${basePath}/resume.docx`;
+  const txtUrl = `${basePath}/resume.txt`;
 
   return (
     <Box>
@@ -32,7 +32,7 @@ function ResumeDownloadLinks({ profileId, profileLabel }) {
           <Button
             component="a"
             href={pdfUrl}
-            download={`resume-${slug}.pdf`}
+            download="zeke-naulty-resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -41,7 +41,7 @@ function ResumeDownloadLinks({ profileId, profileLabel }) {
           <Button
             component="a"
             href={docxUrl}
-            download={`resume-${slug}.docx`}
+            download="zeke-naulty-resume.docx"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -50,7 +50,7 @@ function ResumeDownloadLinks({ profileId, profileLabel }) {
           <Button
             component="a"
             href={txtUrl}
-            download={`resume-${slug}.txt`}
+            download="zeke-naulty-resume.txt"
             target="_blank"
             rel="noopener noreferrer"
           >

@@ -1,0 +1,174 @@
+{
+  "id": "software-engineer-at-replkia",
+  "label": "Software Engineer (AI Platform) at Replika",
+  "kind": "employer-facing",
+  "published": false,
+  "headline": "Software Engineer (AI Platform) – LLM Orchestration, Scalable Backend Systems (C#, Python, SQL, Cloud)",
+  "aboutKey": "about-ai-platform-backend",
+  "experienceOrder": [
+    "storable",
+    "iadvantage",
+    "solid-earth",
+    "rural-sourcing",
+    "prestage-farms",
+    "not-rocket-science"
+  ],
+  "experienceOverrides": {
+    "storable": {
+      "title": "Software Engineer II",
+      "description": [
+        "Developed and maintained .NET Core services with Hangfire, Entity Framework, PostgreSQL, and SQL Server to support complex auto-protect features, ensuring data synchronization and reliability.",
+        "Built APIs and background jobs to keep critical coverage, eligibility, and billing data in sync across diverse applications, contributing to system scalability and high-availability.",
+        "Clarified service boundaries and domain concepts, promoting domain-driven design adoption and improving maintainability and testability of backend systems."
+      ],
+      "skillsUsed": [
+        "C#",
+        ".NET Core",
+        "ASP.NET",
+        "Entity Framework",
+        "Hangfire",
+        "PostgreSQL",
+        "SQL Server",
+        "APIs",
+        "Backend Development",
+        "Scalability",
+        "System Design Patterns"
+      ]
+    },
+    "iadvantage": {
+      "title": "Lead Developer / Azure DevOps",
+      "description": [
+        "Led the delivery of GLP-compliant lab software, designing and building ASP.NET WebForms/MVC/WebAPI services with RESTful OData and SOAP endpoints, ensuring scalability and reliability of applied AI services.",
+        "Implemented configurable reporting pipelines and dynamic user-defined data models that preserved traceability and audit trails, supporting complex business logic at scale.",
+        "Guided release engineering and Azure DevOps practices for CI/CD, builds, deployments, and database migrations across environments, optimizing operational efficiency on cloud platforms."
+      ],
+      "skillsUsed": [
+        "C#",
+        "ASP.NET MVC",
+        "ASP.NET WebAPI",
+        "REST",
+        "OData",
+        "SOAP",
+        "Oracle",
+        "nHibernate",
+        "Entity Framework",
+        "Azure DevOps",
+        "CI/CD",
+        "Backend Development",
+        "System Design Patterns",
+        "Cloud Platforms",
+        "API"
+      ]
+    },
+    "solid-earth": {
+      "title": "Application Developer/Architect",
+      "description": [
+        "Developed and maintained high-performance RETS client and server software on Oracle and C#, achieving top compliance and praised for speed, demonstrating expertise in scalable backend systems and API integrations.",
+        "Tuned RETS performance, protocol compliance, and data handling to ensure reliable broker and MLS integrations, addressing real-time data needs and optimizing for global growth.",
+        "Built configurable ASP.NET MLS frontends driven by XML, allowing for flexible branding and business rules without code changes, enhancing system adaptability and scalability."
+      ],
+      "skillsUsed": [
+        "C#",
+        "ASP.NET",
+        "Oracle",
+        "RETS",
+        "Performance tuning",
+        "Backend Development",
+        "Scalability",
+        "System Design Patterns",
+        "API Integrations",
+        "High-Availability Systems"
+      ]
+    },
+    "rural-sourcing": {
+      "title": "Senior Software Developer",
+      "description": [
+        "Delivered Microsoft-stack projects for multiple clients, specializing in backend, ASP.NET, and SQL Server development, acting as a hands-on contributor and a force multiplier for the team.",
+        "Mentored junior and mid-level developers on coding standards, testing habits, and practical estimation, identifying problems and proposing robust solutions.",
+        "Planned and tracked sprints, risks, and milestones, ensuring effective project management and stakeholder alignment across simultaneous backend projects, executing with velocity and a sense of ownership."
+      ],
+      "skillsUsed": [
+        "C#",
+        "ASP.NET",
+        "SQL Server",
+        "Backend Development",
+        "Mentoring",
+        "Project Management",
+        "Problem-solving",
+        "System Design Patterns"
+      ]
+    },
+    "prestage-farms": {
+      "title": "Programmer/Analyst",
+      "description": [
+        "Led a team of 6 developers and 3 QA to modernize legacy VB6 accounting and inventory systems into a cohesive .NET application with role-based security.",
+        "Analyzed legacy patterns and built transformation modules to automate conversion, preserving business logic while modernizing core systems and ensuring their scalability and reliability.",
+        "Ran Agile roadmaps and milestones, coordinating stakeholders to deliver the modernization roughly three months early, demonstrating strong ownership and execution velocity in software design."
+      ],
+      "skillsUsed": [
+        "C#",
+        "VB.NET",
+        "Legacy modernization",
+        "Team Leadership",
+        "Agile",
+        "System Design Patterns",
+        "Problem-solving"
+      ]
+    },
+    "not-rocket-science": {
+      "title": "Programmer/Analyst",
+      "description": [
+        "Delivered full-stack .NET and SQL Server development for inventory and operations workflows, focusing on robust backend solutions and scalable data management.",
+        "Created an ActionScript + ASP.NET tracking application for shipments and tug boats with a custom web backend, demonstrating diverse backend integration skills and API usage.",
+        "Designed database schemas and service endpoints to maintain data consistency across web and mobile platforms, crucial for building scalable and reliable systems."
+      ],
+      "skillsUsed": [
+        "C#",
+        "ASP.NET",
+        "SQL Server",
+        "Backend Development",
+        "Database Development",
+        "API",
+        "System Design Patterns"
+      ]
+    }
+  },
+  "skillsPrimary": [
+    "C#",
+    ".NET Core",
+    "Python",
+    "LLMs",
+    "Backend Development",
+    "API",
+    "SQL Server",
+    "PostgreSQL",
+    "Oracle",
+    "Cloud Platforms",
+    "Azure DevOps",
+    "System Design Patterns",
+    "Scalability",
+    "High-Availability Systems"
+  ],
+  "skillsSecondary": [
+    "JavaScript",
+    "Entity Framework",
+    "Hangfire",
+    "Microservices",
+    "Event-driven Architectures",
+    "CI/CD",
+    "Conversational AI",
+    "Gaming",
+    "Leadership",
+    "Project management",
+    "Problem-solving"
+  ],
+  "tags": [
+    "backend",
+    "ai",
+    "llm",
+    "python",
+    "c#",
+    "scalable-systems",
+    "cloud"
+  ]
+}

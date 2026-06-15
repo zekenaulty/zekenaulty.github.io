@@ -1,0 +1,87 @@
+{
+  "id": "nwmls-dotnet-dba",
+  "label": "Full Stack .NET Developer / Database Administrator at NWMLS",
+  "kind": "employer-facing",
+  "published": false,
+  "headline": ".NET Developer / Database Administrator — C#, ASP.NET, T-SQL, SQL Server DBA, Real Estate Tech (RETS)",
+  "aboutKey": "about-fullstack-dba-mls-expert",
+  "experienceOrder": [
+    "solid-earth",
+    "storable",
+    "iadvantage",
+    "rural-sourcing",
+    "prestage-farms"
+  ],
+  "experienceOverrides": {
+    "solid-earth": {
+      "title": "Application Developer / Architect (MLS Specialist)",
+      "description": [
+        "Architected and maintained RETS (Real Estate Transaction Standard) client and server software on Oracle and C#, delivering one of the fastest compliant servers for real estate boards.",
+        "Built and optimized configurable ASP.NET MLS frontends driven by XML to support diverse business rules and member board branding.",
+        "Engineered a market analytics and statistics module surfacing deep MLS metrics and real estate board reporting for brokers and administrators.",
+        "Coordinated with MLS stakeholders to ensure high uptime, data freshness, and protocol compliance across broker and board integrations."
+      ]
+    },
+    "storable": {
+      "title": "Software Engineer II (.NET & SQL Server)",
+      "description": [
+        "Developed and maintained .NET Core services and web applications utilizing SQL Server and PostgreSQL to drive insurance and tenant workflows.",
+        "Managed database performance and stability using Entity Framework and Hangfire for background job scheduling and data synchronization.",
+        "Monitored and conduct performance tuning for backend systems to ensure data eligibility and billing accuracy across desktop and web products.",
+        "Collaborated on domain-driven design and established unit-testing patterns to improve system reliability and maintainability."
+      ]
+    },
+    "iadvantage": {
+      "title": "Lead Developer / Database Source Control",
+      "description": [
+        "Led delivery of complex, data-driven lab platforms across WebForms, MVC, and WebAPI with user-defined relational data models.",
+        "Guided database source control and deployment methods using Azure DevOps for builds, migrations, and environment management.",
+        "Implemented custom reporting pipelines and RESTful OData/SOAP endpoints to preserve data lineage and audit trails.",
+        "Mentored the development team through code reviews and design reviews to ensure adherence to established coding policies and security standards."
+      ]
+    },
+    "rural-sourcing": {
+      "description": [
+        "Delivered full stack Microsoft-stack projects for multiple clients, specializing in WinForms, ASP.NET, and SQL Server backend development.",
+        "Planned and tracked sprints and technical risks while mentoring junior developers on coding standards and SQL performance habits.",
+        "Conducted production readiness checks and performance tuning for SQL Server databases across diverse client engagements."
+      ]
+    },
+    "prestage-farms": {
+      "description": [
+        "Led the modernization of legacy accounting systems into a cohesive .NET WinForms application with integrated SQL Server reporting.",
+        "Designed and implemented role-based security and custom bug reporting systems to streamline the software development life cycle.",
+        "Utilized Agile methodologies to deliver modernization milestones early while maintaining data integrity across inventory and equipment modules."
+      ]
+    }
+  },
+  "skillsPrimary": [
+    "C#",
+    "ASP.NET",
+    "SQL Server Database Administration",
+    "T-SQL",
+    "Relational Database Design",
+    "Performance Tuning",
+    "Full-stack development",
+    "RETS (Real Estate Tech)"
+  ],
+  "skillsSecondary": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "JSON",
+    ".NET Core",
+    "Entity Framework",
+    "Azure DevOps",
+    "Source Control",
+    "Unit Testing",
+    "Disaster Recovery"
+  ],
+  "tags": [
+    "full-stack",
+    "dba",
+    "sql-server",
+    "real-estate",
+    "mls"
+  ]
+}
