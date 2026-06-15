@@ -1,0 +1,94 @@
+ZEKE NAULTY
+.NET SOLUTION ARCHITECT / TECHNICAL ARCHITECT
+.NET Solution Architect – Modernizing Long-Lived Systems (C#, ASP.NET, SQL Server/PostgreSQL, Azure DevOps)
+
+SUMMARY
+-------
+Solution-focused architect who designs pragmatic modernization paths for long-lived .NET systems. Balances legacy constraints with improved patterns, data contracts, and team practices.
+
+Mentors teams on testing, service boundaries, and delivery so products become easier to evolve instead of harder to maintain.
+
+EXPERIENCE
+----------
+Software Engineer II (Architecture & Services) - Storable
+Jan 2021 - Dec 2022 | Cary, North Carolina, United States
+  - Architected and delivered .NET Core services with Hangfire, PostgreSQL, and SQL Server for insurance auto-protect features alongside WinForms and web apps.
+  - Introduced unit testing patterns and contributed to domain-driven design to make shipping safer on a legacy-heavy product.
+
+Lead Developer / Azure DevOps - iAdvantage Software, Inc.
+Feb 2017 - Jan 2021 | Cary, NC
+  - Led delivery of user-defined data models and reporting for GLP-compliant products across WebForms/MVC/WebAPI with REST OData and SOAP APIs on Oracle.
+  - Guided DevOps practices and UI strategy with CSS, Bootstrap, AngularJS, and offline WinForms/Xamarin support.
+
+Application Developer / Architect - Solid Earth Inc.
+Dec 2006 - Jan 2011 | Huntsville, AL
+  - Maintained RETS client/server software and configurable ASP.NET MLS implementations powered by Oracle and C#.
+  - Built a market analytics and statistics module to surface actionable metrics.
+
+Senior Software Developer - Rural Sourcing, Inc.
+Jul 2013 - Feb 2016 | Augusta, Georgia Area
+  - Mentored teams, managed projects, and recruited across Microsoft stack engagements.
+  - Provided leadership on Windows, web, and database development initiatives.
+
+Programmer/Analyst - Prestage Farms
+Jan 2016 - Sep 2016 | Clinton, NC
+  - Directed modernization of VB6 accounting and inventory systems, replacing reporting and adding custom bug tracking.
+  - Used Agile practices to deliver early and leave a maintainable path forward.
+
+Web Developer/Consultant (PK Promotions) - PK Promotions
+May 2004 - Jan 2005 | Biloxi, MS
+  - Implemented production management, product tracking, and sales/marketing systems with web technology tailored to business constraints.
+
+Engineering Application Developer - Litton Avondale Inc.
+Feb 1999 - Dec 2000 | New Orleans, LA
+  - Created 3D-to-2D code transformations and deployment tooling with error logging/reporting on the LPD-17 project.
+  - Built an IDE for scripting the transforms to make future changes safer.
+
+SKILLS
+------
+Core:
+  - C#
+  - .NET Core
+  - ASP.NET
+  - Entity Framework
+  - Azure DevOps
+  - SQL Server
+  - Oracle
+  - Legacy modernization
+  - Leadership
+  - Project management
+
+Supporting:
+  - PostgreSQL
+  - WinForms
+  - AngularJS
+  - OData/SOAP APIs
+  - Mentoring
+  - Unified Modeling Language (UML)
+
+Other:
+  - Agile Methodologies
+  - Bootstrap
+  - Cloud Platforms
+  - Cloud computing (Azure)
+  - CSS
+  - Database Development
+  - Full-stack development
+  - Git
+  - iOS
+  - JavaScript
+  - JIRA
+  - Kanban
+  - Microsoft Azure
+  - Microsoft SQL Server
+  - Mobile application development
+  - Problem-solving
+  - Regular Expressions
+  - Software development
+  - Team Building
+  - Team management
+  - Time management
+  - Visual Basic .NET
+  - Web development
+  - Hangfire
+  - Xamarin Forms

@@ -1,0 +1,99 @@
+ZEKE NAULTY
+SENIOR .NET BACKEND / MODERNIZATION
+Senior .NET Backend Engineer – Legacy to Modern Backends (C#, .NET Core, SQL Server/PostgreSQL, Azure)
+
+SUMMARY
+-------
+Senior .NET engineer focused on backend services, data flows, and modernization. Comfortable moving legacy workloads toward testable .NET Core/C# services, tightening telemetry, and improving reliability around schedulers, queues, and APIs.
+
+Works close to the database layer (SQL Server, PostgreSQL, Oracle) and cares about shipping incremental improvements without breaking the business.
+
+EXPERIENCE
+----------
+Software Engineer II (Backend/Modernization) - Storable
+Jan 2021 - Dec 2022 | Cary, North Carolina, United States
+  - Built and maintained .NET Core services with Hangfire, PostgreSQL, and SQL Server to support insurance auto-protect features.
+  - Kept WinForms and web applications moving by tightening unit test coverage and contributing to early domain-driven design efforts.
+
+Lead Developer / Azure DevOps - iAdvantage Software, Inc.
+Feb 2017 - Jan 2021 | Cary, NC
+  - Delivered user-defined data models and custom reporting for GLP-compliant products using WebForms/MVC/WebAPI with REST OData and SOAP APIs on Oracle.
+  - Led service delivery and DevOps practices across .NET, nHibernate, Entity Framework, and PL/SQL.
+
+Senior Software Developer - Rural Sourcing, Inc.
+Jul 2013 - Feb 2016 | Augusta, Georgia Area
+  - Delivered Microsoft-stack projects for multiple clients, moving between WinForms, ASP.NET, and SQL Server work as engagements required.
+  - Mentored junior and mid-level developers on coding standards, testing habits, and practical estimation.
+  - Planned and tracked sprints, risks, and milestones while keeping stakeholders aligned across simultaneous projects.
+  - Conducted code reviews and production readiness checks to keep releases predictable for consulting clients.
+  - Interviewed and recruited engineers, helping shape hiring rubrics and onboarding practices.
+  - Acted as a hands-on contributor when teams needed extra capacity on backend or desktop features.
+
+Application Developer / Architect - Solid Earth Inc.
+Dec 2006 - Jan 2011 | Huntsville, AL
+  - Maintained RETS client/server software on Oracle and C# and modernized configurable ASP.NET MLS implementations.
+  - Built a statistics module with deep market analytics and reporting.
+
+Programmer/Analyst (Modernization) - Prestage Farms
+Jan 2016 - Sep 2016 | Clinton, NC
+  - Led modernization of legacy VB6 accounting and inventory software, replacing reports and delivering a new reporting frontend.
+  - Added bug reporting and ticketing to tighten feedback loops; delivered the project ahead of schedule with Agile practices.
+
+Programmer/Analyst - Not Rocket Science
+Jan 2005 - Oct 2005 | Covington, LA
+  - Delivered full-stack .NET work on SQL Server for Zen-Noh Grain and built ActionScript + ASP.NET tracking for shipments and tug boats.
+  - Built a C# mobile app for a Sheriff's department.
+
+Engineering Application Developer - Litton Avondale Inc.
+Feb 1999 - Dec 2000 | New Orleans, LA
+  - Wrote 3D-to-2D code transformations and deployed network applications on the LPD-17 project.
+  - Built error logging/reporting and an IDE for scripting the transforms.
+
+SKILLS
+------
+Core:
+  - C#
+  - .NET Core
+  - ASP.NET
+  - Entity Framework
+  - SQL Server
+  - PostgreSQL
+  - Azure DevOps
+  - Hangfire
+  - Legacy modernization
+
+Supporting:
+  - WinForms
+  - AngularJS
+  - Oracle
+  - OData/SOAP APIs
+  - Project management
+
+Other:
+  - Agile Methodologies
+  - Bootstrap
+  - Cloud Platforms
+  - Cloud computing (Azure)
+  - CSS
+  - Database Development
+  - Full-stack development
+  - Git
+  - iOS
+  - JavaScript
+  - JIRA
+  - Kanban
+  - Leadership
+  - Mentoring
+  - Microsoft Azure
+  - Microsoft SQL Server
+  - Mobile application development
+  - Problem-solving
+  - Regular Expressions
+  - Software development
+  - Team Building
+  - Team management
+  - Time management
+  - Unified Modeling Language (UML)
+  - Visual Basic .NET
+  - Web development
+  - Xamarin Forms

@@ -1,0 +1,120 @@
+ZEKE NAULTY
+SOFTWARE ENGINEER - MS DEPARTMENT OF FINANCE
+Senior .NET Software Engineer – Application Modernization, Database Engineering & Security (C#, .NET Core, VB.NET, SQL Server, IBM DB2)
+
+SUMMARY
+-------
+Senior .NET engineer focused on backend services, data flows, and modernization. Comfortable moving legacy workloads toward testable .NET Core/C# services, tightening telemetry, and improving reliability around schedulers, queues, and APIs.
+
+Works close to the database layer (SQL Server, PostgreSQL, Oracle) and cares about shipping incremental improvements without breaking the business.
+
+EXPERIENCE
+----------
+Software Engineer II - Storable
+Jan 2021 - Dec 2022 | Cary, North Carolina, United States
+  - Developed and maintained .NET Core services with Hangfire and Entity Framework over PostgreSQL and SQL Server to support complex insurance auto-protect workflows.
+  - Maintained existing WinForms and web applications, establishing unit-testing patterns and documenting deployment steps to improve stability and facilitate knowledge transfer.
+  - Collaborated with product to triage production issues in legacy code and refactor risky areas, aligning with application modernization goals.
+
+Lead Developer / Azure DevOps - iAdvantage Software, Inc.
+Feb 2017 - Jan 2021 | Cary, NC
+  - Led delivery of GLP-compliant lab software requiring dynamic user-defined data models and custom reporting, ensuring data integrity, traceability, and audit trails for application and database security.
+  - Designed and built ASP.NET WebForms/MVC/WebAPI services with RESTful OData and SOAP endpoints backed by Oracle using nHibernate, Entity Framework, and PL/SQL.
+  - Guided release engineering and Azure DevOps practices for builds, deployments, and database migrations, providing complex technical support for the platform.
+  - Mentored less experienced developers through code reviews and pairing, fostering improved quality and knowledge transfer.
+
+Programmer/Analyst - Prestage Farms
+Jan 2016 - Sep 2016 | Clinton, NC
+  - Led a team of 6 developers and 3 QA to modernize VB6 accounting and inventory systems into a single WinForms .NET application with role-based security, directly addressing application upgrade and enhancement.
+  - Analyzed legacy VB6 patterns and built transformation modules to automate conversion to VB.NET while preserving business logic, demonstrating development of improved applications and techniques.
+  - Built a new reporting frontend that supported legacy outputs while adding PDF generation, enhancing functionality through database and application changes.
+  - Ran Agile roadmaps and milestones, coordinating stakeholders and demos to deliver the modernization ahead of schedule, showcasing project management and problem-solving skills.
+
+Senior Software Developer - Rural Sourcing, Inc.
+Jul 2013 - Feb 2016 | Augusta, Georgia Area
+  - Delivered Microsoft-stack projects for multiple clients, specializing in WinForms, ASP.NET, and SQL Server application creation and implementation.
+  - Mentored junior and mid-level developers on coding standards, testing habits, and practical estimation, contributing to knowledge transfer.
+  - Planned and tracked sprints, risks, and milestones while keeping stakeholders aligned across simultaneous projects, demonstrating leadership and problem-solving.
+
+Programmer/Analyst I - Hancock Bank
+Dec 2000 - Aug 2001 | Gulfport, MS
+  - Developed desktop applications that pulled from Access and IBM DB2/Argo Data sources for banking teams, demonstrating experience with multiple database technologies.
+  - Designed and implemented SQL Server applications to support internal web and desktop tools, including data-driven ASP pages with validation JavaScript, emphasizing database design and application creation.
+  - Implemented reporting and data-access front-ends to surface financial data accurately, contributing to application functionality enhancement.
+
+Application Developer/Architect - Solid Earth Inc.
+Dec 2006 - Jan 2011 | Huntsville, AL
+  - Developed and maintained RETS client and server software on Oracle and C#, achieving protocol compliance and reliable data handling for complex real estate integrations.
+  - Built configurable ASP.NET MLS frontends where branding and business rules were driven by XML, demonstrating application design and creation expertise.
+  - Created a market analytics and statistics module surfacing deep MLS metrics for brokers and administrators, enhancing application functionality.
+
+Programmer/Analyst - Not Rocket Science
+Jan 2005 - Oct 2005 | Covington, LA
+  - Delivered full-stack .NET and SQL Server development for Zen-Noh Grain, supporting inventory and operations workflows and making changes to enhance functionality.
+  - Designed database schemas and service endpoints to keep data consistent across web and mobile surfaces, demonstrating database design expertise.
+  - Built a C# mobile application for a Sheriff's department to capture and sync field data, showcasing application creation in multiple programming languages.
+
+Design Consultant - Rainmaker Advertising & Design
+Mar 2001 - Oct 2002 | Biloxi, MS
+  - Built components and frontends in VB6, VB.NET, ASP Classic, and ASP.NET Web Forms with Access and SQL Server backends, demonstrating experience with multiple .NET and database technologies.
+  - Delivered reporting and data-entry tools tailored to client campaigns and internal operations, contributing to application creation and enhancements.
+
+SKILLS
+------
+Core:
+  - C#
+  - .NET Core
+  - .NET Framework
+  - ASP.NET (VB.NET)
+  - VB.NET
+  - Structured Query Language (SQL)
+  - SQL Server
+  - Database design and administration
+  - Application security
+  - Windows Server
+  - IIS
+  - Documentation
+  - Knowledge transfer
+
+Supporting:
+  - IBM DB2
+  - Oracle
+  - PostgreSQL
+  - Azure DevOps
+  - Entity Framework
+  - Legacy modernization
+  - Mentoring
+  - Problem-solving
+  - Leadership
+
+Other:
+  - Agile Methodologies
+  - AngularJS
+  - Bootstrap
+  - Cloud Platforms
+  - Cloud computing (Azure)
+  - CSS
+  - Database Development
+  - Full-stack development
+  - Git
+  - iOS
+  - JavaScript
+  - JIRA
+  - Kanban
+  - Microsoft Azure
+  - Microsoft SQL Server
+  - Mobile application development
+  - Project management
+  - Regular Expressions
+  - Software development
+  - Team Building
+  - Team management
+  - Time management
+  - Unified Modeling Language (UML)
+  - Visual Basic .NET
+  - Web development
+  - ASP.NET
+  - WinForms
+  - Hangfire
+  - Xamarin Forms
+  - OData/SOAP APIs
