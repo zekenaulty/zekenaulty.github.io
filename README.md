@@ -37,6 +37,8 @@ React/Vite single-page resume site (MUI) with multi-profile views, animated intr
 - Run with custom flags: `npm run writing:run -- -- --offline --count 2`
 - Create draft prompts/scaffolds from the latest signals: `node ./scripts/writing-loop.js draft --count 1`
 - Generate prose with Gemini: `node ./scripts/writing-loop.js draft --generate --count 1` (requires `GEMINI_API_KEY`)
+- Default draft length is `standard`: 1600-2400 words, 4-7 sections, with a counterargument/tradeoff. Use `--length short` for 700-1200 word notes or `--length deep` for 2800-4500 word pinned-topic pieces.
+- Example deep draft: `node ./scripts/writing-loop.js draft --length deep --count 1`
 - Pin a long-running topic: `node ./scripts/writing-loop.js pin --title "An AI harness is not a prompt" --lane agent-architecture --thesis "A prompt asks for behavior; a harness owns trust, validation, and recovery."`
 - Nothing in this loop publishes to the public site yet; drafts require an explicit future publish step.
 

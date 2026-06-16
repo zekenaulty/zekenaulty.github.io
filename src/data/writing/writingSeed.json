@@ -3,7 +3,45 @@
   "dailyDefaults": {
     "count": 1,
     "maxCount": 5,
-    "signalLimit": 30
+    "signalLimit": 30,
+    "lengthProfile": "standard"
+  },
+  "lengthProfiles": {
+    "short": {
+      "label": "Short note",
+      "wordTarget": "700-1200 words",
+      "sectionTarget": "3-5 sections",
+      "useCase": "Use for narrow observations, quick reactions, or a single source-backed point.",
+      "expectations": [
+        "Make one clear claim.",
+        "Use one concrete example or source signal.",
+        "Avoid pretending the topic is fully settled."
+      ]
+    },
+    "standard": {
+      "label": "Standard essay",
+      "wordTarget": "1600-2400 words",
+      "sectionTarget": "4-7 sections",
+      "useCase": "Default for durable public essays that should show real judgment rather than daily filler.",
+      "expectations": [
+        "Develop a clear thesis with enough room for nuance.",
+        "Include concrete failure modes, architectural boundaries, and at least one practical example.",
+        "Address the strongest obvious counterargument or tradeoff.",
+        "End with a practical consequence for builders, teams, or readers."
+      ]
+    },
+    "deep": {
+      "label": "Deep piece",
+      "wordTarget": "2800-4500 words",
+      "sectionTarget": "7-10 sections",
+      "useCase": "Use for pinned topics that need real argument, historical context, multiple examples, or a reference-heavy treatment.",
+      "expectations": [
+        "Build the argument in layers instead of rushing to the takeaway.",
+        "Use multiple source signals or examples.",
+        "Separate claims, evidence, counterarguments, and design implications.",
+        "Prefer named boundaries and testable criteria over broad commentary."
+      ]
+    }
   },
   "styleRules": [
     "Write from inside real systems, not as a hype commentator.",

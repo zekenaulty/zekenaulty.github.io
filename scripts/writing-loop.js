@@ -511,7 +511,39 @@ function frontMatterValue(value) {
   return String(value ?? '').replace(/"/g, '\\"');
 }
 
-function buildDraftPrompt({ state, topic, laneInfo, signals }) {
+function getLengthProfile(seed, requestedProfile) {
+  const profiles = seed.lengthProfiles ?? {};
+  const fallbackId = seed.dailyDefaults?.lengthProfile ?? 'standard';
+  const requestedId = requestedProfile || fallbackId;
+  const id = profiles[requestedId] ? requestedId : fallbackId;
+  const profile = profiles[id] ?? profiles.standard ?? {
+    label: 'Standard essay',
+    wordTarget: '1600-2400 words',
+    sectionTarget: '4-7 sections',
+    useCase: 'Default article length.',
+    expectations: [],
+  };
+
+  return { id, ...profile };
+}
+
+function buildLengthInstructions(lengthProfile) {
+  const expectations = (lengthProfile.expectations ?? [])
+    .map((item) => `- ${item}`)
+    .join('\n');
+
+  return [
+    `Length profile: ${lengthProfile.label} (${lengthProfile.id})`,
+    `Target length: ${lengthProfile.wordTarget}.`,
+    `Expected structure: ${lengthProfile.sectionTarget}.`,
+    `Use case: ${lengthProfile.useCase}`,
+    expectations ? `Expectations:\n${expectations}` : '',
+  ]
+    .filter(Boolean)
+    .join('\n');
+}
+
+function buildDraftPrompt({ state, topic, laneInfo, signals, lengthProfile }) {
   const fewShot = buildFewShotSection(state);
   const signalLines = signals.length
     ? signals
@@ -545,15 +577,15 @@ function buildDraftPrompt({ state, topic, laneInfo, signals }) {
     signalLines,
     '',
     'Write one article draft in Markdown with YAML front matter.',
-    'Front matter fields: title, slug, lane, status, summary, sourceUrls.',
+    'Front matter fields: title, slug, lane, status, lengthProfile, summary, sourceUrls.',
     'Status must be "draft".',
-    'Target length: 900-1400 words.',
-    'Structure: strong thesis, concrete example, failure mode, practical boundary, closing claim.',
+    buildLengthInstructions(lengthProfile),
+    'Structure: strong thesis, concrete example, failure mode, practical boundary, counterargument or tradeoff, closing claim.',
     'Use links only for the provided signal URLs. Do not pretend to have read sources beyond the signal summaries.',
   ].join('\n');
 }
 
-function buildDraftStub({ title, slug, laneInfo, topic, signals, promptPath }) {
+function buildDraftStub({ title, slug, laneInfo, topic, signals, promptPath, lengthProfile }) {
   const sourceUrls = signals.map((signal) => `  - "${signal.url}"`).join('\n') || '  []';
   const signalBullets = signals.length
     ? signals.map((signal) => `- ${signal.title}: ${signal.url}`).join('\n')
@@ -565,6 +597,7 @@ function buildDraftStub({ title, slug, laneInfo, topic, signals, promptPath }) {
     `slug: "${slug}"`,
     `lane: "${laneInfo.id}"`,
     'status: "draft"',
+    `lengthProfile: "${lengthProfile.id}"`,
     `summary: "${frontMatterValue(topic?.thesis ?? laneInfo.thesis ?? '')}"`,
     'sourceUrls:',
     sourceUrls,
@@ -574,6 +607,7 @@ function buildDraftStub({ title, slug, laneInfo, topic, signals, promptPath }) {
     '',
     '> Draft scaffold only. Run with `--generate` and `GEMINI_API_KEY` to ask the model for prose.',
     `> Prompt: ${relativeToRoot(promptPath)}`,
+    `> Length: ${lengthProfile.label}, ${lengthProfile.wordTarget}, ${lengthProfile.sectionTarget}.`,
     '',
     '## Working Thesis',
     '',
@@ -589,7 +623,8 @@ function buildDraftStub({ title, slug, laneInfo, topic, signals, promptPath }) {
     '2. Ground it in a messy system or workflow.',
     '3. Explain the failure mode that hype usually skips.',
     '4. Name the boundary, contract, test, or human judgment that makes the system usable.',
-    '5. Close with the consequence for builders.',
+    '5. Address the strongest obvious counterargument or tradeoff.',
+    '6. Close with the consequence for builders.',
     '',
   ].join('\n');
 }
@@ -717,6 +752,7 @@ async function commandSignals(args) {
 async function commandDraft(args) {
   const seed = loadSeed();
   const state = ensureState();
+  const lengthProfile = getLengthProfile(seed, args.length);
   const count = Math.min(
     Math.max(1, toInt(args.count, seed.dailyDefaults?.count ?? 1)),
     seed.dailyDefaults?.maxCount ?? 5,
@@ -749,6 +785,7 @@ async function commandDraft(args) {
       topic: input.topic,
       laneInfo: input.laneInfo,
       signals: input.signals,
+      lengthProfile,
     });
     const promptPath = path.join(runDir, 'prompts', `${String(i + 1).padStart(2, '0')}-${slug}.md`);
     const draftPath = path.join(runDir, 'drafts', `${String(i + 1).padStart(2, '0')}-${slug}.md`);
@@ -763,6 +800,7 @@ async function commandDraft(args) {
           topic: input.topic,
           signals: input.signals,
           promptPath,
+          lengthProfile,
         });
 
     writeText(draftPath, draft);
@@ -797,6 +835,7 @@ Commands:
 Useful flags:
   --date YYYY-MM-DD            Use a specific run date.
   --lane lane-id               Limit to one writing lane.
+  --length short|standard|deep Select content depth. Default: standard.
   --limit N                    Cap gathered signals.
   --offline                    Use sample signals instead of network fetches.
 `);
