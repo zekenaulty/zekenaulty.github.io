@@ -1,6 +1,9 @@
+import { validateProfileReferences } from './profileValidation.js';
+
 const monthYearFormatter = new Intl.DateTimeFormat('en-US', {
   month: 'short',
   year: 'numeric',
+  timeZone: 'UTC',
 });
 
 function formatDate(isoString) {
@@ -17,13 +20,12 @@ function formatDate(isoString) {
 function mergeExperience(base, override) {
   if (!override) return base;
 
+  // Tailoring changes narrative only; employment facts always come from canonical data.
   return {
     ...base,
-    ...override,
     description: override.description ?? base.description,
     summary: override.summary ?? base.summary,
     skillsUsed: override.skillsUsed ?? base.skillsUsed,
-    dates: override.dates ?? base.dates,
   };
 }
 
@@ -64,19 +66,22 @@ export function buildProfileView(resumeData, profileSlug) {
   const profile =
     resumeData.profiles.byId[profileSlug] ?? resumeData.profiles.byId[resumeData.profiles.defaultProfileId];
 
+  const errors = validateProfileReferences(profile, resumeData);
+  if (errors.length) {
+    throw new Error(`Invalid profile "${profile?.id ?? profileSlug}": ${errors.join(' ')}`);
+  }
+
   const experiences = (profile.experienceOrder ?? resumeData.experience.map((item) => item.id))
     .map((id) => {
       const base = resumeData.experienceById[id];
-      if (!base) return null;
-
       const merged = mergeExperience(base, profile.experienceOverrides?.[id]);
       return normalizeExperience(merged);
-    })
-    .filter(Boolean);
+    });
 
-  const about =
-    (profile.aboutKey && resumeData.aboutVariants[profile.aboutKey]) ||
-    resumeData.aboutVariants.master;
+  const about = profile.summary
+    ? { id: `about-${profile.id}`, label: profile.label, paragraphs: profile.summary }
+    : (profile.aboutKey && resumeData.aboutVariants[profile.aboutKey]) ||
+      resumeData.aboutVariants.master;
 
   const skillsInfo = buildSkillsBuckets(resumeData.skills, profile);
 

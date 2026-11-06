@@ -1919,9 +1919,8 @@
       "src/data/resume/experience/*",
       "src/data/resume/skills.json",
       "src/data/resume/aboutVariants.json",
-      "src/data/resume/profiles/*.json",
-      "src/data/resume/profiles/generated/*.json"
+      "src/data/resume/profiles/*.json"
     ],
-    "lastBuild": "2026-06-15T17:32:17.052Z"
+    "lastBuild": "2026-11-06T23:52:15.756Z"
   }
 }

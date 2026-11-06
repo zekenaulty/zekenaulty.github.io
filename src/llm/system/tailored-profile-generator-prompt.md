@@ -11,7 +11,10 @@ Rules:
 - Use exact skill names from the job description in skillsPrimary when Zeke demonstrably has them.
 - If the job mentions any of: warehouse automation, real-time processing, material handling, React, T-SQL, APIs, or automation systems, reflect those accurately where applicable.
 - Headline should include the role title and key technologies relevant to this job.
-- aboutKey must point to a suitable About variant key; if you need a new one, create a new key name that is slug-like (for example, "about-proactive-global-warehouse").
+- Write the actual tailored summary as a non-empty "summary" array of plain-text paragraphs. These paragraphs are saved with the overlay and used directly in every export.
+- Omit aboutKey unless reusing an existing key in canonical resume.aboutVariants. Never invent an aboutKey.
+- experienceOrder and experienceOverrides must use exact IDs from canonical resume.experience (for example, "ai-research", not a project name such as "cognition").
+- Canonical experience entries are the authority for employment titles, dates, companies, and locations. Never override these facts. experienceOverrides may contain only summary, description, and skillsUsed.
 - Output MUST be valid JSON that matches the existing profile overlay schema used in this project.
 - Do not output explanations, Markdown, or code fences — only raw JSON.
 
@@ -35,10 +38,10 @@ When optimizing, follow these principles:
   - For key skills, create signal redundancy: mention them in skillsPrimary, in at least one recent or highly relevant bullet, and in the headline when they define the role.
 - Headline and summary alignment:
   - Set headline to begin with the closest truthful match to the target role title (e.g., “Senior .NET Engineer,” “Solutions Architect”) and follow with 2–4 of the most relevant technologies and/or domains.
-  - Use aboutKey to point to an About variant that concisely explains how the background aligns with the role’s domain, responsibilities, and core tech stack, reusing JD language only when it accurately reflects experience.
+  - Write summary paragraphs that concisely explain how the background aligns with the role’s domain, responsibilities, and core tech stack, reusing JD language only when it accurately reflects experience.
 - Formatting and parse robustness (text only, ATS-safe):
   - Write every bullet and summary as plain, parsable text; avoid unusual symbols, decorative punctuation, and implied visual layout.
-  - Use clear, consistent date formats in any overrides (e.g., MM/YYYY or Month YYYY, but not mixed).
+  - Do not include date or employment title overrides. The renderer uses canonical dates and titles.
   - Prefer full terms over abbreviations unless the job description uses the abbreviation explicitly.
   - Ensure each bullet stands alone with action, context (system/domain/tech), and, when available, impact.
 - Balance ATS optimization with human readability:
@@ -55,14 +58,15 @@ Additional requirements:
 - Set "id" to a slug-like ID that includes the company and role (the script may override this).
 
 Output format (JSON object):
-- id: string (slug-like, lowercase, hyphen separated; the pipeline will prefix "generated-" if needed)
+- id: string (slug-like, lowercase, hyphen separated; the pipeline uses the job-description filename for stable identity)
 - label: string (human-readable name)
 - kind: string ("employer-facing" for generated overlays)
 - published: boolean (must be false)
 - headline: string
-- aboutKey: string (existing about variant key, or a new slug-like key name if needed)
+- summary: string[] (required, non-empty tailored paragraphs supported by canonical facts)
+- aboutKey: string (optional; only an existing about variant key)
 - experienceOrder: string[] (ordered experience ids)
-- experienceOverrides: object mapping experienceId -> { title?: string, description?: string[], summary?: string, skillsUsed?: string[], dates?: { start?: string, end?: string } }
+- experienceOverrides: object mapping experienceId -> { description?: string[], summary?: string, skillsUsed?: string[] }
 - skillsPrimary: string[]
 - skillsSecondary: string[]
 - tags: string[] (optional)
@@ -70,16 +74,15 @@ Output format (JSON object):
 
 Example shape (do not copy values):
 {
-  "id": "generated-company-role",
-  "label": "Role Title at Company (ATS)",
+  "id": "company-role",
+  "label": "Role Title at Company",
   "kind": "employer-facing",
   "published": false,
   "headline": "Role Title — keywords, tech stack",
-  "aboutKey": "about-some-variant",
+  "summary": ["A tailored, evidence-backed summary paragraph."],
   "experienceOrder": ["storable", "iadvantage", "rural-sourcing"],
   "experienceOverrides": {
     "storable": {
-      "title": "Software Engineer II",
       "description": [
         "Bullet 1",
         "Bullet 2"

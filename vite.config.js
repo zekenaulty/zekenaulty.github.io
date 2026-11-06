@@ -267,6 +267,16 @@ export default defineConfig(({ mode }) => {
 
   return {
     base: '/',
+    server: {
+      fs: {
+        // Preserve Vite's default secret-file rules and deny local drafts too.
+        deny: [
+          '.env', '.env.*', '*.{crt,pem}', '**/.git/**',
+          '**/private/**', '**/.private/**',
+          '**/src/data/resume/profiles/generated/**',
+        ],
+      },
+    },
     plugins: [react(), injectStaticHomepageFallback(env), serveResumeExports()],
   };
 });

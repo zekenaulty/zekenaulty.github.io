@@ -32,3 +32,7 @@ arc.py
 .env.*.local
 .private
 private/
+
+# Local job-targeted drafts are private; only explicitly reviewed base profiles ship.
+/src/data/resume/profiles/generated/*
+!/src/data/resume/profiles/generated/.gitkeep
