@@ -61,3 +61,47 @@ test('recovery preserves exact bytes and refuses to overwrite a changed local dr
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
+
+test('recovery rejects symlinked parents, draft files, and manifests before copying bytes', () => {
+  for (const linkTarget of ['private', 'recovery-directory', 'draft', 'dangling-draft', 'manifest']) {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'resume-privacy-symlink-'));
+    try {
+      fs.mkdirSync(path.join(root, 'scripts'));
+      fs.copyFileSync(path.join(ROOT, 'scripts/recover-resume-drafts.js'), path.join(root, 'scripts/recover-resume-drafts.mjs'));
+      const source = path.join(root, 'src/data/resume/profiles/generated');
+      fs.mkdirSync(source, { recursive: true });
+      const bytes = Buffer.from('{"id":"synthetic-private-draft","published":false}\n');
+      fs.writeFileSync(path.join(source, 'old-draft.json'), bytes);
+      const git = (...args) => execFileSync('git', args, { cwd: root, stdio: 'pipe' });
+      git('init'); git('add', '.');
+      git('-c', 'user.name=Privacy Test', '-c', 'user.email=privacy@example.invalid', 'commit', '-m', 'fixture');
+      const commit = git('rev-parse', 'HEAD').toString().trim();
+      const publicDir = path.join(root, 'public');
+      fs.mkdirSync(publicDir);
+      const privateDir = path.join(root, 'private');
+      const destination = path.join(privateDir, 'recovered-generated-profiles');
+      if (linkTarget === 'private') {
+        fs.symlinkSync(publicDir, privateDir, 'dir');
+      } else {
+        fs.mkdirSync(privateDir);
+        if (linkTarget === 'recovery-directory') {
+          fs.symlinkSync(publicDir, destination, 'dir');
+        } else {
+          fs.mkdirSync(destination);
+          const target = path.join(publicDir, 'target.json');
+          if (linkTarget !== 'dangling-draft') fs.writeFileSync(target, bytes);
+          const leaf = linkTarget === 'manifest' ? `recovery-${commit}.json` : 'old-draft.json';
+          fs.symlinkSync(target, path.join(destination, leaf), 'file');
+        }
+      }
+      const before = fs.readdirSync(publicDir);
+      assert.throws(() => execFileSync(process.execPath,
+        ['scripts/recover-resume-drafts.mjs', '--ref', 'HEAD'], { cwd: root, stdio: 'pipe' }), /not a symlink/, linkTarget);
+      assert.deepEqual(fs.readdirSync(publicDir), before, linkTarget);
+      for (const file of before) assert.deepEqual(fs.readFileSync(path.join(publicDir, file)), bytes);
+      if (linkTarget === 'manifest') assert.equal(fs.existsSync(path.join(destination, 'old-draft.json')), false);
+    } finally {
+      fs.rmSync(root, { recursive: true, force: true });
+    }
+  }
+});
