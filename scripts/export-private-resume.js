@@ -5,6 +5,7 @@ import { resumeData } from '../src/data/resume/resumeData.node.js';
 import { buildProfileView } from '../src/data/resume/viewBuilder.js';
 import { validateTailoredProfile } from '../src/data/resume/profileValidation.js';
 import { renderHtmlResume, renderTextResume, renderDocxResume, renderPdfResume } from './resumeTemplates.js';
+import { guardDirectories } from './lib/private-directory-guard.js';
 
 const filename = fileURLToPath(import.meta.url);
 const root = path.resolve(path.dirname(filename), '..');
@@ -12,24 +13,31 @@ const root = path.resolve(path.dirname(filename), '..');
 export async function exportPrivateResume(profilePath) {
   if (!profilePath) throw new Error('Select one JSON file with --profile <path>.');
   const profile = JSON.parse(fs.readFileSync(path.resolve(profilePath), 'utf8'));
-  const errors = validateTailoredProfile(profile, resumeData, { requireSummary: false });
+  return exportPrivateProfile(profile);
+}
+
+export async function exportPrivateProfile(profile, { rootDir = root, data = resumeData, selectedSkillsOnly = false } = {}) {
+  const errors = validateTailoredProfile(profile, data, { requireSummary: false });
   if (errors.length) throw new Error(`Cannot export selected profile: ${errors.join(' ')}`);
 
   const view = buildProfileView({
-    ...resumeData,
-    profiles: { ...resumeData.profiles, byId: { [profile.id]: profile } },
+    ...data,
+    profiles: { ...data.profiles, byId: { [profile.id]: profile } },
   }, profile.id);
+  // The source-selection tool deliberately excludes skills the model did not select.
+  if (selectedSkillsOnly) view.skillsBuckets.other = [];
 
   // This is a local artifact, never a public site route. Keep it out of dist/ and public/.
-  const privateRoot = path.join(root, 'private');
+  const privateRoot = path.join(rootDir, 'private');
   const exportRoot = path.join(privateRoot, 'resume-exports');
   for (const dir of [privateRoot, exportRoot]) {
     if (fs.existsSync(dir) && fs.lstatSync(dir).isSymbolicLink()) {
       throw new Error(`Private output directory must not be a symlink: ${dir}`);
     }
-    fs.mkdirSync(dir, { recursive: true });
+    fs.mkdirSync(dir, { recursive: true, mode: 0o700 });
   }
   const outputDir = path.join(exportRoot, profile.id);
+  const directoriesUnchanged = guardDirectories([rootDir, privateRoot, exportRoot]);
   if (fs.existsSync(outputDir)) {
     throw new Error(`Export already exists: ${outputDir}. Keep or move it before exporting again; it will not be overwritten.`);
   }
@@ -41,10 +49,11 @@ export async function exportPrivateResume(profilePath) {
     'resume.docx': await renderDocxResume(view),
     'resume.pdf': await renderPdfResume(view),
   };
-  fs.mkdirSync(outputDir);
+  if (!directoriesUnchanged()) throw new Error('Private output directories changed while rendering. Nothing was exported.');
+  fs.mkdirSync(outputDir, { mode: 0o700 });
   try {
     for (const [name, contents] of Object.entries(outputs)) {
-      fs.writeFileSync(path.join(outputDir, name), contents, { flag: 'wx' });
+      fs.writeFileSync(path.join(outputDir, name), contents, { flag: 'wx', mode: 0o600 });
     }
   } catch (error) {
     fs.rmSync(outputDir, { recursive: true, force: true });

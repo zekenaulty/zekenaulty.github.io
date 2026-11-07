@@ -14,6 +14,8 @@
     "build:exports": "node ./scripts/build-resume-exports.js",
     "export:private": "node ./scripts/export-private-resume.js",
     "check:resume": "node ./scripts/check-resume-pipeline.js",
+    "check:resume-tool": "node ./scripts/check-resume-tool.js",
+    "resume:tool": "node ./scripts/resume-tool.js",
     "generate:tailored-profiles": "node ./scripts/generate-tailored-profiles.js",
     "writing": "node ./scripts/writing-loop.js",
     "writing:init": "node ./scripts/writing-loop.js init",
