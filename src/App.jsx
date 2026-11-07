@@ -92,11 +92,13 @@ function App() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const hasOpened = window.localStorage?.getItem('chat-opened-once');
-    if (!hasOpened) {
-      setIsChatOpen(true);
-      window.localStorage.setItem('chat-opened-once', '1');
-    }
+    try {
+      const hasOpened = window.localStorage.getItem('chat-opened-once');
+      if (!hasOpened) {
+        setIsChatOpen(true);
+        window.localStorage.setItem('chat-opened-once', '1');
+      }
+    } catch { /* Storage restrictions must not break the resume site. */ }
   }, []);
 
   useEffect(() => {

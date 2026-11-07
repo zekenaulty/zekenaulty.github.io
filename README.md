@@ -1,12 +1,12 @@
 # zekenaulty.github.io
 
-React/Vite single-page resume site (MUI) with multi-profile views, animated intro, matrix overlay, and private OpenAI-powered resume tooling, plus the existing optional Gemini chat and writing tools.
+React/Vite single-page resume site (MUI) with multi-profile views, animated intro, matrix overlay, and private OpenAI-powered resume tooling, plus opt-in public OpenAI chat and the existing private Gemini writing tools.
 
 ## What's here
 - Multi-profile resume data (Code Monkey + employer-facing variants) with job summaries, bullets, and job-level skills chips.
 - Background underlay using `assets/backgrounds/new-bg-0028.png`, optional matrix overlay toggle (auto-disabled on mobile/reduced-motion), fade-in loader for the backdrop, and animated intro text (per-character spin-in via anime.js).
 - Sections: intro, profile selector, summary, experience, and skills.
-- Gemini chat drawer with a sticky top-right toggle (auto-opens on first visit) plus build scripts for resume chat data and export stubs.
+- Optional OpenAI chat drawer with a sticky top-right toggle (auto-opens on first visit) plus build scripts for resume chat data and export stubs.
 - Resume download links (HTML/PDF/DOCX/TXT) surfaced in the UI; dev server can serve built exports from `dist/resume`.
 
 ## Run & Build
@@ -32,7 +32,7 @@ React/Vite single-page resume site (MUI) with multi-profile views, animated intr
 - Existing human CLI: `npm run generate:tailored-profiles -- "Company Role.md"`. Filenames select files within `private/job-descriptions/`. Use `--all` to explicitly select all JDs. No arguments shows help; existing drafts are skipped, never overwritten. Select a new `id` through the JSON interface for a revision.
 - Optional compatibility: add `--provider gemini` to use the existing Gemini credential with the same source-selection contract. There is no automatic provider fallback. Old free-form generated overlays remain untouched.
 - Focused offline verification: `npm run check:resume-tool` uses a mocked transport and disposable synthetic JD. It needs no credentials and makes no provider requests.
-- The public chat drawer and writing loop still use Gemini. Browser authentication, an OpenAI worker migration, deployment, and controlled evidence-backed prose rewriting are separate future steps. This local increment does not convert or secure those existing services.
+- Private resume generation remains local and is not exposed through public chat. The writing loop still uses Gemini. Optional public chat requires the separately hardened OpenAI Worker; this source change does not deploy or enable it. Controlled evidence-backed prose rewriting remains separate future work.
 
 
 ## Draft privacy and recovery
@@ -73,9 +73,11 @@ React/Vite single-page resume site (MUI) with multi-profile views, animated intr
 - Chat UI: `ChatDrawer.jsx` and `ChatToggleButton.jsx` (sticky/pulsing toggle).
 
 ## Chat (optional)
-- Gemini client: `src/llm/geminiHttpClient.js`; UI: `src/components/ChatDrawer.jsx`, `ChatToggleButton.jsx`.
-- Preferred: use a Cloudflare Worker proxy to hide the Gemini key. Set `VITE_GEMINI_PROXY_URL` in `.env.local`. If you must call Gemini directly in local dev, set `VITE_GEMINI_API_KEY` in `.env.local`. Do not ship builds with a real key—omit `.env.local` for production; the app will default to the proxy URL.
-- Resume chat payload is generated at build (`scripts/build-resume-chat-data.js`).
+- Browser transport: `src/llm/publicChatClient.js`; UI: `src/components/ChatDrawer.jsx`, `ChatToggleButton.jsx`.
+- Disabled unless `VITE_CHAT_PROXY_URL` is explicitly set to a reviewed HTTPS Worker URL ending exactly in `/chat`. There is no default live endpoint, provider fallback or browser API key. Never set `VITE_OPENAI_API_KEY` or `VITE_GEMINI_API_KEY`.
+- The browser sends only bounded user/assistant messages. Public facts, instructions, credentials, model settings and abuse limits belong to the Worker. The generated resume chat JSON is no longer imported or sent by the browser client.
+- Offline checks: `npm run check:public-chat`. To test a local checkout of the matching Worker without network: `npm run check:public-chat:worker -- /path/to/worker/src/index.js`.
+- See [the contract, privacy notes and migration sequence](docs/public-chat.md). No live binding, deployment, key setup or paid calls are included.
 
 ## Exports
 - Public exports: `npm run build:all` builds HTML/TXT/DOCX/PDF for published profiles only under `dist/resume/`. `ResumeDownloadLinks.jsx` surfaces their `/resume/{slug}` links. `build:job` still builds only public exports; it does not publish or export private drafts.

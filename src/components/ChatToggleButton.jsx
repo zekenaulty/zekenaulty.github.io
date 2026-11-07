@@ -77,7 +77,7 @@ function ChatToggleButton({ isOpen, onClick }) {
           backdropFilter: 'blur(6px)',
         }}
       >
-        {showBubble && <Bubble>Chat with Gemini about Zeke!</Bubble>}
+        {showBubble && <Bubble>Ask about Zeke’s experience!</Bubble>}
         <Box
           sx={{
             position: 'absolute',
