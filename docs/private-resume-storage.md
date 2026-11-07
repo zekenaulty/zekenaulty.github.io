@@ -1,0 +1,36 @@
+# Private state recovery proof
+
+This separate follow-up to the operator proof addresses local byte-preserving recovery, not cloud durability or real private-input provisioning. It does not load credentials, call a provider, configure a runtime key, synchronize a user's files, or create a hosted service. The existing private CLI still needs an explicitly provisioned process credential for live generation. A readable, parseable secure env file is not automatic process injection, provider availability or durable storage.
+
+## Run the synthetic proof
+
+Run `node scripts/check-private-state-storage.js` from a reviewed checkout, preferably in a clean process environment. Node built-ins are sufficient; no provider package or key is needed. The command accepts no input/output paths and only uses freshly created synthetic fixtures. It retains a new temporary workspace with source files, snapshot, restored files and `evidence.json`. The six placeholder files deliberately are **not valid résumés, PDFs or DOCX documents**; this proof checks bytes, not rendering or service validation.
+
+The report records snapshot/restore outcome, manifest hash, module hash, per-file hashes, exact round-trip equality, no-overwrite and corruption rejection before destination creation. Fixture revision and source hash are synthetic markers, not claims about canonical facts. The broader tests are `node --test tests/private-state-snapshot.test.js`.
+
+Temporary files surviving one run do not establish restart/eviction retention, backups, encryption at rest or disaster recovery. No actual private corpus is restored by this test. A real durable destination, retention policy and independent restore drill remain required before claiming operational readiness. Nothing here selects such a destination or uploads data.
+
+## Library contract and boundaries
+
+`scripts/lib/private-state-snapshot.js` exposes local `snapshotPrivateState` and `restorePrivateState` primitives. There is intentionally no real-data copy CLI. Before invoking these with actual data, obtain explicit authorization identifying the source material, destination and purpose. The user owns that state. Keep all receipts, manifests and snapshots private: filenames, hashes and provenance can be sensitive. Snapshots contain plaintext, not encrypted archives. Never commit them or include them in static builds.
+
+The selected source root is the private-state directory, not the repository root. Only `job-descriptions`, `resume-profiles` and `resume-exports` are selected. Other root contents, including credentials or unrelated archives, are not a backup target. Supported members are immediate `.md`/`.txt` job files; slug-named `.json` drafts; and the four standard export filenames under a slug directory. Hidden/lock/temporary files or unexpected content inside selected categories fail closed. Stop writers and resolve in-progress/uncertain operations before copying; do not remove locks blindly.
+
+The caller binds a snapshot to an exact source revision and canonical source hash. A manifest lists relative paths, byte counts and SHA-256 hashes. Retain its returned hash independently in the authorized private record. Restore requires that hash and both expected source identifiers, validates all selected bytes before making a destination, and never overwrites an existing destination. Hashes detect corruption relative to a trusted receipt; they are not signatures, authentication, proof of owner approval or proof that supplied source identifiers are truthful.
+
+Limits are 1,000 files, 2,000 enumerated selected entries (including empty export directories), 64 MiB total selected bytes and a 1 MiB manifest. Directory enumeration is incremental. Missing categories are allowed and empty snapshots are possible; successful backup does not establish corpus completeness. Symlinks in selected leaves or ancestors, special files, traversal, duplicates and unexpected export names are rejected. New directories/files request owner-only permissions; existing permissions are not changed. This is tested on Linux. No hostile same-user concurrent-swap protection is claimed: keep source, snapshot and destination parents quiescent and trusted during the operation. Metadata, ownership, timestamps and empty subdirectories are not preserved; contents are preserved.
+
+Snapshot completion is recorded in `manifest.json`; restore completion is recorded in `.restore-complete.json`. Each marker is written to an exclusive incomplete filename, then atomically linked to its final name after a successful write/close. Check marker contents and expected hashes, not mere existence. A local write failure can leave a new incomplete destination without its completion marker; it is never silently removed, reused or overwritten. If removal of the temporary hard link fails after publication, an error can occur despite a complete final marker; inspect and validate it before deciding the outcome. Review any partial directory, then use a new destination. These markers are not fsync/power-loss durability guarantees. A validated byte copy does not validate résumé schema, selection provenance or canonical truth: restore the matching reviewed source checkout, then run the existing private service's `validate` and review before `export`. Draft/review/approval status is not inferred from any copy operation, and employer contact/submission remains separately authorized.
+
+## Historical examples
+
+The 12 old job-targeted drafts are historical examples, not selected active/private snapshot state. They remain recoverable from pinned Git commit `2c65685d110b228f92be293632e41c38d4715449` using the existing [`scripts/recover-resume-drafts.js`](../scripts/recover-resume-drafts.js), as described in [the recovery instructions](../README.md#draft-privacy-and-recovery), provided that history remains available. The script preserves original bytes and records checksums in ignored `private/recovered-generated-profiles/`. Those derivative recoveries are excluded from this snapshot scope; no separate archival backup workflow or infrastructure is required for these examples. Current private drafts retain the integrity, privacy and approval controls described above.
+
+## Real readiness checklist
+
+1. Identify the authoritative active/private working-state source and explicitly approve any copy destination; verify actual JDs/drafts exist without exposing private contents or filenames in logs.
+2. Verify secure credential parse/loadability privately if needed; never recreate a provisioned key because it is absent from an ordinary shell. Runtime injection and live-call approval remain separate.
+3. Establish durable private storage, encryption/access controls, retention and backup ownership. This implementation does not expand access or change those controls.
+4. Quiesce writers, snapshot the authorized state with source provenance, and retain the receipt independently in the approved private record.
+5. Restore into a new destination, verify every byte, then validate drafts against matching canonical sources. Test recovery after the relevant restart/loss scenario before calling storage durable.
+6. Keep generation, human factual review and approval-controlled sharing distinct. No paid call, publication, application or deployment follows from passing this proof.
