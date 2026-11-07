@@ -16,28 +16,19 @@ import {
 } from '@mui/material';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { GeminiHttpClient } from '../llm/geminiHttpClient';
-import { callResumeChat } from '../llm/chatService';
+import { PublicChatClient, getChatErrorMessage } from '../llm/publicChatClient.js';
+import { callResumeChat, MAX_MESSAGE_CHARS, normalizeStoredMessages } from '../llm/chatService.js';
 
-// Do not embed secrets in production builds; only honor a local dev key in non-prod.
-const isProd = import.meta.env.PROD;
-const ENV_API_KEY = isProd ? '' : import.meta.env.VITE_GEMINI_API_KEY?.trim?.() || '';
-const ENV_PROXY_URL = import.meta.env.VITE_GEMINI_PROXY_URL?.trim?.() || '';
-const ENV_MODEL = import.meta.env.VITE_GEMINI_MODEL?.trim?.() || '';
-
-const GEMINI_API_KEY = ENV_API_KEY; // local dev only; do not ship secrets in production builds
-const GEMINI_MODEL = ENV_MODEL || 'gemini-3-flash-preview';
-const DEFAULT_PROXY_URL = 'https://gemini-proxy.zekenaulty.workers.dev'; // e.g., https://gemini-proxy.yourdomain.workers.dev
-const GEMINI_PROXY_URL = ENV_PROXY_URL || DEFAULT_PROXY_URL;
+// Explicit opt-in only: a public Worker endpoint, never a provider key.
+const CHAT_ENDPOINT = import.meta.env.VITE_CHAT_PROXY_URL?.trim() || '';
 
 const STORAGE_KEY = 'chat-history-v1';
 const INITIAL_LOAD_COUNT = 100;
 const LOAD_BATCH_SIZE = 50;
-const MAX_SEND_TURNS = 100;
 
 const INITIAL_ASSISTANT_MESSAGE = {
   id: 'welcome',
-  role: 'model',
+  role: 'assistant',
   text: "You can ask about Zeke's roles, skills, or experience, and I'll answer from his resume data.",
   timestamp: Date.now(),
 };
@@ -54,7 +45,7 @@ function ChatDrawer({ isOpen, onClose }) {
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const [clientError, setClientError] = useState('');
+  const [retryUntil, setRetryUntil] = useState(0);
   const [hydrated, setHydrated] = useState(false);
 
   const fullHistoryRef = useRef([INITIAL_ASSISTANT_MESSAGE]);
@@ -63,66 +54,23 @@ function ChatDrawer({ isOpen, onClose }) {
   const inputRef = useRef(null);
   const listRef = useRef(null);
   const prependRestoreRef = useRef(null);
+  const requestRef = useRef(null);
 
-  const client = useMemo(() => {
-    const proxyUrl = isProd ? GEMINI_PROXY_URL : ENV_PROXY_URL;
-    const proxyLooksLikeGoogle = proxyUrl?.includes('generativelanguage.googleapis.com');
-
-    // Prod: always use the proxy. Dev: use proxy only if it is a non-Google endpoint.
-    const useProxy = isProd
-      ? true
-      : proxyUrl &&
-        !proxyUrl.includes('REPLACE') &&
-        !proxyLooksLikeGoogle &&
-        proxyUrl.startsWith('http');
-
-    const baseUrlOverride =
-      !useProxy && proxyLooksLikeGoogle && proxyUrl ? proxyUrl.replace(/\/+$/, '') : undefined;
-
-    if (!useProxy && (!GEMINI_API_KEY || GEMINI_API_KEY.includes('REPLACE'))) {
-      return null;
-    }
-
+  const { client, clientError } = useMemo(() => {
     try {
-      const options = {
-        apiKey: GEMINI_API_KEY,
-        model: GEMINI_MODEL,
-        useProxy,
-      };
-
-      if (useProxy) {
-        options.baseUrl = proxyUrl.replace(/\/+$/, '');
-      } else if (baseUrlOverride) {
-        options.baseUrl = baseUrlOverride;
-      }
-
-      return new GeminiHttpClient(options);
+      return { client: new PublicChatClient({ endpoint: CHAT_ENDPOINT, allowLocalhost: import.meta.env.DEV }), clientError: '' };
     } catch (err) {
-      console.error('Failed to initialize Gemini client', err);
-      return null;
+      return { client: null, clientError: getChatErrorMessage(err) };
     }
   }, []);
 
+  useEffect(() => () => requestRef.current?.abort(), []);
+
   useEffect(() => {
-    const useProxy =
-      GEMINI_PROXY_URL &&
-      !GEMINI_PROXY_URL.includes('REPLACE') &&
-      !GEMINI_PROXY_URL.includes('generativelanguage.googleapis.com') &&
-      GEMINI_PROXY_URL.startsWith('http');
-
-    if (useProxy && client) {
-      setClientError('');
-      return;
-    }
-
-    if (!useProxy && (!GEMINI_API_KEY || GEMINI_API_KEY.includes('REPLACE'))) {
-      setClientError('Set VITE_GEMINI_API_KEY in .env.local (dev only) or configure VITE_GEMINI_PROXY_URL to enable chat replies.');
-    } else if (!client) {
-      setClientError('Gemini client failed to initialize. Check your API key or proxy URL.');
-    } else {
-      setClientError('');
-    }
-  }, [client]);
+    if (!retryUntil) return undefined;
+    const timer = setTimeout(() => setRetryUntil(0), Math.max(0, retryUntil - Date.now()));
+    return () => clearTimeout(timer);
+  }, [retryUntil]);
 
   useEffect(() => {
     if (prependRestoreRef.current) {
@@ -153,18 +101,14 @@ function ChatDrawer({ isOpen, onClose }) {
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY);
       const parsed = raw ? JSON.parse(raw) : null;
-      stored = Array.isArray(parsed) ? parsed : [];
-    } catch (err) {
-      console.warn('Failed to parse stored chat history', err);
-    }
+      stored = normalizeStoredMessages(parsed);
+    } catch { /* Restricted browser storage must not break chat. */ }
 
     if (!stored.length) {
       stored = [INITIAL_ASSISTANT_MESSAGE];
       try {
         window.localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
-      } catch (err) {
-        console.warn('Failed to initialize chat history', err);
-      }
+      } catch { /* Keep the conversation in memory only. */ }
     }
 
     fullHistoryRef.current = stored;
@@ -180,9 +124,7 @@ function ChatDrawer({ isOpen, onClose }) {
       if (typeof window !== 'undefined') {
         window.localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
       }
-    } catch (err) {
-      console.warn('Failed to persist chat history', err);
-    }
+    } catch { /* Keep the conversation in memory only. */ }
   };
 
   const loadOlderMessages = () => {
@@ -209,46 +151,46 @@ function ChatDrawer({ isOpen, onClose }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const trimmed = inputValue.trim();
-    if (!trimmed || isLoading) return;
-
-    if (!client) {
-      setError('Chat client not configured. Please set your Gemini API key or proxy URL.');
+    // The synchronous ref also blocks repeated sends before React rerenders.
+    if (!trimmed || requestRef.current || retryUntil > Date.now() || !hydrated) return;
+    if (inputValue.length > MAX_MESSAGE_CHARS) {
+      setError(`Please keep your question to ${MAX_MESSAGE_CHARS} characters.`);
       return;
     }
-
+    if (!client) {
+      setError(clientError);
+      return;
+    }
+    const controller = new AbortController();
+    requestRef.current = controller;
     const userMessage = makeMessage('user', trimmed);
     const historyWithUser = [...fullHistoryRef.current, userMessage];
-
-    persistHistory(historyWithUser);
+    // Persist only successful exchanges. Failed drafts stay editable and do not
+    // silently become conversation context in a later request.
     setMessages((prev) => [...prev, userMessage]);
-    setInputValue('');
     setError('');
     setIsLoading(true);
     inputRef.current?.blur();
-
     try {
-      const { text } = await callResumeChat({
-        client,
-        messages: historyWithUser.slice(-MAX_SEND_TURNS),
-      });
-
-      const reply = text?.trim()
-        ? text.trim()
-        : 'I was unable to generate a reply. Please try again.';
-
-      const replyMessage = makeMessage('model', reply);
-      const historyWithReply = [...historyWithUser, replyMessage];
-      persistHistory(historyWithReply);
+      const reply = await callResumeChat({ client, messages: historyWithUser, signal: controller.signal });
+      if (controller.signal.aborted) return;
+      const replyMessage = { ...makeMessage('assistant', reply.text), incomplete: reply.incomplete, truncated: reply.truncated, contextOmitted: reply.contextOmitted };
+      persistHistory([...historyWithUser, replyMessage]);
       setMessages((prev) => [...prev, replyMessage]);
+      setInputValue('');
     } catch (err) {
-      console.error('Gemini chat error', err);
-      setError(err?.message || 'Unable to get a response from Gemini.');
+      if (controller.signal.aborted) return;
+      setMessages(fullHistoryRef.current.slice(visibleStartRef.current));
+      setError(getChatErrorMessage(err));
+      if (err?.retryAfterSeconds) setRetryUntil(Date.now() + err.retryAfterSeconds * 1000);
     } finally {
-      setIsLoading(false);
+      requestRef.current = null;
+      if (!controller.signal.aborted) setIsLoading(false);
     }
   };
 
-  const canSend = Boolean(inputValue.trim()) && !isLoading && !clientError;
+  const canSend = Boolean(inputValue.trim()) && inputValue.length <= MAX_MESSAGE_CHARS &&
+    !isLoading && !clientError && !retryUntil && hydrated;
 
   const renderMessage = (message) => {
     const isUser = message.role === 'user';
@@ -274,7 +216,7 @@ function ChatDrawer({ isOpen, onClose }) {
           }}
         >
           <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 0.5 }}>
-            {isUser ? 'You' : 'AI (Gemini)'}
+            {isUser ? 'You' : 'AI'}
           </Typography>
           <Box
             sx={{
@@ -298,9 +240,26 @@ function ChatDrawer({ isOpen, onClose }) {
               '& a': { color: 'primary.light' },
             }}
           >
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                // Model-authored images must not trigger third-party requests.
+                img: ({ alt }) => <span>{alt || '[Image omitted]'}</span>,
+                a: ({ href, children }) => <a href={href} target="_blank" rel="noopener noreferrer">{children}</a>,
+              }}
+            >
               {message.text}
             </ReactMarkdown>
+            {!isUser && (message.incomplete || message.truncated) ? (
+              <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 1 }}>
+                This answer is partial or shortened. Ask a narrower follow-up if you need more detail.
+              </Typography>
+            ) : null}
+            {!isUser && message.contextOmitted ? (
+              <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 1 }}>
+                Only recent messages were included in this reply.
+              </Typography>
+            ) : null}
           </Box>
         </Box>
       </Box>
@@ -343,7 +302,7 @@ function ChatDrawer({ isOpen, onClose }) {
                 Ask about Zeke
               </Typography>
               <Typography variant="caption" color="text.secondary">
-                Powered by Gemini ({GEMINI_MODEL})
+                Resume assistant · OpenAI
               </Typography>
             </Box>
             <IconButton aria-label="Close chat" onClick={onClose} size="small">
@@ -401,7 +360,7 @@ function ChatDrawer({ isOpen, onClose }) {
 
           <Box component="form" onSubmit={handleSubmit} sx={{ p: 2, pt: 1, pb: 'calc(env(safe-area-inset-bottom, 12px) + 12px)' }}>
             <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 1 }}>
-              AI can make mistakes. Verify important details.
+              AI can make mistakes. Recent messages go through this site’s chat service to OpenAI; a history copy is saved in this browser. Don’t share private information.
             </Typography>
             <Stack direction="row" spacing={1} alignItems="center">
               <TextField
@@ -410,8 +369,10 @@ function ChatDrawer({ isOpen, onClose }) {
                 label="Ask about Zeke's experience"
                 value={inputValue}
                 onChange={(event) => setInputValue(event.target.value)}
-                disabled={Boolean(clientError)}
+                disabled={Boolean(clientError) || isLoading}
                 inputRef={inputRef}
+                inputProps={{ maxLength: MAX_MESSAGE_CHARS }}
+                helperText={retryUntil ? 'Please wait before sending again.' : `${inputValue.length}/${MAX_MESSAGE_CHARS}`}
               />
               <Button
                 type="submit"

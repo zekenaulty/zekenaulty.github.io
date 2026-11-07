@@ -13,6 +13,8 @@
     "build:resume-chat-data": "node ./scripts/build-resume-chat-data.js",
     "build:exports": "node ./scripts/build-resume-exports.js",
     "export:private": "node ./scripts/export-private-resume.js",
+    "check:public-chat": "node --test tests/public-chat*.test.js",
+    "check:public-chat:worker": "node scripts/check-public-chat-worker.js",
     "check:resume": "node ./scripts/check-resume-pipeline.js",
     "check:resume-tool": "node ./scripts/check-resume-tool.js",
     "resume:tool": "node ./scripts/resume-tool.js",
