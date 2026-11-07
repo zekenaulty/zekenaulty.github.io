@@ -6,13 +6,49 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { createRequire } from 'node:module';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const require = createRequire(import.meta.url);
 const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const fileHash = (file) => hash(fs.readFileSync(file));
-const git = (...args) => execFileSync('git', ['-C', root, ...args], { encoding: 'utf8', env: { PATH: '/usr/bin:/bin' } }).trim();
+// Intentionally use only trusted Linux system paths, never inherited credential env.
+const gitOptions = { encoding: 'utf8', env: { PATH: '/usr/bin:/bin' } };
+const provenanceScope = ['scripts', 'src/data/resume', 'package.json', 'package-lock.json'];
+export function sourceProvenance(projectRoot = root) {
+  projectRoot = fs.realpathSync(projectRoot);
+  const git = (...args) => execFileSync('git', ['-C', projectRoot, ...args], gitOptions);
+  const trackedHash = (file) => {
+    const parts = file.split('/');
+    let current = projectRoot;
+    for (const [index, part] of parts.entries()) {
+      if (!part || part === '.' || part === '..') throw new Error('Unsafe tracked source path');
+      current = path.join(current, part);
+      const stat = fs.lstatSync(current);
+      if (stat.isSymbolicLink() || (index < parts.length - 1 ? !stat.isDirectory() : !stat.isFile())) {
+        throw new Error('Tracked sources and their parents must not be symlinks or special files');
+      }
+    }
+    const fd = fs.openSync(current, fs.constants.O_RDONLY | fs.constants.O_NOFOLLOW);
+    try {
+      if (!fs.fstatSync(fd).isFile()) throw new Error('Tracked source must be a regular file');
+      return hash(fs.readFileSync(fd));
+    } finally { fs.closeSync(fd); }
+  };
+  const dirty = (staged) => {
+    const result = spawnSync('git', ['-C', projectRoot, 'diff', '--quiet', '--no-ext-diff', '--no-textconv', ...(staged ? ['--cached'] : []), '--', ...provenanceScope], gitOptions);
+    if (result.error || ![0, 1].includes(result.status)) throw new Error('Cannot determine tracked source provenance');
+    return result.status === 1;
+  };
+  const staged = dirty(true);
+  const unstaged = dirty(false);
+  // ls-files lists only tracked entries in this scope; never inspect untracked/ignored paths.
+  const sourceFiles = Object.fromEntries(git('ls-files', '-z', '--', ...provenanceScope).split('\0').filter(Boolean).map((file) => [file, trackedHash(file)]));
+  return { commit: git('rev-parse', 'HEAD').trim(), trackedWorktreeDirty: staged || unstaged,
+    trackedChanges: { staged, unstaged }, provenanceScope, sourceFiles,
+    sourceTreeHash: hash(JSON.stringify(sourceFiles)),
+    provenanceMeaning: 'commit identifies HEAD; sourceFiles hash working bytes. A dirty report is not clean-commit verification. Snapshot is not atomic; keep source files unchanged during a run.' };
+}
 
 export async function preflight() {
   const checks = [];
@@ -47,9 +83,7 @@ export async function smoke() {
   const record = (name, evidence = {}) => report.stages.push({ name, ok: true, ...evidence });
   const writeReport = () => fs.writeFileSync(path.join(work, 'evidence.json'), JSON.stringify(report, null, 2) + '\n', { mode: 0o600 });
   try {
-    report.commit = git('rev-parse', 'HEAD');
-    report.sourceFiles = Object.fromEntries(git('ls-files', 'scripts', 'src/data/resume').split('\n').filter(Boolean).map((file) => [file, fileHash(path.join(root, file))]));
-    report.sourceTreeHash = hash(JSON.stringify(report.sourceFiles));
+    Object.assign(report, sourceProvenance());
     report.operatorHash = fileHash(fileURLToPath(import.meta.url));
     report.lockfileHash = fileHash(path.join(root, 'package-lock.json'));
     const { createResumeService } = await import('./lib/private-resume-service.js');
