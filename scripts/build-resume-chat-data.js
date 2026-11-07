@@ -13,7 +13,6 @@ const SOURCE_FILES = [
   'src/data/resume/skills.json',
   'src/data/resume/aboutVariants.json',
   'src/data/resume/profiles/*.json',
-  'src/data/resume/profiles/generated/*.json',
 ];
 
 const clone = (value) => JSON.parse(JSON.stringify(value));

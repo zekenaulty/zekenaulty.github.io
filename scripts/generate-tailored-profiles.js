@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import { buildResumeChatData } from './build-resume-chat-data.js';
+import { validateTailoredProfile } from '../src/data/resume/profileValidation.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,14 +15,7 @@ dotenv.config({ path: path.join(ROOT_DIR, '.env.local') });
 dotenv.config({ path: path.join(ROOT_DIR, '.env') });
 
 const PRIVATE_JD_PATH = path.join(ROOT_DIR, 'private', 'job-descriptions');
-const OUTPUT_DIR = path.join(
-  ROOT_DIR,
-  'src',
-  'data',
-  'resume',
-  'profiles',
-  'generated',
-);
+const OUTPUT_DIR = path.join(ROOT_DIR, 'private', 'resume-profiles');
 const SYSTEM_PROMPT_PATH = path.join(
   ROOT_DIR,
   'src',
@@ -152,48 +146,6 @@ function sanitizeLabel(text) {
   return text.replace(/\(?\bATS\b\)?/gi, '').replace(/\s{2,}/g, ' ').trim();
 }
 
-function validateProfile(profile) {
-  const errors = [];
-
-  if (!profile || typeof profile !== 'object' || Array.isArray(profile)) {
-    errors.push('Profile must be an object.');
-    return errors;
-  }
-
-  const stringFields = ['id', 'label', 'headline', 'aboutKey', 'kind'];
-  stringFields.forEach((field) => {
-    if (!profile[field] || typeof profile[field] !== 'string') {
-      errors.push(`"${field}" must be a non-empty string.`);
-    }
-  });
-
-  if (profile.published !== false) {
-    errors.push('"published" must be false for generated profiles.');
-  }
-
-  const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-  if (profile.id && !slugPattern.test(profile.id)) {
-    errors.push(`"id" must be slug-like (lowercase, hyphen separated). Got "${profile.id}".`);
-  }
-
-  const arrayFields = ['skillsPrimary', 'skillsSecondary'];
-  arrayFields.forEach((field) => {
-    if (!Array.isArray(profile[field])) {
-      errors.push(`"${field}" must be an array (can be empty).`);
-    }
-  });
-
-  if (profile.experienceOrder && !Array.isArray(profile.experienceOrder)) {
-    errors.push('"experienceOrder" must be an array when provided.');
-  }
-
-  if (profile.experienceOverrides && typeof profile.experienceOverrides !== 'object') {
-    errors.push('"experienceOverrides" must be an object when provided.');
-  }
-
-  return errors;
-}
-
 /**
  * Main per-file generation pipeline.
  */
@@ -242,17 +194,15 @@ async function generateTailoredProfileForFile({
   }
 
   // Normalize / enforce schema fields
-  const finalSlug = sanitizeSlug(profile.id, slugBase);
+  const finalSlug = sanitizeSlug(slugBase);
 
   profile.id = finalSlug;
   profile.published = false;
   profile.kind = profile.kind || 'employer-facing';
   profile.label = sanitizeLabel(profile.label || profile.headline || 'Tailored Profile');
   profile.headline = sanitizeLabel(profile.headline || profile.label || 'Tailored Profile');
-  profile.skillsPrimary = Array.isArray(profile.skillsPrimary) ? profile.skillsPrimary : [];
-  profile.skillsSecondary = Array.isArray(profile.skillsSecondary) ? profile.skillsSecondary : [];
 
-  const validationErrors = validateProfile(profile);
+  const validationErrors = validateTailoredProfile(profile, canonicalData.resume);
   if (validationErrors.length) {
     throw new Error(`Validation failed: ${validationErrors.join(' ')}`);
   }
@@ -342,10 +292,11 @@ async function main() {
       console.error(
         `Error generating profile for ${jdPath}: ${err.stack || err.message}`,
       );
+      process.exitCode = 1;
     }
   }
 
-  console.log('Tailored profile generation complete.');
+  console.log(process.exitCode ? 'Tailored profile generation finished with errors.' : 'Tailored profile generation complete.');
 }
 
 // Node 18+ supports top-level await, but we keep it explicit here.

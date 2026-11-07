@@ -4,6 +4,7 @@ import PDFDocument from 'pdfkit';
 const monthYearFormatter = new Intl.DateTimeFormat('en-US', {
   month: 'short',
   year: 'numeric',
+  timeZone: 'UTC',
 });
 
 function formatDate(isoString) {
@@ -44,7 +45,7 @@ function normalizeSkills(view) {
   };
 }
 
-export function renderHtmlResume(view) {
+export function renderHtmlResume(view, { privatePreview = false } = {}) {
   const {
     profileSlug,
     profileLabel,
@@ -142,7 +143,9 @@ export function renderHtmlResume(view) {
     <meta charset="utf-8" />
     <title>Zeke Naulty - ${escapeHtml(profileLabel ?? '')}</title>
     <meta name="description" content="${escapeHtml(description)}" />
-    <link rel="canonical" href="${canonicalUrl}" />
+${privatePreview
+      ? '    <meta name="robots" content="noindex, nofollow, noarchive" />'
+      : `    <link rel="canonical" href="${canonicalUrl}" />`}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>${minimalCss}</style>
   </head>
@@ -173,9 +176,9 @@ export function renderHtmlResume(view) {
       <section id="downloads">
         <h3>Downloads</h3>
         <ul>
-          <li><a href="/resume/${slug}/resume.txt">Plain text</a></li>
-          <li><a href="/resume/${slug}/resume.pdf">PDF</a></li>
-          <li><a href="/resume/${slug}/resume.docx">Word (.docx)</a></li>
+          <li><a href="./resume.txt">Plain text</a></li>
+          <li><a href="./resume.pdf">PDF</a></li>
+          <li><a href="./resume.docx">Word (.docx)</a></li>
         </ul>
       </section>
 

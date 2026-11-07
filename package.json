@@ -12,6 +12,8 @@
     "build:sitemap": "node ./scripts/build-sitemap.js",
     "build:resume-chat-data": "node ./scripts/build-resume-chat-data.js",
     "build:exports": "node ./scripts/build-resume-exports.js",
+    "export:private": "node ./scripts/export-private-resume.js",
+    "check:resume": "node ./scripts/check-resume-pipeline.js",
     "generate:tailored-profiles": "node ./scripts/generate-tailored-profiles.js",
     "writing": "node ./scripts/writing-loop.js",
     "writing:init": "node ./scripts/writing-loop.js init",

@@ -19,13 +19,10 @@ function loadProfilesFromDir(dir) {
     .filter((profile) => profile && profile.id);
 }
 
-const baseDir = __dirname;
-const generatedDir = path.join(__dirname, 'generated');
-
-const allProfiles = [
-  ...loadProfilesFromDir(baseDir),
-  ...loadProfilesFromDir(generatedDir),
-];
+// This registry feeds public HTML, exports, sitemap, and chat data.
+// Draft directories are never loaded, even if a draft says published: true.
+// Publishing requires an explicit reviewed copy into this directory.
+const allProfiles = loadProfilesFromDir(__dirname);
 
 allProfiles.sort((a, b) => a.id.localeCompare(b.id));
 
