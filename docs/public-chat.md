@@ -6,7 +6,7 @@ This is the frontend half of the bounded OpenAI public-chat migration in [gemini
 
 Set `VITE_CHAT_PROXY_URL` only after reviewing the intended Worker destination. It must be a full HTTPS URL ending exactly in `/chat`, with no query, fragment or credentials. Missing/malformed configuration disables sends while leaving the resume pages and downloads usable. This public URL is not a secret. Vite settings require a rebuild. There is no implicit production endpoint, direct provider path, browser key or automatic fallback.
 
-The browser sends `POST /chat` with `Content-Type: application/json` and only `{ "messages": [{ "role": "user", "text": "What experience is listed?" }] }`. It sends a contiguous recent suffix of at most 12 messages, 2,000 JavaScript string characters each, 8,000 total and 32 KiB after JSON encoding. The last role is `user`; all other roles are `user` or `assistant`. The welcome message and UI metadata are excluded. Older transcript text remains visible locally. Oversized/unsupported old turns stop the transmitted suffix rather than being rewritten. The response is labeled when older context was omitted.
+The browser sends `POST /chat` with `Content-Type: application/json` and only `{ "messages": [{ "role": "user", "text": "What experience is listed?" }] }`. It sends a contiguous recent suffix of the current provider conversation of at most 12 messages, 2,000 JavaScript string characters each, 8,000 total and 32 KiB after JSON encoding. The last role is `user`; all other roles are `user` or `assistant`. The welcome message and UI metadata are excluded. Older transcript text remains visible locally. Oversized/unsupported old turns stop the transmitted suffix rather than being rewritten. The response is labeled when older context was omitted.
 
 Instructions, curated public facts, credentials, model settings and limits belong to the Worker. No private resume generation, job-description upload or raw provider payload belongs on this route. Browser limits are UX and bandwidth controls, not a security boundary; the Worker independently validates and throttles.
 
@@ -18,7 +18,11 @@ Errors use the Worker's `{ "error": { "code": "...", "message": "..." } }` shape
 
 ## Privacy and preserved behavior
 
-The existing drawer, first-visit opening, local history, older-message pagination and Markdown display remain. Legacy Gemini `model` messages normalize to `assistant`, while malformed records are skipped. Storage restrictions fall back to memory. History uses the existing `chat-history-v1` local-storage key and is not encrypted. On a new submission, the bounded recent suffix, potentially including legacy history, is sent through the configured Worker to OpenAI. The UI explains this and asks visitors not to share private information. Merely opening the drawer does not send history.
+The existing drawer, first-visit opening, local history, older-message pagination and Markdown display remain. Legacy Gemini `model` messages normalize to `assistant` **for display only**, while malformed records are skipped. Storage restrictions fall back to memory. History uses the existing `chat-history-v1` local-storage key and is not encrypted.
+
+Provider migration starts a fresh conversation by default. New user/assistant turns receive the explicit local `conversationEpoch: "openai-public-chat-v1"` marker. Legacy Gemini, untagged, and other-epoch turns stay visible locally but are never automatically forwarded to OpenAI. Normalization preserves a recognized marker only on original `user`/`assistant` records; it never upgrades old `model` records. There is no opt-in to replay old history in this change. The UI explains the boundary and asks for a new question; visitors should restate only context they intend to send.
+
+A new submission sends its question and the bounded contiguous suffix of recognized current-epoch turns, projected to `role` and `text` only. It stops at any other epoch/untagged turn. The marker is local migration metadata, not an authorization token or a defense against browser-storage tampering. Only successful exchanges are persisted with markers. Failed or aborted submissions leave legacy storage untouched; manual retry does not promote legacy turns. Reloads preserve both display-only legacy text and the new conversation boundary. Merely opening or closing the drawer does not send history.
 
 Raw HTML is not enabled. Model-authored Markdown images become inert text instead of making third-party requests. Links open on a visitor click with `noopener noreferrer`. Verify important facts against the public resume.
 
@@ -38,7 +42,7 @@ HTTP endpoints are accepted only in Vite development and only for localhost/loop
 
 ## Verification
 
-- `npm run check:public-chat`: transport and real-component hook/handler tests, using the existing Vite compiler and mocked responses. Covers byte/character/message limits, old history, endpoint restrictions, safe errors, timeout/abort, no retries, duplicate submit, close/reopen, cooldown, partial/omitted-context labels, failed drafts, denied storage and inert images.
+- `npm run check:public-chat`: transport and real-component hook/handler tests, using the existing Vite compiler and mocked responses. Covers byte/character/message limits, legacy display-only history, mixed epochs, persistence/reload and failure/retry boundaries, endpoint restrictions, safe errors, timeout/abort, no retries, duplicate submit, close/reopen, cooldown, partial/omitted-context labels, failed drafts, denied storage and inert images.
 - `npm run check:public-chat:worker -- /path/to/worker/src/index.js`: ten offline scenarios through both real modules, with mocked provider transport, dummy Secrets Store lookup and limiter bindings. No credentials or network requests are used.
 - Existing checks remain required: `npm run check:resume-tool`, `npm run check:resume`, `node --test tests/privacy.test.js`, and `npm run build:all`.
 

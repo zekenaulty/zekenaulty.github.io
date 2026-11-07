@@ -3,13 +3,14 @@ import assert from 'node:assert/strict';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { PublicChatClient } from '../src/llm/publicChatClient.js';
-import { callResumeChat } from '../src/llm/chatService.js';
+import { callResumeChat, CHAT_CONVERSATION_EPOCH } from '../src/llm/chatService.js';
 
 const filename = process.argv[2];
 if (!filename || /^[a-z]+:\/\//i.test(filename)) {
   console.error('Usage: node scripts/check-public-chat-worker.js /path/to/worker/src/index.js');
   process.exit(2);
 }
+const current = (message) => ({ ...message, conversationEpoch: CHAT_CONVERSATION_EPOCH });
 const originalFetch = globalThis.fetch;
 let providerCalls = 0;
 let providerText = 'A mocked resume answer.';
@@ -28,6 +29,8 @@ globalThis.fetch = async (url, options) => {
   const payload = JSON.parse(options.body);
   assert.equal(payload.store, false);
   assert.equal(payload.input.at(-1).role, 'user');
+  assert.ok(!options.body.includes('Legacy reply'));
+  assert.ok(!options.body.includes('conversationEpoch'));
   return new Response(JSON.stringify({ status: providerStatus, output: [{ type: 'message', role: 'assistant', content: [{ type: 'output_text', text: providerText }] }] }));
 };
 try {
@@ -36,15 +39,15 @@ try {
     ...options, headers: { ...options.headers, Origin: 'https://zekenaulty.github.io', 'CF-Connecting-IP': '192.0.2.1' },
   }), settings) });
   const client = clientFor(env);
-  const messages = [{ role: 'model', text: 'Legacy reply' }, { role: 'user', text: 'What experience is listed?' }];
-  assert.deepEqual(await callResumeChat({ client, messages }), { text: providerText, incomplete: false, truncated: false, contextOmitted: false });
+  const messages = [{ role: 'model', text: 'Legacy reply' }, current({ role: 'user', text: 'What experience is listed?' })];
+  assert.deepEqual(await callResumeChat({ client, messages }), { text: providerText, incomplete: false, truncated: false, contextOmitted: true });
   providerText = 'x'.repeat(2100); providerStatus = 'incomplete';
   const partial = await callResumeChat({ client, messages });
   assert.equal(partial.text.length, 2000);
   assert.equal(partial.incomplete, true); assert.equal(partial.truncated, true);
   providerText = 'Answer'; providerStatus = 'completed';
-  await callResumeChat({ client, messages: Array.from({ length: 4 }, () => ({ role: 'user', text: '\u0000'.repeat(1999) + 'x' })) });
-  await callResumeChat({ client, messages: Array.from({ length: 16 }, () => ({ role: 'user', text: '😀'.repeat(1000) })) });
+  await callResumeChat({ client, messages: Array.from({ length: 4 }, () => current({ role: 'user', text: '\u0000'.repeat(1999) + 'x' })) });
+  await callResumeChat({ client, messages: Array.from({ length: 16 }, () => current({ role: 'user', text: '😀'.repeat(1000) })) });
   const callsBeforeErrors = providerCalls;
   for (const [settings, code] of [
     [{ ...env, PUBLIC_CHAT_ENABLED: 'false' }, 'chat_disabled'],

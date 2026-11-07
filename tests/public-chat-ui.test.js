@@ -152,11 +152,16 @@ test('legacy long history is retained, malformed entries skipped and omitted con
   const stored = [...Array.from({ length: 150 }, (_, i) => ({ role: i % 2 ? 'model' : 'user', text: `old ${i}` })), null, { role: 'system', text: 'Bad role' }];
   const ui = await harness({ stored, fetchImpl: async (_url, options) => { body = JSON.parse(options.body); return success(); } });
   assert.match(ui.text(), /old 149/);
+  assert.doesNotMatch(ui.text(), /old 0 /);
+  ui.nodes().find((node) => node.props.onScroll).props.onScroll({ currentTarget: { scrollTop: 0 } });
+  ui.render();
+  assert.match(ui.text(), /old 0 /);
   assert.doesNotMatch(ui.text(), /Bad role/);
+  assert.match(ui.text(), /Earlier chats are kept in this browser but are not sent to OpenAI/);
   ui.input('A follow-up'); await ui.submit(); ui.render();
-  assert.equal(body.messages.length, 12);
+  assert.deepEqual(body.messages, [{ role: 'user', text: 'A follow-up' }]);
   assert.ok(body.messages.every((message) => ['user', 'assistant'].includes(message.role)));
-  assert.match(ui.text(), /Only recent messages were included/);
+  assert.match(ui.text(), /Earlier or out-of-window messages were not sent/);
   assert.equal(JSON.parse(ui.storage.get('chat-history-v1')).length, 152);
   ui.unmount();
 });
@@ -175,7 +180,8 @@ test('blocked browser storage supports in-memory replies and oversized drafts ne
 
 test('unmount aborts without committing an answer and Markdown images are inert', async () => {
   let signal;
-  const ui = await harness({ fetchImpl: (_url, options) => {
+  const legacy = [{ role: 'model', text: 'Legacy answer' }];
+  const ui = await harness({ stored: legacy, fetchImpl: (_url, options) => {
     signal = options.signal;
     return new Promise((_resolve, reject) => signal.addEventListener('abort', () => reject(Error('aborted')), { once: true }));
   }});
@@ -185,5 +191,56 @@ test('unmount aborts without committing an answer and Markdown images are inert'
   assert.equal(image.props.src, undefined);
   ui.input('A question'); const pending = ui.submit(); ui.unmount(); await pending;
   assert.equal(signal.aborted, true);
-  assert.equal(JSON.parse(ui.storage.get('chat-history-v1')).length, 1);
+  assert.deepEqual(JSON.parse(ui.storage.get('chat-history-v1')), legacy);
+});
+
+test('legacy stays local across failure, manual retry, success and reload while new exchanges continue', async () => {
+  const legacy = [
+    { role: 'user', text: 'Legacy question' },
+    { role: 'model', text: 'Legacy answer' },
+    { role: 'assistant', text: 'Untagged answer' },
+  ];
+  const bodies = [];
+  const fetchImpl = async (_url, options) => {
+    bodies.push(JSON.parse(options.body));
+    return bodies.length === 1
+      ? new Response(JSON.stringify({ error: { code: 'chat_disabled' } }), { status: 503 })
+      : success();
+  };
+  const ui = await harness({ stored: legacy, fetchImpl });
+  assert.match(ui.text(), /Legacy question/);
+  assert.match(ui.text(), /Legacy answer/);
+  assert.match(ui.text(), /Untagged answer/);
+  assert.equal(bodies.length, 0);
+  ui.input('First new question');
+  await ui.submit(); ui.render();
+  assert.deepEqual(bodies, [{ messages: [{ role: 'user', text: 'First new question' }] }]);
+  assert.equal(ui.find('TextField').props.value, 'First new question');
+  assert.deepEqual(JSON.parse(ui.storage.get('chat-history-v1')), legacy);
+  ui.render(false); ui.render(true);
+  assert.equal(bodies.length, 1);
+  ui.input('Edited new question');
+  await ui.submit(); ui.render();
+  assert.deepEqual(bodies[1], { messages: [{ role: 'user', text: 'Edited new question' }] });
+  const saved = JSON.parse(ui.storage.get('chat-history-v1'));
+  assert.deepEqual(saved.slice(0, 3).map(({ text }) => text), legacy.map(({ text }) => text));
+  assert.ok(saved.slice(0, 3).every((message) => !message.conversationEpoch));
+  assert.ok(saved.slice(3).every((message) => message.conversationEpoch === service.CHAT_CONVERSATION_EPOCH));
+  assert.equal(saved.length, 5);
+  ui.unmount();
+
+  const reloaded = await harness({ stored: saved, fetchImpl });
+  assert.match(reloaded.text(), /Legacy answer/);
+  assert.match(reloaded.text(), /Mock answer/);
+  assert.equal(bodies.length, 2);
+  reloaded.input('Follow up');
+  await reloaded.submit(); reloaded.render();
+  assert.deepEqual(bodies[2], { messages: [
+    { role: 'user', text: 'Edited new question' },
+    { role: 'assistant', text: 'Mock answer' },
+    { role: 'user', text: 'Follow up' },
+  ] });
+  assert.equal(JSON.parse(reloaded.storage.get('chat-history-v1')).length, 7);
+  assert.ok(bodies.every((body) => !JSON.stringify(body).includes('conversationEpoch')));
+  reloaded.unmount();
 });

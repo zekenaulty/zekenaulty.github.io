@@ -17,7 +17,7 @@ import {
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { PublicChatClient, getChatErrorMessage } from '../llm/publicChatClient.js';
-import { callResumeChat, MAX_MESSAGE_CHARS, normalizeStoredMessages } from '../llm/chatService.js';
+import { callResumeChat, CHAT_CONVERSATION_EPOCH, isCurrentChatMessage, MAX_MESSAGE_CHARS, normalizeStoredMessages } from '../llm/chatService.js';
 
 // Explicit opt-in only: a public Worker endpoint, never a provider key.
 const CHAT_ENDPOINT = import.meta.env.VITE_CHAT_PROXY_URL?.trim() || '';
@@ -37,6 +37,7 @@ const makeMessage = (role, text) => ({
   id: `${role}-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`,
   role,
   text,
+  conversationEpoch: CHAT_CONVERSATION_EPOCH,
   timestamp: Date.now(),
 });
 
@@ -189,6 +190,8 @@ function ChatDrawer({ isOpen, onClose }) {
     }
   };
 
+  const hasLegacyHistory = fullHistoryRef.current.some((message) => message.id !== 'welcome' && !isCurrentChatMessage(message));
+
   const canSend = Boolean(inputValue.trim()) && inputValue.length <= MAX_MESSAGE_CHARS &&
     !isLoading && !clientError && !retryUntil && hydrated;
 
@@ -257,7 +260,7 @@ function ChatDrawer({ isOpen, onClose }) {
             ) : null}
             {!isUser && message.contextOmitted ? (
               <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 1 }}>
-                Only recent messages were included in this reply.
+                Earlier or out-of-window messages were not sent with this reply.
               </Typography>
             ) : null}
           </Box>
@@ -313,6 +316,11 @@ function ChatDrawer({ isOpen, onClose }) {
           <Divider />
 
           <Box sx={{ px: 2, pt: 1 }}>
+            {hasLegacyHistory ? (
+              <Alert severity="info" sx={{ mb: 1 }}>
+                Earlier chats are kept in this browser but are not sent to OpenAI. Start fresh with a new question.
+              </Alert>
+            ) : null}
             {clientError ? (
               <Alert severity="info" sx={{ mb: 1 }}>
                 {clientError}
@@ -360,7 +368,7 @@ function ChatDrawer({ isOpen, onClose }) {
 
           <Box component="form" onSubmit={handleSubmit} sx={{ p: 2, pt: 1, pb: 'calc(env(safe-area-inset-bottom, 12px) + 12px)' }}>
             <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 1 }}>
-              AI can make mistakes. Recent messages go through this site’s chat service to OpenAI; a history copy is saved in this browser. Don’t share private information.
+              AI can make mistakes. Recent messages from this OpenAI conversation go through this site’s chat service to OpenAI; a history copy is saved in this browser. Don’t share private information.
             </Typography>
             <Stack direction="row" spacing={1} alignItems="center">
               <TextField
