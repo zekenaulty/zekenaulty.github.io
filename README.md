@@ -1,6 +1,6 @@
 # zekenaulty.github.io
 
-React/Vite single-page resume site (MUI) with multi-profile views, animated intro, matrix overlay, and optional Gemini-powered chat/export tooling.
+React/Vite single-page resume site (MUI) with multi-profile views, animated intro, matrix overlay, and private OpenAI-powered resume tooling, plus the existing optional Gemini chat and writing tools.
 
 ## What's here
 - Multi-profile resume data (Code Monkey + employer-facing variants) with job summaries, bullets, and job-level skills chips.
@@ -24,14 +24,15 @@ React/Vite single-page resume site (MUI) with multi-profile views, animated intr
 - To verify a Search Console URL-prefix property by HTML file, place Google's verification file in `public/` so it deploys at the site root.
 - To verify by meta tag, set `GOOGLE_SITE_VERIFICATION` or `VITE_GOOGLE_SITE_VERIFICATION` in `.env.local` before building. Do not commit the meta tag token.
 
-## Tailored profiles (LLM-assisted)
-- Generate job-specific overlays from private JDs: `npm run generate:tailored-profiles` (reads `private/job-descriptions/*.md|txt`, writes to ignored `private/resume-profiles/`). Generation is local tooling, not a public website endpoint.
-- Requires `GEMINI_API_KEY` (env) and uses `src/llm/system/tailored-profile-generator-prompt.md` plus canonical resume data built by `build-resume-chat-data.js`. Generation sends the selected JD and canonical data to Gemini; only run it when that data sharing is intended.
-- Use `--all` to regenerate everything, or pass specific filenames in `private/job-descriptions/`. The JD filename determines the output ID, so missing-only mode checks the same file it writes.
-- Each new overlay saves its actual tailored `summary` paragraphs. An optional `aboutKey` must already exist; unknown about keys or experience IDs fail validation instead of falling back or dropping roles. Invalid runs exit nonzero.
-- Only experience `summary`, `description`, and `skillsUsed` can be tailored. Employment titles, companies, locations, and dates always come from canonical experience data. Review all generated narrative for factual accuracy; schema checks cannot verify claims.
-- Existing drafts are not automatically repaired or regenerated. For an older draft, make a private reviewed copy, add real summary paragraphs (or reuse a valid about key), correct unknown IDs, and remove factual override fields before exporting.
-- Offline/manual use: write an overlay matching the prompt's JSON schema under `private/resume-profiles/`, then use the private export command below. This needs no model key and lets an assistant use the same rendering pipeline.
+## Private tailored resumes (OpenAI first)
+- Local Node tool for Zeke and an assistant: `npm run --silent resume:tool` accepts one JSON request on stdin and returns one JSON result. See [the complete interface and examples](docs/private-resume-tool.md).
+- The default provider is OpenAI Responses, model `gpt-6.1-sol`, reasoning `high`. Credentials stay in the local process, never in the browser or model prompt. An existing `OPENAI_API_KEY` must be available before live generation; credential setup is a separate secure step.
+- Select one local JD, preview the exact input hash and provider, generate a validated draft, then explicitly export it. Files stay under ignored `private/resume-profiles/` and `private/resume-exports/`. No network-accessible endpoint is added.
+- This first version tailors **selection of existing text and bullet/skill ordering**, not free-form prose or job chronology. Selected jobs stay in the canonical newest-first career order, even if the model ranks them differently. Generation, validation and export report included and omitted roles for review. The model returns only canonical references; local code rejects invented sources, cross-role bullets/skills, extra fields, changed drafts and changed source data. Employment titles, employers, locations, dates and role summaries remain canonical. Source validation is not independent verification of the source claims; review every resume before sharing.
+- Existing human CLI: `npm run generate:tailored-profiles -- "Company Role.md"`. Filenames select files within `private/job-descriptions/`. Use `--all` to explicitly select all JDs. No arguments shows help; existing drafts are skipped, never overwritten. Select a new `id` through the JSON interface for a revision.
+- Optional compatibility: add `--provider gemini` to use the existing Gemini credential with the same source-selection contract. There is no automatic provider fallback. Old free-form generated overlays remain untouched.
+- Focused offline verification: `npm run check:resume-tool` uses a mocked transport and disposable synthetic JD. It needs no credentials and makes no provider requests.
+- The public chat drawer and writing loop still use Gemini. Browser authentication, an OpenAI worker migration, deployment, and controlled evidence-backed prose rewriting are separate future steps. This local increment does not convert or secure those existing services.
 
 
 ## Draft privacy and recovery

@@ -1,306 +1,56 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import dotenv from 'dotenv';
-import { buildResumeChatData } from './build-resume-chat-data.js';
-import { validateTailoredProfile } from '../src/data/resume/profileValidation.js';
+// Human CLI compatibility wrapper over the same private service used by assistants.
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { resumeService, errorResponse } from './resume-tool.js';
+import { ResumeToolError } from './lib/resume-selection.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-const ROOT_DIR = path.resolve(__dirname, '..');
-
-// Load environment variables (prefers .env.local, then .env)
-dotenv.config({ path: path.join(ROOT_DIR, '.env.local') });
-dotenv.config({ path: path.join(ROOT_DIR, '.env') });
-
-const PRIVATE_JD_PATH = path.join(ROOT_DIR, 'private', 'job-descriptions');
-const OUTPUT_DIR = path.join(ROOT_DIR, 'private', 'resume-profiles');
-const SYSTEM_PROMPT_PATH = path.join(
-  ROOT_DIR,
-  'src',
-  'llm',
-  'system',
-  'tailored-profile-generator-prompt.md',
-);
-
-// Environment / model configuration
-const GEMINI_API_KEY = (process.env.GEMINI_API_KEY || '').trim();
-const GEMINI_MODEL = (process.env.GEMINI_MODEL || 'models/gemini-3-flash-preview').trim();
-const MAX_ATTEMPTS = 5;
-const RETRY_DELAY_MS = 1000;
-const argv = process.argv.slice(2);
-const runMode = argv.includes('--all') ? 'all' : 'missing'; // default missing
-const explicitFiles = argv.filter((arg) => !arg.startsWith('-'));
-
-if (!GEMINI_API_KEY) {
-  throw new Error('GEMINI_API_KEY environment variable is required.');
-}
-
-if (!fs.existsSync(OUTPUT_DIR)) {
-  fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-}
-
-function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-/**
- * Call Gemini generateContent with a system prompt, user prompt, and canonical JSON.
- */
-async function callGemini({ systemPrompt, userPrompt, canonicalJson }) {
-  const url = `https://generativelanguage.googleapis.com/v1beta/${GEMINI_MODEL}:generateContent`;
-
-  const body = {
-    system_instruction: {
-      role: 'system',
-      parts: [{ text: systemPrompt }],
-    },
-    contents: [
-      {
-        role: 'user',
-        parts: [
-          { text: userPrompt },
-          {
-            text: canonicalJson,
-          },
-        ],
-      },
-    ],
-  };
-
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'x-goog-api-key': GEMINI_API_KEY,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  });
-
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`Gemini error ${res.status}: ${text}`);
-  }
-
-  const json = await res.json();
-  const candidates = json.candidates || [];
-  const parts = candidates[0]?.content?.parts || [];
-  const text = parts.map((p) => p.text || '').join('').trim();
-
-  return text;
-}
-
-/**
- * Extract JSON from a raw LLM response. Handles optional code fences.
- */
-function extractJsonFromText(text) {
-  if (!text) return null;
-
-  // Try fenced JSON
-  const fenceMatch = text.match(/```json\s*([\s\S]*?)```/i);
-  if (fenceMatch) {
-    return fenceMatch[1].trim();
-  }
-
-  // Try any {...} block
-  const braceMatch = text.match(/{[\s\S]*}/);
-  if (braceMatch) {
-    return braceMatch[0].trim();
-  }
-
-  return null;
-}
-
-/**
- * Generate a deterministic slug from a JD file name.
- * Example: "Proactive Global - Software Developer II.md" -> "proactive-global-software-developer-ii"
- */
-function slugFromFileName(filename) {
-  const base = path.basename(filename, path.extname(filename));
-  return base
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-}
-
-function sanitizeSlug(raw, fallback) {
-  const cleaned = (raw || '')
-    .toString()
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-
-  const tokens = cleaned.split('-').filter(Boolean);
-  const filtered = tokens.filter((t) => t !== 'generated' && t !== 'ats');
-  const finalTokens = filtered.length ? filtered : tokens;
-  const candidate = finalTokens.join('-');
-
-  if (candidate) return candidate;
-  if (fallback) return sanitizeSlug(fallback);
-  return 'profile-overlay';
-}
-
-function sanitizeLabel(text) {
-  if (!text) return '';
-  return text.replace(/\(?\bATS\b\)?/gi, '').replace(/\s{2,}/g, ' ').trim();
-}
-
-/**
- * Main per-file generation pipeline.
- */
-async function generateTailoredProfileForFile({
-  jdPath,
-  systemPrompt,
-  canonicalData,
-}) {
-  const jdText = fs.readFileSync(jdPath, 'utf-8');
-  const slugBase = slugFromFileName(jdPath);
-
-  const userPrompt = [
-    `Job description file: ${path.basename(jdPath)}`,
-    '',
-    'Job Description:',
-    jdText,
-    '',
-    'Using the canonical resume data provided, generate a single profile overlay JSON for Zeke Naulty that is tailored specifically to this job.',
-    'Do not invent new experience. Only rephrase and reorder existing facts.',
-    `Use "${slugBase}" as the base for id/label naming where appropriate.`,
-    '',
-    'Remember: output only raw JSON. No Markdown, no code fences.',
-  ].join('\n');
-
-  const canonicalJson = JSON.stringify(canonicalData, null, 2);
-
-  const rawResponse = await callGemini({
-    systemPrompt,
-    userPrompt,
-    canonicalJson,
-  });
-
-  const jsonText = extractJsonFromText(rawResponse);
-
-  if (!jsonText) {
-    throw new Error(`Failed to extract JSON from Gemini response for ${jdPath}`);
-  }
-
-  let profile;
-  try {
-    profile = JSON.parse(jsonText);
-  } catch (err) {
-    throw new Error(
-      `Invalid JSON from Gemini for ${jdPath}: ${err.message}\nResponse:\n${jsonText}`,
-    );
-  }
-
-  // Normalize / enforce schema fields
-  const finalSlug = sanitizeSlug(slugBase);
-
-  profile.id = finalSlug;
-  profile.published = false;
-  profile.kind = profile.kind || 'employer-facing';
-  profile.label = sanitizeLabel(profile.label || profile.headline || 'Tailored Profile');
-  profile.headline = sanitizeLabel(profile.headline || profile.label || 'Tailored Profile');
-
-  const validationErrors = validateTailoredProfile(profile, canonicalData.resume);
-  if (validationErrors.length) {
-    throw new Error(`Validation failed: ${validationErrors.join(' ')}`);
-  }
-
-  const outputFileName = `${finalSlug}.json`;
-  const outputPath = path.join(OUTPUT_DIR, outputFileName);
-
-  return { profile, outputPath };
-}
-
-async function generateWithRetries(args) {
-  let attempt = 1;
-  while (attempt <= MAX_ATTEMPTS) {
-    try {
-      const result = await generateTailoredProfileForFile(args);
-      return result;
-    } catch (err) {
-      const message = err?.message || err;
-      if (attempt >= MAX_ATTEMPTS) {
-        throw new Error(`Failed after ${MAX_ATTEMPTS} attempts: ${message}`);
-      }
-      console.warn(
-        `Attempt ${attempt} failed for ${path.basename(args.jdPath)}: ${message}. Retrying...`,
-      );
-      attempt += 1;
-      await delay(RETRY_DELAY_MS);
-    }
-  }
-}
-
-/**
- * Entry point:
- *  - Build canonical resume data (using existing script).
- *  - Load system prompt.
- *  - Iterate over JD files and generate overlays.
- */
 async function main() {
-  if (!fs.existsSync(PRIVATE_JD_PATH)) {
-    console.log(
-      `No private job descriptions directory found at ${PRIVATE_JD_PATH}. Nothing to do.`,
-    );
+  const args = process.argv.slice(2);
+  if (!args.length || args.includes('--help')) {
+    console.log('Usage: npm run generate:tailored-profiles -- [--provider openai|gemini] [--model <id>] [--reasoning high] <job.md> [another.txt]');
+    console.log('Use --all to explicitly select every local job description. Existing drafts are skipped, never overwritten.');
+    console.log('Sends selected JDs and canonical sources to the chosen provider; generates private source-backed selections. No site build or publication.');
     return;
   }
-
-  const resolvedExplicit = explicitFiles.map((f) =>
-    path.isAbsolute(f) ? f : path.join(PRIVATE_JD_PATH, f),
-  );
-
-  const discovered = fs
-    .readdirSync(PRIVATE_JD_PATH)
-    .filter((f) => f.endsWith('.md') || f.endsWith('.txt'))
-    .map((f) => path.join(PRIVATE_JD_PATH, f));
-
-  const jdFiles = resolvedExplicit.length
-    ? resolvedExplicit.filter((p) => fs.existsSync(p))
-    : discovered;
-
-  if (jdFiles.length === 0) {
-    console.log('No job description files found. Nothing to do.');
-    return;
+  const files = [];
+  const options = { provider: process.env.RESUME_PROVIDER || 'openai' };
+  let all = false;
+  for (let i = 0; i < args.length; i += 1) {
+    const arg = args[i];
+    if (arg === '--all') all = true;
+    else if (['--provider', '--model', '--reasoning', '--max-output-tokens'].includes(arg)) {
+      const value = args[++i];
+      if (!value || value.startsWith('--')) throw new ResumeToolError('INVALID_REQUEST', 'Missing flag value.');
+      const key = arg === '--max-output-tokens' ? 'maxOutputTokens' : arg.slice(2);
+      options[key] = key === 'maxOutputTokens' ? Number(value) : value;
+    } else if (arg.startsWith('-')) throw new ResumeToolError('INVALID_REQUEST', 'Unknown flag.');
+    else files.push(arg);
   }
-
-  const systemPrompt = fs.readFileSync(SYSTEM_PROMPT_PATH, 'utf-8');
-
-  // Reuse your existing canonical data builder so the ATS generator always sees fresh data.
-  const canonicalPath = buildResumeChatData();
-  const canonicalData = JSON.parse(fs.readFileSync(canonicalPath, 'utf-8'));
-
-  for (const jdPath of jdFiles) {
-    const expectedSlug = sanitizeSlug(slugFromFileName(jdPath));
-    const expectedOutput = path.join(OUTPUT_DIR, `${expectedSlug}.json`);
-
-    if (runMode === 'missing' && fs.existsSync(expectedOutput)) {
-      console.log(`Skipping ${path.basename(jdPath)} (missing-only mode; output exists).`);
-      continue;
-    }
-
+  if (all && files.length) throw new ResumeToolError('INVALID_REQUEST', 'Choose filenames or --all, not both.');
+  options.model ??= options.provider === 'openai' ? process.env.OPENAI_MODEL : process.env.GEMINI_MODEL?.replace(/^models\//, '');
+  options.reasoning ??= process.env.OPENAI_REASONING_EFFORT;
+  for (const key of Object.keys(options)) if (options[key] === undefined) delete options[key];
+  const jobs = all ? (await resumeService.execute({ version: 1, action: 'list_jobs' })).result.jobs.map((job) => job.filename) : files;
+  if (!jobs.length) throw new ResumeToolError('INVALID_REQUEST', 'No selected job descriptions found. Choose a filename or use --all.');
+  for (const job of jobs) {
     try {
-      const { profile, outputPath } = await generateWithRetries({
-        jdPath,
-        systemPrompt,
-        canonicalData,
-      });
-      fs.writeFileSync(outputPath, JSON.stringify(profile, null, 2), 'utf-8');
-      console.log(`Generated tailored profile: ${outputPath}`);
-    } catch (err) {
-      console.error(
-        `Error generating profile for ${jdPath}: ${err.stack || err.message}`,
-      );
+      const prepared = (await resumeService.execute({ version: 1, action: 'prepare', job, ...options })).result;
+      if (fs.lstatSync(prepared.draftPath, { throwIfNoEntry: false })) {
+        console.log(`Skipped existing private draft: ${path.relative(root, prepared.draftPath)}`);
+        continue;
+      }
+      const generated = await resumeService.execute({ version: 1, action: 'generate', job, ...options, allowNetwork: true, expectedInputHash: prepared.inputHash });
+      console.log(JSON.stringify(generated));
+    } catch (error) {
+      console.error(JSON.stringify(errorResponse(error)));
       process.exitCode = 1;
     }
   }
-
-  console.log(process.exitCode ? 'Tailored profile generation finished with errors.' : 'Tailored profile generation complete.');
 }
-
-// Node 18+ supports top-level await, but we keep it explicit here.
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
+main().catch((error) => {
+  console.error(JSON.stringify(errorResponse(error)));
+  process.exitCode = 1;
 });
